@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "aDHxCAcpsEGjfzhgCBJMLByrZUPjUomaunEJxBZL2PQ=",
+  "Source": "APIShopLaptop",
+  "BasePath": "_content/APIShopLaptop",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

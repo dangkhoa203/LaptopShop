@@ -1,0 +1,36 @@
+﻿using APIShopLaptop.Data;
+using APIShopLaptop.Endpoint;
+using APIShopLaptop.Model.Enum;
+using Microsoft.EntityFrameworkCore;
+
+namespace APIShopLaptop.Feature.Admin.Orders {
+    public class GetOrders:IEndpoint {
+        public record OrderDTO(string Id, DateTime DateOfOrder, PAYMENTMETHOD PaymentMethod, ORDERSTATUS Status, string UserID,string UserName);
+        public record Response(bool Success, List<OrderDTO>? data, string ErrorMessage);
+        public static void MapEndpoint(IEndpointRouteBuilder app) {
+            app.MapGet("/api/Admin/Orders", Handler).WithTags("Orders");
+        }
+        private static async Task<IResult> Handler(ApplicationDBContext context) {
+            try {
+                var orders = await context.Orders
+                     .Include(o => o.User)
+                     .Include(o => o.Details)
+                        .ThenInclude(d => d.ProductNavigation)
+                     .Select(o => new OrderDTO(
+                         o.Id,
+                         o.DateOfOrder,
+                         o.PaymentMethod,
+                         o.Status,
+                         o.User.Id,
+                         o.User.UserName
+                         ))
+                     .ToListAsync();
+                return Results.Ok(new Response(true, orders, ""));
+            }
+            catch (Exception) {
+                return Results.BadRequest(new Response(false, null, "Lỗi server đã xảy ra!"));
+            }
+
+        }
+    }
+}

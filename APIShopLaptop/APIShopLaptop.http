@@ -1,0 +1,6 @@
+@APIShopLaptop_HostAddress = http://localhost:5054
+
+GET {{APIShopLaptop_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
