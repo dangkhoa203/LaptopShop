@@ -385,6 +385,55 @@
     ]
   },
   {
+    "ContainingType": "APIShopLaptop.Feature.Admin.DiscountCodes.GetDiscountCodes",
+    "Method": "Handler",
+    "RelativePath": "api/Admin/Discount-Codes",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "DiscountCode"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.Admin.DiscountCodes.UpdateDiscountCode",
+    "Method": "Handler",
+    "RelativePath": "api/Admin/Discount-Codes/{id}",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "APIShopLaptop.Feature.Admin.DiscountCodes.UpdateDiscountCode\u002BRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "DiscountCode"
+    ]
+  },
+  {
     "ContainingType": "APIShopLaptop.Feature.Admin.ImageStorage.AddImage",
     "Method": "Handler",
     "RelativePath": "api/Admin/ImageStorage",
@@ -644,6 +693,80 @@
     ],
     "Tags": [
       "Products"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.Admin.Specifications.AddSpecification",
+    "Method": "Handler",
+    "RelativePath": "api/Admin/Specifications",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "APIShopLaptop.Feature.Admin.Specifications.AddSpecification\u002BRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Specifications"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.Admin.Specifications.GetSpecifications",
+    "Method": "Handler",
+    "RelativePath": "api/Admin/Specifications",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Specifications"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.Admin.Specifications.UpdateSpecification",
+    "Method": "Handler",
+    "RelativePath": "api/Admin/Specifications/{id}",
+    "HttpMethod": "PUT",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "APIShopLaptop.Feature.Admin.Specifications.UpdateSpecification\u002BRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Specifications"
     ]
   },
   {

@@ -23,6 +23,7 @@ namespace APIShopLaptop.Data {
             if (await _userManager.FindByNameAsync("Admin") == null) {
                 var admin = new AppUser {
                     UserName = "Admin",
+                    Email="admin@admin",
                     EmailConfirmed = true,
                 };
                 await _userManager.CreateAsync(admin, "admin");

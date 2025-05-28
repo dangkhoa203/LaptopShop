@@ -5,7 +5,7 @@ using FluentValidation;
 using FluentValidation.Results;
 namespace APIShopLaptop.Feature.Admin.DiscountCodes {
     public class UpdateDiscountCode:IEndpoint {
-        public record Request(string Name, string Description, float Percent, bool IsActive);
+        public record Request(string Name, string Description, float Percent, bool IsActive,DateTime EndDate);
         public record Response(bool Success, string ErrorMessage, ValidationResult? ValidationError);
         public sealed class Validator : AbstractValidator<Request> {
             public Validator() {
@@ -13,7 +13,7 @@ namespace APIShopLaptop.Feature.Admin.DiscountCodes {
                 RuleFor(r => r.Percent).InclusiveBetween(0, 100).WithMessage("Phần trăm không thích hợp!");
             }
             public bool CheckSame(Request request, DiscountCode code) {
-                var old = new Request(code.Name, code.Description, code.Percent, code.IsActive);
+                var old = new Request(code.Name, code.Description, code.Percent, code.IsActive,code.EndDate);
                 return request == old;
             }
         }
@@ -37,6 +37,7 @@ namespace APIShopLaptop.Feature.Admin.DiscountCodes {
                     code.Description = request.Description;
                     code.Percent = request.Percent;
                     code.IsActive = request.IsActive;
+                    code.EndDate = request.EndDate;
                     code.UpdateAt=DateTime.Now;
                     if (await context.SaveChangesAsync() < 1) {
                         return Results.BadRequest(new Response(false, "Lỗi xảy ra khi đang thực hiện!", ValidationResult));

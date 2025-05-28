@@ -371,6 +371,48 @@
             "description": "OK"
           }
         }
+      },
+      "get": {
+        "tags": [
+          "DiscountCode"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Admin/Discount-Codes/{id}": {
+      "post": {
+        "tags": [
+          "DiscountCode"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/APIShopLaptop.Feature.Admin.DiscountCodes.UpdateDiscountCode.Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
     "/api/Admin/ImageStorage": {
@@ -646,6 +688,70 @@
           }
         }
       }
+    },
+    "/api/Admin/Specifications": {
+      "post": {
+        "tags": [
+          "Specifications"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/APIShopLaptop.Feature.Admin.Specifications.AddSpecification.Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Specifications"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Admin/Specifications/{id}": {
+      "put": {
+        "tags": [
+          "Specifications"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/APIShopLaptop.Feature.Admin.Specifications.UpdateSpecification.Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -713,6 +819,31 @@
         "additionalProperties": false
       },
       "APIShopLaptop.Feature.Admin.DiscountCodes.AddDiscountCode.Request": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "percent": {
+            "type": "number",
+            "format": "float"
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "APIShopLaptop.Feature.Admin.DiscountCodes.UpdateDiscountCode.Request": {
         "type": "object",
         "properties": {
           "name": {
@@ -850,6 +981,26 @@
           },
           "status": {
             "$ref": "#/components/schemas/APIShopLaptop.Model.Enum.PRODUCTSTATUS"
+          }
+        },
+        "additionalProperties": false
+      },
+      "APIShopLaptop.Feature.Admin.Specifications.AddSpecification.Request": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "APIShopLaptop.Feature.Admin.Specifications.UpdateSpecification.Request": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false

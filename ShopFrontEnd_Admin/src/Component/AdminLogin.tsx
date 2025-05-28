@@ -89,11 +89,10 @@ export default function AdminLogin(){
                         }
                         if( content.validateError!==null && !content.validateError.isValid) {
                             const list = content.validateError.errors
-
                             list.forEach((element: any) => {
 
                                 if (element.propertyName === "UserName")
-                                    setValidatationError({...validatationError, Username: element.errorMessage})
+                                    errormessage.Username=element.errorMessage
 
                                 if (element.propertyName === "Password"){
                                     errormessage.Password=element.errorMessage
@@ -124,7 +123,7 @@ export default function AdminLogin(){
                    property="div"
                    sx={{
                        border:"5px solid #1976d2",
-                       minHeight:"200px",
+                       minHeight:"330px",
                        maxWidth:"500px",
                        paddingY:"10px",
                        display:"flex",flexDirection:"column"}}  >

@@ -5,18 +5,21 @@ import {CircularProgress, Tooltip} from "@mui/material";
 import Button from "@mui/material/Button";
 import {AgGridReact} from "ag-grid-react";
 import type { ICellRendererParams } from 'ag-grid-community';
-import {myTheme} from "../../Type/myTheme.tsx";
+import{myTheme_small} from "../../Type/myTheme_small.tsx";
 import {AG_GRID_LOCALE_VN} from "@ag-grid-community/locale";
 import Container from "@mui/material/Container";
-
-import Divider from "@mui/material/Divider";
 import CreateNewDiscountCodeDiaglog from "./CreateNewDiscountCodeDiaglog.tsx";
+import Typography from "@mui/material/Typography";
+import UpdateDiscountCodeDiaglog from "./UpdateDiscountCodeDiaglog.tsx";
 
-type brandData={
+
+type discountCodeData={
     id: string,
     name: string,
-    tag: string,
-    productCount:number ,
+    description: string,
+    percent:number,
+    isActive:boolean,
+    endDate:Date,
 }
 export default function DiscountCode(){
     const [success, setSuccess] = useState(false);
@@ -30,56 +33,33 @@ export default function DiscountCode(){
         setOpenCreate(false);
     };
 
-    const [openDelete, setOpenDelete] = useState(false);
-    const [deleteModel, setDeleteModel] = useState({
-        id:"",
-        name: "",
-    });
-    const handleClickOpenDelete =(id:string,name:string) => {
-        setDeleteModel({
-            id:id,
-            name: name,
-        })
-        setOpenDelete(true);
-    };
-
-    const handleCloseDelete = () => {
-        setDeleteModel({
-            id:"",
-            name: "",
-        })
-        setOpenDelete(false);
-    };
 
     const [openUpdate, setOpenUpdate] = useState(false);
-    const [updateModel, setUpdateModel] = useState({
-        id:"",
-        name: "",
-        tag:""
+    const [updateModel, setUpdateModel] = useState<discountCodeData>({
+        id:'',
+        name:'',
+        description:'',
+        percent:1,
+        isActive:false,
+        endDate:new Date(),
     });
-    const handleClickOpenUpdate =(id:string,name:string,tag:string) => {
-        setUpdateModel({
-            id:id,
-            name: name,
-            tag:tag
-        })
+    const handleClickOpenUpdate =(old:discountCodeData) => {
+        setUpdateModel(old)
         setOpenUpdate(true);
     };
 
     const handleCloseUpdate = () => {
         setUpdateModel({
-            id:"",
-            name: "",
-            tag:""
+            ...updateModel,id:""
         })
         setOpenUpdate(false);
     };
 
     const {data,isPending,refetch}=useQuery({
-        queryKey:["account_list"],
+        queryKey:["discount_list"],
         queryFn:async ()=>{
             setSuccess(false)
-            const response = await fetch('https://localhost:7075/api/Admin/Brands', {
+            const response = await fetch('https://localhost:7075/api/Admin/Discount-Codes', {
                 headers: {'Content-Type': 'application/json'},
                 credentials: 'include',
                 method:"GET"
@@ -94,58 +74,74 @@ export default function DiscountCode(){
         }
     }, [data]);
 
-    const [rowData, setRowData] = useState<Array<brandData>>([]);
+    const [rowData, setRowData] = useState<Array<discountCodeData>>([]);
 
     // @ts-ignore
     const [colDefs, setColDefs] = useState<ColDef[]>([
+
         { valueGetter:c=>c.data.id,
             headerName:"Id",filter:true,
             resizable:false,
-            unSortIcon: true,flex: 2,
-            minWidth:200,
+            unSortIcon: true,flex: 1,
+            minWidth:150,
             floatingFilter: true },
 
         { valueGetter:c=>c.data.name,
             headerName:"Tên",filter:true,
             resizable:false,
-            unSortIcon: true,flex: 2,
+            unSortIcon: true,flex: 1,
+            minWidth:150,
+            floatingFilter: true },
+
+        { valueGetter:c=>c.data.description,
+            cellRenderer:(params:ICellRendererParams)=>
+                <div style={{ display:"flex",flexDirection:"row",justifyContent:"center",gap:"3px",fontSize:"1.3em",width:"100%",height:"42px",alignItems:"center"}}>
+                    {params.value.length===0? "Không có" :
+                        <Tooltip title={params.value} >{params.value}</Tooltip> }
+                </div>,
+            headerName:"Mô tả",filter:true,
+            resizable:false,
+            unSortIcon: true,flex: 1,
             minWidth:200,
             floatingFilter: true },
 
-        { valueGetter:c=>c.data.tag,
-            headerName:"Tag",filter:true,
+        { valueGetter:c=>c.data.percent,
+            headerName:"Phần trăm",filter:true,
+            cellDataType:"number",
             resizable:false,
-            unSortIcon: true,flex: 2,
-            minWidth:200,
+            unSortIcon: true,flex: 1,
+            minWidth:140,
             floatingFilter: true },
 
-        { valueGetter:c=>c.data.productCount,
-            headerName:"Số sản phẩm",filter:true,
+        { valueGetter:c=>new Date(c.data.endDate).toLocaleString('En-GB', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit' }),headerName:"Hạn dùng",
+            filter:true,resizable:false,unSortIcon: true,flex: 1,minWidth:180,floatingFilter: true },
+
+        { valueGetter:c=>c.data.isActive,
+            cellDataType: "boolean",
+            cellRenderer:(params:ICellRendererParams)=>
+                <div style={{display:"flex",flexDirection:"row",justifyContent:"center",gap:"3px",fontSize:"1.3em",width:"100%",height:"42px",alignItems:"center"}}>
+                    {params.value? <Typography color="success"> Có</Typography>:<Typography color="error">Không</Typography>}
+                </div>
+            ,
+            headerName:"Hoạt động",filter:false,
             resizable:false,
-            unSortIcon: true,flex: 2,
-            minWidth:200,
+            unSortIcon: true,flex: 1,
+            minWidth:150,
             floatingFilter: true },
-        { valueGetter:c=> {
-                return {
-                    id:c.data.id,
-                    name:c.data.name,
-                    tag:c.data.tag,
-                    productCount:c.data.productCount
-                }
-            },
+
+        { valueGetter:c=> c.data,
             sortable:false,
             resizable:false,
             flex: 3,
-            minWidth:250
+            minWidth:150
             ,floatingFilter: true,
             cellRenderer:(params:ICellRendererParams)=>
                 <div style={{display:"flex",flexDirection:"row",justifyContent:"center",gap:"3px",width:"100%",height:"100%",alignItems:"center"}}>
-                    <Tooltip title="Xóa hãng">
-                        <Button color="secondary" disabled={params.value.productCount>0} onClick={()=>handleClickOpenDelete(params.value.id,params.value.name)}>Xóa hãng</Button>
-                    </Tooltip>
-                    <Divider orientation="vertical" variant="middle" flexItem />
-                    <Tooltip title="Sửa hãng">
-                        <Button color="secondary"  onClick={()=>handleClickOpenUpdate(params.value.id,params.value.name,params.value.tag)}>Sửa hãng</Button>
+                    <Tooltip title="Sửa mã giảm giá">
+                        <Button color="warning"  onClick={()=>handleClickOpenUpdate(params.value)}>Sửa mã</Button>
                     </Tooltip>
                 </div>
             ,
@@ -177,7 +173,7 @@ export default function DiscountCode(){
                                 <AgGridReact
                                     rowData={rowData}
                                     columnDefs={colDefs}
-                                    theme={myTheme}
+                                    theme={myTheme_small}
                                     pagination={true}
                                     paginationPageSize={50}
                                     paginationPageSizeSelector={[50,100]}
@@ -188,6 +184,7 @@ export default function DiscountCode(){
                                 />
                             </div>
                             <CreateNewDiscountCodeDiaglog open={openCreate} handleClose={handleCloseCreate} reFetch={refetch}/>
+                            <UpdateDiscountCodeDiaglog old={updateModel} open={openUpdate} handleClose={handleCloseUpdate} reFetch={refetch}/>
                         </>
                     }
                 </>

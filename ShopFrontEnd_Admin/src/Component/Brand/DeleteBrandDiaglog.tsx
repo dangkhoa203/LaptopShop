@@ -51,12 +51,12 @@ export default function DeleteBrandDiaglog(props:{name:string,id:string,open:boo
         >
             <DialogTitle
                 sx={{
-                    borderTop:"10px solid rgb(25, 118, 210)",
+                    borderTop:"10px solid rgb(211, 47, 47)",
                 }}>
                 Xóa hãng {props.name}
             </DialogTitle>
             <IconButton
-                color="primary"
+                color="error"
                 onClick={()=> {
                     props.handleClose()
                     setGlobalError("")
@@ -68,7 +68,7 @@ export default function DeleteBrandDiaglog(props:{name:string,id:string,open:boo
                     color: theme.palette.grey[500],
                 })}
             >
-                <CloseIcon color="primary" />
+                <CloseIcon color="error" />
             </IconButton>
             <DialogContent >
                 <DialogContentText >
@@ -92,7 +92,7 @@ export default function DeleteBrandDiaglog(props:{name:string,id:string,open:boo
                             props.handleClose()
                             setGlobalError("")
                         }}>Hủy</Button>
-                        <Button variant="contained" color="primary" onClick={()=> {
+                        <Button variant="contained" color="error" onClick={()=> {
                             mutate()
                         }} autoFocus
                         >

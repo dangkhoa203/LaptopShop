@@ -18,7 +18,7 @@ type brandData={
     tag: string,
     productCount:number ,
 }
-export default function Brand(){
+export default function Specification(){
     const [success, setSuccess] = useState(false);
 
     const [openCreate, setOpenCreate] = useState(false);
@@ -112,20 +112,6 @@ export default function Brand(){
             minWidth:200,
             floatingFilter: true },
 
-        { valueGetter:c=>c.data.tag,
-            headerName:"Tag",filter:true,
-            resizable:false,
-            unSortIcon: true,flex: 2,
-            minWidth:200,
-            floatingFilter: true },
-
-        { valueGetter:c=>c.data.productCount,
-            headerName:"Số sản phẩm",filter:true,
-            cellDataType:"number",
-            resizable:false,
-            unSortIcon: true,flex: 2,
-            minWidth:200,
-            floatingFilter: true },
         { valueGetter:c=> {
                 return {
                     id:c.data.id,
@@ -185,9 +171,7 @@ export default function Brand(){
                                     localeText={AG_GRID_LOCALE_VN}
                                 />
                             </div>
-                            <CreateNewBrandDiaglog open={openCreate} handleClose={handleCloseCreate} reFetch={refetch}/>
-                            <DeleteBrandDiaglog name={deleteModel.name} id={deleteModel.id} open={openDelete} handleClose={handleCloseDelete} reFetch={refetch}/>
-                            <UpdateBrandDiaglog id={updateModel.id} name={updateModel.name} tag={updateModel.tag} open={openUpdate} handleClose={handleCloseUpdate} reFetch={refetch}/>
+
                         </>
                     }
                 </>

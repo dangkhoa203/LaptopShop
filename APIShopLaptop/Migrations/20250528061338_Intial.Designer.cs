@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace APIShopLaptop.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20250525163324_Intial")]
+    [Migration("20250528061338_Intial")]
     partial class Intial
     {
         /// <inheritdoc />
@@ -153,8 +153,8 @@ namespace APIShopLaptop.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("Percent")
-                        .HasColumnType("real");
+                    b.Property<int>("Percent")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("UpdateAt")
                         .HasColumnType("datetime2");

@@ -30,6 +30,7 @@ namespace APIShopLaptop.Feature.Admin.DiscountCodes {
                    Description = request.Description,
                    Percent = request.Percent,
                    IsActive = request.IsActive,
+                   EndDate = request.EndDate
                };
 
                 context.DiscountCodes.Add(Code);

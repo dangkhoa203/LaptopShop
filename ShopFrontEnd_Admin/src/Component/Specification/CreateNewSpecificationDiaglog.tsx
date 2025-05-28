@@ -18,7 +18,7 @@ type brandInfo = {
     name: string,
     tag: string
 }
-export default function CreateNewBrandDiaglog(props:{open:boolean,handleClose:()=>void,reFetch:any}){
+export default function CreateNewSpecificationDiaglog(props:{open:boolean,handleClose:()=>void,reFetch:any}){
     const [globalError, setGlobalError] = useState("");
     const [validateError, setValidateError] = useState<brandInfo>(
         {
@@ -155,29 +155,29 @@ export default function CreateNewBrandDiaglog(props:{open:boolean,handleClose:()
                         <LinearProgress />
                     </Box>
                     :
-                        <>
-                            <div style={{color:"red"}}>
-                                {globalError}
-                            </div>
-                            <Button color="error" variant={"outlined"} onClick={()=> {
-                                props.handleClose()
-                                setBrandInfo({
-                                    name:"",
-                                    tag:""
-                                })
-                                setGlobalError("")
-                                setValidateError({
-                                    name:"",
-                                    tag:""
-                                })
-                            }}>Hủy</Button>
-                            <Button variant="contained" color="primary" onClick={()=> {
-                                mutate()
-                            }} autoFocus
-                            >
-                                Tạo
-                            </Button>
-                        </>
+                    <>
+                        <div style={{color:"red"}}>
+                            {globalError}
+                        </div>
+                        <Button color="error" variant={"outlined"} onClick={()=> {
+                            props.handleClose()
+                            setBrandInfo({
+                                name:"",
+                                tag:""
+                            })
+                            setGlobalError("")
+                            setValidateError({
+                                name:"",
+                                tag:""
+                            })
+                        }}>Hủy</Button>
+                        <Button variant="contained" color="primary" onClick={()=> {
+                            mutate()
+                        }} autoFocus
+                        >
+                            Tạo
+                        </Button>
+                    </>
 
                 }
 

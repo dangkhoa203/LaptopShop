@@ -109,12 +109,12 @@ export default function UpdateBrandDiaglog(props:{id:string,name:string,tag:stri
         >
             <DialogTitle
                 sx={{
-                    borderTop:"10px solid rgb(138, 5, 161)",
+                    borderTop:"10px solid rgb(230, 81, 0)",
                 }}>
                 Sửa hãng {props.id}
             </DialogTitle>
             <IconButton
-                color="secondary"
+                color="warning"
                 onClick={()=> {
                     props.handleClose()
                     setBrandInfo({
@@ -134,7 +134,7 @@ export default function UpdateBrandDiaglog(props:{id:string,name:string,tag:stri
                     color: theme.palette.grey[500],
                 })}
             >
-                <CloseIcon color="secondary" />
+                <CloseIcon color="warning" />
             </IconButton>
             <DialogContent dividers>
                 <DialogContentText >
@@ -142,13 +142,13 @@ export default function UpdateBrandDiaglog(props:{id:string,name:string,tag:stri
                         <Grid size={6}>
                             <TextField value={brandInfo.name} onChange={handleNameChange} fullWidth
                                        error={validateError.name.length>0}  helperText={validateError.name}
-                                       color="secondary"
+                                       color="warning"
                                        size={"medium"} label="Tên" variant="filled" />
                         </Grid>
                         <Grid size={6}>
                             <TextField value={brandInfo.tag} onChange={handleTagChange} fullWidth
                                        error={validateError.tag.length>0}  helperText={validateError.tag}
-                                       color="secondary"
+                                       color="warning"
                                        size={"medium"} label="Tag" variant="filled" />
                         </Grid>
                     </Grid>
@@ -177,11 +177,11 @@ export default function UpdateBrandDiaglog(props:{id:string,name:string,tag:stri
                                 tag:""
                             })
                         }}>Hủy</Button>
-                        <Button variant="contained" color="secondary" onClick={()=> {
+                        <Button variant="contained" color="warning" onClick={()=> {
                             mutate()
                         }} autoFocus
                         >
-                            Tạo
+                            Sửa
                         </Button>
                     </>
 
