@@ -95,7 +95,29 @@
         }
       }
     },
-    "/api/Admin/Caterory": {
+    "/api/Admin/Product/{id}/Thumbnail": {
+      "get": {
+        "tags": [
+          "Admin_Product"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Admin/Category": {
       "get": {
         "tags": [
           "Admin-Category"
@@ -676,7 +698,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/APIShopLaptop.Feature.Admin.Products.AddProductToCategory.Request"
+                "$ref": "#/components/schemas/APIShopLaptop.Feature.Admin.Products.UpdateProductCaterory.Request"
               }
             }
           },
@@ -924,11 +946,21 @@
             "type": "string",
             "nullable": true
           },
+          "isDiscount": {
+            "type": "boolean"
+          },
+          "priceAfterDiscount": {
+            "type": "number",
+            "format": "float"
+          },
+          "status": {
+            "$ref": "#/components/schemas/APIShopLaptop.Model.Enum.PRODUCTSTATUS"
+          },
           "brandId": {
             "type": "string",
             "nullable": true
           },
-          "caterories": {
+          "categories": {
             "type": "array",
             "items": {
               "type": "string"
@@ -946,15 +978,18 @@
         },
         "additionalProperties": false
       },
-      "APIShopLaptop.Feature.Admin.Products.AddProductToCategory.Request": {
+      "APIShopLaptop.Feature.Admin.Products.UpdateProductCaterory.Request": {
         "type": "object",
         "properties": {
           "productId": {
             "type": "string",
             "nullable": true
           },
-          "cateroryId": {
-            "type": "string",
+          "categories": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
             "nullable": true
           }
         },
@@ -1094,8 +1129,7 @@
       "APIShopLaptop.Model.Enum.PRODUCTSTATUS": {
         "enum": [
           0,
-          1,
-          2
+          1
         ],
         "type": "integer",
         "format": "int32"

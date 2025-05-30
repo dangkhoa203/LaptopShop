@@ -343,7 +343,7 @@
   {
     "ContainingType": "APIShopLaptop.Feature.Admin.Category.GetCaterory",
     "Method": "Handler",
-    "RelativePath": "api/Admin/Caterory",
+    "RelativePath": "api/Admin/Category",
     "HttpMethod": "GET",
     "IsController": false,
     "Order": 0,
@@ -597,6 +597,31 @@
     ]
   },
   {
+    "ContainingType": "APIShopLaptop.Feature.Admin.Products.GetProductThumbnail",
+    "Method": "Handler",
+    "RelativePath": "api/Admin/Product/{id}/Thumbnail",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Admin_Product"
+    ]
+  },
+  {
     "ContainingType": "APIShopLaptop.Feature.Admin.Products.AddProduct",
     "Method": "Handler",
     "RelativePath": "api/Admin/Products",
@@ -671,7 +696,7 @@
     ]
   },
   {
-    "ContainingType": "APIShopLaptop.Feature.Admin.Products.AddProductToCategory",
+    "ContainingType": "APIShopLaptop.Feature.Admin.Products.UpdateProductCaterory",
     "Method": "Handler",
     "RelativePath": "api/Admin/Products/Category",
     "HttpMethod": "POST",
@@ -680,7 +705,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "APIShopLaptop.Feature.Admin.Products.AddProductToCategory\u002BRequest",
+        "Type": "APIShopLaptop.Feature.Admin.Products.UpdateProductCaterory\u002BRequest",
         "IsRequired": true
       }
     ],

@@ -7,7 +7,8 @@ export default defineConfig({
     port: 7089,
   },
   optimizeDeps: {
-    exclude: ['@ag-grid-community/locale']
+    exclude: ['@ag-grid-community/locale','react-simple-wysiwyg']
   },
   plugins: [react()],
+
 })

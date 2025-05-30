@@ -11,17 +11,20 @@ using SixLabors.ImageSharp.Processing;
 using NanoidDotNet;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using Microsoft.EntityFrameworkCore;
+using APIShopLaptop.Model.Enum;
 
 namespace APIShopLaptop.Feature.Admin.Products {
     public class AddProduct : IEndpoint {
-        public record Request(string Name, float Price, int Quantity,string Description,string BrandId,List<string> Caterories, IFormFileCollection ProductPicture);
+        public record Request(string Name, float Price, int Quantity,string Description,bool IsDiscount,float PriceAfterDiscount,PRODUCTSTATUS Status,string BrandId,List<string> Categories, IFormFileCollection ProductPicture);
         public record Response(bool Success, string ErrorMessage, ValidationResult? ValidationError);
         public sealed class Validator : AbstractValidator<Request> {
             public Validator() {
                 RuleFor(r => r.Price).GreaterThan(0).WithMessage("Giá không phù hợp");
+                RuleFor(r => r.PriceAfterDiscount).GreaterThanOrEqualTo(0).WithMessage("Giá không phù hợp");
                 RuleFor(r => r.Quantity).GreaterThan(-1).WithMessage("Số lượng không phù hợp");
                 RuleFor(r => r.Name).NotEmpty().WithMessage("Chưa nhập tên!");
                 RuleFor(r => r.Name).MinimumLength(4).WithMessage("Tên phải nhập tối thiểu 4 ký tự!");
+                RuleFor(r => r.BrandId).NotEqual("0").WithMessage("Chưa chọn hãng");
             }
         }
         public static void MapEndpoint(IEndpointRouteBuilder app) {
@@ -40,6 +43,9 @@ namespace APIShopLaptop.Feature.Admin.Products {
                 Price = request.Price,
                 Quantity = request.Quantity,
                 Description = request.Description,
+                IsDiscount=request.IsDiscount,
+                PriceAfterDiscount=request.PriceAfterDiscount,
+                Status=request.Status,
                 Brand= await context.Brands.FirstOrDefaultAsync(b=>b.Id==request.BrandId)
             };
             List<ProductImage> ProductImages = [];
@@ -55,7 +61,7 @@ namespace APIShopLaptop.Feature.Admin.Products {
                     var ThumbnailStream = request.ProductPicture[0].OpenReadStream();
                     using (Image image = Image.Load(ThumbnailStream)) {
                         image.Mutate(x => { x.Resize(300, 300); });
-                        image.SaveAsJpeg(Path.Combine(ProductImagePath, "Thumbnail.jpg"));
+                        image.SaveAsJpeg(Path.Combine(ProductImagePath, $"{thumbnailimage.Id}.jpg"));
                     }
                     thumbnailimage.Product = product;
                     ProductImages.Add(thumbnailimage);
@@ -84,13 +90,15 @@ namespace APIShopLaptop.Feature.Admin.Products {
                 //Save product to Database
                 await context.Products.AddAsync(product);
                 await context.ProductImages.AddRangeAsync(ProductImages);
-                foreach (var cateroryId in request.Caterories) {
-                    var Caterory = await context.SubCaterories.FirstOrDefaultAsync(c => c.Id == cateroryId);
-                    var item = new CateroryItem() {
-                        CateroryNavigation = Caterory,
-                        ProductNavigation = product,
-                    };
-                    await context.CateroryItems.AddAsync(item);
+                if (request.Categories[0] != "empty") {
+                    foreach (var categoryId in request.Categories) {
+                        var Category = await context.SubCaterories.FirstOrDefaultAsync(c => c.Id == categoryId);
+                        var item = new CateroryItem() {
+                            CateroryNavigation = Category,
+                            ProductNavigation = product,
+                        };
+                        await context.CateroryItems.AddAsync(item);
+                    }
                 }
                 if (await context.SaveChangesAsync() <= 0) {
                     string[] FilePath = Directory.GetFiles(ProductImagePath);

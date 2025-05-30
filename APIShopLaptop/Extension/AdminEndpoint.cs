@@ -28,11 +28,12 @@ namespace APIShopLaptop.Extension {
             GetDiscountCodes.MapEndpoint(app);
             UpdateDiscountCode.MapEndpoint(app);
         }
-        private static void AddProductService(this WebApplication app) {
+        private static void AddProductFeature(this WebApplication app) {
             AddProduct.MapEndpoint(app);
             UpdateProductInfo.MapEndpoint(app);
             GetProducts.MapEndpoint(app);
-            AddProductToCategory.MapEndpoint(app);
+            UpdateProductCaterory.MapEndpoint(app);
+            GetProductThumbnail.MapEndpoint(app);
         }
         private static void AddOrderFeature(this WebApplication app) {
             GetOrder.MapEndpoint(app);
@@ -60,7 +61,7 @@ namespace APIShopLaptop.Extension {
             AddImageStorageService(app);
             AddBrandService(app);
             AddDiscountCodeFeature(app);
-            AddProductService(app);
+            AddProductFeature(app);
             AddOrderFeature(app);
             AddCateroryFeature(app);
             AddAccountFeature(app);

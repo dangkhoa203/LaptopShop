@@ -21,7 +21,6 @@ namespace APIShopLaptop.Model.Entity.Product_Related {
             Id = "SP-" + Nanoid.Generate(Nanoid.Alphabets.UppercaseLettersAndDigits,6);
             IsDiscount= false;
             PriceAfterDiscount= 0;
-            Status=PRODUCTSTATUS.ACTIVE;
         }
         public virtual Brand? Brand { get; set; }
         public virtual ICollection<ProductImage>? Images { get; set; }
