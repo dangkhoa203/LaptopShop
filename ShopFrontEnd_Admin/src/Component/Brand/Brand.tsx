@@ -78,7 +78,6 @@ export default function Brand(){
     const {data,isPending,refetch}=useQuery({
         queryKey:["brand_list"],
         queryFn:async ()=>{
-            setSuccess(false)
             const response = await fetch('https://localhost:7075/api/Admin/Brands', {
                 headers: {'Content-Type': 'application/json'},
                 credentials: 'include',

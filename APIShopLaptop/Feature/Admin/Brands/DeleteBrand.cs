@@ -10,7 +10,7 @@ namespace APIShopLaptop.Feature.Admin.Brands {
         public record Response(bool Success, string ErrorMessage);
        
         public static void MapEndpoint(IEndpointRouteBuilder app) {
-            app.MapDelete("/api/Admin/Brands/{id}", Handler).WithTags("Brands");
+            app.MapDelete("/api/Admin/Brands/{id}", Handler).WithTags("Admin_Brands");
         }
         private static async Task<IResult> Handler(string id, ApplicationDBContext context) {
             try {

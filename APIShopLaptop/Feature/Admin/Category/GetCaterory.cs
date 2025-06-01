@@ -7,7 +7,7 @@ namespace APIShopLaptop.Feature.Admin.Category {
         public record CateroryDTO(string Id, string Name);
         public record Response(bool Success, List<CateroryDTO>? data, string ErrorMessage);
         public static void MapEndpoint(IEndpointRouteBuilder app) {
-            app.MapGet("/api/Admin/Category", Handler).WithTags("Admin-Category");
+            app.MapGet("/api/Admin/Category", Handler).WithTags("Admin_Category");
         }
         private static async Task<IResult> Handler(ApplicationDBContext context) {
             try {

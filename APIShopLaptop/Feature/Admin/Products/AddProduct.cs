@@ -28,7 +28,7 @@ namespace APIShopLaptop.Feature.Admin.Products {
             }
         }
         public static void MapEndpoint(IEndpointRouteBuilder app) {
-            app.MapPost("/api/Admin/Products", Handler).WithTags("Products").DisableAntiforgery();
+            app.MapPost("/api/Admin/Products", Handler).WithTags("Admin_Products").DisableAntiforgery();
         }
 
         private static async Task<IResult> Handler([FromForm] Request request, IWebHostEnvironment env, ApplicationDBContext context) {

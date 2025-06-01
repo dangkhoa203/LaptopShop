@@ -6,7 +6,7 @@ namespace APIShopLaptop.Feature.Admin.Account {
     public class UpdateUserConfirmEmail : IEndpoint {
         public record Response(bool Success, string ErrorMessage);
         public static void MapEndpoint(IEndpointRouteBuilder app) {
-            app.MapPost("/api/Admin/Account/Email/{id}", Handler).WithTags("AdminAccount");
+            app.MapPost("/api/Admin/Account/Email/{id}", Handler).WithTags("Admin_Account");
         }
         private static async Task<IResult> Handler(string id, ApplicationDBContext applicationDBContext) {
             try {

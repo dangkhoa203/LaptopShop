@@ -7,7 +7,7 @@ namespace APIShopLaptop.Feature.Admin.Specifications {
         public record SpecificationDTO(string Id, string Name);
         public record Response(bool Success, List<SpecificationDTO>? data, string ErrorMessage);
         public static void MapEndpoint(IEndpointRouteBuilder app) {
-            app.MapGet("/api/Admin/Specifications", Handler).WithTags("Specifications");
+            app.MapGet("/api/Admin/Specifications", Handler).WithTags("Admin_Specifications");
         }
         private static async Task<IResult> Handler(ApplicationDBContext context) {
             try {

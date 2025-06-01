@@ -9,12 +9,12 @@ export const myTheme_mini=themeQuartz
         fontFamily: {
             googleFont: "IBM Plex Mono"
         },
-        fontSize: 12,
+        fontSize: 14,
         foregroundColor: "#414756",
         headerFontFamily: {
             googleFont: "Roboto"
         },
-        headerFontSize: 14,
+        headerFontSize: 17,
         iconSize: 11,
         headerFontWeight: 600,
         headerRowBorder: true,

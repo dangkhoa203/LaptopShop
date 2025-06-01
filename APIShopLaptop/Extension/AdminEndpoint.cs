@@ -5,6 +5,10 @@ using APIShopLaptop.Feature.Admin.DiscountCodes;
 using APIShopLaptop.Feature.Admin.ImageStorage;
 using APIShopLaptop.Feature.Admin.Orders;
 using APIShopLaptop.Feature.Admin.Products;
+using APIShopLaptop.Feature.Admin.Products.Caterory;
+using APIShopLaptop.Feature.Admin.Products.Description;
+using APIShopLaptop.Feature.Admin.Products.Images;
+using APIShopLaptop.Feature.Admin.Products.Info;
 using APIShopLaptop.Feature.Admin.Specifications;
 
 namespace APIShopLaptop.Extension {
@@ -30,10 +34,19 @@ namespace APIShopLaptop.Extension {
         }
         private static void AddProductFeature(this WebApplication app) {
             AddProduct.MapEndpoint(app);
-            UpdateProductInfo.MapEndpoint(app);
             GetProducts.MapEndpoint(app);
+            UpdateProductInfo.MapEndpoint(app);
+            UpdateProductThumbnail.MapEndpoint(app);
             UpdateProductCaterory.MapEndpoint(app);
+            UpdateProductDescription.MapEndpoint(app);
             GetProductThumbnail.MapEndpoint(app);
+            GetProductInfo.MapEndpoint(app);
+            GetProductImage.MapEndpoint(app);
+            GetProductImages.MapEndpoint(app);
+            GetProductCategories.MapEndpoint(app);
+            GetProductDescription.MapEndpoint(app);
+            DeleteProductImage.MapEndpoint(app);
+            AddImageToProduct.MapEndpoint(app);
         }
         private static void AddOrderFeature(this WebApplication app) {
             GetOrder.MapEndpoint(app);

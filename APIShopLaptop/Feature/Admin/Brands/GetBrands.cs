@@ -8,7 +8,7 @@ namespace APIShopLaptop.Feature.Admin.Brands {
         public record BrandDTO(string Id, string Name, string Tag,int ProductCount);
         public record Response(bool Success, List<BrandDTO>? data, string ErrorMessage);
         public static void MapEndpoint(IEndpointRouteBuilder app) {
-            app.MapGet("/api/Admin/Brands", Handler).WithTags("Brands");
+            app.MapGet("/api/Admin/Brands", Handler).WithTags("Admin_Brands");
         }
         private static async Task<IResult> Handler(ApplicationDBContext context) {
             try {

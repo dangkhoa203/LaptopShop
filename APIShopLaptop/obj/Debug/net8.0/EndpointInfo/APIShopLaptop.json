@@ -95,44 +95,10 @@
         }
       }
     },
-    "/api/Admin/Product/{id}/Thumbnail": {
-      "get": {
-        "tags": [
-          "Admin_Product"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Admin/Category": {
-      "get": {
-        "tags": [
-          "Admin-Category"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/api/Admin/Account": {
       "get": {
         "tags": [
-          "AdminAccount"
+          "Admin_Account"
         ],
         "responses": {
           "200": {
@@ -144,7 +110,7 @@
     "/api/Admin/Account/Email/{id}": {
       "post": {
         "tags": [
-          "AdminAccount"
+          "Admin_Account"
         ],
         "parameters": [
           {
@@ -164,7 +130,7 @@
       },
       "put": {
         "tags": [
-          "AdminAccount"
+          "Admin_Account"
         ],
         "parameters": [
           {
@@ -196,7 +162,7 @@
     "/api/Admin/Account/Password/{id}": {
       "put": {
         "tags": [
-          "AdminAccount"
+          "Admin_Account"
         ],
         "parameters": [
           {
@@ -228,7 +194,7 @@
     "/api/Admin/Brands": {
       "post": {
         "tags": [
-          "Brands"
+          "Admin_Brands"
         ],
         "requestBody": {
           "content": {
@@ -248,7 +214,7 @@
       },
       "get": {
         "tags": [
-          "Brands"
+          "Admin_Brands"
         ],
         "responses": {
           "200": {
@@ -260,7 +226,7 @@
     "/api/Admin/Brands/{id}": {
       "put": {
         "tags": [
-          "Brands"
+          "Admin_Brands"
         ],
         "parameters": [
           {
@@ -290,7 +256,7 @@
       },
       "get": {
         "tags": [
-          "Brands"
+          "Admin_Brands"
         ],
         "parameters": [
           {
@@ -310,7 +276,7 @@
       },
       "delete": {
         "tags": [
-          "Brands"
+          "Admin_Brands"
         ],
         "parameters": [
           {
@@ -322,6 +288,588 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Admin/Category": {
+      "get": {
+        "tags": [
+          "Admin_Category"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Admin/Discount-Codes": {
+      "post": {
+        "tags": [
+          "Admin_DiscountCode"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/APIShopLaptop.Feature.Admin.DiscountCodes.AddDiscountCode.Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Admin_DiscountCode"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Admin/Discount-Codes/{id}": {
+      "post": {
+        "tags": [
+          "Admin_DiscountCode"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/APIShopLaptop.Feature.Admin.DiscountCodes.UpdateDiscountCode.Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Admin/Product/{id}/Thumbnail": {
+      "put": {
+        "tags": [
+          "Admin_Product"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "required": [
+                  "request"
+                ],
+                "type": "object",
+                "properties": {
+                  "request": {
+                    "$ref": "#/components/schemas/APIShopLaptop.Feature.Admin.Products.Images.UpdateProductThumbnail.Request"
+                  }
+                }
+              },
+              "encoding": {
+                "request": {
+                  "style": "form"
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "required": [
+                  "request"
+                ],
+                "type": "object",
+                "properties": {
+                  "request": {
+                    "$ref": "#/components/schemas/APIShopLaptop.Feature.Admin.Products.Images.UpdateProductThumbnail.Request"
+                  }
+                }
+              },
+              "encoding": {
+                "request": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Admin_Product"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Admin/Product/{id}/Images/{imageId}": {
+      "get": {
+        "tags": [
+          "Admin_Product"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "imageId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Admin/Products": {
+      "post": {
+        "tags": [
+          "Admin_Products"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "required": [
+                  "request"
+                ],
+                "type": "object",
+                "properties": {
+                  "request": {
+                    "$ref": "#/components/schemas/APIShopLaptop.Feature.Admin.Products.AddProduct.Request"
+                  }
+                }
+              },
+              "encoding": {
+                "request": {
+                  "style": "form"
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "required": [
+                  "request"
+                ],
+                "type": "object",
+                "properties": {
+                  "request": {
+                    "$ref": "#/components/schemas/APIShopLaptop.Feature.Admin.Products.AddProduct.Request"
+                  }
+                }
+              },
+              "encoding": {
+                "request": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Admin_Products"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Admin/Products/{id}/Info": {
+      "put": {
+        "tags": [
+          "Admin_Products"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/APIShopLaptop.Feature.Admin.Products.Info.UpdateProductInfo.Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Admin_Products"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Admin/Products/{id}/Category": {
+      "put": {
+        "tags": [
+          "Admin_Products"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/APIShopLaptop.Feature.Admin.Products.Caterory.UpdateProductCaterory.Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Admin_Products"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Admin/Products/{id}/Description": {
+      "put": {
+        "tags": [
+          "Admin_Products"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/APIShopLaptop.Feature.Admin.Products.Description.UpdateProductDescription.Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Admin_Products"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Admin/Products/{id}/Images": {
+      "get": {
+        "tags": [
+          "Admin_Products"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Admin_Products"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/APIShopLaptop.Feature.Admin.Products.Images.DeleteProductImage.Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Admin_Products"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "required": [
+                  "request"
+                ],
+                "type": "object",
+                "properties": {
+                  "request": {
+                    "$ref": "#/components/schemas/APIShopLaptop.Feature.Admin.Products.Images.AddImageToProduct.Request"
+                  }
+                }
+              },
+              "encoding": {
+                "request": {
+                  "style": "form"
+                }
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "required": [
+                  "request"
+                ],
+                "type": "object",
+                "properties": {
+                  "request": {
+                    "$ref": "#/components/schemas/APIShopLaptop.Feature.Admin.Products.Images.AddImageToProduct.Request"
+                  }
+                }
+              },
+              "encoding": {
+                "request": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Admin/Specifications": {
+      "post": {
+        "tags": [
+          "Admin_Specifications"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/APIShopLaptop.Feature.Admin.Specifications.AddSpecification.Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Admin_Specifications"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Admin/Specifications/{id}": {
+      "put": {
+        "tags": [
+          "Admin_Specifications"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/APIShopLaptop.Feature.Admin.Specifications.UpdateSpecification.Request"
+              }
+            }
+          },
+          "required": true
+        },
         "responses": {
           "200": {
             "description": "OK"
@@ -361,70 +909,6 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/APIShopLaptop.Feature.User.Caterory.GetProductFromMainCategory.Request"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Admin/Discount-Codes": {
-      "post": {
-        "tags": [
-          "DiscountCode"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/APIShopLaptop.Feature.Admin.DiscountCodes.AddDiscountCode.Request"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "get": {
-        "tags": [
-          "DiscountCode"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Admin/Discount-Codes/{id}": {
-      "post": {
-        "tags": [
-          "DiscountCode"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/APIShopLaptop.Feature.Admin.DiscountCodes.UpdateDiscountCode.Request"
               }
             }
           },
@@ -583,186 +1067,6 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/APIShopLaptop.Feature.Admin.Orders.UpdateOrderStatus.Request"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Admin/Products": {
-      "post": {
-        "tags": [
-          "Products"
-        ],
-        "requestBody": {
-          "content": {
-            "multipart/form-data": {
-              "schema": {
-                "required": [
-                  "request"
-                ],
-                "type": "object",
-                "properties": {
-                  "request": {
-                    "$ref": "#/components/schemas/APIShopLaptop.Feature.Admin.Products.AddProduct.Request"
-                  }
-                }
-              },
-              "encoding": {
-                "request": {
-                  "style": "form"
-                }
-              }
-            },
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "required": [
-                  "request"
-                ],
-                "type": "object",
-                "properties": {
-                  "request": {
-                    "$ref": "#/components/schemas/APIShopLaptop.Feature.Admin.Products.AddProduct.Request"
-                  }
-                }
-              },
-              "encoding": {
-                "request": {
-                  "style": "form"
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "get": {
-        "tags": [
-          "Products"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Admin/Products/{id}": {
-      "put": {
-        "tags": [
-          "Products"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/APIShopLaptop.Feature.Admin.Products.UpdateProductInfo.Request"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Admin/Products/Category": {
-      "post": {
-        "tags": [
-          "Products"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/APIShopLaptop.Feature.Admin.Products.UpdateProductCaterory.Request"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Admin/Specifications": {
-      "post": {
-        "tags": [
-          "Specifications"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/APIShopLaptop.Feature.Admin.Specifications.AddSpecification.Request"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "get": {
-        "tags": [
-          "Specifications"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Admin/Specifications/{id}": {
-      "put": {
-        "tags": [
-          "Specifications"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/APIShopLaptop.Feature.Admin.Specifications.UpdateSpecification.Request"
               }
             }
           },
@@ -978,13 +1282,9 @@
         },
         "additionalProperties": false
       },
-      "APIShopLaptop.Feature.Admin.Products.UpdateProductCaterory.Request": {
+      "APIShopLaptop.Feature.Admin.Products.Caterory.UpdateProductCaterory.Request": {
         "type": "object",
         "properties": {
-          "productId": {
-            "type": "string",
-            "nullable": true
-          },
           "categories": {
             "type": "array",
             "items": {
@@ -995,7 +1295,52 @@
         },
         "additionalProperties": false
       },
-      "APIShopLaptop.Feature.Admin.Products.UpdateProductInfo.Request": {
+      "APIShopLaptop.Feature.Admin.Products.Description.UpdateProductDescription.Request": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "APIShopLaptop.Feature.Admin.Products.Images.AddImageToProduct.Request": {
+        "type": "object",
+        "properties": {
+          "images": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "binary"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "APIShopLaptop.Feature.Admin.Products.Images.DeleteProductImage.Request": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "APIShopLaptop.Feature.Admin.Products.Images.UpdateProductThumbnail.Request": {
+        "type": "object",
+        "properties": {
+          "thumbnail": {
+            "type": "string",
+            "format": "binary",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "APIShopLaptop.Feature.Admin.Products.Info.UpdateProductInfo.Request": {
         "type": "object",
         "properties": {
           "name": {
@@ -1010,12 +1355,19 @@
             "type": "integer",
             "format": "int32"
           },
-          "description": {
-            "type": "string",
-            "nullable": true
+          "isDiscount": {
+            "type": "boolean"
+          },
+          "priceAfterDiscount": {
+            "type": "number",
+            "format": "float"
           },
           "status": {
             "$ref": "#/components/schemas/APIShopLaptop.Model.Enum.PRODUCTSTATUS"
+          },
+          "brandId": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false

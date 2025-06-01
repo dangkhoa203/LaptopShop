@@ -16,7 +16,7 @@ namespace APIShopLaptop.Feature.Admin.Account {
             }
         }
         public static void MapEndpoint(IEndpointRouteBuilder app) {
-            app.MapPut("/api/Admin/Account/Email/{id}", Handler).WithTags("AdminAccount");
+            app.MapPut("/api/Admin/Account/Email/{id}", Handler).WithTags("Admin_Account");
         }
         private static async Task<IResult> Handler(Request request, string id, UserManager<AppUser> userManager, ApplicationDBContext applicationDBContext) {
             try {

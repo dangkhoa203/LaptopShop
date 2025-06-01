@@ -51,7 +51,7 @@ export default function ProductList(){
             unSortIcon: false,flex: 1,
             maxWidth:100,
             minWidth: 100,
-            cellStyle:params => {
+            cellStyle:() => {
                 return {padding:0};
             },
             floatingFilter: false,
@@ -61,60 +61,92 @@ export default function ProductList(){
                 </div>},
 
         { valueGetter:c=>c.data.id,
+            wrapHeaderText:true,
             headerName:"Id",filter:true,
             resizable:false,
             unSortIcon: true,flex: 1,
-            minWidth:100,
+            minWidth:130,
+            wrapText: true,
             floatingFilter: true },
 
         { valueGetter:c=>c.data.name,
+            wrapHeaderText:true,
             headerName:"Tên",filter:true,
             resizable:false,
             unSortIcon: true,flex: 1,
-            minWidth:100,
+            minWidth:150,
+            wrapText:true,
             floatingFilter: true },
 
         { valueGetter:c=>c.data.quantity,
+            wrapHeaderText:true,
             headerName:"Số lượng",filter:true,
             resizable:false,
             unSortIcon: true,flex: 1,
-            minWidth:100,
+            minWidth:70,
+            wrapText: true,
             floatingFilter: true },
 
         { valueGetter:c=>c.data.price,
+            wrapHeaderText:true,
             headerName:"Giá",filter:true,
             resizable:false,
             unSortIcon: true,flex: 1,
+            wrapText: true,
             minWidth:100,
             floatingFilter: true },
 
         { valueGetter:c=>c.data.isDiscount,
-            headerName:"Đang giảm",filter:true,
+            wrapHeaderText:true,
+            headerName:"Đang giảm",filter:false,
+            valueFormatter:(c:any)=>c.value ? "Có":"Không",
             resizable:false,
-            unSortIcon: true,flex: 1,
+            unSortIcon: false,flex: 1,
+            wrapText: true,
             minWidth:100,
-            floatingFilter: true },
+            floatingFilter: false },
 
         { valueGetter:c=>c.data.priceAfterDiscount,
+            wrapHeaderText:true,
             headerName:"Giá giảm",filter:true,
             resizable:false,
             unSortIcon: true,flex: 1,
             minWidth:100,
+            wrapText: true,
             floatingFilter: true },
 
         { valueGetter:c=>c.data.status,
-            headerName:"Trạng thái",filter:true,
+            wrapHeaderText:true,
+            headerName:"Trạng thái",filter:false,
+            valueFormatter:(c:any)=>`${c.value===0 ? "Đang bán":"Không bán"}`,
             resizable:false,
-            unSortIcon: true,flex: 1,
+            unSortIcon: false,flex: 1,
             minWidth:100,
-            floatingFilter: true },
+            wrapText: true,
+            floatingFilter: false },
 
         { valueGetter:c=>c.data.brandName,
+            wrapHeaderText:true,
             headerName:"Tên hãng",filter:true,
             resizable:false,
             unSortIcon: true,flex: 1,
             minWidth:100,
+            wrapText: true,
             floatingFilter: true },
+        { valueGetter:c=> c.data.id,
+            sortable:false,
+            resizable:false,
+            flex: 1,
+            minWidth:100,
+            floatingFilter: true,
+            cellRenderer:(params:ICellRendererParams)=>
+                <div style={{display:"flex",flexDirection:"row",justifyContent:"center",gap:"3px",width:"100%",height:"100px",alignItems:"center"}}>
+                    <Tooltip title="Sửa sản phẩm">
+                        <Button size={"small"} color="warning" onClick={()=>navigate(`Sua/${params.value}`)}>Sửa</Button>
+                    </Tooltip>
+                </div>
+            ,
+        },
     ]);
 
 
@@ -140,13 +172,14 @@ export default function ProductList(){
                         <>
                             <div style={{ height: "450px" }}>
                                 <AgGridReact
+
                                     rowHeight={100}
                                     rowData={rowData}
                                     columnDefs={colDefs}
                                     theme={myTheme_mini}
                                     pagination={true}
-                                    paginationPageSize={50}
-                                    paginationPageSizeSelector={[50,100]}
+                                    paginationPageSize={25}
+                                    paginationPageSizeSelector={[25,50]}
                                     enableCellTextSelection={true}
                                     ensureDomOrder={true}
                                     suppressDragLeaveHidesColumns={true}

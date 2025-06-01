@@ -15,7 +15,7 @@ namespace APIShopLaptop.Feature.Admin.DiscountCodes {
             }
         }
         public static void MapEndpoint(IEndpointRouteBuilder app) {
-            app.MapPost("/api/Admin/Discount-Codes", Handler).WithTags("DiscountCode");
+            app.MapPost("/api/Admin/Discount-Codes", Handler).WithTags("Admin_DiscountCode");
         }
         public static async Task<IResult> Handler(Request request, ApplicationDBContext context) {
             try {

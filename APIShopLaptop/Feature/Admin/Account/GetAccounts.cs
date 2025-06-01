@@ -8,7 +8,7 @@ namespace APIShopLaptop.Feature.Admin.Account {
         public record UserDTO(string Id,string UserName,string Email,bool EmailConfirm,DateTime RegisterDate);
         public record Response(bool Success, List<UserDTO> data, string ErrorMessage);
         public static void MapEndpoint(IEndpointRouteBuilder app) {
-            app.MapGet("/api/Admin/Account", Handler).WithTags("AdminAccount");
+            app.MapGet("/api/Admin/Account", Handler).WithTags("Admin_Account");
         }
         private static async Task<IResult> Handler(ApplicationDBContext applicationDBContext, UserManager<AppUser> userManager) {
             try {

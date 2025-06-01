@@ -10,7 +10,7 @@ namespace APIShopLaptop.Feature.Admin.DiscountCodes {
         public record Response(bool Success, List<CodeDTO> Data, string ErrorMessage);
 
         public static void MapEndpoint(IEndpointRouteBuilder app) {
-            app.MapGet("/api/Admin/Discount-Codes", Handler).WithTags("DiscountCode");
+            app.MapGet("/api/Admin/Discount-Codes", Handler).WithTags("Admin_DiscountCode");
         }
         private static async Task<IResult> Handler(ApplicationDBContext context) {
             try {

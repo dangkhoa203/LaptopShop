@@ -13,7 +13,6 @@ import Editor, {
 } from 'react-simple-wysiwyg';
 import Divider from "@mui/material/Divider";
 export default function TextEditor(props:{description:string,setDescription:(value:any)=>void}) {
-
     function onChange(e:any) {
         props.setDescription(e.target.value);
     }

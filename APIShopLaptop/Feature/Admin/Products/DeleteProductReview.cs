@@ -6,7 +6,7 @@ namespace APIShopLaptop.Feature.Admin.Products {
         public record Request(string Id);
         public record Response(bool Success, string ErrorMessage);
         public static void MapEndpoint(IEndpointRouteBuilder app) {
-            app.MapDelete("/api/Admin/Products/Reviews", Handler).WithTags("Products");
+            app.MapDelete("/api/Admin/Products/Reviews", Handler).WithTags("Admin_Products");
         }
         public static async Task<IResult> Handler(Request request, ApplicationDBContext context) {
             try {

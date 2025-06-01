@@ -20,7 +20,7 @@ namespace APIShopLaptop.Feature.Admin.Specifications {
             }
         }
         public static void MapEndpoint(IEndpointRouteBuilder app) {
-            app.MapPut("/api/Admin/Specifications/{id}", Handler).WithTags("Specifications");
+            app.MapPut("/api/Admin/Specifications/{id}", Handler).WithTags("Admin_Specifications");
         }
         private static async Task<IResult> Handler(string id, Request request, ApplicationDBContext context) {
             try {
