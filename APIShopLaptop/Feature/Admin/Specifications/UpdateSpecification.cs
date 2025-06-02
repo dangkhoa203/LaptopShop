@@ -20,7 +20,7 @@ namespace APIShopLaptop.Feature.Admin.Specifications {
             }
         }
         public static void MapEndpoint(IEndpointRouteBuilder app) {
-            app.MapPut("/api/Admin/Specifications/{id}", Handler).WithTags("Specifications");
+            app.MapPut("/api/Admin/Specifications/{id}", Handler).WithTags("Admin_Specifications");
         }
         private static async Task<IResult> Handler(string id, Request request, ApplicationDBContext context) {
             try {
@@ -30,14 +30,14 @@ namespace APIShopLaptop.Feature.Admin.Specifications {
                     return Results.BadRequest(new Response(false, "Lỗi xảy ra", ValidatedResult));
                 }
 
-                Specification? specification = await context.Specifications.FirstOrDefaultAsync(s => s.Id == id);
-                if (specification == null) {
+                Specification? Specification = await context.Specifications.FirstOrDefaultAsync(s => s.Id == id);
+                if (Specification == null) {
                     return Results.NotFound(new Response(false, "Không tìm thấy thông số!", ValidatedResult));
                 }
 
-                if (!Validator.CheckSame(request, specification)) {
-                    specification.Name = request.Name;
-                    specification.UpdateAt = DateTime.Now;
+                if (!Validator.CheckSame(request, Specification)) {
+                    Specification.Name = request.Name;
+                    Specification.UpdateAt = DateTime.Now;
                     if (await context.SaveChangesAsync() < 1) {
                         return Results.BadRequest(new Response(false, "Lỗi xảy ra khi đang thực hiện!", ValidatedResult));
                     }

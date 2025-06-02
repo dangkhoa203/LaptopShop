@@ -20,8 +20,9 @@ namespace APIShopLaptop.Feature.Admin.Brands {
             }
         }
         public static void MapEndpoint(IEndpointRouteBuilder app) {
-            app.MapPost("/api/Admin/Brands", Handler).WithTags("Brands");
+            app.MapPost("/api/Admin/Brands", Handler).WithTags("Admin_Brands");
         }
+        [Authorize(Roles = "Admin")]
         private static async Task<IResult> Handler(Request request, ApplicationDBContext context) {
             try {
                 var Validator = new Validator();
@@ -30,12 +31,12 @@ namespace APIShopLaptop.Feature.Admin.Brands {
                     return Results.BadRequest(new Response(false, "Lỗi xảy ra", ValidatedResult));
                 }
 
-                Brand brand = new() {
+                Brand Brand = new() {
                     Name = request.Name,
                     Tag = request.Tag,
                 };
 
-                await context.Brands.AddAsync(brand);
+                await context.Brands.AddAsync(Brand);
                 if (await context.SaveChangesAsync() > 0) {
                     return Results.Ok(new Response(true, "", ValidatedResult));
                 }

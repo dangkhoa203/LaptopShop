@@ -150,8 +150,8 @@ namespace APIShopLaptop.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Percent")
-                        .HasColumnType("int");
+                    b.Property<float>("Percent")
+                        .HasColumnType("real");
 
                     b.Property<DateTime>("UpdateAt")
                         .HasColumnType("datetime2");

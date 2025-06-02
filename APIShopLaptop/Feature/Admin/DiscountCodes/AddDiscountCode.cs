@@ -15,7 +15,7 @@ namespace APIShopLaptop.Feature.Admin.DiscountCodes {
             }
         }
         public static void MapEndpoint(IEndpointRouteBuilder app) {
-            app.MapPost("/api/Admin/Discount-Codes", Handler).WithTags("DiscountCode");
+            app.MapPost("/api/Admin/Discount-Codes", Handler).WithTags("Admin_DiscountCode");
         }
         public static async Task<IResult> Handler(Request request, ApplicationDBContext context) {
             try {
@@ -25,7 +25,7 @@ namespace APIShopLaptop.Feature.Admin.DiscountCodes {
                     return Results.BadRequest(new Response(false, "Lỗi xảy ra", ValidationResult));
                 }
 
-                var Code=new DiscountCode() {
+                var DiscountCode=new DiscountCode() {
                    Name = request.Name,
                    Description = request.Description,
                    Percent = request.Percent,
@@ -33,7 +33,7 @@ namespace APIShopLaptop.Feature.Admin.DiscountCodes {
                    EndDate = request.EndDate
                };
 
-                context.DiscountCodes.Add(Code);
+                context.DiscountCodes.Add(DiscountCode);
                 if (await context.SaveChangesAsync() > 0) {
                     return Results.Ok(new Response(true, "", ValidationResult));
                 }

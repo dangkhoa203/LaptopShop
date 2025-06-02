@@ -1,19 +1,21 @@
 ﻿using APIShopLaptop.Data;
 using APIShopLaptop.Endpoint;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace APIShopLaptop.Feature.Admin.Account {
     public class UpdateUserConfirmEmail : IEndpoint {
         public record Response(bool Success, string ErrorMessage);
         public static void MapEndpoint(IEndpointRouteBuilder app) {
-            app.MapPost("/api/Admin/Account/Email/{id}", Handler).WithTags("AdminAccount");
+            app.MapPost("/api/Admin/Account/Email/{id}", Handler).WithTags("Admin_Account");
         }
+        [Authorize(Roles = "Admin")]
         private static async Task<IResult> Handler(string id, ApplicationDBContext applicationDBContext) {
             try {
-                var user = applicationDBContext.Users.FirstOrDefault(x => x.Id == id);
-                if (user == null)
+                var User = applicationDBContext.Users.FirstOrDefault(x => x.Id == id);
+                if (User == null)
                     return Results.NotFound(new Response(false, "Không tìm thấy user!"));
-                user.EmailConfirmed = true;
+                User.EmailConfirmed = true;
                 await applicationDBContext.SaveChangesAsync();
                 return Results.Ok(new Response(true, ""));
             }

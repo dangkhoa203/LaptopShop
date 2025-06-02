@@ -10,24 +10,27 @@ namespace APIShopLaptop.Feature.Admin.Brands {
         public record Response(bool Success, string ErrorMessage);
        
         public static void MapEndpoint(IEndpointRouteBuilder app) {
-            app.MapDelete("/api/Admin/Brands/{id}", Handler).WithTags("Brands");
+            app.MapDelete("/api/Admin/Brands/{id}", Handler).WithTags("Admin_Brands");
         }
+        [Authorize(Roles = "Admin")]
         private static async Task<IResult> Handler(string id, ApplicationDBContext context) {
             try {
-               
-                Brand? brand = await context.Brands
+                Brand? Brand = await context.Brands
                     .Include(b=>b.Products)
                     .FirstOrDefaultAsync(b => b.Id == id);
-                if (brand == null) {
+                if (Brand == null) {
                     return Results.NotFound(new Response(false, "Không tìm thấy hãng!"));
                 }
-                if (brand.Products.Count() > 0) {
+
+                if (Brand.Products.Count() > 0) {
                     return Results.BadRequest(new Response(false, "Hãng còn có sản phẩm!"));
                 }
-                context.Brands.Remove(brand);
+
+                context.Brands.Remove(Brand);
                 if (await context.SaveChangesAsync() > 0) {
                     return Results.Ok(new Response(true, ""));
                 }
+
                 return Results.BadRequest(new Response(false, "Lỗi xảy ra khi đang thực hiện!"));
             }
             catch (Exception) {

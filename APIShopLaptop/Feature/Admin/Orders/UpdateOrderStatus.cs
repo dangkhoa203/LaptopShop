@@ -15,11 +15,11 @@ namespace APIShopLaptop.Feature.Admin.Orders {
         }
         public static async Task<IResult> Handler(Request request, ApplicationDBContext context) {
             try {
-                var order = context.Orders.FirstOrDefault(d => d.Id ==request.Id);
-                if (order == null)
+                var Order = context.Orders.FirstOrDefault(d => d.Id ==request.Id);
+                if (Order == null)
                     return Results.NotFound(new Response(false, "Không tìm thấy đơn!"));
 
-                order.Status=request.Status;
+                Order.Status=request.Status;
                 if (await context.SaveChangesAsync() > 0) {
                     return Results.Ok(new Response(true, ""));
                 }

@@ -9,7 +9,7 @@ namespace APIShopLaptop.Feature.Admin.Products {
         public record Response(bool Success, List<ProductDTO> Data, string ErrorMessage);
 
         public static void MapEndpoint(IEndpointRouteBuilder app) {
-            app.MapGet("/api/Admin/Products", Handler).WithTags("Products");
+            app.MapGet("/api/Admin/Products", Handler).WithTags("Admin_Products");
         }
         private static async Task<IResult> Handler(ApplicationDBContext context) {
             try {

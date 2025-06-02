@@ -5,6 +5,12 @@ using APIShopLaptop.Feature.Admin.DiscountCodes;
 using APIShopLaptop.Feature.Admin.ImageStorage;
 using APIShopLaptop.Feature.Admin.Orders;
 using APIShopLaptop.Feature.Admin.Products;
+using APIShopLaptop.Feature.Admin.Products.Category;
+using APIShopLaptop.Feature.Admin.Products.Compatibility;
+using APIShopLaptop.Feature.Admin.Products.Description;
+using APIShopLaptop.Feature.Admin.Products.Images;
+using APIShopLaptop.Feature.Admin.Products.Info;
+using APIShopLaptop.Feature.Admin.Products.Specifications;
 using APIShopLaptop.Feature.Admin.Specifications;
 
 namespace APIShopLaptop.Extension {
@@ -28,11 +34,29 @@ namespace APIShopLaptop.Extension {
             GetDiscountCodes.MapEndpoint(app);
             UpdateDiscountCode.MapEndpoint(app);
         }
-        private static void AddProductService(this WebApplication app) {
+        private static void AddProductFeature(this WebApplication app) {
             AddProduct.MapEndpoint(app);
-            UpdateProductInfo.MapEndpoint(app);
             GetProducts.MapEndpoint(app);
-            AddProductToCategory.MapEndpoint(app);
+            UpdateProductInfo.MapEndpoint(app);
+            UpdateProductThumbnail.MapEndpoint(app);
+            UpdateProductCaterory.MapEndpoint(app);
+            UpdateProductDescription.MapEndpoint(app);
+            GetProductThumbnail.MapEndpoint(app);
+            GetProductInfo.MapEndpoint(app);
+            GetProductImage.MapEndpoint(app);
+            GetProductImages.MapEndpoint(app);
+            GetProductCategories.MapEndpoint(app);
+            GetProductDescription.MapEndpoint(app);
+            DeleteProductImage.MapEndpoint(app);
+            AddImageToProduct.MapEndpoint(app);
+
+            AddProductSpecification.MapEndpoint(app);
+            GetProductSpecification.MapEndpoint(app);
+            DeleteProductSpecification.MapEndpoint(app);
+
+            AddProductCompatibility.MapEndpoint(app);
+            GetProductCompatibility.MapEndpoint(app);
+            DeleteProductCompatibility.MapEndpoint(app);
         }
         private static void AddOrderFeature(this WebApplication app) {
             GetOrder.MapEndpoint(app);
@@ -40,7 +64,7 @@ namespace APIShopLaptop.Extension {
             UpdateOrderStatus.MapEndpoint(app);
         }
         private static void AddCateroryFeature(this WebApplication app) {
-            GetCaterory.MapEndpoint(app);
+            GetCategory.MapEndpoint(app);
         }
         private static void AddSpecificationFeature(this WebApplication app) {
             AddSpecification.MapEndpoint(app);
@@ -60,7 +84,7 @@ namespace APIShopLaptop.Extension {
             AddImageStorageService(app);
             AddBrandService(app);
             AddDiscountCodeFeature(app);
-            AddProductService(app);
+            AddProductFeature(app);
             AddOrderFeature(app);
             AddCateroryFeature(app);
             AddAccountFeature(app);

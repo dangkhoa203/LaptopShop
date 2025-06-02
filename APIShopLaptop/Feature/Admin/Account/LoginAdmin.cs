@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 using APIShopLaptop.Endpoint;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace APIShopLaptop.Feature.Admin.Account {
@@ -21,6 +22,7 @@ namespace APIShopLaptop.Feature.Admin.Account {
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapPost("/api/Admin/Account/Login", Handler).WithTags("Admin_Account");
         }
+
         public static async Task<IResult> Handler(Request request, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ClaimsPrincipal User) {
             try {
                 if (User.Identity.IsAuthenticated) {

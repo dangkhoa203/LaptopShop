@@ -5,18 +5,14 @@ import {CircularProgress, Tooltip} from "@mui/material";
 import Button from "@mui/material/Button";
 import {AgGridReact} from "ag-grid-react";
 import type { ICellRendererParams } from 'ag-grid-community';
-import {myTheme} from "../../Type/myTheme.tsx";
+import {myTheme} from "../../Type/myTheme.ts";
 import {AG_GRID_LOCALE_VN} from "@ag-grid-community/locale";
 import Container from "@mui/material/Container";
-import CreateNewBrandDiaglog from "./CreateNewBrandDiaglog.tsx";
-import Divider from "@mui/material/Divider";
-import DeleteBrandDiaglog from "./DeleteBrandDiaglog.tsx";
-import UpdateBrandDiaglog from "./UpdateBrandDiaglog.tsx";
-type brandData={
+import CreateNewSpecificationDiaglog from "./CreateNewSpecificationDiaglog.tsx";
+import UpdateSpecificationDiaglig from "./UpdateSpecificationDiaglig.tsx";
+type specificationData={
     id: string,
     name: string,
-    tag: string,
-    productCount:number ,
 }
 export default function Specification(){
     const [success, setSuccess] = useState(false);
@@ -30,38 +26,17 @@ export default function Specification(){
         setOpenCreate(false);
     };
 
-    const [openDelete, setOpenDelete] = useState(false);
-    const [deleteModel, setDeleteModel] = useState({
-        id:"",
-        name: "",
-    });
-    const handleClickOpenDelete =(id:string,name:string) => {
-        setDeleteModel({
-            id:id,
-            name: name,
-        })
-        setOpenDelete(true);
-    };
 
-    const handleCloseDelete = () => {
-        setDeleteModel({
-            id:"",
-            name: "",
-        })
-        setOpenDelete(false);
-    };
 
     const [openUpdate, setOpenUpdate] = useState(false);
     const [updateModel, setUpdateModel] = useState({
         id:"",
-        name: "",
-        tag:""
+        name: ""
     });
-    const handleClickOpenUpdate =(id:string,name:string,tag:string) => {
+    const handleClickOpenUpdate =(id:string,name:string) => {
         setUpdateModel({
             id:id,
-            name: name,
-            tag:tag
+            name: name
         })
         setOpenUpdate(true);
     };
@@ -69,17 +44,17 @@ export default function Specification(){
     const handleCloseUpdate = () => {
         setUpdateModel({
             id:"",
-            name: "",
-            tag:""
+            name: ""
         })
         setOpenUpdate(false);
     };
 
     const {data,isPending,refetch}=useQuery({
-        queryKey:["brand_list"],
+        queryKey:["specification_list"],
+        refetchOnWindowFocus:false,
         queryFn:async ()=>{
             setSuccess(false)
-            const response = await fetch('https://localhost:7075/api/Admin/Brands', {
+            const response = await fetch('https://localhost:7075/api/Admin/Specifications', {
                 headers: {'Content-Type': 'application/json'},
                 credentials: 'include',
                 method:"GET"
@@ -94,11 +69,13 @@ export default function Specification(){
         }
     }, [data]);
 
-    const [rowData, setRowData] = useState<Array<brandData>>([]);
+    const [rowData, setRowData] = useState<Array<specificationData>>([]);
 
     // @ts-ignore
     const [colDefs, setColDefs] = useState<ColDef[]>([
         { valueGetter:c=>c.data.id,
+            wrapText:true,
+            wrapHeaderText:true,
             headerName:"Id",filter:true,
             resizable:false,
             unSortIcon: true,flex: 2,
@@ -106,6 +83,8 @@ export default function Specification(){
             floatingFilter: true },
 
         { valueGetter:c=>c.data.name,
+            wrapText:true,
+            wrapHeaderText:true,
             headerName:"Tên",filter:true,
             resizable:false,
             unSortIcon: true,flex: 2,
@@ -116,8 +95,6 @@ export default function Specification(){
                 return {
                     id:c.data.id,
                     name:c.data.name,
-                    tag:c.data.tag,
-                    productCount:c.data.productCount
                 }
             },
             sortable:false,
@@ -127,12 +104,8 @@ export default function Specification(){
             ,floatingFilter: true,
             cellRenderer:(params:ICellRendererParams)=>
                 <div style={{display:"flex",flexDirection:"row",justifyContent:"center",gap:"3px",width:"100%",height:"100%",alignItems:"center"}}>
-                    <Tooltip title="Xóa hãng">
-                        <Button color="error" disabled={params.value.productCount>0} onClick={()=>handleClickOpenDelete(params.value.id,params.value.name)}>Xóa hãng</Button>
-                    </Tooltip>
-                    <Divider orientation="vertical" variant="middle" flexItem />
                     <Tooltip title="Sửa hãng">
-                        <Button color="warning"  onClick={()=>handleClickOpenUpdate(params.value.id,params.value.name,params.value.tag)}>Sửa hãng</Button>
+                        <Button color="warning"  onClick={()=>handleClickOpenUpdate(params.value.id,params.value.name)}>Sửa thông số</Button>
                     </Tooltip>
                 </div>
             ,
@@ -143,8 +116,8 @@ export default function Specification(){
 
     return(
         <Container sx={{display:"flex", flexDirection:"column", justifyContent:"center",gap:2}}>
-            <p style={{textAlign:"center",fontSize:"2.5em",margin:"0"}}>Danh sách hãng</p>
-            <Button variant={"contained"} onClick={handleClickOpenCreate}>Tạo hãng mới</Button>
+            <p style={{textAlign:"center",fontSize:"2.5em",margin:"0"}}>Danh sách thông số</p>
+            <Button variant={"contained"} onClick={handleClickOpenCreate}>Tạo thông số mới</Button>
             {isPending?
                 <div style={{textAlign:"center"}}>
                     <CircularProgress  size="3rem" />
@@ -171,7 +144,8 @@ export default function Specification(){
                                     localeText={AG_GRID_LOCALE_VN}
                                 />
                             </div>
-
+                            <CreateNewSpecificationDiaglog open={openCreate} handleClose={handleCloseCreate} reFetch={refetch}/>
+                            <UpdateSpecificationDiaglig id={updateModel.id} name={updateModel.name} open={openUpdate} handleClose={handleCloseUpdate} reFetch={refetch}/>
                         </>
                     }
                 </>

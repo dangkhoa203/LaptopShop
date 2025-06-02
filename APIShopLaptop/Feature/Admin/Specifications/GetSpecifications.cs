@@ -5,20 +5,20 @@ using Microsoft.EntityFrameworkCore;
 namespace APIShopLaptop.Feature.Admin.Specifications {
     public class GetSpecifications:IEndpoint {
         public record SpecificationDTO(string Id, string Name);
-        public record Response(bool Success, List<SpecificationDTO>? data, string ErrorMessage);
+        public record Response(bool Success, List<SpecificationDTO>? Data, string ErrorMessage);
         public static void MapEndpoint(IEndpointRouteBuilder app) {
-            app.MapGet("/api/Admin/Specifications", Handler).WithTags("Specifications");
+            app.MapGet("/api/Admin/Specifications", Handler).WithTags("Admin_Specifications");
         }
         private static async Task<IResult> Handler(ApplicationDBContext context) {
             try {
-                var brands = await context.Specifications
+                var Specifications = await context.Specifications
                      .Select(b => new SpecificationDTO(
                          b.Id,
                          b.Name
                          ))
                      .ToListAsync();
 
-                return Results.Ok(new Response(true, brands, ""));
+                return Results.Ok(new Response(true, Specifications, ""));
             }
             catch (Exception) {
                 return Results.BadRequest(new Response(false, null, "Lỗi server đã xảy ra!"));

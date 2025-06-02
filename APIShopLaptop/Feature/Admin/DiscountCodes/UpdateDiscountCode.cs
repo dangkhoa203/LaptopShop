@@ -18,7 +18,7 @@ namespace APIShopLaptop.Feature.Admin.DiscountCodes {
             }
         }
         public static void MapEndpoint(IEndpointRouteBuilder app) {
-            app.MapPost("/api/Admin/Discount-Codes/{id}", Handler).WithTags("DiscountCode");
+            app.MapPost("/api/Admin/Discount-Codes/{id}", Handler).WithTags("Admin_DiscountCode");
         }
         public static async Task<IResult> Handler(string id, Request request, ApplicationDBContext context) {
             try {
@@ -28,17 +28,17 @@ namespace APIShopLaptop.Feature.Admin.DiscountCodes {
                     return Results.BadRequest(new Response(false, "Lỗi xảy ra", ValidationResult));
                 }
 
-                var code = context.DiscountCodes.FirstOrDefault(d => d.Id == id);
-                if (code == null)
+                var DiscountCode = context.DiscountCodes.FirstOrDefault(d => d.Id == id);
+                if (DiscountCode == null)
                     return Results.NotFound(new Response(false, "Không tìm thấy mã!", ValidationResult));
 
-                if (!Validator.CheckSame(request, code)) {
-                    code.Name = request.Name;
-                    code.Description = request.Description;
-                    code.Percent = request.Percent;
-                    code.IsActive = request.IsActive;
-                    code.EndDate = request.EndDate;
-                    code.UpdateAt=DateTime.Now;
+                if (!Validator.CheckSame(request, DiscountCode)) {
+                    DiscountCode.Name = request.Name;
+                    DiscountCode.Description = request.Description;
+                    DiscountCode.Percent = request.Percent;
+                    DiscountCode.IsActive = request.IsActive;
+                    DiscountCode.EndDate = request.EndDate;
+                    DiscountCode.UpdateAt=DateTime.Now;
                     if (await context.SaveChangesAsync() < 1) {
                         return Results.BadRequest(new Response(false, "Lỗi xảy ra khi đang thực hiện!", ValidationResult));
                     }

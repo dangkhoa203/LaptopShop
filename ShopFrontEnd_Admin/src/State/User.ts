@@ -11,7 +11,6 @@ export type userInfoState={
 export const useUserInfo = create<userInfoState>((set)=>({
     user:{
         userName: 'default',
-        userFullName: '',
         userEmail: '',
         userId: '',
         isLogged: false,
@@ -24,7 +23,6 @@ export const useUserInfo = create<userInfoState>((set)=>({
         set({user:
                 {
                     userName: '',
-                    userFullName: '',
                     userEmail: '',
                     userId: '',
                     isLogged: false,

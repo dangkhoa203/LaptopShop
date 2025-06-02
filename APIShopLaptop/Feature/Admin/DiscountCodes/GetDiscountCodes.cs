@@ -6,16 +6,16 @@ using System.Security.Claims;
 
 namespace APIShopLaptop.Feature.Admin.DiscountCodes {
     public class GetDiscountCodes:IEndpoint {
-        public record CodeDTO(string Id, string Name, string Description, float Percent, bool IsActive,DateTime EndDate);
-        public record Response(bool Success, List<CodeDTO> Data, string ErrorMessage);
+        public record DiscountCodeDTO(string Id, string Name, string Description, float Percent, bool IsActive,DateTime EndDate);
+        public record Response(bool Success, List<DiscountCodeDTO> Data, string ErrorMessage);
 
         public static void MapEndpoint(IEndpointRouteBuilder app) {
-            app.MapGet("/api/Admin/Discount-Codes", Handler).WithTags("DiscountCode");
+            app.MapGet("/api/Admin/Discount-Codes", Handler).WithTags("Admin_DiscountCode");
         }
         private static async Task<IResult> Handler(ApplicationDBContext context) {
             try {
-                var Codes = await context.DiscountCodes
-                    .Select(c=>new CodeDTO(
+                var DiscountCodes = await context.DiscountCodes
+                    .Select(c=>new DiscountCodeDTO(
                         c.Id,
                         c.Name,
                         c.Description,
@@ -25,7 +25,7 @@ namespace APIShopLaptop.Feature.Admin.DiscountCodes {
                         ))
                     .ToListAsync();
 
-                return Results.Ok(new Response(true, Codes, ""));
+                return Results.Ok(new Response(true, DiscountCodes, ""));
             }
             catch (Exception ex) {
                 return Results.BadRequest(new Response(false, [], "Lỗi đã xảy ra!"));

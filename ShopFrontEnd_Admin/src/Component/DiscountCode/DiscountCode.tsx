@@ -5,12 +5,12 @@ import {CircularProgress, Tooltip} from "@mui/material";
 import Button from "@mui/material/Button";
 import {AgGridReact} from "ag-grid-react";
 import type { ICellRendererParams } from 'ag-grid-community';
-import{myTheme_small} from "../../Type/myTheme_small.tsx";
+import {myTheme} from "../../Type/myTheme.ts";
 import {AG_GRID_LOCALE_VN} from "@ag-grid-community/locale";
 import Container from "@mui/material/Container";
-import CreateNewDiscountCodeDiaglog from "./CreateNewDiscountCodeDiaglog.tsx";
+import CreateNewDiscountCodeDialog from "./CreateNewDiscountCodeDialog.tsx";
 import Typography from "@mui/material/Typography";
-import UpdateDiscountCodeDiaglog from "./UpdateDiscountCodeDiaglog.tsx";
+import UpdateDiscountCodeDialog from "./UpdateDiscountCodeDialog.tsx";
 
 
 type discountCodeData={
@@ -57,6 +57,7 @@ export default function DiscountCode(){
 
     const {data,isPending,refetch}=useQuery({
         queryKey:["discount_list"],
+        refetchOnWindowFocus:false,
         queryFn:async ()=>{
             setSuccess(false)
             const response = await fetch('https://localhost:7075/api/Admin/Discount-Codes', {
@@ -80,6 +81,8 @@ export default function DiscountCode(){
     const [colDefs, setColDefs] = useState<ColDef[]>([
 
         { valueGetter:c=>c.data.id,
+            wrapHeaderText:true,
+            wrapText:true,
             headerName:"Id",filter:true,
             resizable:false,
             unSortIcon: true,flex: 1,
@@ -87,6 +90,8 @@ export default function DiscountCode(){
             floatingFilter: true },
 
         { valueGetter:c=>c.data.name,
+            wrapHeaderText:true,
+            wrapText:true,
             headerName:"Tên",filter:true,
             resizable:false,
             unSortIcon: true,flex: 1,
@@ -99,6 +104,8 @@ export default function DiscountCode(){
                     {params.value.length===0? "Không có" :
                         <Tooltip title={params.value} >{params.value}</Tooltip> }
                 </div>,
+            wrapHeaderText:true,
+            wrapText:true,
             headerName:"Mô tả",filter:true,
             resizable:false,
             unSortIcon: true,flex: 1,
@@ -106,6 +113,8 @@ export default function DiscountCode(){
             floatingFilter: true },
 
         { valueGetter:c=>c.data.percent,
+            wrapHeaderText:true,
+            wrapText:true,
             headerName:"Phần trăm",filter:true,
             cellDataType:"number",
             resizable:false,
@@ -117,6 +126,8 @@ export default function DiscountCode(){
                 year: 'numeric',
                 month: '2-digit',
                 day: '2-digit' }),headerName:"Hạn dùng",
+            wrapHeaderText:true,
+            wrapText:true,
             filter:true,resizable:false,unSortIcon: true,flex: 1,minWidth:180,floatingFilter: true },
 
         { valueGetter:c=>c.data.isActive,
@@ -126,6 +137,8 @@ export default function DiscountCode(){
                     {params.value? <Typography color="success"> Có</Typography>:<Typography color="error">Không</Typography>}
                 </div>
             ,
+            wrapHeaderText:true,
+            wrapText:true,
             headerName:"Hoạt động",filter:false,
             resizable:false,
             unSortIcon: true,flex: 1,
@@ -173,7 +186,7 @@ export default function DiscountCode(){
                                 <AgGridReact
                                     rowData={rowData}
                                     columnDefs={colDefs}
-                                    theme={myTheme_small}
+                                    theme={myTheme}
                                     pagination={true}
                                     paginationPageSize={50}
                                     paginationPageSizeSelector={[50,100]}
@@ -183,15 +196,12 @@ export default function DiscountCode(){
                                     localeText={AG_GRID_LOCALE_VN}
                                 />
                             </div>
-                            <CreateNewDiscountCodeDiaglog open={openCreate} handleClose={handleCloseCreate} reFetch={refetch}/>
-                            <UpdateDiscountCodeDiaglog old={updateModel} open={openUpdate} handleClose={handleCloseUpdate} reFetch={refetch}/>
+                            <CreateNewDiscountCodeDialog open={openCreate} handleClose={handleCloseCreate} reFetch={refetch}/>
+                            <UpdateDiscountCodeDialog old={updateModel} open={openUpdate} handleClose={handleCloseUpdate} reFetch={refetch}/>
                         </>
                     }
                 </>
             }
-
-
-
         </Container>
     )
 }

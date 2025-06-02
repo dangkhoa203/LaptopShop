@@ -3,7 +3,7 @@ import { ColDef } from 'ag-grid-community';
 import Container from "@mui/material/Container";
 import {AgGridReact} from "ag-grid-react";
 import {AG_GRID_LOCALE_VN} from "@ag-grid-community/locale";
-import {myTheme} from "../../Type/myTheme.tsx";
+import {myTheme} from "../../Type/myTheme.ts";
 import Button from "@mui/material/Button";
 import {useQuery} from "@tanstack/react-query";
 import type { ICellRendererParams } from 'ag-grid-community';
@@ -14,10 +14,10 @@ import {
     Tooltip
 } from "@mui/material";
 import Divider from "@mui/material/Divider";
-import ChangePasswordDiaglog from "./ChangePasswordDiaglog.tsx";
-import ChangeEmailDiaglog from "./ChangeEmailDiaglog.tsx";
+import ChangePasswordDialog from "./ChangePasswordDialog.tsx";
+import ChangeEmailDialog from "./ChangeEmailDialog.tsx";
 import IconButton from "@mui/material/IconButton";
-import ConfirmAccountDiaglog from "./ConfirmAccountDiaglog.tsx";
+import ConfirmAccountDialog from "./ConfirmAccountDialog.tsx";
 type accountData={
     id: string,
     userName: string,
@@ -32,8 +32,8 @@ export default function Account(){
     const [success, setSuccess] = useState(false);
     const {data,isPending,refetch}=useQuery({
         queryKey:["account_list"],
+        refetchOnWindowFocus:false,
         queryFn:async ()=>{
-            setSuccess(false)
             const response = await fetch('https://localhost:7075/api/Admin/Account', {
                 headers: {'Content-Type': 'application/json'},
                 credentials: 'include',
@@ -88,6 +88,8 @@ export default function Account(){
     // @ts-ignore
     const [colDefs, setColDefs] = useState<ColDef[]>([
         { valueGetter:c=>c.data.userName,
+            wrapText:true,
+            wrapHeaderText:true,
             headerName:"Tên",filter:true,
             resizable:false,
             unSortIcon: true,flex: 2,
@@ -95,6 +97,8 @@ export default function Account(){
             floatingFilter: true },
 
         { valueGetter:c=>c.data.email,headerName:"Email",
+            wrapText:true,
+            wrapHeaderText:true,
             filter:true,resizable:false,
             unSortIcon: true,
             flex: 1,
@@ -117,8 +121,10 @@ export default function Account(){
                             </IconButton>
                         </Tooltip>
                     }
-                </div>
-            ,headerName:"Xác nhận",
+                </div>,
+            wrapText:true,
+            wrapHeaderText:true,
+            headerName:"Xác nhận",
             filter:false,
             resizable:false,
             unSortIcon: true,
@@ -127,6 +133,8 @@ export default function Account(){
             floatingFilter: true },
 
         { valueGetter:c=>new Date(c.data.registerDate).toLocaleString('En-GB', { hour12: false }),headerName:"Ngày tạo",
+            wrapText:true,
+            wrapHeaderText:true,
             filter:true,resizable:false,unSortIcon: true,flex: 2,minWidth:200,floatingFilter: true },
 
         { valueGetter:c=> {
@@ -184,9 +192,9 @@ export default function Account(){
                                 localeText={AG_GRID_LOCALE_VN}
                             />
                         </div>
-                        <ConfirmAccountDiaglog username={confirmChangeModel.username} id={confirmChangeModel.id} open={openConfirm} handleClose={handleCloseConfirm} reFetch={refetch}/>
-                        <ChangePasswordDiaglog id={passwordChangeModel.id} username={passwordChangeModel.username} open={openPassword} handleClose={handleClosePassword} reFetch={refetch} />
-                        <ChangeEmailDiaglog id={emailChangeModel.id} username={emailChangeModel.username} email={emailChangeModel.email} open={openEmail} handleClose={handleCloseEmail} reFetch={refetch} />
+                        <ConfirmAccountDialog username={confirmChangeModel.username} id={confirmChangeModel.id} open={openConfirm} handleClose={handleCloseConfirm} reFetch={refetch}/>
+                        <ChangePasswordDialog id={passwordChangeModel.id} username={passwordChangeModel.username} open={openPassword} handleClose={handleClosePassword} reFetch={refetch} />
+                        <ChangeEmailDialog id={emailChangeModel.id} username={emailChangeModel.username} email={emailChangeModel.email} open={openEmail} handleClose={handleCloseEmail} reFetch={refetch} />
                     </>
                     }
                 </>

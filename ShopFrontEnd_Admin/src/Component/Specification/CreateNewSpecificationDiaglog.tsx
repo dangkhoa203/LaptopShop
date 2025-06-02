@@ -14,71 +14,38 @@ import Button from "@mui/material/Button";
 import {useState} from "react";
 import {useMutation} from "@tanstack/react-query";
 import {Response} from "../../Type/Respone.ts";
-type brandInfo = {
-    name: string,
-    tag: string
-}
+
 export default function CreateNewSpecificationDiaglog(props:{open:boolean,handleClose:()=>void,reFetch:any}){
     const [globalError, setGlobalError] = useState("");
-    const [validateError, setValidateError] = useState<brandInfo>(
-        {
-            name:"",
-            tag:""
-        }
-    );
-    const [brandInfo, setBrandInfo] = useState<brandInfo>(
-        {
-            name:"",
-            tag:""
-        }
-    );
+    const [validationError, setValidationError] = useState("");
+    const [name, setName] = useState("");
     const handleNameChange = (e:any) => {
-        setBrandInfo({...brandInfo, name: e.target.value});
+        setName(e.target.value);
     }
-    const handleTagChange = (e:any) => {
-        setBrandInfo({...brandInfo, tag: e.target.value.toUpperCase()});
-    }
+
     const {isPending,mutate}=useMutation({
         mutationFn:async ()=>{
             setGlobalError("")
-            const response = await fetch(`https://localhost:7075/api/Admin/Brands`, {
+            const response = await fetch(`https://localhost:7075/api/Admin/Specifications`, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 credentials: 'include',
-                body: JSON.stringify(brandInfo)
+                body: JSON.stringify({name:name})
             })
             return await response.json();
         },
         onSuccess:(data:Response)=>{
             if(data.success){
                 props.handleClose()
-                setBrandInfo({
-                    name:"",
-                    tag:""
-                })
+                setName("")
                 setGlobalError("")
-                setValidateError({
-                    name:"",
-                    tag:""
-                })
+                setValidationError("")
                 props.reFetch()
             }
             else {
-                console.log(data.errorMessage)
                 setGlobalError(data.errorMessage)
                 if(!data.validationError.isValid){
-                    const list:any[]=data.validationError.errors
-                    const error:brandInfo={
-                        name:"",
-                        tag:""
-                    }
-                    list.forEach(element=>{
-                        if(element.propertyName==="Tag")
-                            error.tag=element.errorMessage
-                        if(element.propertyName==="Name")
-                            error.name=element.errorMessage
-                    })
-                    setValidateError(error)
+                    setValidationError(data.validationError.errors[0].errorMessage)
                 }
             }
         }
@@ -88,15 +55,9 @@ export default function CreateNewSpecificationDiaglog(props:{open:boolean,handle
             open={props.open}
             onClose={()=> {
                 props.handleClose()
-                setBrandInfo({
-                    name:"",
-                    tag:""
-                })
+                setName("")
                 setGlobalError("")
-                setValidateError({
-                    name:"",
-                    tag:""
-                })
+                setValidationError("")
             }}
             fullWidth
             maxWidth="md"
@@ -105,21 +66,15 @@ export default function CreateNewSpecificationDiaglog(props:{open:boolean,handle
                 sx={{
                     borderTop:"10px solid rgb(25, 118, 210)",
                 }}>
-                Tạo hãng mới
+                Tạo thông số mới
             </DialogTitle>
             <IconButton
                 color="primary"
                 onClick={()=> {
                     props.handleClose()
-                    setBrandInfo({
-                        name:"",
-                        tag:""
-                    })
+                    setName("")
                     setGlobalError("")
-                    setValidateError({
-                        name:"",
-                        tag:""
-                    })
+                    setValidationError("")
                 }}
                 sx={(theme) => ({
                     position: 'absolute',
@@ -133,17 +88,11 @@ export default function CreateNewSpecificationDiaglog(props:{open:boolean,handle
             <DialogContent dividers>
                 <DialogContentText >
                     <Grid container spacing={2}>
-                        <Grid size={6}>
-                            <TextField value={brandInfo.name} onChange={handleNameChange} fullWidth
-                                       error={validateError.name.length>0}  helperText={validateError.name}
+                        <Grid size={12}>
+                            <TextField value={name} onChange={handleNameChange} fullWidth
+                                       error={validationError.length>0}  helperText={validationError}
                                        color="primary"
                                        size={"medium"} label="Tên" variant="filled" />
-                        </Grid>
-                        <Grid size={6}>
-                            <TextField value={brandInfo.tag} onChange={handleTagChange} fullWidth
-                                       error={validateError.tag.length>0}  helperText={validateError.tag}
-                                       color="primary"
-                                       size={"medium"} label="Tag" variant="filled" />
                         </Grid>
                     </Grid>
                 </DialogContentText>
@@ -161,15 +110,9 @@ export default function CreateNewSpecificationDiaglog(props:{open:boolean,handle
                         </div>
                         <Button color="error" variant={"outlined"} onClick={()=> {
                             props.handleClose()
-                            setBrandInfo({
-                                name:"",
-                                tag:""
-                            })
+                            setName("")
                             setGlobalError("")
-                            setValidateError({
-                                name:"",
-                                tag:""
-                            })
+                            setValidationError("")
                         }}>Hủy</Button>
                         <Button variant="contained" color="primary" onClick={()=> {
                             mutate()

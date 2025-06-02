@@ -12,11 +12,10 @@ namespace APIShopLaptop.Feature.Admin.Specifications {
         public sealed class Validator : AbstractValidator<Request> {
             public Validator() {
                 RuleFor(r => r.Name).NotEmpty().WithMessage("Chưa nhập tên!");
-                RuleFor(r => r.Name).MinimumLength(4).WithMessage("Tên phải nhập tối thiểu 4 ký tự!");
             }
         }
         public static void MapEndpoint(IEndpointRouteBuilder app) {
-            app.MapPost("/api/Admin/Specifications", Handler).WithTags("Specifications");
+            app.MapPost("/api/Admin/Specifications", Handler).WithTags("Admin_Specifications");
         }
         private static async Task<IResult> Handler(Request request, ApplicationDBContext context) {
             try {
@@ -26,9 +25,9 @@ namespace APIShopLaptop.Feature.Admin.Specifications {
                     return Results.BadRequest(new Response(false, "Lỗi xảy ra", ValidatedResult));
                 }
 
-                Specification specification = new(request.Name);
+                Specification Specification = new(request.Name);
 
-                await context.Specifications.AddAsync(specification);
+                await context.Specifications.AddAsync(Specification);
                 if (await context.SaveChangesAsync() > 0) {
                     return Results.Ok(new Response(true, "", ValidatedResult));
                 }
