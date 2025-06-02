@@ -10,12 +10,12 @@ namespace APIShopLaptop.Feature.Admin.Products.Images {
         private static async Task<IResult> Handler(string id, ApplicationDBContext context, IWebHostEnvironment env) {
             string StoragePath = Path.Combine(env.ContentRootPath, "Image", "Product");
             string ProductImagePath = Path.Combine(StoragePath, id);
-            var thumbnail = await context.Products
+            var Thumbnail = await context.Products
                 .Include(p => p.Images)
                 .Where(p => p.Id == id)
                 .Select(p => p.Images.FirstOrDefault(i => i.IsThumbnail).Id)
                 .FirstOrDefaultAsync();
-            var image = File.OpenRead($"{ProductImagePath}/{thumbnail}.jpg");
+            var image = File.OpenRead($"{ProductImagePath}/{Thumbnail}.jpg");
             return Results.File(image, "image/jpeg");
         }
     }

@@ -13,12 +13,12 @@ type specificationData={
     id:string,
     name: string,
 }
-type productSpecification={
+type productCompatibility={
     id:string,
     name: string,
     value:string,
 }
-export default function UpdateProductSpecification(props:{id:string}) {
+export default function UpdateCompatibility(props:{id:string}) {
     const [success, setSuccess] = useState(false);
     const [specificationData, setSpecificationData] = useState<specificationData[]>([])
 
@@ -42,13 +42,12 @@ export default function UpdateProductSpecification(props:{id:string}) {
         }
     }, [data]);
 
-    const [productSpecificationData, setProductSpecificationData] = useState<productSpecification[]>([])
-    const PRODUCTSPECIFICATION=useQuery({
-        queryKey:["product_specification"],
+    const [productCompatibilityData, setProductCompatibilityData] = useState<productCompatibility[]>([])
+    const PRODUCTCOMPATIBILITY=useQuery({
+        queryKey:["product_compatibility"],
         refetchOnWindowFocus:false,
         queryFn:async ()=>{
-            setSuccess(false)
-            const response = await fetch(`https://localhost:7075/api/Admin/Products/${props.id}/Specification`, {
+            const response = await fetch(`https://localhost:7075/api/Admin/Products/${props.id}/Compatibility`, {
                 headers: {'Content-Type': 'application/json'},
                 credentials: 'include',
                 method:"GET"
@@ -57,24 +56,24 @@ export default function UpdateProductSpecification(props:{id:string}) {
         },
     });
     useEffect(() => {
-        if(PRODUCTSPECIFICATION.data)
-            setProductSpecificationData(PRODUCTSPECIFICATION.data.data)
-    }, [PRODUCTSPECIFICATION.data]);
+        if(PRODUCTCOMPATIBILITY.data)
+            setProductCompatibilityData(PRODUCTCOMPATIBILITY.data.data)
+    }, [PRODUCTCOMPATIBILITY.data]);
 
 
-    const [newSpecification,setNewSpecification]=useState<any>({
+    const [newCompatibility,setNewCompatibility]=useState<any>({
         id:"0",
         value: "",
     })
     const [globalError,setGlobalError]=useState("")
     const handleNewIdChange=(e:any)=>{
-        setNewSpecification({...newSpecification,id:e.target.value})
+        setNewCompatibility({...newCompatibility,id:e.target.value})
     }
     const handleNewValueChange=(e:any)=>{
-        setNewSpecification({...newSpecification,value:e.target.value})
+        setNewCompatibility({...newCompatibility,value:e.target.value})
     }
     const checkAdd=():boolean=>{
-        if(newSpecification.id==="0"||newSpecification.value.length===0){
+        if(newCompatibility.id==="0"||newCompatibility.value.length===0){
             return false
         }
         return true
@@ -83,11 +82,11 @@ export default function UpdateProductSpecification(props:{id:string}) {
         mutationFn:async ()=>{
             setGlobalError("")
             if(checkAdd()){
-                const response = await fetch(`https://localhost:7075/api/Admin/Products/${props.id}/Specification/`, {
+                const response = await fetch(`https://localhost:7075/api/Admin/Products/${props.id}/Compatibility/`, {
                     method: 'POST',
                     credentials: 'include',
                     headers: {'Content-Type': 'application/json'},
-                    body:JSON.stringify(newSpecification)
+                    body:JSON.stringify(newCompatibility)
                 })
                 return await response.json();
             }
@@ -96,11 +95,11 @@ export default function UpdateProductSpecification(props:{id:string}) {
         onSuccess:(data:Response)=>{
             if(data.success){
                 setGlobalError("")
-                setNewSpecification({
+                setNewCompatibility({
                     id:"0",
                     value:"",
                 })
-                PRODUCTSPECIFICATION.refetch()
+                PRODUCTCOMPATIBILITY.refetch()
             }
             else {
                 setGlobalError(data.errorMessage)
@@ -108,14 +107,14 @@ export default function UpdateProductSpecification(props:{id:string}) {
         }
     })
 
-    const specificationShowData=specificationData.filter((item)=>!productSpecificationData.some(i=>i.id===item.id));
+    const specificationShowData=specificationData.filter((item)=>!productCompatibilityData.some(i=>i.id===item.id));
 
     const [deleteLoading,setDeleteLoading]= useState<string[]>([]);
     const DELETE=useMutation({
         mutationFn:async (id:string)=>{
             setGlobalError("")
             setDeleteLoading([...deleteLoading,id]);
-            const response = await fetch(`https://localhost:7075/api/Admin/Products/${props.id}/Specification`, {
+            const response = await fetch(`https://localhost:7075/api/Admin/Products/${props.id}/Compatibility`, {
                 method: 'DELETE',
                 credentials: 'include',
                 headers: {'Content-Type': 'application/json'},
@@ -128,7 +127,7 @@ export default function UpdateProductSpecification(props:{id:string}) {
         onSuccess:(data:Response)=>{
             if(data.success){
                 setGlobalError("")
-                PRODUCTSPECIFICATION.refetch()
+                PRODUCTCOMPATIBILITY.refetch()
             }
             else {
                 setGlobalError(data.errorMessage)
@@ -138,25 +137,26 @@ export default function UpdateProductSpecification(props:{id:string}) {
     return (
         <div >
             <Divider/>
-            <h2 style={{textAlign:"center",marginBottom:0}}>Thông số kỹ thuật</h2>
+            <h2 style={{textAlign:"center",marginBottom:0}}>Tương thích</h2>
             {isPending  ? <LinearProgress />
                 :
                 <>
                     <Grid container spacing={2}>
                         <Grid size={{xs:5,sm:5,md:4,lg:4}}>
-                                <FormControl
-                                    variant="filled" color="warning" fullWidth>
-                                    <InputLabel >Thông số </InputLabel>
-                                    <Select
-                                        value={newSpecification.id}
-                                        onChange={handleNewIdChange}
-                                    >
-                                        <MenuItem value="0" disabled>Chọn thông số</MenuItem>
-                                        {specificationShowData.map((item) => (
-                                            <MenuItem value={item.id}>{item.name}</MenuItem>
-                                        ))}
-                                    </Select>
-                                </FormControl>
+                            <FormControl
+                                color="warning"
+                                variant="filled" fullWidth>
+                                <InputLabel >Thông số </InputLabel>
+                                <Select
+                                    value={newCompatibility.id}
+                                    onChange={handleNewIdChange}
+                                >
+                                    <MenuItem value="0" disabled>Chọn thông số</MenuItem>
+                                    {specificationShowData.map((item) => (
+                                        <MenuItem value={item.id}>{item.name}</MenuItem>
+                                    ))}
+                                </Select>
+                            </FormControl>
                         </Grid>
                         <Grid size={{xs:7,sm:7,md:6,lg:6}}>
                             <TextField
@@ -164,7 +164,7 @@ export default function UpdateProductSpecification(props:{id:string}) {
                                 color="warning"
                                 label="Nội dung"
                                 variant="filled"
-                                value={newSpecification.value}
+                                value={newCompatibility.value}
                                 onChange={handleNewValueChange}
                             />
                         </Grid>
@@ -175,24 +175,24 @@ export default function UpdateProductSpecification(props:{id:string}) {
                     <div style={{textAlign:"center",color:"red"}}>
                         {globalError}
                     </div>
-                        <List sx={{marginY:"10px",paddingX:"10px", minHeight: '200px',maxHeight:"300px",overflow: 'auto',border:"2px solid rgb(237, 108, 2)", bgcolor: 'rgba(237, 108, 2,0.13)' }}>
-                            {productSpecificationData.map((value) => (
-                                <ListItem
-                                    sx={{paddingLeft:"10px",borderBottom:"1px solid black"}}
-                                    key={value.id}
-                                    disableGutters
-                                    secondaryAction={
-                                        <IconButton color={"error"} loading={deleteLoading.includes(value.id)} onClick={()=>DELETE.mutate(value.id)} aria-label="comment">
-                                            <DeleteIcon />
-                                        </IconButton>
-                                    }
-                                >
-                                    <ListItemText  primary={value.name} secondary={value.value} />
-                                    <Divider />
-                                </ListItem>
+                    <List sx={{marginY:"10px",paddingX:"10px", minHeight: '200px',maxHeight:"300px",overflow: 'auto',border:"2px solid rgba(237, 108, 2)", bgcolor: 'rgba(237, 108, 2,0.13)' }}>
+                        {productCompatibilityData.map((value) => (
+                            <ListItem
+                                sx={{paddingLeft:"10px",borderBottom:"1px solid rgba(0,0,0,0.53)"}}
+                                key={value.id}
+                                disableGutters
+                                secondaryAction={
+                                    <IconButton color={"error"} loading={deleteLoading.includes(value.id)} onClick={()=>DELETE.mutate(value.id)} aria-label="comment">
+                                        <DeleteIcon />
+                                    </IconButton>
+                                }
+                            >
+                                <ListItemText  primary={value.name} secondary={value.value} />
+                                <Divider />
+                            </ListItem>
 
-                            ))}
-                        </List>
+                        ))}
+                    </List>
                 </>
             }
 

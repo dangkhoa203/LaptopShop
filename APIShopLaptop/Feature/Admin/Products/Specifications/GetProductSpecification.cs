@@ -16,8 +16,7 @@ namespace APIShopLaptop.Feature.Admin.Products.Specifications {
                 var Product = await context.Products
                     .Include(p => p.Specifications)
                     .ThenInclude(s=>s.SpecificationNavigation)
-                    .Where(p => p.Id == id)
-                    .FirstOrDefaultAsync();
+                    .FirstOrDefaultAsync(p => p.Id == id);
                 if (Product == null)
                     return Results.NotFound(new Response(false, null, "Không tìm thấy sản phẩm!"));
                 return Results.Ok(new Response(true, Product.Specifications.Select(s => new SpecificationDTO(s.SpecificationId,s.SpecificationNavigation.Name,s.Value)).ToList(), ""));

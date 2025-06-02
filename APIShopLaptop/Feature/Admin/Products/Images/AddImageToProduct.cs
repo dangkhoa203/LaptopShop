@@ -15,29 +15,29 @@ namespace APIShopLaptop.Feature.Admin.Products.Images {
         }
 
         private static async Task<IResult> Handler([FromRoute] string id, [FromForm] Request request, IWebHostEnvironment env, ApplicationDBContext context) {
-            Product? product = await context.Products.FirstOrDefaultAsync(p => p.Id == id);
-            if (product == null) {
+            Product? Product = await context.Products.FirstOrDefaultAsync(p => p.Id == id);
+            if (Product == null) {
                 return Results.NotFound(new Response(false, "Không tìm thấy sản phẩm!"));
             }
             string StoragePath = Path.Combine(env.ContentRootPath, "Image", "Product");
             string ProductImagePath = Path.Combine(StoragePath, id);
-            List<ProductImage> images = new List<ProductImage>();
+            List<ProductImage> Images = new ();
             for (int i = 0; i < request.Images.Count; i++) {
                 var file = request.Images[i];
                 var stream = file.OpenReadStream();
-                var productimage = new ProductImage();
+                var ProductImage = new ProductImage();
                 using (Image image = Image.Load(stream)) {
                     image.Mutate(x => { x.Resize(1000, 1000); });
-                    image.SaveAsJpeg(Path.Combine(ProductImagePath, $"{productimage.Id}.jpg"));
+                    image.SaveAsJpeg(Path.Combine(ProductImagePath, $"{ProductImage.Id}.jpg"));
                 }
-                productimage.Product = product;
-                images.Add(productimage);
+                ProductImage.Product = Product;
+                Images.Add(ProductImage);
             }
-            await context.ProductImages.AddRangeAsync(images);
+            await context.ProductImages.AddRangeAsync(Images);
             if (await context.SaveChangesAsync() > 0) {
                 return Results.Ok(new Response(true, ""));
             }
-            foreach (var image in images) {
+            foreach (var image in Images) {
                 if (File.Exists(Path.Combine(ProductImagePath, $"{image.Id}.jpg"))) {
                     File.Delete(Path.Combine(ProductImagePath, $"{image.Id}.jpg"));
                 }

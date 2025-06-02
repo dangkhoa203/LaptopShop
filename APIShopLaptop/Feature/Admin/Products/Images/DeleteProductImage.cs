@@ -14,11 +14,11 @@ namespace APIShopLaptop.Feature.Admin.Products.Images {
             try {
                 string StoragePath = Path.Combine(env.ContentRootPath, "Image", "Product");
                 string ProductImagePath = Path.Combine(StoragePath, id);
-                var image = await context.ProductImages.FirstOrDefaultAsync(i => i.Id == request.Id);
-                if (image == null) {
+                var Image = await context.ProductImages.FirstOrDefaultAsync(i => i.Id == request.Id);
+                if (Image == null) {
                     return Results.BadRequest(new Response(false, "Không tìm thấy ảnh!"));
                 }
-                context.ProductImages.Remove(image);
+                context.ProductImages.Remove(Image);
                 if (await context.SaveChangesAsync() > 0) {
                     if (File.Exists($"{ProductImagePath}/{request.Id}.jpg")) {
                         File.Delete($"{ProductImagePath}/{request.Id}.jpg");

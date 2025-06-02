@@ -6,7 +6,6 @@ import {
     DialogContentText,
     DialogTitle,
     LinearProgress,
-    TextField
 } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
@@ -16,37 +15,26 @@ import {Response} from "../../Type/Respone.ts";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
-export default function ChangeEmailDiaglog(props:{username:string,email:string,id:string,open:boolean,handleClose:()=>void,reFetch:any}) {
-    const [email, setEmail] = useState('');
+export default function DeleteBrandDialog(props:{name:string,id:string,open:boolean,handleClose:()=>void,reFetch:any}) {
     const [globalError, setGlobalError] = useState("");
-    const [validateError, setValidateError] = useState<string>("");
-    const handleEmailPassword=(e:any)=>{
-        setEmail(e.target.value);
-    }
     const {isPending,mutate}=useMutation({
         mutationFn:async ()=>{
             setGlobalError("")
-            const response = await fetch(`https://localhost:7075/api/Admin/Account/Email/${props.id}`, {
-                method: 'PUT',
+            const response = await fetch(`https://localhost:7075/api/Admin/Brands/${props.id}`, {
+                method: 'DELETE',
                 headers: {'Content-Type': 'application/json'},
                 credentials: 'include',
-                body: JSON.stringify({email:email})
             })
             return await response.json();
         },
         onSuccess:(data:Response)=>{
             if(data.success){
                 props.handleClose()
-                setEmail("")
                 setGlobalError("")
-                setValidateError("")
                 props.reFetch()
             }
             else {
                 setGlobalError(data.errorMessage)
-                if(!data.validationError.isValid){
-                    setValidateError(data.validationError.errors[0].errorMessage)
-                }
             }
         }
     })
@@ -56,26 +44,22 @@ export default function ChangeEmailDiaglog(props:{username:string,email:string,i
             open={props.open}
             onClose={()=> {
                 props.handleClose()
-                setEmail("")
                 setGlobalError("")
-                setValidateError("")
             }}
             fullWidth
             maxWidth="md"
         >
             <DialogTitle
                 sx={{
-                    borderTop:"10px solid rgb(230, 81, 0)",
+                    borderTop:"10px solid rgb(211, 47, 47)",
                 }}>
-                Thay đổi email người dùng {props.username}
+                Xóa hãng {props.name}
             </DialogTitle>
             <IconButton
-                color="warning"
+                color="error"
                 onClick={()=> {
                     props.handleClose()
-                    setEmail("")
                     setGlobalError("")
-                    setValidateError("")
                 }}
                 sx={(theme) => ({
                     position: 'absolute',
@@ -84,17 +68,13 @@ export default function ChangeEmailDiaglog(props:{username:string,email:string,i
                     color: theme.palette.grey[500],
                 })}
             >
-                <CloseIcon color="warning" />
+                <CloseIcon color="error" />
             </IconButton>
-            <DialogContent dividers>
+            <DialogContent >
                 <DialogContentText >
-                    <Typography sx={{marginBottom:"5px"}}>
-                        Email cũ: {props.email}
+                    <Typography>
+                        Bạn có muốn xóa {props.name}
                     </Typography>
-                    <TextField type="email" value={email} onChange={handleEmailPassword} fullWidth
-                               error={validateError.length>0}  helperText={validateError}
-                               color="warning"
-                               size={"medium"} label="Email mới" variant="filled" />
                 </DialogContentText>
 
             </DialogContent>
@@ -110,15 +90,13 @@ export default function ChangeEmailDiaglog(props:{username:string,email:string,i
                         </div>
                         <Button color="error" variant={"outlined"} onClick={()=> {
                             props.handleClose()
-                            setEmail("")
                             setGlobalError("")
-                            setValidateError("")
                         }}>Hủy</Button>
-                        <Button variant="contained" color="warning" onClick={()=> {
+                        <Button variant="contained" color="error" onClick={()=> {
                             mutate()
                         }} autoFocus
                         >
-                            Sửa
+                            Xác nhận
                         </Button>
                     </>
                 }

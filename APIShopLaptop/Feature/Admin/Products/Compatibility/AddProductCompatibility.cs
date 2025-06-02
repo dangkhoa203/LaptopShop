@@ -10,7 +10,7 @@ namespace APIShopLaptop.Feature.Admin.Products.Compatibility {
         public record Response(bool Success, string ErrorMessage);
 
         public static void MapEndpoint(IEndpointRouteBuilder app) {
-            app.MapGet("/api/Admin/Products/{id}/Compatibility", Handler).WithTags("Admin_Products");
+            app.MapPost("/api/Admin/Products/{id}/Compatibility", Handler).WithTags("Admin_Products");
         }
 
         private static async Task<IResult> Handler([FromBody] Request request, string id, ApplicationDBContext context) {

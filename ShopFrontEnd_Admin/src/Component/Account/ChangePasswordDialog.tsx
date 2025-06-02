@@ -15,13 +15,13 @@ import {useMutation} from "@tanstack/react-query";
 import {Response} from "../../Type/Respone.ts";
 import Box from "@mui/material/Box";
 
-export default function ChangePasswordDiaglog(props:{username:string,id:string,open:boolean,handleClose:()=>void,reFetch:any}) {
-    const [password, setPassword] = useState('');
+export default function ChangePasswordDialog(props:{username:string,id:string,open:boolean,handleClose:()=>void,reFetch:any}) {
+    const [newPassword, setNewPassword] = useState('');
     const [globalError, setGlobalError] = useState("");
     const [success, setSuccess] = useState<boolean>(false);
     const [validateError, setValidateError] = useState<string>("");
     const handlePassword=(e:any)=>{
-        setPassword(e.target.value);
+        setNewPassword(e.target.value);
     }
     const {isPending,mutate}=useMutation({
         mutationFn:async ()=>{
@@ -30,7 +30,7 @@ export default function ChangePasswordDiaglog(props:{username:string,id:string,o
                 method: 'PUT',
                 headers: {'Content-Type': 'application/json'},
                 credentials: 'include',
-                body: JSON.stringify({password:password})
+                body: JSON.stringify({password:newPassword})
             })
             return await response.json();
         },
@@ -52,7 +52,7 @@ export default function ChangePasswordDiaglog(props:{username:string,id:string,o
             open={props.open}
             onClose={()=> {
                 props.handleClose()
-                setPassword("")
+                setNewPassword("")
                 setGlobalError("")
                 setValidateError("")
                 setSuccess(false)
@@ -70,7 +70,7 @@ export default function ChangePasswordDiaglog(props:{username:string,id:string,o
                 color="secondary"
                 onClick={()=> {
                     props.handleClose()
-                    setPassword("")
+                    setNewPassword("")
                     setGlobalError("")
                     setValidateError("")
                     setSuccess(false)
@@ -86,7 +86,7 @@ export default function ChangePasswordDiaglog(props:{username:string,id:string,o
             </IconButton>
             <DialogContent dividers>
                 <DialogContentText >
-                    <TextField value={password} onChange={handlePassword} fullWidth
+                    <TextField value={newPassword} onChange={handlePassword} fullWidth
                                error={validateError.length>0}  helperText={validateError}
                                color="secondary" disabled={success}
                                size={"medium"} label="Mật khẩu mới" variant="filled" />
@@ -106,7 +106,7 @@ export default function ChangePasswordDiaglog(props:{username:string,id:string,o
                             </div>
                             <Button color="success" variant={"outlined"} onClick={()=> {
                                 props.handleClose()
-                                setPassword("")
+                                setNewPassword("")
                                 setGlobalError("")
                                 setValidateError("")
                                 setSuccess(false)
@@ -119,7 +119,7 @@ export default function ChangePasswordDiaglog(props:{username:string,id:string,o
                             </div>
                             <Button color="error" variant={"outlined"} onClick={()=> {
                                 props.handleClose()
-                                setPassword("")
+                                setNewPassword("")
                                 setGlobalError("")
                                 setValidateError("")
                                 setSuccess(false)

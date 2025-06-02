@@ -7,7 +7,7 @@ import {AgGridReact} from "ag-grid-react";
 import {AG_GRID_LOCALE_VN} from "@ag-grid-community/locale";
 import Container from "@mui/material/Container";
 import {useNavigate} from "react-router";
-import {myTheme_mini} from "../../Type/myTheme_mini.ts";
+import {myTheme} from "../../Type/myTheme.ts";
 import type { ICellRendererParams } from 'ag-grid-community';
 type productData={
     id: string,
@@ -24,6 +24,7 @@ export default function ProductList(){
     const navigate = useNavigate();
     const {data,isPending,refetch}=useQuery({
         queryKey:["product_list"],
+        refetchOnWindowFocus:false,
         queryFn:async ()=>{
             setSuccess(false)
             const response = await fetch('https://localhost:7075/api/Admin/Products', {
@@ -46,6 +47,8 @@ export default function ProductList(){
     // @ts-ignore
     const [colDefs, setColDefs] = useState<ColDef[]>([
         { valueGetter:c=>c.data.id,
+            wrapText:true,
+            wrapHeaderText:true,
             headerName:"",filter:false,
             resizable:false,
             unSortIcon: false,flex: 1,
@@ -61,21 +64,21 @@ export default function ProductList(){
                 </div>},
 
         { valueGetter:c=>c.data.id,
+            wrapText:true,
             wrapHeaderText:true,
             headerName:"Id",filter:true,
             resizable:false,
             unSortIcon: true,flex: 1,
             minWidth:130,
-            wrapText: true,
             floatingFilter: true },
 
         { valueGetter:c=>c.data.name,
+            wrapText:true,
             wrapHeaderText:true,
             headerName:"Tên",filter:true,
             resizable:false,
             unSortIcon: true,flex: 1,
             minWidth:150,
-            wrapText:true,
             floatingFilter: true },
 
         { valueGetter:c=>c.data.quantity,
@@ -172,11 +175,10 @@ export default function ProductList(){
                         <>
                             <div style={{ height: "450px" }}>
                                 <AgGridReact
-
                                     rowHeight={100}
                                     rowData={rowData}
                                     columnDefs={colDefs}
-                                    theme={myTheme_mini}
+                                    theme={myTheme}
                                     pagination={true}
                                     paginationPageSize={25}
                                     paginationPageSizeSelector={[25,50]}

@@ -25,9 +25,9 @@ namespace APIShopLaptop.Feature.Admin.Specifications {
                     return Results.BadRequest(new Response(false, "Lỗi xảy ra", ValidatedResult));
                 }
 
-                Specification specification = new(request.Name);
+                Specification Specification = new(request.Name);
 
-                await context.Specifications.AddAsync(specification);
+                await context.Specifications.AddAsync(Specification);
                 if (await context.SaveChangesAsync() > 0) {
                     return Results.Ok(new Response(true, "", ValidatedResult));
                 }

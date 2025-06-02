@@ -15,7 +15,7 @@ namespace APIShopLaptop.Feature.Admin.Orders {
         }
         private static async Task<IResult> Handler(string id,ApplicationDBContext context) {
             try {
-                var order = await context.Orders
+                var Order = await context.Orders
                      .Where(o=>o.Id==id)
                      .Include(o => o.User)
                      .Include(o => o.Details)
@@ -31,9 +31,11 @@ namespace APIShopLaptop.Feature.Admin.Orders {
                          o.Details.Select(d=>new DetailDTO(d.ProductId,d.ProductNavigation.Name, d.ProductNavigation.Price, d.Quantity)).ToList()
                          ))
                      .FirstOrDefaultAsync();
-                if (order == null)
+
+                if (Order == null)
                     return Results.NotFound(new Response(false, null, "Không tìm thấy đơn hàng!"));
-                return Results.Ok(new Response(true, order, ""));
+
+                return Results.Ok(new Response(true, Order, ""));
             }
             catch (Exception) {
                 return Results.BadRequest(new Response(false, null, "Lỗi server đã xảy ra!"));

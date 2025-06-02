@@ -6,13 +6,13 @@ import NewThumbnail from "./MiniComponent/NewThumbnail.tsx";
 import {productInfo} from "../../../Type/productInfo.ts";
 import NewProductInfoField from "./MiniComponent/NewProductInfoField.tsx";
 import NewProductImageList from "./MiniComponent/NewProductImageList.tsx";
-import CateroryTable from "./MiniComponent/CateroryTable.tsx";
+import NewCateroryTable from "./MiniComponent/NewCateroryTable.tsx";
 import Divider from "@mui/material/Divider";
 import {useMutation} from "@tanstack/react-query";
 import {Response} from "../../../Type/Respone.ts";
 import {useNavigate} from "react-router";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-export type productValidateError={
+export type productValidationError={
     price:string,
     priceAfterDiscount:string,
     quantity:string,
@@ -36,7 +36,7 @@ export default function CreateProductPage(){
     const [productImage, setProductImage] = useState<any[]>([]);
     const [categories, setCategories] = useState<string[]>([]);
     const [globalError, setGlobalError] = useState<string>();
-    const [validateError, setValidateError] = useState<productValidateError>({
+    const [validationError, setValidationError] = useState<productValidationError>({
         price:"",
         priceAfterDiscount:"",
         quantity:"",
@@ -115,7 +115,7 @@ export default function CreateProductPage(){
                         if(element.propertyName==="BrandId")
                             error.brandId=element.errorMessage
                     })
-                    setValidateError(error)
+                    setValidationError(error)
                 }
             }
         }
@@ -123,30 +123,30 @@ export default function CreateProductPage(){
     // @ts-ignore
     return(
         <Container sx={{display:"flex", flexDirection:"column", justifyContent:"center",gap:2}}>
-            <Button sx={{width:"200px"}} startIcon={<ArrowBackIosIcon/>} onClick={()=>navigate("..")} variant="contained" color="secondary">Quay về</Button>
+            <Button sx={{width:"200px"}} startIcon={<ArrowBackIosIcon/>} onClick={()=>navigate("..")} variant="contained" color="primary">Quay về</Button>
             <p style={{textAlign:"center",fontSize:"2.5em",margin:"0"}}>Tạo sản phẩm</p>
             <Container sx={{display:"flex", flexDirection: {xs:"column",sm:"column",md:"column",lg:"row"}, justifyContent:"center",gap:2}}>
                 <Container sx={{flex:1}}>
                     <NewThumbnail thumbnail={thumbnail} setThumbnail={setThumbnail} error={thumbnailError}/>
                 </Container>
                 <Container sx={{flex:2}}>
-                    <NewProductInfoField productInfo={productInfo} setProductInfo={setProductInfo} validateError={validateError}/>
+                    <NewProductInfoField productInfo={productInfo} setProductInfo={setProductInfo} validationError={validationError}/>
                 </Container>
             </Container>
             <NewProductImageList productImage={productImage} setProductImage={setProductImage}/>
             <Container sx={{maxWidth: {xs:"450px",sm:"480px",md:"750px",lg:"1152px"}}} style={{padding:0}}>
                 <Divider/>
                 <h2 style={{textAlign:"center"}}>Mô tả sản phẩm</h2>
-                <TextEditor description={description} setDescription={setDescription}/>
+                <TextEditor color={"rgb(25, 118, 210)"} description={description} setDescription={setDescription}/>
             </Container>
-            <CateroryTable categories={categories} setCategories={setCategories}/>
+            <NewCateroryTable categories={categories} setCategories={setCategories}/>
             {globalError!=="" &&
                 <div style={{color:"red",textAlign:"center"}}>
                     {globalError}
                 </div>
             }
             <div style={{display:"flex",marginBottom:"10px", justifyContent:"end", gap:2}}>
-                <Button loading={isPending} loadingPosition={"end"} fullWidth sx={{fontSize:"1.3em"}} onClick={()=>mutate()} variant="contained" color={"success"}>Tạo</Button>
+                <Button loading={isPending} loadingPosition={"end"} fullWidth sx={{fontSize:"1.3em"}} onClick={()=>mutate()} variant="contained" color={"primary"}>Tạo</Button>
             </div>
         </Container>
     )

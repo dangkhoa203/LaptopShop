@@ -9,8 +9,8 @@ namespace APIShopLaptop.Feature.Admin.Products.Images {
         private static async Task<IResult> Handler(string id, string imageId, ApplicationDBContext context, IWebHostEnvironment env) {
             string StoragePath = Path.Combine(env.ContentRootPath, "Image", "Product");
             string ProductImagePath = Path.Combine(StoragePath, id);
-            var image = File.OpenRead($"{ProductImagePath}/{imageId}.jpg");
-            return Results.File(image, "image/jpeg");
+            var Image = File.OpenRead($"{ProductImagePath}/{imageId}.jpg");
+            return Results.File(Image, "image/jpeg");
         }
     }
 }

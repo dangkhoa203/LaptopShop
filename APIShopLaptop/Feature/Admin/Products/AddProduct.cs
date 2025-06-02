@@ -38,7 +38,7 @@ namespace APIShopLaptop.Feature.Admin.Products {
                 return Results.BadRequest(new Response(false, "Lỗi xảy ra", ValidatedResult));
             }
 
-            Product product = new Product() {
+            Product Product = new Product() {
                 Name = request.Name,
                 Price = request.Price,
                 Quantity = request.Quantity,
@@ -50,21 +50,21 @@ namespace APIShopLaptop.Feature.Admin.Products {
             };
             List<ProductImage> ProductImages = [];
             string StoragePath = Path.Combine(env.ContentRootPath, "Image", "Product");
-            string ProductImagePath = Path.Combine(StoragePath, product.Id);
+            string ProductImagePath = Path.Combine(StoragePath, Product.Id);
             try {
                 
                 Directory.CreateDirectory(ProductImagePath);
 
                 //Create Thumbnail
                 try {
-                    var thumbnailimage = new ProductImage() {IsThumbnail=true };
+                    var ThumbnailImage = new ProductImage() {IsThumbnail=true };
                     var ThumbnailStream = request.ProductPicture[0].OpenReadStream();
                     using (Image image = Image.Load(ThumbnailStream)) {
                         image.Mutate(x => { x.Resize(300, 300); });
-                        image.SaveAsJpeg(Path.Combine(ProductImagePath, $"{thumbnailimage.Id}.jpg"));
+                        image.SaveAsJpeg(Path.Combine(ProductImagePath, $"{ThumbnailImage.Id}.jpg"));
                     }
-                    thumbnailimage.Product = product;
-                    ProductImages.Add(thumbnailimage);
+                    ThumbnailImage.Product = Product;
+                    ProductImages.Add(ThumbnailImage);
                 }
                 catch {
                     Directory.Delete(ProductImagePath);
@@ -76,26 +76,26 @@ namespace APIShopLaptop.Feature.Admin.Products {
                 for (int i = 1; i < request.ProductPicture.Count; i++) {
                         var file = request.ProductPicture[i];
                         var stream = file.OpenReadStream();
-                        var productimage = new ProductImage();
+                        var ProductImage = new ProductImage();
                         using (Image image = Image.Load(stream)) {
                             image.Mutate(x => { x.Resize(1000, 1000); });
-                            image.SaveAsJpeg(Path.Combine(ProductImagePath, $"{productimage.Id}.jpg"));
+                            image.SaveAsJpeg(Path.Combine(ProductImagePath, $"{ProductImage.Id}.jpg"));
                         }
-                        productimage.Product=product;
-                        ProductImages.Add(productimage);
+                        ProductImage.Product=Product;
+                        ProductImages.Add(ProductImage);
                 }
                 
                 
 
-                //Save product to Database
-                await context.Products.AddAsync(product);
+                //Save Product to Database
+                await context.Products.AddAsync(Product);
                 await context.ProductImages.AddRangeAsync(ProductImages);
                 if (request.Categories[0] != "empty") {
                     foreach (var categoryId in request.Categories) {
                         var Category = await context.SubCaterories.FirstOrDefaultAsync(c => c.Id == categoryId);
                         var item = new CateroryItem() {
                             CateroryNavigation = Category,
-                            ProductNavigation = product,
+                            ProductNavigation = Product,
                         };
                         await context.CateroryItems.AddAsync(item);
                     }

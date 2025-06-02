@@ -21,12 +21,12 @@ type categoryData={
 export default function UpdateCaterory(props:{id:string}) {
     const [success, setSuccess] = useState(false);
     const [rowData, setRowData] = useState<categoryData[]>([]);
-    const [categories, setCategories] = useState<string[]>([]);
+    const [productCategories, setProductCategories] = useState<string[]>([]);
     const [newCategories, setNewCategories] = useState<string[]>([]);
     const {data,isPending,refetch}=useQuery({
-        queryKey:["category_table_list"],
+        queryKey:["categories_list"],
+        refetchOnWindowFocus:false,
         queryFn:async ()=>{
-            setSuccess(false)
             const response = await fetch('https://localhost:7075/api/Admin/Category', {
                 headers: {'Content-Type': 'application/json'},
                 credentials: 'include',
@@ -41,10 +41,10 @@ export default function UpdateCaterory(props:{id:string}) {
             setRowData(data.data)
         }
     }, [data]);
-    const productCategories=useQuery({
+    const PRODUCTCATEGORY=useQuery({
         queryKey:["product_categories"],
+        refetchOnWindowFocus:false,
         queryFn:async ()=>{
-            setSuccess(false)
             const response = await fetch(`https://localhost:7075/api/Admin/Products/${props.id}/Category`, {
                 headers: {'Content-Type': 'application/json'},
                 credentials: 'include',
@@ -54,14 +54,14 @@ export default function UpdateCaterory(props:{id:string}) {
         },
     });
     useEffect(() => {
-        if(productCategories.data){
+        if(PRODUCTCATEGORY.data){
             setSuccess(true)
-            setCategories(productCategories.data.data)
+            setProductCategories(PRODUCTCATEGORY.data.data)
         }
-    }, [productCategories.data]);
+    }, [PRODUCTCATEGORY.data]);
     useEffect(() => {
-        setNewCategories(categories);
-    }, [categories]);
+        setNewCategories(productCategories);
+    }, [productCategories]);
     const handleCheckChange=(id:string)=>{
 
         if(!newCategories.includes(id)){
@@ -70,10 +70,10 @@ export default function UpdateCaterory(props:{id:string}) {
             setNewCategories(newCategories.filter(item => item !== id));
     }
     const checkChange=():boolean=>{
-        if (newCategories.length !== categories.length) {
+        if (newCategories.length !== productCategories.length) {
             return false;
         }
-        return newCategories.every(item=>categories.includes(item));
+        return newCategories.every(item=>productCategories.includes(item));
     }
     const [globalError,setGlobalError]=useState("")
     const UPDATE=useMutation({
@@ -103,8 +103,8 @@ export default function UpdateCaterory(props:{id:string}) {
             <div style={{display:"flex",justifyContent:"center",gap:5,marginBottom:10,minHeight:37}}>
                 {!checkChange() &&
                     <>
-                        <Button  loading={UPDATE.isPending} loadingPosition="end" endIcon={<ClearIcon/>} variant="contained" onClick={()=>setNewCategories(categories)} color="error">Clear</Button>
-                        <Button loading={UPDATE.isPending} loadingPosition="end" endIcon={<SaveIcon/>} variant="contained" color="warning" onClick={()=> UPDATE.mutate()}>Lưu</Button>
+                        <Button  loading={UPDATE.isPending} loadingPosition="end" endIcon={<ClearIcon/>} variant="contained" onClick={()=>setNewCategories(productCategories)} color="error">Clear</Button>
+                        <Button loading={UPDATE.isPending} loadingPosition="end" endIcon={<SaveIcon/>} variant="contained" color="success" onClick={()=> UPDATE.mutate()}>Lưu</Button>
                     </>
                 }
             </div>
@@ -115,7 +115,7 @@ export default function UpdateCaterory(props:{id:string}) {
                 :
                 <>
                     {success?
-                        <TableContainer sx={{height:400,overflowY:"scroll",border:"2px solid rgb(25, 118, 210)"}} component={Paper}>
+                        <TableContainer sx={{height:400,overflowY:"scroll",border:"2px solid rgb(237, 108, 2)"}} component={Paper}>
                             <Table stickyHeader aria-label="simple table">
                                 <TableHead>
                                     <TableRow>
@@ -131,13 +131,13 @@ export default function UpdateCaterory(props:{id:string}) {
                                         >
                                             <TableCell padding="checkbox">
                                                 <Checkbox
-                                                    color="primary"
+                                                    color="warning"
                                                     checked={newCategories.includes(row.id)}
                                                     onChange={()=>handleCheckChange(row.id)}
                                                 />
                                             </TableCell>
                                             <TableCell >
-                                                <Button onClick={()=>handleCheckChange(row.id)}> {row.name}</Button>
+                                                <Button color="warning" onClick={()=>handleCheckChange(row.id)}> {row.name}</Button>
                                             </TableCell>
                                         </TableRow>
                                     ))}

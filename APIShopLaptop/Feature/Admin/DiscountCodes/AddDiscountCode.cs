@@ -25,7 +25,7 @@ namespace APIShopLaptop.Feature.Admin.DiscountCodes {
                     return Results.BadRequest(new Response(false, "Lỗi xảy ra", ValidationResult));
                 }
 
-                var Code=new DiscountCode() {
+                var DiscountCode=new DiscountCode() {
                    Name = request.Name,
                    Description = request.Description,
                    Percent = request.Percent,
@@ -33,7 +33,7 @@ namespace APIShopLaptop.Feature.Admin.DiscountCodes {
                    EndDate = request.EndDate
                };
 
-                context.DiscountCodes.Add(Code);
+                context.DiscountCodes.Add(DiscountCode);
                 if (await context.SaveChangesAsync() > 0) {
                     return Results.Ok(new Response(true, "", ValidationResult));
                 }

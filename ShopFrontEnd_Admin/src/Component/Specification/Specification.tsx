@@ -5,7 +5,7 @@ import {CircularProgress, Tooltip} from "@mui/material";
 import Button from "@mui/material/Button";
 import {AgGridReact} from "ag-grid-react";
 import type { ICellRendererParams } from 'ag-grid-community';
-import {myTheme} from "../../Type/myTheme.tsx";
+import {myTheme} from "../../Type/myTheme.ts";
 import {AG_GRID_LOCALE_VN} from "@ag-grid-community/locale";
 import Container from "@mui/material/Container";
 import CreateNewSpecificationDiaglog from "./CreateNewSpecificationDiaglog.tsx";
@@ -51,6 +51,7 @@ export default function Specification(){
 
     const {data,isPending,refetch}=useQuery({
         queryKey:["specification_list"],
+        refetchOnWindowFocus:false,
         queryFn:async ()=>{
             setSuccess(false)
             const response = await fetch('https://localhost:7075/api/Admin/Specifications', {
@@ -73,6 +74,8 @@ export default function Specification(){
     // @ts-ignore
     const [colDefs, setColDefs] = useState<ColDef[]>([
         { valueGetter:c=>c.data.id,
+            wrapText:true,
+            wrapHeaderText:true,
             headerName:"Id",filter:true,
             resizable:false,
             unSortIcon: true,flex: 2,
@@ -80,6 +83,8 @@ export default function Specification(){
             floatingFilter: true },
 
         { valueGetter:c=>c.data.name,
+            wrapText:true,
+            wrapHeaderText:true,
             headerName:"Tên",filter:true,
             resizable:false,
             unSortIcon: true,flex: 2,

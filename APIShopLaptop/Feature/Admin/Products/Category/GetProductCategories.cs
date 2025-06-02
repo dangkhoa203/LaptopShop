@@ -3,7 +3,7 @@ using APIShopLaptop.Endpoint;
 using APIShopLaptop.Model.Entity.Product_Related;
 using Microsoft.EntityFrameworkCore;
 
-namespace APIShopLaptop.Feature.Admin.Products.Caterory {
+namespace APIShopLaptop.Feature.Admin.Products.Category {
     public class GetProductCategories : IEndpoint {
         public record Response(bool Success,List<string> data, string ErrorMessage);
 
@@ -19,6 +19,7 @@ namespace APIShopLaptop.Feature.Admin.Products.Caterory {
                     .FirstOrDefaultAsync();
                 if (Product == null)
                     return Results.NotFound(new Response(false, null, "Không tìm thấy sản phẩm!"));
+
                 return Results.Ok(new Response(true, Product.CateroryItems.Select(i=>i.CateroryId).ToList(), ""));
             }
             catch (Exception) {

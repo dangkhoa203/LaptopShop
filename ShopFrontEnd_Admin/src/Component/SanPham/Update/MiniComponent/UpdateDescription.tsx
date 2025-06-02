@@ -13,6 +13,7 @@ export default function UpdateDescription(props:{id:string}){
     const [globalError,setGlobalError]=useState("")
     const {data,isPending,refetch}=useQuery({
         queryKey:["product_description"],
+        refetchOnWindowFocus:false,
         queryFn:async ()=>{
             const response = await fetch(`https://localhost:7075/api/Admin/Products/${props.id}/Description`, {
                 headers: {'Content-Type': 'application/json'},
@@ -22,7 +23,7 @@ export default function UpdateDescription(props:{id:string}){
             return await response.json();
         },
     });
-    const Update=useMutation({
+    const UPDATE=useMutation({
         mutationFn:async ()=>{
             setGlobalError("")
             const response = await fetch(`https://localhost:7075/api/Admin/Products/${props.id}/Description`, {
@@ -69,12 +70,12 @@ export default function UpdateDescription(props:{id:string}){
                         :
                         <>
                             <div style={{display:"flex",marginBottom:"10px",justifyContent:"center"}}>
-                                <Button sx={{width:"120px"}} loading={Update.isPending} loadingPosition="end" onClick={()=>Update.mutate()} variant="contained" color="warning">Sửa</Button>
+                                <Button sx={{width:"120px"}} loading={UPDATE.isPending} loadingPosition="end" onClick={()=>UPDATE.mutate()} variant="contained" color="warning">Sửa</Button>
                             </div>
                             <div style={{color:"red",textAlign:"center",marginBottom:"10px"}}>
                                 {globalError}
                             </div>
-                            <TextEditor description={newDescription} setDescription={setNewDescription}/>
+                            <TextEditor color={"rgb(237, 108, 2)"} description={newDescription} setDescription={setNewDescription}/>
                         </>
                     }
                 </>

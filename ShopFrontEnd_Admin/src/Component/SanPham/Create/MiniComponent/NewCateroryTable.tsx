@@ -15,13 +15,13 @@ type categoryData={
     name: string,
 }
 
-export default function CateroryTable(props:{categories:string[],setCategories:(value:any) => void}) {
+export default function NewCateroryTable(props:{categories:string[],setCategories:(value:any) => void}) {
     const [success, setSuccess] = useState(false);
     const [rowData, setRowData] = useState<categoryData[]>([]);
     const {data,isPending,refetch}=useQuery({
-        queryKey:["category_table_list"],
+        queryKey:["categories_list"],
+        refetchOnWindowFocus:false,
         queryFn:async ()=>{
-            setSuccess(false)
             const response = await fetch('https://localhost:7075/api/Admin/Category', {
                 headers: {'Content-Type': 'application/json'},
                 credentials: 'include',

@@ -6,6 +6,7 @@ import {
     DialogContentText,
     DialogTitle,
     LinearProgress,
+    TextField
 } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
@@ -15,26 +16,37 @@ import {Response} from "../../Type/Respone.ts";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
-export default function ConfirmAccountDiaglog(props:{username:string,id:string,open:boolean,handleClose:()=>void,reFetch:any}) {
+export default function ChangeEmailDialog(props:{username:string,email:string,id:string,open:boolean,handleClose:()=>void,reFetch:any}) {
+    const [newEmail, setNewEmail] = useState('');
     const [globalError, setGlobalError] = useState("");
+    const [validateError, setValidateError] = useState<string>("");
+    const handleEmailPassword=(e:any)=>{
+        setNewEmail(e.target.value);
+    }
     const {isPending,mutate}=useMutation({
         mutationFn:async ()=>{
             setGlobalError("")
             const response = await fetch(`https://localhost:7075/api/Admin/Account/Email/${props.id}`, {
-                method: 'POST',
+                method: 'PUT',
                 headers: {'Content-Type': 'application/json'},
                 credentials: 'include',
+                body: JSON.stringify({email:newEmail})
             })
             return await response.json();
         },
         onSuccess:(data:Response)=>{
             if(data.success){
                 props.handleClose()
+                setNewEmail("")
                 setGlobalError("")
+                setValidateError("")
                 props.reFetch()
             }
             else {
                 setGlobalError(data.errorMessage)
+                if(!data.validationError.isValid){
+                    setValidateError(data.validationError.errors[0].errorMessage)
+                }
             }
         }
     })
@@ -44,22 +56,26 @@ export default function ConfirmAccountDiaglog(props:{username:string,id:string,o
             open={props.open}
             onClose={()=> {
                 props.handleClose()
+                setNewEmail("")
                 setGlobalError("")
+                setValidateError("")
             }}
             fullWidth
             maxWidth="md"
         >
             <DialogTitle
                 sx={{
-                    borderTop:"10px solid rgb(25, 118, 210)",
+                    borderTop:"10px solid rgb(230, 81, 0)",
                 }}>
-                Xác nhận email người dùng {props.username}
+                Thay đổi email người dùng {props.username}
             </DialogTitle>
             <IconButton
-                color="primary"
+                color="warning"
                 onClick={()=> {
                     props.handleClose()
+                    setNewEmail("")
                     setGlobalError("")
+                    setValidateError("")
                 }}
                 sx={(theme) => ({
                     position: 'absolute',
@@ -68,13 +84,17 @@ export default function ConfirmAccountDiaglog(props:{username:string,id:string,o
                     color: theme.palette.grey[500],
                 })}
             >
-                <CloseIcon color="primary" />
+                <CloseIcon color="warning" />
             </IconButton>
-            <DialogContent >
+            <DialogContent dividers>
                 <DialogContentText >
-                   <Typography>
-                       Xác nhận email cho người dùng này?
-                   </Typography>
+                    <Typography sx={{marginBottom:"5px"}}>
+                        Email cũ: {props.email}
+                    </Typography>
+                    <TextField type="email" value={newEmail} onChange={handleEmailPassword} fullWidth
+                               error={validateError.length>0}  helperText={validateError}
+                               color="warning"
+                               size={"medium"} label="Email mới" variant="filled" />
                 </DialogContentText>
 
             </DialogContent>
@@ -90,13 +110,15 @@ export default function ConfirmAccountDiaglog(props:{username:string,id:string,o
                         </div>
                         <Button color="error" variant={"outlined"} onClick={()=> {
                             props.handleClose()
+                            setNewEmail("")
                             setGlobalError("")
+                            setValidateError("")
                         }}>Hủy</Button>
-                        <Button variant="contained" color="primary" onClick={()=> {
+                        <Button variant="contained" color="warning" onClick={()=> {
                             mutate()
                         }} autoFocus
                         >
-                            Xác nhận
+                            Sửa
                         </Button>
                     </>
                 }

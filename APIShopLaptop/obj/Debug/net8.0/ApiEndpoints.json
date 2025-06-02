@@ -781,6 +781,91 @@
     ]
   },
   {
+    "ContainingType": "APIShopLaptop.Feature.Admin.Products.Compatibility.AddProductCompatibility",
+    "Method": "Handler",
+    "RelativePath": "api/Admin/Products/{id}/Compatibility",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "APIShopLaptop.Feature.Admin.Products.Compatibility.AddProductCompatibility\u002BRequest",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Admin_Products"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.Admin.Products.Compatibility.GetProductCompatibility",
+    "Method": "Handler",
+    "RelativePath": "api/Admin/Products/{id}/Compatibility",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Admin_Products"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.Admin.Products.Compatibility.DeleteProductCompatibility",
+    "Method": "Handler",
+    "RelativePath": "api/Admin/Products/{id}/Compatibility",
+    "HttpMethod": "DELETE",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "APIShopLaptop.Feature.Admin.Products.Compatibility.DeleteProductCompatibility\u002BRequest",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Admin_Products"
+    ]
+  },
+  {
     "ContainingType": "APIShopLaptop.Feature.Admin.Products.Description.UpdateProductDescription",
     "Method": "Handler",
     "RelativePath": "api/Admin/Products/{id}/Description",
@@ -958,6 +1043,91 @@
     "IsController": false,
     "Order": 0,
     "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Admin_Products"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.Admin.Products.Specifications.AddProductSpecification",
+    "Method": "Handler",
+    "RelativePath": "api/Admin/Products/{id}/Specification",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "APIShopLaptop.Feature.Admin.Products.Specifications.AddProductSpecification\u002BRequest",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Admin_Products"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.Admin.Products.Specifications.GetProductSpecification",
+    "Method": "Handler",
+    "RelativePath": "api/Admin/Products/{id}/Specification",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Admin_Products"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.Admin.Products.Specifications.DeleteProductSpecification",
+    "Method": "Handler",
+    "RelativePath": "api/Admin/Products/{id}/Specification",
+    "HttpMethod": "DELETE",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "APIShopLaptop.Feature.Admin.Products.Specifications.DeleteProductSpecification\u002BRequest",
+        "IsRequired": true
+      },
       {
         "Name": "id",
         "Type": "System.String",

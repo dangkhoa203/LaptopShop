@@ -12,7 +12,7 @@ namespace APIShopLaptop.Feature.Admin.Orders {
         }
         private static async Task<IResult> Handler(ApplicationDBContext context) {
             try {
-                var orders = await context.Orders
+                var Orders = await context.Orders
                      .Include(o => o.User)
                      .Include(o => o.Details)
                         .ThenInclude(d => d.ProductNavigation)
@@ -25,7 +25,7 @@ namespace APIShopLaptop.Feature.Admin.Orders {
                          o.User.UserName
                          ))
                      .ToListAsync();
-                return Results.Ok(new Response(true, orders, ""));
+                return Results.Ok(new Response(true, Orders, ""));
             }
             catch (Exception) {
                 return Results.BadRequest(new Response(false, null, "Lỗi server đã xảy ra!"));

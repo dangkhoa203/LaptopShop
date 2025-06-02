@@ -15,13 +15,13 @@ import {Response} from "../../Type/Respone.ts";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
-export default function DeleteBrandDiaglog(props:{name:string,id:string,open:boolean,handleClose:()=>void,reFetch:any}) {
+export default function ConfirmAccountDialog(props:{username:string,id:string,open:boolean,handleClose:()=>void,reFetch:any}) {
     const [globalError, setGlobalError] = useState("");
     const {isPending,mutate}=useMutation({
         mutationFn:async ()=>{
             setGlobalError("")
-            const response = await fetch(`https://localhost:7075/api/Admin/Brands/${props.id}`, {
-                method: 'DELETE',
+            const response = await fetch(`https://localhost:7075/api/Admin/Account/Email/${props.id}`, {
+                method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 credentials: 'include',
             })
@@ -51,12 +51,12 @@ export default function DeleteBrandDiaglog(props:{name:string,id:string,open:boo
         >
             <DialogTitle
                 sx={{
-                    borderTop:"10px solid rgb(211, 47, 47)",
+                    borderTop:"10px solid rgb(25, 118, 210)",
                 }}>
-                Xóa hãng {props.name}
+                Xác nhận email người dùng {props.username}
             </DialogTitle>
             <IconButton
-                color="error"
+                color="primary"
                 onClick={()=> {
                     props.handleClose()
                     setGlobalError("")
@@ -68,13 +68,13 @@ export default function DeleteBrandDiaglog(props:{name:string,id:string,open:boo
                     color: theme.palette.grey[500],
                 })}
             >
-                <CloseIcon color="error" />
+                <CloseIcon color="primary" />
             </IconButton>
             <DialogContent >
                 <DialogContentText >
-                    <Typography>
-                        Bạn có muốn xóa {props.name}
-                    </Typography>
+                   <Typography>
+                       Xác nhận email cho người dùng này?
+                   </Typography>
                 </DialogContentText>
 
             </DialogContent>
@@ -92,7 +92,7 @@ export default function DeleteBrandDiaglog(props:{name:string,id:string,open:boo
                             props.handleClose()
                             setGlobalError("")
                         }}>Hủy</Button>
-                        <Button variant="contained" color="error" onClick={()=> {
+                        <Button variant="contained" color="primary" onClick={()=> {
                             mutate()
                         }} autoFocus
                         >

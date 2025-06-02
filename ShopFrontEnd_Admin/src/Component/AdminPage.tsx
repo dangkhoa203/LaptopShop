@@ -171,8 +171,8 @@ export default function AdminPage() {
                     </IconButton>
                     <Box   sx={{width:"100%",justifyContent: 'end',marginRight:0,padding:0,display: 'flex'}} >
                         <div>
-                            <span style={{color:"white"}}>test</span>
-                            <Tooltip title="Open settings">
+                            <span style={{color:"white"}}>{userInfo.userName}</span>
+                            <Tooltip title="Cài đặt">
                                 <IconButton
                                     size="large"
                                     aria-controls="menu-appbar"

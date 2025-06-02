@@ -34,15 +34,15 @@ namespace APIShopLaptop.Feature.Admin.Brands {
                     return Results.BadRequest(new Response(false, "Lỗi xảy ra", ValidatedResult));
                 }
 
-                Brand? brand = await context.Brands.FirstOrDefaultAsync(b=>b.Id==id);
-                if (brand == null) {
+                Brand? Brand = await context.Brands.FirstOrDefaultAsync(b=>b.Id==id);
+                if (Brand == null) {
                     return Results.NotFound(new Response(false, "Không tìm thấy hãng!", ValidatedResult));
                 }
 
-                if (!Validator.CheckSame(request, brand)) {
-                    brand.Name = request.Name;
-                    brand.Tag = request.Tag;
-                    brand.UpdateAt = DateTime.Now;
+                if (!Validator.CheckSame(request, Brand)) {
+                    Brand.Name = request.Name;
+                    Brand.Tag = request.Tag;
+                    Brand.UpdateAt = DateTime.Now;
                     if (await context.SaveChangesAsync() < 1) {
                         return Results.BadRequest(new Response(false, "Lỗi xảy ra khi đang thực hiện!", ValidatedResult));
                     }

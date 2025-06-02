@@ -3,28 +3,172 @@
   "WorkspaceRootPath": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\admin\\products\\caterory\\updateproductcaterory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\admin\\products\\caterory\\updateproductcaterory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\user\\useraccount\\changeemail\\sendchangeemailrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\user\\useraccount\\changeemail\\sendchangeemailrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\admin\\products\\description\\updateproductdescription.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\admin\\products\\description\\updateproductdescription.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\user\\useraccount\\changeemail\\changeemail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\user\\useraccount\\changeemail\\changeemail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\admin\\products\\caterory\\getproductcategories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\admin\\products\\caterory\\getproductcategories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\user\\useraccount\\changepassword\\changepassword.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\user\\useraccount\\changepassword\\changepassword.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\extension\\adminendpoint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\extension\\adminendpoint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\user\\category\\getproductsfromsubcaterory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\user\\category\\getproductsfromsubcaterory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\user\\category\\getproductfrommaincategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\user\\category\\getproductfrommaincategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\admin\\specifications\\updatespecification.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\admin\\specifications\\updatespecification.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\admin\\specifications\\getspecifications.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\admin\\specifications\\getspecifications.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\admin\\specifications\\addspecification.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\admin\\specifications\\addspecification.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\admin\\products\\addproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\admin\\products\\addproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\admin\\products\\specifications\\getproductspecification.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\admin\\products\\specifications\\getproductspecification.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\admin\\products\\specifications\\addproductspecification.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\admin\\products\\specifications\\addproductspecification.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\admin\\products\\info\\updateproductinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\admin\\products\\info\\updateproductinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\admin\\products\\images\\updateproductthumbnail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\admin\\products\\images\\updateproductthumbnail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\admin\\products\\images\\getproductthumbnail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\admin\\products\\images\\getproductthumbnail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\admin\\products\\images\\getproductimages.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\admin\\products\\images\\getproductimages.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\admin\\products\\images\\getproductimage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\admin\\products\\images\\getproductimage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\admin\\products\\images\\deleteproductimage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\admin\\products\\images\\deleteproductimage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\admin\\products\\images\\getproductimages.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\admin\\products\\images\\getproductimages.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\admin\\products\\images\\addimagetoproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\admin\\products\\images\\addimagetoproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\admin\\products\\description\\updateproductdescription.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\admin\\products\\description\\updateproductdescription.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\admin\\products\\compatibility\\getproductcompatibility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\admin\\products\\compatibility\\getproductcompatibility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\admin\\products\\compatibility\\addproductcompatibility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\admin\\products\\compatibility\\addproductcompatibility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\admin\\products\\category\\updateproductcategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\admin\\products\\category\\updateproductcategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\admin\\products\\category\\getproductcategories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\admin\\products\\category\\getproductcategories.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\admin\\orders\\updateorderstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\admin\\orders\\updateorderstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\admin\\orders\\getorders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\admin\\orders\\getorders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\admin\\orders\\getorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\admin\\orders\\getorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\admin\\discountcodes\\updatediscountcode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\admin\\discountcodes\\updatediscountcode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\admin\\discountcodes\\getdiscountcodes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\admin\\discountcodes\\getdiscountcodes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\admin\\discountcodes\\adddiscountcode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\admin\\discountcodes\\adddiscountcode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\admin\\category\\getcategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\admin\\category\\getcategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\admin\\brands\\updatebrand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\admin\\brands\\updatebrand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\admin\\brands\\getbrands.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\admin\\brands\\getbrands.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\admin\\brands\\getbrand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\admin\\brands\\getbrand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\admin\\brands\\deletebrand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\admin\\brands\\deletebrand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\admin\\brands\\addbrand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\admin\\brands\\addbrand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\admin\\account\\updateuserpassword.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\admin\\account\\updateuserpassword.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\admin\\account\\updateuseremail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\admin\\account\\updateuseremail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\admin\\account\\updateuserconfirmemail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\admin\\account\\updateuserconfirmemail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\admin\\account\\logoutadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\admin\\account\\logoutadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\admin\\account\\loginadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\admin\\account\\loginadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\admin\\account\\getadmininfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\admin\\account\\getadmininfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\admin\\account\\getaccounts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\admin\\account\\getaccounts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -37,85 +181,553 @@
           "SelectedChildIndex": 1,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{797f5b3d-853a-4854-a9f2-c488bac2661b}"
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ChangePassword.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\User\\UserAccount\\ChangePassword\\ChangePassword.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\User\\UserAccount\\ChangePassword\\ChangePassword.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\User\\UserAccount\\ChangePassword\\ChangePassword.cs",
+              "RelativeToolTip": "APIShopLaptop\\Feature\\User\\UserAccount\\ChangePassword\\ChangePassword.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T18:32:00.202Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "UpdateProductCaterory.cs",
-              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Products\\Caterory\\UpdateProductCaterory.cs",
-              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\Admin\\Products\\Caterory\\UpdateProductCaterory.cs",
-              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Products\\Caterory\\UpdateProductCaterory.cs*",
-              "RelativeToolTip": "APIShopLaptop\\Feature\\Admin\\Products\\Caterory\\UpdateProductCaterory.cs*",
-              "ViewState": "AgIAAAwAAAAAAAAAAIA4wBIAAABJAAAAAAAAAA==",
+              "Title": "SendChangeEmailRequest.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\User\\UserAccount\\ChangeEmail\\SendChangeEmailRequest.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\User\\UserAccount\\ChangeEmail\\SendChangeEmailRequest.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\User\\UserAccount\\ChangeEmail\\SendChangeEmailRequest.cs*",
+              "RelativeToolTip": "APIShopLaptop\\Feature\\User\\UserAccount\\ChangeEmail\\SendChangeEmailRequest.cs*",
+              "ViewState": "AgIAABsAAAAAAAAAAAAowCYAAABPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-01T16:49:45.949Z",
+              "WhenOpened": "2025-06-02T18:31:53.195Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "UpdateProductDescription.cs",
-              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Products\\Description\\UpdateProductDescription.cs",
-              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\Admin\\Products\\Description\\UpdateProductDescription.cs",
-              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Products\\Description\\UpdateProductDescription.cs",
-              "RelativeToolTip": "APIShopLaptop\\Feature\\Admin\\Products\\Description\\UpdateProductDescription.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "ChangeEmail.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\User\\UserAccount\\ChangeEmail\\ChangeEmail.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\User\\UserAccount\\ChangeEmail\\ChangeEmail.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\User\\UserAccount\\ChangeEmail\\ChangeEmail.cs*",
+              "RelativeToolTip": "APIShopLaptop\\Feature\\User\\UserAccount\\ChangeEmail\\ChangeEmail.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-01T16:49:32.027Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "GetProductCategories.cs",
-              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Products\\Caterory\\GetProductCategories.cs",
-              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\Admin\\Products\\Caterory\\GetProductCategories.cs",
-              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Products\\Caterory\\GetProductCategories.cs",
-              "RelativeToolTip": "APIShopLaptop\\Feature\\Admin\\Products\\Caterory\\GetProductCategories.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAAABgAAABAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-01T16:31:03.526Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "DeleteProductImage.cs",
-              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Products\\Images\\DeleteProductImage.cs",
-              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\Admin\\Products\\Images\\DeleteProductImage.cs",
-              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Products\\Images\\DeleteProductImage.cs",
-              "RelativeToolTip": "APIShopLaptop\\Feature\\Admin\\Products\\Images\\DeleteProductImage.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABYAAABDAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-01T16:04:19.708Z",
+              "WhenOpened": "2025-06-02T18:31:39.617Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
+              "Title": "UpdateSpecification.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Specifications\\UpdateSpecification.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\Admin\\Specifications\\UpdateSpecification.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Specifications\\UpdateSpecification.cs*",
+              "RelativeToolTip": "APIShopLaptop\\Feature\\Admin\\Specifications\\UpdateSpecification.cs*",
+              "ViewState": "AgIAABwAAAAAAAAAAAAwwCcAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T18:30:06.151Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "GetSpecifications.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Specifications\\GetSpecifications.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\Admin\\Specifications\\GetSpecifications.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Specifications\\GetSpecifications.cs*",
+              "RelativeToolTip": "APIShopLaptop\\Feature\\Admin\\Specifications\\GetSpecifications.cs*",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAAAAcAAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T18:29:54.201Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "AddSpecification.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Specifications\\AddSpecification.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\Admin\\Specifications\\AddSpecification.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Specifications\\AddSpecification.cs*",
+              "RelativeToolTip": "APIShopLaptop\\Feature\\Admin\\Specifications\\AddSpecification.cs*",
+              "ViewState": "AgIAABAAAAAAAAAAAAAkwB0AAABDAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T18:29:40.32Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "AddProduct.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Products\\AddProduct.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\Admin\\Products\\AddProduct.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Products\\AddProduct.cs*",
+              "RelativeToolTip": "APIShopLaptop\\Feature\\Admin\\Products\\AddProduct.cs*",
+              "ViewState": "AgIAACkAAAAAAAAAAAAswFYAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T18:28:08.222Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "UpdateProductInfo.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Products\\Info\\UpdateProductInfo.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\Admin\\Products\\Info\\UpdateProductInfo.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Products\\Info\\UpdateProductInfo.cs*",
+              "RelativeToolTip": "APIShopLaptop\\Feature\\Admin\\Products\\Info\\UpdateProductInfo.cs*",
+              "ViewState": "AgIAACIAAAAAAAAAAAAwwDYAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T18:27:26.285Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "UpdateProductThumbnail.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Products\\Images\\UpdateProductThumbnail.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\Admin\\Products\\Images\\UpdateProductThumbnail.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Products\\Images\\UpdateProductThumbnail.cs*",
+              "RelativeToolTip": "APIShopLaptop\\Feature\\Admin\\Products\\Images\\UpdateProductThumbnail.cs*",
+              "ViewState": "AgIAABMAAAAAAAAAAAAkwB8AAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T18:26:40.573Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "GetProductThumbnail.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Products\\Images\\GetProductThumbnail.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\Admin\\Products\\Images\\GetProductThumbnail.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Products\\Images\\GetProductThumbnail.cs*",
+              "RelativeToolTip": "APIShopLaptop\\Feature\\Admin\\Products\\Images\\GetProductThumbnail.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T18:26:25.694Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
               "Title": "GetProductImages.cs",
               "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Products\\Images\\GetProductImages.cs",
               "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\Admin\\Products\\Images\\GetProductImages.cs",
-              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Products\\Images\\GetProductImages.cs",
-              "RelativeToolTip": "APIShopLaptop\\Feature\\Admin\\Products\\Images\\GetProductImages.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAYwBUAAABAAAAAAAAAAA==",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Products\\Images\\GetProductImages.cs*",
+              "RelativeToolTip": "APIShopLaptop\\Feature\\Admin\\Products\\Images\\GetProductImages.cs*",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAwBQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-01T15:32:15.155Z",
+              "WhenOpened": "2025-06-02T18:25:52.651Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "GetProductImage.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Products\\Images\\GetProductImage.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\Admin\\Products\\Images\\GetProductImage.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Products\\Images\\GetProductImage.cs*",
+              "RelativeToolTip": "APIShopLaptop\\Feature\\Admin\\Products\\Images\\GetProductImage.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T18:25:40.069Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "DeleteProductImage.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Products\\Images\\DeleteProductImage.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\Admin\\Products\\Images\\DeleteProductImage.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Products\\Images\\DeleteProductImage.cs*",
+              "RelativeToolTip": "APIShopLaptop\\Feature\\Admin\\Products\\Images\\DeleteProductImage.cs*",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAYwBQAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T18:25:28.415Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "AddImageToProduct.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Products\\Images\\AddImageToProduct.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\Admin\\Products\\Images\\AddImageToProduct.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Products\\Images\\AddImageToProduct.cs*",
+              "RelativeToolTip": "APIShopLaptop\\Feature\\Admin\\Products\\Images\\AddImageToProduct.cs*",
+              "ViewState": "AgIAABMAAAAAAAAAAAAkwCEAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T18:23:54.923Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "UpdateProductDescription.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Products\\Description\\UpdateProductDescription.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\Admin\\Products\\Description\\UpdateProductDescription.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Products\\Description\\UpdateProductDescription.cs*",
+              "RelativeToolTip": "APIShopLaptop\\Feature\\Admin\\Products\\Description\\UpdateProductDescription.cs*",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAzwBgAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T18:23:41.991Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "GetProductCategories.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Products\\Category\\GetProductCategories.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\Admin\\Products\\Category\\GetProductCategories.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Products\\Category\\GetProductCategories.cs*",
+              "RelativeToolTip": "APIShopLaptop\\Feature\\Admin\\Products\\Category\\GetProductCategories.cs*",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAMAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T18:12:07.546Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "UpdateOrderStatus.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Orders\\UpdateOrderStatus.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\Admin\\Orders\\UpdateOrderStatus.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Orders\\UpdateOrderStatus.cs",
+              "RelativeToolTip": "APIShopLaptop\\Feature\\Admin\\Orders\\UpdateOrderStatus.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAxwBUAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T18:10:38.156Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "GetOrders.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Orders\\GetOrders.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\Admin\\Orders\\GetOrders.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Orders\\GetOrders.cs*",
+              "RelativeToolTip": "APIShopLaptop\\Feature\\Admin\\Orders\\GetOrders.cs*",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAgwBsAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T18:10:29.262Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "UpdateDiscountCode.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\DiscountCodes\\UpdateDiscountCode.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\Admin\\DiscountCodes\\UpdateDiscountCode.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\DiscountCodes\\UpdateDiscountCode.cs",
+              "RelativeToolTip": "APIShopLaptop\\Feature\\Admin\\DiscountCodes\\UpdateDiscountCode.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAwwCMAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T18:08:17.473Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "GetDiscountCodes.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\DiscountCodes\\GetDiscountCodes.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\Admin\\DiscountCodes\\GetDiscountCodes.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\DiscountCodes\\GetDiscountCodes.cs*",
+              "RelativeToolTip": "APIShopLaptop\\Feature\\Admin\\DiscountCodes\\GetDiscountCodes.cs*",
+              "ViewState": "AgIAAAsAAAAAAAAAAAA3wBsAAABCAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T18:07:55.887Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "AddDiscountCode.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\DiscountCodes\\AddDiscountCode.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\Admin\\DiscountCodes\\AddDiscountCode.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\DiscountCodes\\AddDiscountCode.cs",
+              "RelativeToolTip": "APIShopLaptop\\Feature\\Admin\\DiscountCodes\\AddDiscountCode.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAowCMAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T18:07:34.586Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "GetCategory.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Category\\GetCategory.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\Admin\\Category\\GetCategory.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Category\\GetCategory.cs",
+              "RelativeToolTip": "APIShopLaptop\\Feature\\Admin\\Category\\GetCategory.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAxwBEAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T18:05:32.222Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "UpdateBrand.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Brands\\UpdateBrand.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\Admin\\Brands\\UpdateBrand.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Brands\\UpdateBrand.cs",
+              "RelativeToolTip": "APIShopLaptop\\Feature\\Admin\\Brands\\UpdateBrand.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAAswCwAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T18:04:24.659Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "GetBrands.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Brands\\GetBrands.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\Admin\\Brands\\GetBrands.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Brands\\GetBrands.cs*",
+              "RelativeToolTip": "APIShopLaptop\\Feature\\Admin\\Brands\\GetBrands.cs*",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAYwAgAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T18:03:50.893Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "GetBrand.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Brands\\GetBrand.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\Admin\\Brands\\GetBrand.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Brands\\GetBrand.cs*",
+              "RelativeToolTip": "APIShopLaptop\\Feature\\Admin\\Brands\\GetBrand.cs*",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAoAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T18:03:04.87Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "DeleteBrand.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Brands\\DeleteBrand.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\Admin\\Brands\\DeleteBrand.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Brands\\DeleteBrand.cs*",
+              "RelativeToolTip": "APIShopLaptop\\Feature\\Admin\\Brands\\DeleteBrand.cs*",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAYwA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T18:02:27.9Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "AddBrand.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Brands\\AddBrand.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\Admin\\Brands\\AddBrand.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Brands\\AddBrand.cs",
+              "RelativeToolTip": "APIShopLaptop\\Feature\\Admin\\Brands\\AddBrand.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABgAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T18:02:03.23Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "UpdateUserPassword.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Account\\UpdateUserPassword.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\Admin\\Account\\UpdateUserPassword.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Account\\UpdateUserPassword.cs",
+              "RelativeToolTip": "APIShopLaptop\\Feature\\Admin\\Account\\UpdateUserPassword.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAkwBUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T18:01:10.419Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "UpdateUserEmail.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Account\\UpdateUserEmail.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\Admin\\Account\\UpdateUserEmail.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Account\\UpdateUserEmail.cs",
+              "RelativeToolTip": "APIShopLaptop\\Feature\\Admin\\Account\\UpdateUserEmail.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAswC0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T17:59:39.036Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "UpdateUserConfirmEmail.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Account\\UpdateUserConfirmEmail.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\Admin\\Account\\UpdateUserConfirmEmail.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Account\\UpdateUserConfirmEmail.cs*",
+              "RelativeToolTip": "APIShopLaptop\\Feature\\Admin\\Account\\UpdateUserConfirmEmail.cs*",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABcAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T17:59:12.593Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "LogOutAdmin.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Account\\LogOutAdmin.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\Admin\\Account\\LogOutAdmin.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Account\\LogOutAdmin.cs",
+              "RelativeToolTip": "APIShopLaptop\\Feature\\Admin\\Account\\LogOutAdmin.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T17:55:10.756Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "LoginAdmin.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Account\\LoginAdmin.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\Admin\\Account\\LoginAdmin.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Account\\LoginAdmin.cs",
+              "RelativeToolTip": "APIShopLaptop\\Feature\\Admin\\Account\\LoginAdmin.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAswBgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T17:54:48.692Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "GetAdminInfo.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Account\\GetAdminInfo.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\Admin\\Account\\GetAdminInfo.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Account\\GetAdminInfo.cs",
+              "RelativeToolTip": "APIShopLaptop\\Feature\\Admin\\Account\\GetAdminInfo.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAxwAwAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T17:53:54.381Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{797f5b3d-853a-4854-a9f2-c488bac2661b}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "GetAccounts.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Account\\GetAccounts.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\Admin\\Account\\GetAccounts.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Account\\GetAccounts.cs*",
+              "RelativeToolTip": "APIShopLaptop\\Feature\\Admin\\Account\\GetAccounts.cs*",
+              "ViewState": "AgIAAAkAAAAAAAAAAAA1wBEAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T17:52:00.977Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "GetProductCompatibility.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Products\\Compatibility\\GetProductCompatibility.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\Admin\\Products\\Compatibility\\GetProductCompatibility.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Products\\Compatibility\\GetProductCompatibility.cs",
+              "RelativeToolTip": "APIShopLaptop\\Feature\\Admin\\Products\\Compatibility\\GetProductCompatibility.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAxwBsAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T14:51:49.095Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "AddProductCompatibility.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Products\\Compatibility\\AddProductCompatibility.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\Admin\\Products\\Compatibility\\AddProductCompatibility.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Products\\Compatibility\\AddProductCompatibility.cs",
+              "RelativeToolTip": "APIShopLaptop\\Feature\\Admin\\Products\\Compatibility\\AddProductCompatibility.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAwAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T13:03:02.151Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "AddProductSpecification.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Products\\Specifications\\AddProductSpecification.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\Admin\\Products\\Specifications\\AddProductSpecification.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Products\\Specifications\\AddProductSpecification.cs*",
+              "RelativeToolTip": "APIShopLaptop\\Feature\\Admin\\Products\\Specifications\\AddProductSpecification.cs*",
+              "ViewState": "AgIAABAAAAAAAAAAAAAkwBUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T13:02:48.146Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "GetProductSpecification.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Products\\Specifications\\GetProductSpecification.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\Admin\\Products\\Specifications\\GetProductSpecification.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Products\\Specifications\\GetProductSpecification.cs",
+              "RelativeToolTip": "APIShopLaptop\\Feature\\Admin\\Products\\Specifications\\GetProductSpecification.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAkwBEAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T13:00:35.949Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "GetOrder.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Orders\\GetOrder.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\Admin\\Orders\\GetOrder.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Orders\\GetOrder.cs*",
+              "RelativeToolTip": "APIShopLaptop\\Feature\\Admin\\Orders\\GetOrder.cs*",
+              "ViewState": "AgIAABAAAAAAAAAAAAAwwCQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T12:26:44.178Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "AdminEndpoint.cs",
-              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Extension\\AdminEndpoint.cs",
-              "RelativeDocumentMoniker": "APIShopLaptop\\Extension\\AdminEndpoint.cs",
-              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Extension\\AdminEndpoint.cs",
-              "RelativeToolTip": "APIShopLaptop\\Extension\\AdminEndpoint.cs",
-              "ViewState": "AgIAACAAAAAAAAAAAAAgwC0AAAAyAAAAAAAAAA==",
+              "Title": "GetProductsFromSubCaterory.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\User\\Category\\GetProductsFromSubCaterory.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\User\\Category\\GetProductsFromSubCaterory.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\User\\Category\\GetProductsFromSubCaterory.cs",
+              "RelativeToolTip": "APIShopLaptop\\Feature\\User\\Category\\GetProductsFromSubCaterory.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAA7wA8AAABtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-01T15:32:21.416Z",
+              "WhenOpened": "2025-06-02T12:26:44.187Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "GetProductFromMainCategory.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\User\\Category\\GetProductFromMainCategory.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\User\\Category\\GetProductFromMainCategory.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\User\\Category\\GetProductFromMainCategory.cs*",
+              "RelativeToolTip": "APIShopLaptop\\Feature\\User\\Category\\GetProductFromMainCategory.cs*",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAgwB8AAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T12:26:44.198Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "UpdateProductCategory.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Products\\Category\\UpdateProductCategory.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\Admin\\Products\\Category\\UpdateProductCategory.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Products\\Category\\UpdateProductCategory.cs*",
+              "RelativeToolTip": "APIShopLaptop\\Feature\\Admin\\Products\\Category\\UpdateProductCategory.cs*",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAcAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-02T12:26:44.208Z",
               "EditorCaption": ""
             }
           ]

@@ -14,7 +14,7 @@ import Button from "@mui/material/Button";
 import {useEffect, useState} from "react";
 import {useMutation} from "@tanstack/react-query";
 import {Response} from "../../Type/Respone.ts";
-type codeInfo = {
+type oldCodeInfo = {
     id: string,
     name: string,
     description: string,
@@ -29,50 +29,50 @@ type newCodeInfo = {
     isActive:boolean,
     endDate:string
 }
-export default function UpdateDiscountCodeDiaglog(props:{old:codeInfo,open:boolean,handleClose:()=>void,reFetch:any}){
-    const curr = new Date();
-    curr.setDate(curr.getDate()+1);
-    const date = curr.toISOString().substring(0,10);
+export default function UpdateDiscountCodeDialog(props:{old:oldCodeInfo,open:boolean,handleClose:()=>void,reFetch:any}){
+    const currentDate = new Date();
+    currentDate.setDate(currentDate.getDate()+1);
+    const showDate = currentDate.toISOString().substring(0,10);
     const [globalError, setGlobalError] = useState("");
 
-    const [validateError, setValidateError] = useState(
+    const [validationError, setValidationError] = useState(
         {
             name:"",
             percent:""
         }
     );
-    const [codeInfo, setCodeInfo] = useState<newCodeInfo>(
+    const [newCodeInfo, setNewCodeInfo] = useState<newCodeInfo>(
         {
             name:'',
             description:'',
             percent:1,
             isActive:false,
-            endDate:date,
+            endDate:showDate,
         }
     );
     const handleNameChange = (e:any) => {
-        setCodeInfo({...codeInfo, name: e.target.value});
+        setNewCodeInfo({...newCodeInfo, name: e.target.value});
     }
     const handleDescriptionChange = (e:any) => {
-        setCodeInfo({...codeInfo, description: e.target.value});
+        setNewCodeInfo({...newCodeInfo, description: e.target.value});
     }
     const handleDPercentChange = (e:any) => {
-        setCodeInfo({...codeInfo, percent: e.target.value});
+        setNewCodeInfo({...newCodeInfo, percent: e.target.value});
     }
     const handleIsActiveChange = (e:any) => {
-        setCodeInfo({...codeInfo, isActive: e.target.checked});
+        setNewCodeInfo({...newCodeInfo, isActive: e.target.checked});
     }
     const handleEndDateChange = (e:any) => {
-        setCodeInfo({...codeInfo, endDate: e.target.value});
+        setNewCodeInfo({...newCodeInfo, endDate: e.target.value});
     }
     const checkSame=()=>{
-        const olddate=new Date(props.old.endDate)
-        olddate.setDate(olddate.getDate()+1)
-        return props.old.name === codeInfo.name &&
-                props.old.description === codeInfo.description &&
-                props.old.percent === codeInfo.percent &&
-                props.old.isActive === codeInfo.isActive &&
-                olddate.toISOString().split('T')[0] === codeInfo.endDate;
+        const oldDate=new Date(props.old.endDate)
+        oldDate.setDate(oldDate.getDate()+1)
+        return props.old.name === newCodeInfo.name &&
+                props.old.description === newCodeInfo.description &&
+                props.old.percent === newCodeInfo.percent &&
+                props.old.isActive === newCodeInfo.isActive &&
+                oldDate.toISOString().split('T')[0] === newCodeInfo.endDate;
 
     }
     const {isPending,mutate}=useMutation({
@@ -83,7 +83,7 @@ export default function UpdateDiscountCodeDiaglog(props:{old:codeInfo,open:boole
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
                     credentials: 'include',
-                    body: JSON.stringify(codeInfo)
+                    body: JSON.stringify(newCodeInfo)
                 })
                 return await response.json();
             }
@@ -92,15 +92,15 @@ export default function UpdateDiscountCodeDiaglog(props:{old:codeInfo,open:boole
         onSuccess:(data:Response)=>{
             if(data.success){
                 props.handleClose()
-                setCodeInfo({
+                setNewCodeInfo({
                     name:'',
                     description:'',
                     percent:1,
                     isActive:false,
-                    endDate:date,
+                    endDate:showDate,
                 })
                 setGlobalError("")
-                setValidateError({
+                setValidationError({
                     name:"",
                     percent:""
                 })
@@ -120,20 +120,20 @@ export default function UpdateDiscountCodeDiaglog(props:{old:codeInfo,open:boole
                         if(element.propertyName==="Name")
                             error.name=element.errorMessage
                     })
-                    setValidateError(error)
+                    setValidationError(error)
                 }
             }
         }
     })
     useEffect(()=>{
-        const olddate=new Date(props.old.endDate)
-        olddate.setDate(olddate.getDate()+1)
-        setCodeInfo({
+        const oldDate=new Date(props.old.endDate)
+        oldDate.setDate(oldDate.getDate()+1)
+        setNewCodeInfo({
             name:props.old.name,
             description:props.old.description,
             percent:props.old.percent,
             isActive:props.old.isActive,
-            endDate: olddate.toISOString().split('T')[0],
+            endDate: oldDate.toISOString().split('T')[0],
         })
 
     },[props.old])
@@ -142,15 +142,15 @@ export default function UpdateDiscountCodeDiaglog(props:{old:codeInfo,open:boole
             open={props.open}
             onClose={()=> {
                 props.handleClose()
-                setCodeInfo({
+                setNewCodeInfo({
                     name:'',
                     description:'',
                     percent:1,
                     isActive:false,
-                    endDate:date,
+                    endDate:showDate,
                 })
                 setGlobalError("")
-                setValidateError({
+                setValidationError({
                     name:"",
                     percent:""
                 })
@@ -168,15 +168,15 @@ export default function UpdateDiscountCodeDiaglog(props:{old:codeInfo,open:boole
                 color="warning"
                 onClick={()=> {
                     props.handleClose()
-                    setCodeInfo({
+                    setNewCodeInfo({
                         name:'',
                         description:'',
                         percent:1,
                         isActive:false,
-                        endDate:date,
+                        endDate:showDate,
                     })
                     setGlobalError("")
-                    setValidateError({
+                    setValidationError({
                         name:"",
                         percent:""
                     })
@@ -194,27 +194,27 @@ export default function UpdateDiscountCodeDiaglog(props:{old:codeInfo,open:boole
                 <DialogContentText >
                     <Grid container spacing={2}>
                         <Grid size={6}>
-                            <TextField value={codeInfo.name} onChange={handleNameChange} fullWidth
-                                       error={validateError.name.length>0}  helperText={validateError.name}
+                            <TextField value={newCodeInfo.name} onChange={handleNameChange} fullWidth
+                                       error={validationError.name.length>0}  helperText={validationError.name}
                                        color="warning"
                                        size={"medium"} label="Tên" variant="filled" />
                         </Grid>
                         <Grid size={6}>
-                            <TextField value={codeInfo.endDate} onChange={handleEndDateChange} fullWidth
+                            <TextField value={newCodeInfo.endDate} onChange={handleEndDateChange} fullWidth
                                        color="warning" type="date"
                                        size={"medium"} label="Hạn dùng" variant="filled" />
                         </Grid>
                         <Grid size={6}>
-                            <Switch color="warning" value={codeInfo.isActive} onChange={handleIsActiveChange} checked={codeInfo.isActive} /> Hoạt động
+                            <Switch color="warning" value={newCodeInfo.isActive} onChange={handleIsActiveChange} checked={newCodeInfo.isActive} /> Hoạt động
                         </Grid>
                         <Grid size={6}>
-                            <TextField value={codeInfo.percent} onChange={handleDPercentChange} fullWidth
-                                       type="number" error={validateError.percent.length>0} helperText={validateError.percent}
+                            <TextField value={newCodeInfo.percent} onChange={handleDPercentChange} fullWidth
+                                       type="number" error={validationError.percent.length>0} helperText={validationError.percent}
                                        color="warning"
                                        size={"medium"} label="Phần trăm " variant="filled" />
                         </Grid>
                         <Grid size={12}>
-                            <TextField value={codeInfo.description} onChange={handleDescriptionChange} fullWidth
+                            <TextField value={newCodeInfo.description} onChange={handleDescriptionChange} fullWidth
                                        color="warning"
                                        multiline  minRows={2} maxRows={4}
                                        size={"medium"} label="Mô tả" variant="filled" />
@@ -235,15 +235,15 @@ export default function UpdateDiscountCodeDiaglog(props:{old:codeInfo,open:boole
                         </div>
                         <Button color="error" variant={"outlined"} onClick={()=> {
                             props.handleClose()
-                            setCodeInfo({
+                            setNewCodeInfo({
                                 name:'',
                                 description:'',
                                 percent:1,
                                 isActive:false,
-                                endDate:date,
+                                endDate:showDate,
                             })
                             setGlobalError("")
-                            setValidateError({
+                            setValidationError({
                                 name:"",
                                 percent:""
                             })

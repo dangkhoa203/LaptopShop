@@ -65,7 +65,8 @@ export default function UpdateProductInfo(props:{id:string}){
     const [brandSuccess,setBrandSuccess]=useState(false)
     const [brands,setBrands]=useState<brandData[]>([])
     const brand=useQuery({
-        queryKey:["brand_select_list"],
+        queryKey:["brand_list"],
+        refetchOnWindowFocus:false,
         queryFn:async ()=>{
             setSuccess(false)
             const response = await fetch('https://localhost:7075/api/Admin/Brands', {
@@ -287,7 +288,7 @@ export default function UpdateProductInfo(props:{id:string}){
                     </Grid>
                     <Grid size={12} sx={{display:"flex",justifyContent:"center"}}>
                         <ToggleButtonGroup
-                            color="primary"
+                            color="warning"
                             value={newInfo.status}
                             exclusive
                             onChange={handleStatusChange}
@@ -369,7 +370,7 @@ export default function UpdateProductInfo(props:{id:string}){
                             </Grid>
                             <Grid size={12} sx={{display:"flex",justifyContent:"center"}}>
                                 <ToggleButtonGroup
-                                    color="primary"
+                                    color="standard"
                                     value={oldInfo.status}
                                     exclusive
                                     disabled

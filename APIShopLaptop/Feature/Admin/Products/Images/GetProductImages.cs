@@ -13,14 +13,14 @@ namespace APIShopLaptop.Feature.Admin.Products.Images {
         }
         private static async Task<IResult> Handler([FromRoute] string id, ApplicationDBContext context) {
             try {
-                var Product = await context.Products
+                var Images = await context.Products
                     .Where(p => p.Id == id)
                     .Include(p => p.Images)
                     .Select(p => p.Images.Where(i => !i.IsThumbnail).Select(i => i.Id).ToList())
                     .FirstOrDefaultAsync();
-                if (Product == null)
+                if (Images == null)
                     return Results.NotFound(new Response(false, [], "Không tìm thấy sản phẩm!"));
-                return Results.Ok(new Response(true, Product, ""));
+                return Results.Ok(new Response(true, Images, ""));
             }
             catch (Exception ex) {
                 return Results.BadRequest(new Response(false, null, "Lỗi đã xảy ra!"));

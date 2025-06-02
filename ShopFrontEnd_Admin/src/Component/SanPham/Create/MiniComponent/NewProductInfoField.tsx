@@ -10,7 +10,7 @@ import {
     TextField, ToggleButton,
     ToggleButtonGroup
 } from "@mui/material";
-import {productValidateError} from "../CreateProductPage.tsx";
+import {productValidationError} from "../CreateProductPage.tsx";
 import {useEffect, useState} from "react";
 import {useQuery} from "@tanstack/react-query";
 import Button from "@mui/material/Button";
@@ -19,13 +19,13 @@ type brandData={
     id:string,
     name:string,
 }
-export default function NewProductInfoField(props:{productInfo:productInfo,setProductInfo:(value:any)=>void,validateError:productValidateError}) {
+export default function NewProductInfoField(props:{productInfo:productInfo,setProductInfo:(value:any)=>void,validationError:productValidationError}) {
     const [success, setSuccess] = useState(false);
-    const [rowData, setRowData] = useState<brandData[]>([]);
+    const [brands, setBrands] = useState<brandData[]>([]);
     const {data,refetch}=useQuery({
-        queryKey:["brand_select_list"],
+        refetchOnWindowFocus:false,
+        queryKey:["brand_list"],
         queryFn:async ()=>{
-            setSuccess(false)
             const response = await fetch('https://localhost:7075/api/Admin/Brands', {
                 headers: {'Content-Type': 'application/json'},
                 credentials: 'include',
@@ -37,7 +37,7 @@ export default function NewProductInfoField(props:{productInfo:productInfo,setPr
     useEffect(() => {
         if(data){
             setSuccess(data.success)
-            setRowData(data.data)
+            setBrands(data.data)
         }
     }, [data]);
 
@@ -70,8 +70,8 @@ export default function NewProductInfoField(props:{productInfo:productInfo,setPr
                     variant="filled"
                     value={props.productInfo.name}
                     onChange={handleNameChange}
-                    error={props.validateError.name.length>0}
-                    helperText={props.validateError.name}
+                    error={props.validationError.name.length>0}
+                    helperText={props.validationError.name}
                 />
             </Grid>
             <Grid size={6}>
@@ -85,8 +85,8 @@ export default function NewProductInfoField(props:{productInfo:productInfo,setPr
                     onValueChange={(values) => {
                         props.setProductInfo({...props.productInfo,price:values.value});
                     }}
-                    error={props.validateError.price.length>0}
-                    helperText={props.validateError.price}
+                    error={props.validationError.price.length>0}
+                    helperText={props.validationError.price}
                     suffix={" VNĐ"}
                     thousandSeparator
                     customInput={TextField}
@@ -103,13 +103,13 @@ export default function NewProductInfoField(props:{productInfo:productInfo,setPr
                     variant="filled"
                     value={props.productInfo.quantity}
                     onChange={handleQuantityChange}
-                    error={props.validateError.quantity.length>0}
-                    helperText={props.validateError.quantity}
+                    error={props.validationError.quantity.length>0}
+                    helperText={props.validationError.quantity}
                 />
             </Grid>
             <Grid size={6}>
                 {success?
-                    <FormControl error={props.validateError.brandId.length>0}
+                    <FormControl error={props.validationError.brandId.length>0}
                                  variant="filled" fullWidth>
                         <InputLabel >Hãng</InputLabel>
                         <Select
@@ -117,12 +117,12 @@ export default function NewProductInfoField(props:{productInfo:productInfo,setPr
                             onChange={handleBrandIdChange}
                         >
                             <MenuItem value="0" disabled>Chọn hãng</MenuItem>
-                            {rowData.map((item) => (
+                            {brands.map((item) => (
                                 <MenuItem value={item.id}>{item.name}</MenuItem>
                             ))}
                         </Select>
                         <FormHelperText>
-                            {props.validateError.brandId}
+                            {props.validationError.brandId}
                         </FormHelperText>
                     </FormControl>
                     :
@@ -150,8 +150,8 @@ export default function NewProductInfoField(props:{productInfo:productInfo,setPr
                     onValueChange={(values) => {
                         props.setProductInfo({...props.productInfo,priceAfterDiscount:values.value});
                     }}
-                    error={props.validateError.priceAfterDiscount.length>0}
-                    helperText={props.validateError.priceAfterDiscount}
+                    error={props.validationError.priceAfterDiscount.length>0}
+                    helperText={props.validationError.priceAfterDiscount}
                     suffix={" VNĐ"}
                     thousandSeparator
                     customInput={TextField}

@@ -5,13 +5,13 @@ import {CircularProgress, Tooltip} from "@mui/material";
 import Button from "@mui/material/Button";
 import {AgGridReact} from "ag-grid-react";
 import type { ICellRendererParams } from 'ag-grid-community';
-import {myTheme} from "../../Type/myTheme.tsx";
+import {myTheme} from "../../Type/myTheme.ts";
 import {AG_GRID_LOCALE_VN} from "@ag-grid-community/locale";
 import Container from "@mui/material/Container";
-import CreateNewBrandDiaglog from "./CreateNewBrandDiaglog.tsx";
+import CreateNewBrandDialog from "./CreateNewBrandDialog.tsx";
 import Divider from "@mui/material/Divider";
-import DeleteBrandDiaglog from "./DeleteBrandDiaglog.tsx";
-import UpdateBrandDiaglog from "./UpdateBrandDiaglog.tsx";
+import DeleteBrandDialog from "./DeleteBrandDialog.tsx";
+import UpdateBrandDialog from "./UpdateBrandDialog.tsx";
 type brandData={
     id: string,
     name: string,
@@ -77,6 +77,7 @@ export default function Brand(){
 
     const {data,isPending,refetch}=useQuery({
         queryKey:["brand_list"],
+        refetchOnWindowFocus:false,
         queryFn:async ()=>{
             const response = await fetch('https://localhost:7075/api/Admin/Brands', {
                 headers: {'Content-Type': 'application/json'},
@@ -98,6 +99,8 @@ export default function Brand(){
     // @ts-ignore
     const [colDefs, setColDefs] = useState<ColDef[]>([
         { valueGetter:c=>c.data.id,
+            wrapText:true,
+            wrapHeaderText:true,
             headerName:"Id",filter:true,
             resizable:false,
             unSortIcon: true,flex: 2,
@@ -105,6 +108,8 @@ export default function Brand(){
             floatingFilter: true },
 
         { valueGetter:c=>c.data.name,
+            wrapText:true,
+            wrapHeaderText:true,
             headerName:"Tên",filter:true,
             resizable:false,
             unSortIcon: true,flex: 2,
@@ -112,6 +117,8 @@ export default function Brand(){
             floatingFilter: true },
 
         { valueGetter:c=>c.data.tag,
+            wrapText:true,
+            wrapHeaderText:true,
             headerName:"Tag",filter:true,
             resizable:false,
             unSortIcon: true,flex: 2,
@@ -119,6 +126,8 @@ export default function Brand(){
             floatingFilter: true },
 
         { valueGetter:c=>c.data.productCount,
+            wrapText:true,
+            wrapHeaderText:true,
             headerName:"Số sản phẩm",filter:true,
             cellDataType:"number",
             resizable:false,
@@ -184,9 +193,9 @@ export default function Brand(){
                                     localeText={AG_GRID_LOCALE_VN}
                                 />
                             </div>
-                            <CreateNewBrandDiaglog open={openCreate} handleClose={handleCloseCreate} reFetch={refetch}/>
-                            <DeleteBrandDiaglog name={deleteModel.name} id={deleteModel.id} open={openDelete} handleClose={handleCloseDelete} reFetch={refetch}/>
-                            <UpdateBrandDiaglog id={updateModel.id} name={updateModel.name} tag={updateModel.tag} open={openUpdate} handleClose={handleCloseUpdate} reFetch={refetch}/>
+                            <CreateNewBrandDialog open={openCreate} handleClose={handleCloseCreate} reFetch={refetch}/>
+                            <DeleteBrandDialog name={deleteModel.name} id={deleteModel.id} open={openDelete} handleClose={handleCloseDelete} reFetch={refetch}/>
+                            <UpdateBrandDialog id={updateModel.id} name={updateModel.name} tag={updateModel.tag} open={openUpdate} handleClose={handleCloseUpdate} reFetch={refetch}/>
                         </>
                     }
                 </>

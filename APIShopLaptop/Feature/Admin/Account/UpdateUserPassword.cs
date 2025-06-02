@@ -3,6 +3,7 @@ using APIShopLaptop.Endpoint;
 using APIShopLaptop.Model.Entity.Account;
 using FluentValidation;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 
 namespace APIShopLaptop.Feature.Admin.Account {
@@ -18,6 +19,7 @@ namespace APIShopLaptop.Feature.Admin.Account {
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapPut("/api/Admin/Account/Password/{id}", Handler).WithTags("Admin_Account");
         }
+        [Authorize(Roles = "Admin")]
         private static async Task<IResult> Handler(Request request,string id, UserManager<AppUser> userManager, ApplicationDBContext applicationDBContext) {
             try {
                 var Validator = new Validator();
@@ -25,14 +27,17 @@ namespace APIShopLaptop.Feature.Admin.Account {
                 if (!ValidationResult.IsValid) {
                     return Results.BadRequest(new Response(false, "Lỗi xảy ra", ValidationResult));
                 }
-                var user =await userManager.FindByIdAsync(id);
-                if (user == null)
+
+                var User =await userManager.FindByIdAsync(id);
+                if (User == null)
                     return Results.NotFound(new Response(false, "Không tìm thấy user!", ValidationResult));
-                var code = await userManager.GeneratePasswordResetTokenAsync(user);
-                var result= await userManager.ResetPasswordAsync(user, code, request.Password);
-                if (!result.Succeeded) {
+
+                var Token = await userManager.GeneratePasswordResetTokenAsync(User);
+                var Result= await userManager.ResetPasswordAsync(User, Token, request.Password);
+                if (!Result.Succeeded) {
                     return Results.BadRequest(new Response(false, "Lỗi thực hiện", ValidationResult));
                 }
+
                 return Results.Ok(new Response(true, "", ValidationResult));
             }
             catch (Exception e) {

@@ -8,7 +8,7 @@ namespace APIShopLaptop.Feature.User.UserAppUser.ChangeEmail {
     public class ChangeEmail : IEndpoint {
         public record Response(bool Success, string ErrorMessage);
         public static void MapEndpoint(IEndpointRouteBuilder app) {
-            app.MapPut("/api/AppUser/EmailChange/{userId}/{newEmail}/{code}", Handler).WithTags("AppUser");
+            app.MapPut("/api/AppUser/EmailChange/{userId}/{newEmail}/{code}", Handler).WithTags("Account");
         }
         private static async Task<IResult> Handler(string userId, string newEmail, string code, UserManager<AppUser> userManager) {
             try {

@@ -36,24 +36,24 @@ namespace APIShopLaptop.Feature.Admin.Products.Info {
                 return Results.BadRequest(new Response(false, "Lỗi xảy ra", ValidatedResult));
             }
 
-            Product? product = await context.Products.Include(p => p.Brand).FirstOrDefaultAsync(p => p.Id == id);
-            if (product == null) {
+            Product? Product = await context.Products.Include(p => p.Brand).FirstOrDefaultAsync(p => p.Id == id);
+            if (Product == null) {
                 return Results.NotFound(new Response(false, "Không tìm thấy sản phẩm!", ValidatedResult));
             }
-            Brand? brand = await context.Brands.FirstOrDefaultAsync(b => b.Id == request.BrandId);
-            if (brand == null) {
+            Brand? Brand = await context.Brands.FirstOrDefaultAsync(b => b.Id == request.BrandId);
+            if (Brand == null) {
                 return Results.NotFound(new Response(false, "Không tìm thấy hãng!", ValidatedResult));
             }
 
-            if (!Validator.CheckSame(request, product)) {
-                product.Name = request.Name;
-                product.Price = request.Price;
-                product.Quantity = request.Quantity;
-                product.IsDiscount = request.IsDiscount;
-                product.PriceAfterDiscount = request.PriceAfterDiscount;
-                product.Status = request.Status;
-                product.Brand = brand;
-                product.UpdateAt = DateTime.Now;
+            if (!Validator.CheckSame(request, Product)) {
+                Product.Name = request.Name;
+                Product.Price = request.Price;
+                Product.Quantity = request.Quantity;
+                Product.IsDiscount = request.IsDiscount;
+                Product.PriceAfterDiscount = request.PriceAfterDiscount;
+                Product.Status = request.Status;
+                Product.Brand = Brand;
+                Product.UpdateAt = DateTime.Now;
                 if (await context.SaveChangesAsync() < 1) {
                     return Results.BadRequest(new Response(false, "Lỗi xảy ra khi đang thực hiện!", ValidatedResult));
                 }

@@ -4,83 +4,68 @@ import {
     DialogContent,
     DialogContentText,
     DialogTitle, Grid,
-    LinearProgress, Switch,
+    LinearProgress,
     TextField
 } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useMutation} from "@tanstack/react-query";
 import {Response} from "../../Type/Respone.ts";
-type codeInfo = {
+type brandInfo = {
     name: string,
-    description: string,
-    percent:number,
-    isActive:boolean,
-    endDate:string
+    tag: string
 }
-export default function CreateNewDiscountCodeDiaglog(props:{open:boolean,handleClose:()=>void,reFetch:any}){
-    const curr = new Date();
-    curr.setDate(curr.getDate()+1);
-    const date = curr.toISOString().substring(0,10);
+export default function UpdateBrandDialog(props:{id:string,name:string,tag:string,open:boolean,handleClose:()=>void,reFetch:any}){
     const [globalError, setGlobalError] = useState("");
-    const [validateError, setValidateError] = useState(
+    const [validateError, setValidateError] = useState<brandInfo>(
         {
             name:"",
-            percent:""
+            tag:""
         }
     );
-    const [codeInfo, setCodeInfo] = useState<codeInfo>(
+    const [brandInfo, setBrandInfo] = useState<brandInfo>(
         {
             name:"",
-            description:"",
-            percent:0,
-            isActive:false,
-            endDate:date,
+            tag:""
         }
     );
+    useEffect(()=>{
+        setBrandInfo({
+            name:props.name,
+            tag:props.tag,
+        })
+    },[props.id]);
     const handleNameChange = (e:any) => {
-        setCodeInfo({...codeInfo, name: e.target.value});
+        setBrandInfo({...brandInfo, name: e.target.value});
     }
-    const handleDescriptionChange = (e:any) => {
-        setCodeInfo({...codeInfo, description: e.target.value});
-    }
-    const handleDPercentChange = (e:any) => {
-        setCodeInfo({...codeInfo, percent: e.target.value});
-    }
-    const handleIsActiveChange = (e:any) => {
-        setCodeInfo({...codeInfo, isActive: e.target.checked});
-    }
-    const handleEndDateChange = (e:any) => {
-        setCodeInfo({...codeInfo, endDate: e.target.value});
+    const handleTagChange = (e:any) => {
+        setBrandInfo({...brandInfo, tag: e.target.value.toUpperCase()});
     }
     const {isPending,mutate}=useMutation({
         mutationFn:async ()=>{
             setGlobalError("")
-            const response = await fetch(`https://localhost:7075/api/Admin/Discount-Codes`, {
-                method: 'POST',
+            const response = await fetch(`https://localhost:7075/api/Admin/Brands/${props.id}`, {
+                method: 'PUT',
                 headers: {'Content-Type': 'application/json'},
                 credentials: 'include',
-                body: JSON.stringify(codeInfo)
+                body: JSON.stringify(brandInfo)
             })
             return await response.json();
         },
         onSuccess:(data:Response)=>{
             if(data.success){
                 props.handleClose()
-                setCodeInfo({
+                setBrandInfo({
                     name:"",
-                    description:"",
-                    percent:0,
-                    isActive:false,
-                    endDate:date,
+                    tag:""
                 })
                 setGlobalError("")
                 setValidateError({
                     name:"",
-                    percent:""
+                    tag:""
                 })
                 props.reFetch()
             }
@@ -89,13 +74,13 @@ export default function CreateNewDiscountCodeDiaglog(props:{open:boolean,handleC
                 setGlobalError(data.errorMessage)
                 if(!data.validationError.isValid){
                     const list:any[]=data.validationError.errors
-                    const error={
+                    const error:brandInfo={
                         name:"",
-                        percent:""
+                        tag:""
                     }
                     list.forEach(element=>{
-                        if(element.propertyName==="Percent")
-                            error.percent=element.errorMessage
+                        if(element.propertyName==="Tag")
+                            error.tag=element.errorMessage
                         if(element.propertyName==="Name")
                             error.name=element.errorMessage
                     })
@@ -109,17 +94,14 @@ export default function CreateNewDiscountCodeDiaglog(props:{open:boolean,handleC
             open={props.open}
             onClose={()=> {
                 props.handleClose()
-                setCodeInfo({
+                setBrandInfo({
                     name:"",
-                    description:"",
-                    percent:0,
-                    isActive:false,
-                    endDate:date,
+                    tag:""
                 })
                 setGlobalError("")
                 setValidateError({
                     name:"",
-                    percent:""
+                    tag:""
                 })
             }}
             fullWidth
@@ -127,25 +109,22 @@ export default function CreateNewDiscountCodeDiaglog(props:{open:boolean,handleC
         >
             <DialogTitle
                 sx={{
-                    borderTop:"10px solid rgb(25, 118, 210)",
+                    borderTop:"10px solid rgb(230, 81, 0)",
                 }}>
-                Tạo mã giảm giá mới
+                Sửa hãng {props.id}
             </DialogTitle>
             <IconButton
-                color="primary"
+                color="warning"
                 onClick={()=> {
                     props.handleClose()
-                    setCodeInfo({
+                    setBrandInfo({
                         name:"",
-                        description:"",
-                        percent:0,
-                        isActive:false,
-                        endDate:date,
+                        tag:""
                     })
                     setGlobalError("")
                     setValidateError({
                         name:"",
-                        percent:""
+                        tag:""
                     })
                 }}
                 sx={(theme) => ({
@@ -155,36 +134,22 @@ export default function CreateNewDiscountCodeDiaglog(props:{open:boolean,handleC
                     color: theme.palette.grey[500],
                 })}
             >
-                <CloseIcon color="primary" />
+                <CloseIcon color="warning" />
             </IconButton>
             <DialogContent dividers>
                 <DialogContentText >
                     <Grid container spacing={2}>
                         <Grid size={6}>
-                            <TextField value={codeInfo.name} onChange={handleNameChange} fullWidth
+                            <TextField value={brandInfo.name} onChange={handleNameChange} fullWidth
                                        error={validateError.name.length>0}  helperText={validateError.name}
-                                       color="primary"
+                                       color="warning"
                                        size={"medium"} label="Tên" variant="filled" />
                         </Grid>
                         <Grid size={6}>
-                            <TextField value={codeInfo.endDate} onChange={handleEndDateChange} fullWidth
-                                       color="primary" type="date"
-                                       size={"medium"} label="Hạn dùng" variant="filled" />
-                        </Grid>
-                        <Grid size={6}>
-                            <Switch value={codeInfo.isActive} onChange={handleIsActiveChange} /> Hoạt động
-                        </Grid>
-                        <Grid size={6}>
-                            <TextField value={codeInfo.percent} onChange={handleDPercentChange} fullWidth
-                                       type="number" error={validateError.percent.length>0} helperText={validateError.percent}
-                                       color="primary"
-                                       size={"medium"} label="Phần trăm" variant="filled" />
-                        </Grid>
-                        <Grid size={12}>
-                            <TextField value={codeInfo.description} onChange={handleDescriptionChange} fullWidth
-                                       color="primary"
-                                       multiline  minRows={2} maxRows={4}
-                                       size={"medium"} label="Mô tả" variant="filled" />
+                            <TextField value={brandInfo.tag} onChange={handleTagChange} fullWidth
+                                       error={validateError.tag.length>0}  helperText={validateError.tag}
+                                       color="warning"
+                                       size={"medium"} label="Tag" variant="filled" />
                         </Grid>
                     </Grid>
                 </DialogContentText>
@@ -202,24 +167,21 @@ export default function CreateNewDiscountCodeDiaglog(props:{open:boolean,handleC
                         </div>
                         <Button color="error" variant={"outlined"} onClick={()=> {
                             props.handleClose()
-                            setCodeInfo({
+                            setBrandInfo({
                                 name:"",
-                                description:"",
-                                percent:0,
-                                isActive:false,
-                                endDate:date,
+                                tag:""
                             })
                             setGlobalError("")
                             setValidateError({
                                 name:"",
-                                percent:""
+                                tag:""
                             })
                         }}>Hủy</Button>
-                        <Button variant="contained" color="primary" onClick={()=> {
+                        <Button variant="contained" color="warning" onClick={()=> {
                             mutate()
                         }} autoFocus
                         >
-                            Tạo
+                            Sửa
                         </Button>
                     </>
 

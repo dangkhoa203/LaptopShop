@@ -5,8 +5,8 @@ using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace APIShopLaptop.Feature.Admin.Products.Caterory {
-    public class UpdateProductCaterory : IEndpoint {
+namespace APIShopLaptop.Feature.Admin.Products.Category {
+    public class UpdateProductCategory : IEndpoint {
         public record Request(List<string> Categories);
         public record Response(bool Success, string ErrorMessage);
 
@@ -16,18 +16,18 @@ namespace APIShopLaptop.Feature.Admin.Products.Caterory {
 
         private static async Task<IResult> Handler(Request request, string id, ApplicationDBContext context) {
             try {
-                var product = context.Products.Include(p=>p.CateroryItems).FirstOrDefault(p => p.Id == id);
-                var categories = new List<CateroryItem>();
+                var Product = context.Products.Include(p=>p.CateroryItems).FirstOrDefault(p => p.Id == id);
+                var Categories = new List<CateroryItem>();
                 foreach (var categoryId in request.Categories) {
                     var Category = await context.SubCaterories.FirstOrDefaultAsync(c => c.Id == categoryId);
                     var item = new CateroryItem() {
                         CateroryNavigation = Category,
-                        ProductNavigation = product,
+                        ProductNavigation = Product,
                     };
-                    categories.Add(item);
+                    Categories.Add(item);
                 }
-                context.CateroryItems.RemoveRange(product.CateroryItems);
-                product.CateroryItems = categories;
+                context.CateroryItems.RemoveRange(Product.CateroryItems);
+                Product.CateroryItems = Categories;
                 if (await context.SaveChangesAsync() > 0) {
                     return Results.Ok(new Response(true, ""));
                 }

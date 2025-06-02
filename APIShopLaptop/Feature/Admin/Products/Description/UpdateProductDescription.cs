@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace APIShopLaptop.Feature.Admin.Products.Description {
     public class UpdateProductDescription : IEndpoint {
-        public record Request(string description);
+        public record Request(string Description);
         public record Response(bool Success, string ErrorMessage);
 
         public static void MapEndpoint(IEndpointRouteBuilder app) {
@@ -21,8 +21,8 @@ namespace APIShopLaptop.Feature.Admin.Products.Description {
                 return Results.NotFound(new Response(false, "Không tìm thấy sản phẩm!"));
             }
 
-            if (product.Description != request.description) {
-                product.Description = request.description;
+            if (product.Description != request.Description) {
+                product.Description = request.Description;
                 product.UpdateAt = DateTime.Now;
                 if (await context.SaveChangesAsync() < 1) {
                     return Results.BadRequest(new Response(false, "Lỗi xảy ra khi đang thực hiện!"));

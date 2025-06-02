@@ -8,13 +8,14 @@ namespace APIShopLaptop.Feature.Admin.Brands {
     public class GetBrand:IEndpoint {
         public record ProductDTO(string Id,string Name);
         public record BrandDTO(string Id,string Name,string Tag,List<ProductDTO> Products);
-        public record Response(bool Success, BrandDTO? data, string ErrorMessage);
+        public record Response(bool Success, BrandDTO? Data, string ErrorMessage);
          public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapGet("/api/Admin/Brands/{id}", Handler).WithTags("Admin_Brands");
          }
+        [Authorize(Roles = "Admin")]
         private static async Task<IResult> Handler(string id, ApplicationDBContext context) {
             try {
-                BrandDTO? brand = await context.Brands
+                BrandDTO? Brand = await context.Brands
                      .Include(b => b.Products)
                      .Select(b => new BrandDTO(
                          b.Id,
@@ -23,8 +24,9 @@ namespace APIShopLaptop.Feature.Admin.Brands {
                          b.Products.Select(p => new ProductDTO(p.Id, p.Name)).ToList()
                          ))
                      .FirstOrDefaultAsync(b=>b.Id==id);
-                if (brand != null)
-                    return Results.Ok(new Response(true, brand, ""));
+
+                if (Brand != null)
+                    return Results.Ok(new Response(true, Brand, ""));
 
                 return Results.NotFound(new Response(false, null, "Không tìm thấy dữ liệu!"));
             }

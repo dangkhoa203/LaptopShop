@@ -18,7 +18,7 @@ type brandInfo = {
     name: string,
     tag: string
 }
-export default function CreateNewBrandDiaglog(props:{open:boolean,handleClose:()=>void,reFetch:any}){
+export default function CreateNewBrandDialog(props:{open:boolean,handleClose:()=>void,reFetch:any}){
     const [globalError, setGlobalError] = useState("");
     const [validateError, setValidateError] = useState<brandInfo>(
         {

@@ -17,7 +17,7 @@ import {Response} from "../../Type/Respone.ts";
 
 export default function CreateNewSpecificationDiaglog(props:{open:boolean,handleClose:()=>void,reFetch:any}){
     const [globalError, setGlobalError] = useState("");
-    const [validateError, setValidateError] = useState("");
+    const [validationError, setValidationError] = useState("");
     const [name, setName] = useState("");
     const handleNameChange = (e:any) => {
         setName(e.target.value);
@@ -39,13 +39,13 @@ export default function CreateNewSpecificationDiaglog(props:{open:boolean,handle
                 props.handleClose()
                 setName("")
                 setGlobalError("")
-                setValidateError("")
+                setValidationError("")
                 props.reFetch()
             }
             else {
                 setGlobalError(data.errorMessage)
                 if(!data.validationError.isValid){
-                    setValidateError(data.validationError.errors[0].errorMessage)
+                    setValidationError(data.validationError.errors[0].errorMessage)
                 }
             }
         }
@@ -57,7 +57,7 @@ export default function CreateNewSpecificationDiaglog(props:{open:boolean,handle
                 props.handleClose()
                 setName("")
                 setGlobalError("")
-                setValidateError("")
+                setValidationError("")
             }}
             fullWidth
             maxWidth="md"
@@ -74,7 +74,7 @@ export default function CreateNewSpecificationDiaglog(props:{open:boolean,handle
                     props.handleClose()
                     setName("")
                     setGlobalError("")
-                    setValidateError("")
+                    setValidationError("")
                 }}
                 sx={(theme) => ({
                     position: 'absolute',
@@ -90,7 +90,7 @@ export default function CreateNewSpecificationDiaglog(props:{open:boolean,handle
                     <Grid container spacing={2}>
                         <Grid size={12}>
                             <TextField value={name} onChange={handleNameChange} fullWidth
-                                       error={validateError.length>0}  helperText={validateError}
+                                       error={validationError.length>0}  helperText={validationError}
                                        color="primary"
                                        size={"medium"} label="Tên" variant="filled" />
                         </Grid>
@@ -112,7 +112,7 @@ export default function CreateNewSpecificationDiaglog(props:{open:boolean,handle
                             props.handleClose()
                             setName("")
                             setGlobalError("")
-                            setValidateError("")
+                            setValidationError("")
                         }}>Hủy</Button>
                         <Button variant="contained" color="primary" onClick={()=> {
                             mutate()

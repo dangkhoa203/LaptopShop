@@ -1,5 +1,5 @@
 import { themeQuartz, iconSetMaterial } from 'ag-grid-community';
-export const myTheme_mini=themeQuartz
+export const myTheme=themeQuartz
     .withPart(iconSetMaterial)
     .withParams({
         accentColor: "#1976D2",
@@ -9,13 +9,12 @@ export const myTheme_mini=themeQuartz
         fontFamily: {
             googleFont: "IBM Plex Mono"
         },
-        fontSize: 14,
+        fontSize: 17,
         foregroundColor: "#414756",
         headerFontFamily: {
             googleFont: "Roboto"
         },
-        headerFontSize: 17,
-        iconSize: 11,
+        headerFontSize: 20,
         headerFontWeight: 600,
         headerRowBorder: true,
         headerTextColor: "#000000",
