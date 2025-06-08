@@ -89,6 +89,7 @@ export default function NewProductInfoField(props:{productInfo:productInfo,setPr
                     helperText={props.validationError.price}
                     suffix={" VNĐ"}
                     thousandSeparator
+
                     customInput={TextField}
                     fullWidth
                     label="Giá"

@@ -39,7 +39,7 @@ namespace APIShopLaptop.Extension {
             GetProducts.MapEndpoint(app);
             UpdateProductInfo.MapEndpoint(app);
             UpdateProductThumbnail.MapEndpoint(app);
-            UpdateProductCaterory.MapEndpoint(app);
+            UpdateProductCategory.MapEndpoint(app);
             UpdateProductDescription.MapEndpoint(app);
             GetProductThumbnail.MapEndpoint(app);
             GetProductInfo.MapEndpoint(app);

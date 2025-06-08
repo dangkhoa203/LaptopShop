@@ -13,10 +13,12 @@ namespace APIShopLaptop.Feature.Admin.Category {
             try {
                 var Categories = await context.SubCaterories
                      .Include(c=>c.MainCaterory)
+                     .OrderBy(c => c.MainCaterory.Name)
                      .Select(c => new CategoryDTO(
                          c.Id,
                          $"{c.MainCaterory.Name} > {c.Name}"
                          ))
+                      
                      .ToListAsync();
 
                 return Results.Ok(new Response(true, Categories, ""));

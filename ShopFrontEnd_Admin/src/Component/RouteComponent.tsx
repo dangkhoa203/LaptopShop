@@ -10,6 +10,8 @@ import CreateProductPage from "./SanPham/Create/CreateProductPage.tsx";
 import ProductPage from "./SanPham/ProductPage.tsx";
 import ProductList from "./SanPham/ProductList.tsx";
 import UpdateProductPage from "./SanPham/Update/UpdateProductPage.tsx";
+import Order from "./Order/Order.tsx";
+import OrderDetail from "./Order/OrderDetail.tsx";
 
 export default function RouteComponent(){
     return (
@@ -21,6 +23,10 @@ export default function RouteComponent(){
                     <Route path="" index element={<ProductList/> }/>
                     <Route path="Tao" element={<CreateProductPage/> }/>
                     <Route path="Sua/:id" element={<UpdateProductPage/> }/>
+                </Route>
+                <Route path="DonHang" >
+                    <Route path="" index element={<Order/> }></Route>
+                    <Route path=":id" index element={<OrderDetail/> }/>
                 </Route>
                 <Route path="HangSanXuat" element={<Brand/> }></Route>
                 <Route path="MaGiamGia" element={<DiscountCode/> }></Route>

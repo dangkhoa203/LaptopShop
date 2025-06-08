@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace APIShopLaptop.Feature.Admin.Orders {
     public class GetOrders:IEndpoint {
-        public record OrderDTO(string Id, DateTime DateOfOrder, PAYMENTMETHOD PaymentMethod, ORDERSTATUS Status, string UserID,string UserName);
+        public record OrderDTO(string Id, DateTime DateOfOrder,ORDERSTATUS Status, string UserID,string UserName);
         public record Response(bool Success, List<OrderDTO>? data, string ErrorMessage);
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapGet("/api/Admin/Orders", Handler).WithTags("Orders");
@@ -19,7 +19,6 @@ namespace APIShopLaptop.Feature.Admin.Orders {
                      .Select(o => new OrderDTO(
                          o.Id,
                          o.DateOfOrder,
-                         o.PaymentMethod,
                          o.Status,
                          o.User.Id,
                          o.User.UserName

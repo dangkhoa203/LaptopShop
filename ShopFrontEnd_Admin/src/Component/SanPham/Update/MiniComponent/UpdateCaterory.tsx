@@ -5,7 +5,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import {Checkbox, LinearProgress} from "@mui/material";
+import {Checkbox, LinearProgress, TextField} from "@mui/material";
 import {useEffect, useState} from "react";
 import {useMutation, useQuery} from "@tanstack/react-query";
 import Button from "@mui/material/Button";
@@ -23,6 +23,7 @@ export default function UpdateCaterory(props:{id:string}) {
     const [rowData, setRowData] = useState<categoryData[]>([]);
     const [productCategories, setProductCategories] = useState<string[]>([]);
     const [newCategories, setNewCategories] = useState<string[]>([]);
+    const [search,setSearch] = useState("");
     const {data,isPending,refetch}=useQuery({
         queryKey:["categories_list"],
         refetchOnWindowFocus:false,
@@ -97,6 +98,12 @@ export default function UpdateCaterory(props:{id:string}) {
             }
         }
     })
+    const handleSearchChange=(e:any)=>{
+        setSearch(e.target.value);
+    }
+    const showData=rowData.filter((item)=>{
+        return item.name.toLowerCase().includes(search.toLowerCase());
+    })
     return (<div style={{marginBottom:'10px'}}>
             <Divider/>
             <h2 style={{textAlign:"center",marginBottom:0}}>Danh mục</h2>
@@ -115,35 +122,39 @@ export default function UpdateCaterory(props:{id:string}) {
                 :
                 <>
                     {success?
-                        <TableContainer sx={{height:400,overflowY:"scroll",border:"2px solid rgb(237, 108, 2)"}} component={Paper}>
-                            <Table stickyHeader aria-label="simple table">
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell>Chọn: {newCategories.length}</TableCell>
-                                        <TableCell>Tên danh mục</TableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                    {rowData.map((row) => (
-                                        <TableRow
-                                            key={row.id}
-                                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                        >
-                                            <TableCell padding="checkbox">
-                                                <Checkbox
-                                                    color="warning"
-                                                    checked={newCategories.includes(row.id)}
-                                                    onChange={()=>handleCheckChange(row.id)}
-                                                />
-                                            </TableCell>
-                                            <TableCell >
-                                                <Button color="warning" onClick={()=>handleCheckChange(row.id)}> {row.name}</Button>
-                                            </TableCell>
+                        <>
+                            <TextField value={search} onChange={handleSearchChange} fullWidth label="search" variant="outlined"/>
+                            <TableContainer sx={{height:400,marginTop:"10px",overflowY:"scroll",border:"2px solid rgb(237, 108, 2)"}} component={Paper}>
+                                <Table stickyHeader aria-label="simple table">
+                                    <TableHead>
+                                        <TableRow>
+                                            <TableCell>Chọn: {newCategories.length}</TableCell>
+                                            <TableCell>Tên danh mục</TableCell>
                                         </TableRow>
-                                    ))}
-                                </TableBody>
-                            </Table>
-                        </TableContainer>
+                                    </TableHead>
+                                    <TableBody>
+                                        {showData.map((row) => (
+                                            <TableRow
+                                                key={row.id}
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell padding="checkbox">
+                                                    <Checkbox
+                                                        color="warning"
+                                                        checked={newCategories.includes(row.id)}
+                                                        onChange={()=>handleCheckChange(row.id)}
+                                                    />
+                                                </TableCell>
+                                                <TableCell >
+                                                    <Button color="warning" onClick={()=>handleCheckChange(row.id)}> {row.name}</Button>
+                                                </TableCell>
+                                            </TableRow>
+                                        ))}
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
+                        </>
+
                         :
                         <>
                             <Button variant="contained" onClick={()=>refetch()}>Load lại</Button>

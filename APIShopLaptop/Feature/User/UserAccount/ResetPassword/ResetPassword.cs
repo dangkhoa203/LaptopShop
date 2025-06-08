@@ -10,7 +10,7 @@ using APIShopLaptop.Model.Entity.Account;
 namespace APIShopLaptop.Feature.User.UserAccount.ResetPassword {
     public class ResetPassword : IEndpoint {
         public record Request(string NewPassword, string ConfirmNewPassword);
-        public record Response(bool Success, string ErrorMessage, ValidationResult? Result);
+        public record Response(bool Success, string ErrorMessage, ValidationResult? ValidationError);
         public sealed class Validator : AbstractValidator<Request> {
             public Validator() {
                 RuleFor(r => r.NewPassword).NotEmpty().WithMessage("Chưa nhập mật khẩu");

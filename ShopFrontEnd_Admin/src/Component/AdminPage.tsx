@@ -26,6 +26,7 @@ import DiscountIcon from '@mui/icons-material/Discount';
 import ComputerIcon from '@mui/icons-material/Computer';
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import DisplaySettingsIcon from '@mui/icons-material/DisplaySettings';
+import ReceiptIcon from '@mui/icons-material/Receipt';
 const drawerWidth = 240;
 
 const openedMixin = (theme: Theme): CSSObject => ({
@@ -455,6 +456,56 @@ export default function AdminPage() {
                             </ListItemIcon>
                             <ListItemText
                                 primary={"Thông số"}
+                                sx={[
+                                    open
+                                        ? {
+                                            opacity: 1,
+                                        }
+                                        : {
+                                            opacity: 0,
+                                        },
+                                ]}
+                            />
+                        </ListItemButton>
+                    </ListItem>
+                    <ListItem  disablePadding sx={{ backgroundColor:matchPath("DonHang/*", path.pathname)?"rgba(0,0,0,0.10)":"rgba(0,0,0,0)", display: 'block' }}>
+                        <ListItemButton
+                            color="primary"
+                            onClick={()=>navigate("/DonHang")}
+                            sx={[
+                                {
+                                    minHeight: 48,
+                                    px: 2.5,
+                                },
+                                open
+                                    ? {
+                                        justifyContent: 'initial',
+                                    }
+                                    : {
+                                        justifyContent: 'center',
+                                    },
+                            ]}
+                        >
+                            <ListItemIcon
+                                color="primary"
+                                sx={[
+                                    {
+                                        minWidth: 0,
+                                        justifyContent: 'center',
+                                    },
+                                    open
+                                        ? {
+                                            mr: 3,
+                                        }
+                                        : {
+                                            mr: 'auto',
+                                        },
+                                ]}
+                            >
+                                <ReceiptIcon color={matchPath("DonHang/*", path.pathname) ? "primary":"inherit"} />
+                            </ListItemIcon>
+                            <ListItemText
+                                primary={"Đơn hàng"}
                                 sx={[
                                     open
                                         ? {

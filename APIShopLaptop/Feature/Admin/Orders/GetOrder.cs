@@ -28,7 +28,7 @@ namespace APIShopLaptop.Feature.Admin.Orders {
                          o.NoteFromOrder,
                          new UserDTO(o.User.Id,o.User.UserName,o.User.Email),
                          new DeliveryInfo(o.Receiver,o.PhoneNumber,o.Address),
-                         o.Details.Select(d=>new DetailDTO(d.ProductId,d.ProductNavigation.Name, d.ProductNavigation.Price, d.Quantity)).ToList()
+                         o.Details.Select(d=>new DetailDTO(d.ProductId,d.ProductNavigation.Name, d.Price, d.Quantity)).ToList()
                          ))
                      .FirstOrDefaultAsync();
 

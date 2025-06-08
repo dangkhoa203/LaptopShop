@@ -26,7 +26,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Feature\User\Products\" />
     <Folder Include="Image\Product\" />
     <Folder Include="Image\Storage\" />
   </ItemGroup>

@@ -5,6 +5,28 @@
     "version": "1.0"
   },
   "paths": {
+    "/api/Account/Login": {
+      "post": {
+        "tags": [
+          "Account"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/APIShopLaptop.Feature.User.UserAccount.Login.Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Account/Register": {
       "post": {
         "tags": [
@@ -27,7 +49,61 @@
         }
       }
     },
-    "/api/Account/Login": {
+    "/api/Account": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Account/LogOut": {
+      "post": {
+        "tags": [
+          "Account"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Account/ConfirmAccount/{userName}/{code}": {
+      "put": {
+        "tags": [
+          "Account"
+        ],
+        "parameters": [
+          {
+            "name": "userName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "code",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Account/PasswordReset": {
       "post": {
         "tags": [
           "Account"
@@ -36,12 +112,194 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/APIShopLaptop.Feature.User.UserAccount.Login.Request"
+                "$ref": "#/components/schemas/APIShopLaptop.Feature.User.UserAccount.ResetPassword.SendResetPasswordRequest.Request"
               }
             }
           },
           "required": true
         },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Account/PasswordReset/ResetValidation/{userid}": {
+      "post": {
+        "tags": [
+          "Account"
+        ],
+        "parameters": [
+          {
+            "name": "userid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Account/PasswordReset/{userId}/{code}": {
+      "put": {
+        "tags": [
+          "Account"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "code",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/APIShopLaptop.Feature.User.UserAccount.ResetPassword.ResetPassword.Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Account/PasswordChange": {
+      "post": {
+        "tags": [
+          "Account"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/APIShopLaptop.Feature.User.UserAccount.ChangePassword.SendChangePasswordRequest.Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Account/PasswordChange/{userId}/{newPassword}/{code}": {
+      "put": {
+        "tags": [
+          "Account"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "newPassword",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "code",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Account/EmailChange": {
+      "post": {
+        "tags": [
+          "Account"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/APIShopLaptop.Feature.User.UserAccount.ChangeEmail.SendChangeEmailRequest.Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/AppUser/EmailChange/{userId}/{newEmail}/{code}": {
+      "put": {
+        "tags": [
+          "Account"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "newEmail",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "code",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -616,7 +874,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/APIShopLaptop.Feature.Admin.Products.Caterory.UpdateProductCaterory.Request"
+                "$ref": "#/components/schemas/APIShopLaptop.Feature.Admin.Products.Category.UpdateProductCategory.Request"
               }
             }
           },
@@ -1041,16 +1299,88 @@
         }
       }
     },
-    "/api/Caterory/Sub": {
-      "get": {
+    "/api/Cart": {
+      "post": {
         "tags": [
-          "Caterory"
+          "Cart"
         ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/APIShopLaptop.Feature.User.Caterory.GetProductsFromSubCaterory.Request"
+                "$ref": "#/components/schemas/APIShopLaptop.Feature.User.Cart.AddProductToCart.Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Cart"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/APIShopLaptop.Feature.User.Cart.DeleteProductFromCart.Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Cart"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/APIShopLaptop.Feature.User.Cart.UpdateProductQuantityInCart.Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Cart"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Category/Main": {
+      "get": {
+        "tags": [
+          "Category"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/APIShopLaptop.Feature.User.Category.GetProductFromMainCategory.Request"
               }
             }
           },
@@ -1063,7 +1393,7 @@
         }
       }
     },
-    "/api/Caterory/Main": {
+    "/api/Caterory/Sub": {
       "get": {
         "tags": [
           "Caterory"
@@ -1072,7 +1402,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/APIShopLaptop.Feature.User.Caterory.GetProductFromMainCategory.Request"
+                "$ref": "#/components/schemas/APIShopLaptop.Feature.User.Caterory.GetProductsFromSubCaterory.Request"
               }
             }
           },
@@ -1189,6 +1519,38 @@
         }
       }
     },
+    "/api/Orders": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Orders"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/APIShopLaptop.Feature.User.Orders.AddOrder.Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Admin/Orders/{id}": {
       "get": {
         "tags": [
@@ -1236,6 +1598,28 @@
           },
           "required": true
         },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Products/{id}/Thumbnail": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -1446,7 +1830,7 @@
         },
         "additionalProperties": false
       },
-      "APIShopLaptop.Feature.Admin.Products.Caterory.UpdateProductCaterory.Request": {
+      "APIShopLaptop.Feature.Admin.Products.Category.UpdateProductCategory.Request": {
         "type": "object",
         "properties": {
           "categories": {
@@ -1604,7 +1988,41 @@
         },
         "additionalProperties": false
       },
-      "APIShopLaptop.Feature.User.Caterory.GetProductFromMainCategory.Request": {
+      "APIShopLaptop.Feature.User.Cart.AddProductToCart.Request": {
+        "type": "object",
+        "properties": {
+          "productId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "APIShopLaptop.Feature.User.Cart.DeleteProductFromCart.Request": {
+        "type": "object",
+        "properties": {
+          "productId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "APIShopLaptop.Feature.User.Cart.UpdateProductQuantityInCart.Request": {
+        "type": "object",
+        "properties": {
+          "productId": {
+            "type": "string",
+            "nullable": true
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "APIShopLaptop.Feature.User.Category.GetProductFromMainCategory.Request": {
         "type": "object",
         "properties": {
           "id": {
@@ -1635,6 +2053,59 @@
           "page": {
             "type": "integer",
             "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "APIShopLaptop.Feature.User.Orders.AddOrder.Request": {
+        "type": "object",
+        "properties": {
+          "receiver": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "paymentMethod": {
+            "$ref": "#/components/schemas/APIShopLaptop.Model.Enum.PAYMENTMETHOD"
+          }
+        },
+        "additionalProperties": false
+      },
+      "APIShopLaptop.Feature.User.UserAccount.ChangeEmail.SendChangeEmailRequest.Request": {
+        "type": "object",
+        "properties": {
+          "oldEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "newEmail": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "APIShopLaptop.Feature.User.UserAccount.ChangePassword.SendChangePasswordRequest.Request": {
+        "type": "object",
+        "properties": {
+          "oldPassword": {
+            "type": "string",
+            "nullable": true
+          },
+          "newPassword": {
+            "type": "string",
+            "nullable": true
+          },
+          "confirmNewPassword": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -1678,6 +2149,30 @@
         },
         "additionalProperties": false
       },
+      "APIShopLaptop.Feature.User.UserAccount.ResetPassword.ResetPassword.Request": {
+        "type": "object",
+        "properties": {
+          "newPassword": {
+            "type": "string",
+            "nullable": true
+          },
+          "confirmNewPassword": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "APIShopLaptop.Feature.User.UserAccount.ResetPassword.SendResetPasswordRequest.Request": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "APIShopLaptop.Model.Enum.ORDERSTATUS": {
         "enum": [
           0,
@@ -1686,6 +2181,15 @@
           3,
           4,
           5
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "APIShopLaptop.Model.Enum.PAYMENTMETHOD": {
+        "enum": [
+          0,
+          1,
+          2
         ],
         "type": "integer",
         "format": "int32"
