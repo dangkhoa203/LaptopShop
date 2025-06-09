@@ -1605,6 +1605,50 @@
         }
       }
     },
+    "/api/Orders/Cancel": {
+      "put": {
+        "tags": [
+          "Orders"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/APIShopLaptop.Feature.User.Orders.CancelOrder.Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Orders/{id}": {
+      "get": {
+        "tags": [
+          "Orders"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Products/{id}/Thumbnail": {
       "get": {
         "tags": [
@@ -2074,6 +2118,16 @@
           },
           "paymentMethod": {
             "$ref": "#/components/schemas/APIShopLaptop.Model.Enum.PAYMENTMETHOD"
+          }
+        },
+        "additionalProperties": false
+      },
+      "APIShopLaptop.Feature.User.Orders.CancelOrder.Request": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false

@@ -1681,6 +1681,56 @@
     ]
   },
   {
+    "ContainingType": "APIShopLaptop.Feature.User.Orders.GetOrder",
+    "Method": "Handler",
+    "RelativePath": "api/Orders/{id}",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Orders"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.Orders.CancelOrder",
+    "Method": "Handler",
+    "RelativePath": "api/Orders/Cancel",
+    "HttpMethod": "PUT",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "APIShopLaptop.Feature.User.Orders.CancelOrder\u002BRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Orders"
+    ]
+  },
+  {
     "ContainingType": "APIShopLaptop.Feature.User.Products.GetProductThumbnail",
     "Method": "Handler",
     "RelativePath": "api/Products/{id}/Thumbnail",

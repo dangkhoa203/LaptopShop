@@ -26,15 +26,14 @@ namespace APIShopLaptop.Feature.User.Cart {
                 bool changedFlag = false;
                 var Data=new List<CartProductDTO>();
                 foreach (var product in Cart.CartProducts) {
-                    if (product.ProductNavigation.Status != Model.Enum.PRODUCTSTATUS.ACTIVE) {
+                    if (product.ProductNavigation.Status != Model.Enum.PRODUCTSTATUS.ACTIVE || product.ProductNavigation.Quantity == 0) {
                         changedFlag = true;
                         context.CartProducts.Remove(product);
                         continue;
                     }
                     if (product.Quantity > product.ProductNavigation.Quantity) {
                         changedFlag = true;
-                        if (product.ProductNavigation.Quantity != 0)
-                            product.Quantity = product.ProductNavigation.Quantity;
+                        product.Quantity = product.ProductNavigation.Quantity;
                     }
                     Data.Add(new CartProductDTO(
                         product.ProductId,
@@ -45,6 +44,7 @@ namespace APIShopLaptop.Feature.User.Cart {
                         product.ProductNavigation.Quantity));
                 }
                 if (changedFlag) {
+                    await context.SaveChangesAsync();
                     if (await context.SaveChangesAsync() <= 0) {
                         return Results.BadRequest(new Response(false, [],"Lỗi thực hiện!"));
                     }

@@ -204,6 +204,7 @@ export default function UserPage() {
                                                 'aria-labelledby': 'basic-button',
                                             },
                                         }}
+                                        disableScrollLock={true}
                                     >
                                         <Grid container sx={{width:"800px"}} spacing={2}>
                                             <Grid size={3} sx={{borderRight:"1px solid black"}}>

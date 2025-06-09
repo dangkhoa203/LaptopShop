@@ -74,8 +74,8 @@ export default function CartProductCard(props:{product:cartItem}){
                                 <Typography>{props.product.price}</Typography>
                                 :
                                 <>
-                                    <Typography variant="subtitle1">{props.product.priceAfterDiscount} VND</Typography>
-                                    <Typography variant="subtitle2" sx={{textDecoration:"line-through"}}>{props.product.price} VND</Typography>
+                                    <Typography variant="subtitle1">{props.product.priceAfterDiscount.toLocaleString(undefined, { minimumFractionDigits: 0 })} VND</Typography>
+                                    <Typography variant="subtitle2" sx={{textDecoration:"line-through"}}>{props.product.price.toLocaleString(undefined, { minimumFractionDigits: 0 })} VND</Typography>
                                 </>
                             }
                         </Container>

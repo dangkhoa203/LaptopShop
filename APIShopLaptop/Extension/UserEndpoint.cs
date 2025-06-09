@@ -30,7 +30,9 @@ namespace APIShopLaptop.Extension {
         }
         private static void AddOrderFeature(this WebApplication app) {
             AddOrder.MapEndpoint(app);
+            CancelOrder.MapEndpoint(app);
             Feature.User.Orders.GetOrders.MapEndpoint(app);
+            Feature.User.Orders.GetOrder.MapEndpoint(app);
         }
         private static void AddUserAccountFeature(this WebApplication app) {
             Login.MapEndpoint(app);

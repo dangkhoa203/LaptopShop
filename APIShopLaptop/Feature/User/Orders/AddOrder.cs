@@ -49,7 +49,8 @@ namespace APIShopLaptop.Feature.User.Orders {
                 Receiver=request.Receiver,
                 PhoneNumber=request.PhoneNumber,
                 PaymentMethod=request.PaymentMethod,
-                NoteFromOrder=""
+                NoteFromOrder="",
+                Value=0
             };
             foreach (var product in Cart.CartProducts) {
                 Details.Add(new OrderDetail() {
@@ -59,6 +60,7 @@ namespace APIShopLaptop.Feature.User.Orders {
                     Price=product.ProductNavigation.IsDiscount? product.ProductNavigation.PriceAfterDiscount: product.ProductNavigation.Price,
                 });
                 product.ProductNavigation.Quantity -= product.Quantity;
+                Order.Value += product.ProductNavigation.IsDiscount ? product.ProductNavigation.PriceAfterDiscount * product.Quantity : product.ProductNavigation.Price * product.Quantity;
                 context.CartProducts.Remove(product);
             }
             Order.Details = Details;

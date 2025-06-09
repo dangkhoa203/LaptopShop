@@ -22,7 +22,7 @@ namespace APIShopLaptop.Feature.User.Orders {
                     .Select(u => u.Orders)
                     .FirstOrDefaultAsync();
 
-                var Data = Order.Select(o => new OrderDTO(
+                var Data = Order.OrderByDescending(o=>o.DateOfOrder).Select(o => new OrderDTO(
                         o.Id,
                         o.DateOfOrder,
                         o.Value,
