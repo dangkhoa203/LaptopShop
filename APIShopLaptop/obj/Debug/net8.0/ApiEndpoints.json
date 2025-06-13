@@ -1589,14 +1589,44 @@
   {
     "ContainingType": "APIShopLaptop.Feature.User.Category.GetProductFromMainCategory",
     "Method": "Handler",
-    "RelativePath": "api/Category/Main",
+    "RelativePath": "api/Category/Main/{id}/{page}",
     "HttpMethod": "GET",
     "IsController": false,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "request",
-        "Type": "APIShopLaptop.Feature.User.Category.GetProductFromMainCategory\u002BRequest",
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Category"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.Category.GetProductForMainPage_MainCategory",
+    "Method": "Handler",
+    "RelativePath": "api/Category/Main/{id}/Main_Page",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],
@@ -1614,14 +1644,19 @@
   {
     "ContainingType": "APIShopLaptop.Feature.User.Caterory.GetProductsFromSubCaterory",
     "Method": "Handler",
-    "RelativePath": "api/Caterory/Sub",
+    "RelativePath": "api/Category/Sub/{id}/{page}",
     "HttpMethod": "GET",
     "IsController": false,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "request",
-        "Type": "APIShopLaptop.Feature.User.Caterory.GetProductsFromSubCaterory\u002BRequest",
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "page",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
@@ -1634,6 +1669,31 @@
     ],
     "Tags": [
       "Caterory"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.Category.GetProductForMainPage_SubCategory",
+    "Method": "Handler",
+    "RelativePath": "api/Category/Sub/{id}/Main_Page",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Category"
     ]
   },
   {

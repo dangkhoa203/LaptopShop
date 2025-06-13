@@ -13,10 +13,11 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LaptopIcon from '@mui/icons-material/Laptop';
 import { styled, alpha } from '@mui/material/styles';
 import {
+    Alert,
     Badge, ButtonGroup, Divider,
     Grid, InputBase,
     List, ListItemButton,
-    ListItemText, MenuItem, ThemeProvider
+    ListItemText, MenuItem, Slide, Snackbar, ThemeProvider, useScrollTrigger
 } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingBasketOutlinedIcon from '@mui/icons-material/ShoppingBasketOutlined';
@@ -29,6 +30,7 @@ import ResetPasswordDialog from "./Account/ResetPasswordDialog.tsx";
 import {useMutation} from "@tanstack/react-query";
 import {Outlet, useNavigate} from 'react-router';
 import {useCart} from "../State/Cart.ts";
+import {useAppError} from "../State/AppErrorState.ts";
 
 export default function UserPage() {
     const navigate = useNavigate();
@@ -91,7 +93,7 @@ export default function UserPage() {
     const handleCloseResetPassword = () => {
         setOpenResetPassword(false);
     };
-
+    const cart=useCart();
     const LOGOUT=useMutation({mutationFn:async ()=>{
             try{
                 await fetch('https://localhost:7075/api/Account/LogOut', {
@@ -99,238 +101,266 @@ export default function UserPage() {
                     headers: { 'Content-Type': 'application/json' },
                     credentials: 'include',
                 });
+                cart.setCartItem([],cart.reFetch)
                 await refetch()
             }catch{
                 console.log("Error")
             }
         }});
-    const cartCount=useCart((state)=>state.count())
+    const cartCount=userInfo.isLogged? cart.count():0
+    const globalError=useAppError()
     return (
-        <>
-            <AppBar position="static">
-                <ThemeProvider theme={Threedom}>
-                    <Container sx={{bgcolor:"#e17f04"}} maxWidth="xl">
-                        <Toolbar disableGutters>
-                            <LaptopIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-                            <Typography
-                                variant="h6"
-                                noWrap
-                                component="a"
-                                onClick={()=>navigate('/')}
-                                sx={{
-                                    cursor:"pointer",
-                                    mr: 2,
-                                    display: { xs: 'none', md: 'flex' },
-                                    fontFamily: 'monospace',
-                                    fontWeight: 700,
-                                    letterSpacing: '.3rem',
-                                    color: 'inherit',
-                                    textDecoration: 'none',
-                                }}
-                            >
-                                DKSHOP
-                            </Typography>
-
-                            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-                                <IconButton
-                                    size="large"
-                                    aria-label="account of current user"
-                                    aria-controls="menu-appbar"
-                                    aria-haspopup="true"
-                                    onClick={handleOpenNavMenu}
-                                    color="inherit"
-                                >
-                                    <MenuIcon />
-                                </IconButton>
-                                <Menu
-                                    id="menu-appbar"
-                                    anchorEl={anchorElNav}
-                                    anchorOrigin={{
-                                        vertical: 'bottom',
-                                        horizontal: 'left',
+        <div style={{display:"flex",minHeight:"100vh",flexDirection:"column"}}>
+        <ThemeProvider theme={Threedom}>
+            <HideOnScroll openUser={anchorElUser} open={anchorEl}>
+                <AppBar position="fixed">
+                        <Container sx={{bgcolor:"#e17f04"}} maxWidth="xl">
+                            <Toolbar disableGutters>
+                                <LaptopIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+                                <Typography
+                                    variant="h6"
+                                    noWrap
+                                    component="a"
+                                    onClick={()=>navigate('/')}
+                                    sx={{
+                                        cursor:"pointer",
+                                        mr: 2,
+                                        display: { xs: 'none', md: 'flex' },
+                                        fontFamily: 'monospace',
+                                        fontWeight: 700,
+                                        letterSpacing: '.3rem',
+                                        color: 'inherit',
+                                        textDecoration: 'none',
                                     }}
-                                    keepMounted
-                                    transformOrigin={{
-                                        vertical: 'top',
-                                        horizontal: 'left',
-                                    }}
-                                    open={Boolean(anchorElNav)}
-                                    onClose={handleCloseNavMenu}
-                                    sx={{ display: { xs: 'block', md: 'none' } }}
                                 >
+                                    DKSHOP
+                                </Typography>
 
-                                </Menu>
-                            </Box>
-                            <LaptopIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-                            <Typography
-                                variant="h5"
-                                noWrap
-                                component="a"
-                                onClick={()=>navigate('/')}
-                                sx={{
-                                    cursor: 'pointer',
-                                    mr: 2,
-                                    display: { xs: 'flex', md: 'none' },
-                                    flexGrow: 1,
-                                    fontFamily: 'monospace',
-                                    fontWeight: 700,
-                                    letterSpacing: '.3rem',
-                                    color: 'inherit',
-                                    textDecoration: 'none',
-                                }}
-                            >
-                                DKSHOP
-                            </Typography>
-
-                            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                                <div>
-                                    <Button
-                                        // @ts-expect-error
-                                        color="white"
-                                        id="basic-button"
-                                        onClick={handleClick}
-                                        sx={{height:"100%"}}
-                                        startIcon={<MenuIcon />}
+                                <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+                                    <IconButton
+                                        size="large"
+                                        aria-label="account of current user"
+                                        aria-controls="menu-appbar"
+                                        aria-haspopup="true"
+                                        onClick={handleOpenNavMenu}
+                                        color="inherit"
                                     >
-                                        Danh mục
-                                    </Button>
+                                        <MenuIcon />
+                                    </IconButton>
                                     <Menu
-                                        id="basic-menu"
-                                        anchorEl={anchorEl}
-                                        open={open}
-                                        onClose={handleClose}
-                                        slotProps={{
-                                            list: {
-                                                'aria-labelledby': 'basic-button',
-                                            },
+                                        id="menu-appbar"
+                                        anchorEl={anchorElNav}
+                                        anchorOrigin={{
+                                            vertical: 'bottom',
+                                            horizontal: 'left',
                                         }}
-                                        disableScrollLock={true}
+                                        keepMounted
+                                        transformOrigin={{
+                                            vertical: 'top',
+                                            horizontal: 'left',
+                                        }}
+                                        open={Boolean(anchorElNav)}
+                                        onClose={handleCloseNavMenu}
+                                        sx={{ display: { xs: 'block', md: 'none' } }}
                                     >
-                                        <Grid container sx={{width:"800px"}} spacing={2}>
-                                            <Grid size={3} sx={{borderRight:"1px solid black"}}>
-                                                <List
-                                                    sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
-                                                    component="nav"
-                                                >
-                                                    <ListItemButton onMouseEnter={()=>handleCategory(1)}>
-                                                        <ListItemText primary="Laptop" />
-                                                    </ListItemButton>
-                                                    <ListItemButton onMouseEnter={()=>handleCategory(2)}>
-                                                        <ListItemText primary="PC" />
-                                                    </ListItemButton>
-                                                    <ListItemButton onMouseEnter={()=>handleCategory(2)}>
-                                                        <ListItemText primary="Card đồ họa" />
-                                                    </ListItemButton>
-                                                    <ListItemButton onMouseEnter={()=>handleCategory(2)}>
-                                                        <ListItemText primary="PC" />
-                                                    </ListItemButton>
-                                                    <ListItemButton onMouseEnter={()=>handleCategory(2)}>
-                                                        <ListItemText primary="PC" />
-                                                    </ListItemButton>
-                                                    <ListItemButton onMouseEnter={()=>handleCategory(2)}>
-                                                        <ListItemText primary="PC" />
-                                                    </ListItemButton>
-                                                    <ListItemButton onMouseEnter={()=>handleCategory(2)}>
-                                                        <ListItemText primary="PC" />
-                                                    </ListItemButton>
-                                                    <ListItemButton onMouseEnter={()=>handleCategory(2)}>
-                                                        <ListItemText primary="PC" />
-                                                    </ListItemButton>
-                                                    <ListItemButton onMouseEnter={()=>handleCategory(2)}>
-                                                        <ListItemText primary="PC" />
-                                                    </ListItemButton>
-                                                </List>
 
-                                            </Grid>
-                                            <Grid size={9}>
-                                                {categoryContent===1 && 1}
-                                                {categoryContent===2 && 2}
-                                            </Grid>
-                                        </Grid>
                                     </Menu>
-                                </div>
-                                <Search>
-                                    <SearchIconWrapper>
-                                        <SearchIcon />
-                                    </SearchIconWrapper>
-                                    <StyledInputBase
-                                        placeholder="Search…"
-                                        inputProps={{ 'aria-label': 'search' }}
-                                    />
-                                </Search>
-                            </Box>
-                            <Box sx={{ flexGrow: 0,display:"flex",gap:2 }}>
-                                {userInfo.isLogged ?
-                                    <>
-                                        <IconButton onClick={()=>navigate("/GioHang")} color="inherit" size="large">
-                                            <Badge badgeContent={cartCount} color="error">
-                                                <ShoppingBasketOutlinedIcon color="inherit" />
-                                            </Badge>
-                                        </IconButton>
-                                        <div style={{display:"flex"}}>
-                                            <Typography sx={{margin:"auto",textAlign:"center",verticalAlign:"center"}}>
-                                                {userInfo.userName}
-                                            </Typography>
-                                            <Tooltip title="Open settings">
-                                                <IconButton color="inherit" onClick={handleOpenUserMenu} >
-                                                    <AccountCircleIcon sx={{fontSize:"1.5em"}}/>
-                                                </IconButton>
-                                            </Tooltip>
-                                        </div>
+                                </Box>
+                                <LaptopIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+                                <Typography
+                                    variant="h5"
+                                    noWrap
+                                    component="a"
+                                    onClick={()=>navigate('/')}
+                                    sx={{
+                                        cursor: 'pointer',
+                                        mr: 2,
+                                        display: { xs: 'flex', md: 'none' },
+                                        flexGrow: 1,
+                                        fontFamily: 'monospace',
+                                        fontWeight: 700,
+                                        letterSpacing: '.3rem',
+                                        color: 'inherit',
+                                        textDecoration: 'none',
+                                    }}
+                                >
+                                    DKSHOP
+                                </Typography>
 
-                                        <Menu
-                                            sx={{ mt: '45px' }}
-                                            id="menu-appbar"
-                                            anchorEl={anchorElUser}
-                                            anchorOrigin={{
-                                                vertical: 'top',
-                                                horizontal: 'right',
-                                            }}
-                                            keepMounted
-                                            transformOrigin={{
-                                                vertical: 'top',
-                                                horizontal: 'right',
-                                            }}
-                                            open={Boolean(anchorElUser)}
-                                            onClose={handleCloseUserMenu}
+                                <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                                    <div>
+                                        <Button
+                                            // @ts-expect-error
+                                            color="white"
+                                            id="basic-button"
+                                            onClick={handleClick}
+                                            sx={{height:"100%"}}
+                                            startIcon={<MenuIcon />}
                                         >
-                                            <MenuItem onClick={()=>LOGOUT.mutate()} disabled={LOGOUT.isPending}>
-                                                Đăng xuất
-                                            </MenuItem>
-                                            <Divider/>
-                                            <MenuItem onClick={()=>navigate("/TaiKhoan")} disabled={LOGOUT.isPending}>
-                                                Tài khoản
-                                            </MenuItem>
-                                            <MenuItem onClick={()=>navigate("/DonHang")} disabled={LOGOUT.isPending}>
-                                                Đơn hàng
-                                            </MenuItem>
+                                            Danh mục
+                                        </Button>
+                                        <Menu
+                                            id="basic-menu"
+                                            anchorEl={anchorEl}
+                                            open={open}
+                                            onClose={handleClose}
+                                            onScrollCapture={handleClose}
+                                            slotProps={{
+                                                list: {
+                                                    'aria-labelledby': 'basic-button',
+                                                },
+                                            }}
+                                            disableScrollLock={true}
+                                            elevation={20}
+                                        >
+                                            <Grid container sx={{width:"800px"}} spacing={2}>
+                                                <Grid size={3} sx={{borderRight:"1px solid black"}}>
+                                                    <List
+                                                        sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+                                                        component="nav"
+                                                    >
+                                                        <ListItemButton onMouseEnter={()=>handleCategory(1)}>
+                                                            <ListItemText primary="Laptop" />
+                                                        </ListItemButton>
+                                                        <ListItemButton onMouseEnter={()=>handleCategory(2)}>
+                                                            <ListItemText primary="PC" />
+                                                        </ListItemButton>
+                                                        <ListItemButton onMouseEnter={()=>handleCategory(3)}>
+                                                            <ListItemText primary="CPU" />
+                                                        </ListItemButton>
+                                                        <ListItemButton onMouseEnter={()=>handleCategory(4)}>
+                                                            <ListItemText primary="Motherboard" />
+                                                        </ListItemButton>
+                                                        <ListItemButton onMouseEnter={()=>handleCategory(5)}>
+                                                            <ListItemText primary="Card đồ họa" />
+                                                        </ListItemButton>
+                                                        <ListItemButton onMouseEnter={()=>handleCategory(6)}>
+                                                            <ListItemText primary="Nguồn" />
+                                                        </ListItemButton>
+                                                        <ListItemButton onMouseEnter={()=>handleCategory(7)}>
+                                                            <ListItemText primary="Màn hình" />
+                                                        </ListItemButton>
+                                                        <ListItemButton onMouseEnter={()=>handleCategory(8)}>
+                                                            <ListItemText primary="Case" />
+                                                        </ListItemButton>
+                                                        <ListItemButton onMouseEnter={()=>handleCategory(9)}>
+                                                            <ListItemText primary="Linh kiện" />
+                                                        </ListItemButton>
+                                                    </List>
+
+                                                </Grid>
+                                                <Grid size={9}>
+                                                    {categoryContent===1 && 1}
+                                                    {categoryContent===2 && 2}
+                                                    {categoryContent===3 && 3}
+                                                    {categoryContent===4 && 4}
+                                                    {categoryContent===5 && 5}
+                                                    {categoryContent===6 && 6}
+                                                    {categoryContent===7 && 7}
+                                                    {categoryContent===8 && 8}
+                                                    {categoryContent===9 && 9}
+                                                </Grid>
+                                            </Grid>
                                         </Menu>
-                                    </>
-                                    :
-                                    // @ts-expect-error
-                                    <ButtonGroup color="white" aria-label="Basic button group">
-                                        <Button onClick={handleClickOpenRegister}>Đăng ký </Button>
-                                        <Button onClick={handleClickOpenLogin} sx={{color:"black"}} variant="contained">Đăng nhập</Button>
-                                    </ButtonGroup>
-                                }
-                            </Box>
-                        </Toolbar>
-                    </Container>
-                    {!userInfo.isLogged &&
-                        <>
-                            <LoginDialog open={openLogin} handleClose={handleCloseLogin} openRegister={handleClickOpenRegister} openReset={handleClickOpenResetPassword} reFetch={refetch} isLoggedIn={userInfo.isLogged}/>
-                            <RegisterDialog open={openRegister} handleClose={handleCloseRegister}  openLogin={handleClickOpenLogin} isLoggedIn={userInfo.isLogged}/>
-                            <ResetPasswordDialog open={openResetPassword} handleClose={handleCloseResetPassword} openLogin={handleClickOpenLogin} isLoggedIn={userInfo.isLogged}/>
-                        </>
-                    }
+                                    </div>
+                                    <Search>
+                                        <SearchIconWrapper>
+                                            <SearchIcon />
+                                        </SearchIconWrapper>
+                                        <StyledInputBase
+                                            placeholder="Search…"
+                                            inputProps={{ 'aria-label': 'search' }}
+                                        />
+                                    </Search>
+                                </Box>
+                                <Box sx={{ flexGrow: 0,display:"flex",gap:2 }}>
+                                    {userInfo.isLogged ?
+                                        <>
+                                            <IconButton onClick={()=>navigate("/GioHang")} color="inherit" size="large">
+                                                <Badge badgeContent={cartCount} color="error">
+                                                    <ShoppingBasketOutlinedIcon color="inherit" />
+                                                </Badge>
+                                            </IconButton>
+                                            <div style={{display:"flex"}}>
+                                                <Typography sx={{margin:"auto",textAlign:"center",verticalAlign:"center"}}>
+                                                    {userInfo.userName}
+                                                </Typography>
+                                                <Tooltip title="Open settings">
+                                                    <IconButton color="inherit" onClick={handleOpenUserMenu} >
+                                                        <AccountCircleIcon sx={{fontSize:"1.5em"}}/>
+                                                    </IconButton>
+                                                </Tooltip>
+                                            </div>
 
-                </ThemeProvider>
-            </AppBar>
-            <div style={{paddingTop:"10px"}}>
+                                            <Menu
+                                                disableScrollLock={true}
+                                                sx={{ mt: '45px' }}
+                                                id="menu-appbar"
+                                                anchorEl={anchorElUser}
+                                                anchorOrigin={{
+                                                    vertical: 'top',
+                                                    horizontal: 'right',
+                                                }}
+                                                keepMounted
+                                                transformOrigin={{
+                                                    vertical: 'top',
+                                                    horizontal: 'right',
+                                                }}
+                                                open={Boolean(anchorElUser)}
+                                                onClose={handleCloseUserMenu}
+                                            >
+                                                <MenuItem onClick={()=>LOGOUT.mutate()} disabled={LOGOUT.isPending}>
+                                                    Đăng xuất
+                                                </MenuItem>
+                                                <Divider/>
+                                                <MenuItem onClick={()=>navigate("/TaiKhoan")} disabled={LOGOUT.isPending}>
+                                                    Tài khoản
+                                                </MenuItem>
+                                                <MenuItem onClick={()=>navigate("/DonHang")} disabled={LOGOUT.isPending}>
+                                                    Đơn hàng
+                                                </MenuItem>
+                                            </Menu>
+                                        </>
+                                        :
+                                        // @ts-expect-error
+                                        <ButtonGroup color="white" aria-label="Basic button group">
+                                            <Button onClick={handleClickOpenRegister}>Đăng ký </Button>
+                                            <Button onClick={handleClickOpenLogin} sx={{color:"black"}} variant="contained">Đăng nhập</Button>
+                                        </ButtonGroup>
+                                    }
+                                </Box>
+                            </Toolbar>
+                        </Container>
+                        {!userInfo.isLogged &&
+                            <>
+                                <LoginDialog open={openLogin} handleClose={handleCloseLogin} openRegister={handleClickOpenRegister} openReset={handleClickOpenResetPassword} reFetch={refetch} isLoggedIn={userInfo.isLogged}/>
+                                <RegisterDialog open={openRegister} handleClose={handleCloseRegister}  openLogin={handleClickOpenLogin} isLoggedIn={userInfo.isLogged}/>
+                                <ResetPasswordDialog open={openResetPassword} handleClose={handleCloseResetPassword} openLogin={handleClickOpenLogin} isLoggedIn={userInfo.isLogged}/>
+                            </>
+                        }
+
+                </AppBar>
+            </HideOnScroll>
+            <div style={{paddingTop:"74px",paddingBottom:"20px"}}>
                 <Outlet/>
+                <Snackbar open={globalError.message.length!==0} autoHideDuration={6000} onClose={()=>globalError.setError("")}>
+                    <Alert
+                        onClose={()=>globalError.setError("")}
+                        severity="error"
+                        variant="filled"
+                        sx={{ width: '100%' }}
+                    >
+                        {globalError.message}
+                    </Alert>
+                </Snackbar>
             </div>
-
-        </>
+            <div style={{width:"100%",color:"white",marginTop:"auto",backgroundColor:"rgb(200,141,67)"}} >
+                <Typography sx={{marginLeft:"5px"}}>
+                    @2025 DKWebSoft
+                </Typography>
+            </div>
+        </ThemeProvider>
+        </div>
     );
 }
 const Search = styled('div')(({ theme }) => ({
@@ -372,3 +402,26 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
         },
     },
 }));
+
+
+interface Props {
+    /**
+     * Injected by the documentation to work in an iframe.
+     * You won't need it on your project.
+     */
+    children?: React.ReactElement<unknown>;
+    open:any
+    openUser:any
+}
+
+function HideOnScroll(props: Props) {
+    const { children } = props;
+
+    const trigger = useScrollTrigger();
+    console.log(props.open)
+    return (
+        <Slide appear={false} direction="down" in={props.openUser!==null||props.open!==null || !trigger}>
+            {children ?? <div />}
+        </Slide>
+    );
+}

@@ -24,6 +24,7 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogActions from "@mui/material/DialogActions";
+import {useNavigate} from "react-router";
 type orderData={
     id:string,
     orderDate:string,
@@ -34,6 +35,7 @@ type orderData={
 export default function OrderHistory(){
     const [value, setValue] = useState(0);
 
+    // @ts-ignore
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
     };
@@ -74,13 +76,6 @@ export default function OrderHistory(){
         }
     }, [data]);
 
-    const cancelButton=(id:string,status:number):any=>{
-        return (status===1 || status===2) ?
-            <Button onClick={()=>handleClickOpenCancel(id)} variant="outlined" color="error">
-                Hủy
-            </Button>:
-            ""
-    }
     const [openCancel, setOpenCancel] = useState(false);
     const [cancelModel,setCancelModel]=useState<string>("")
     const [globalError,setGlobalError]=useState<string>("")
@@ -134,23 +129,24 @@ export default function OrderHistory(){
                     <Tab label="Đã hủy" />
                 </Tabs>
                 <Divider sx={{marginBottom:"10px"}}/>
+                {isFetching && <LinearProgress />}
                 {value===0 &&
-                    <ListRender orders={orders} openCancel={handleClickOpenCancel}/>
+                    <ListRender isFetching={isFetching} orders={orders} openCancel={handleClickOpenCancel}/>
                 }
                 {value===1 &&
-                    <ListRender orders={orders.filter(order=>order.status===1)} openCancel={handleClickOpenCancel}/>
+                    <ListRender isFetching={isFetching} orders={orders.filter(order=>order.status===1)} openCancel={handleClickOpenCancel}/>
                 }
                 {value===2 &&
-                    <ListRender orders={orders.filter(order=>(order.status===2 || order.status===3))} openCancel={handleClickOpenCancel}/>
+                    <ListRender isFetching={isFetching} orders={orders.filter(order=>(order.status===2 || order.status===3))} openCancel={handleClickOpenCancel}/>
                 }
                 {value===3 &&
-                    <ListRender orders={orders.filter(order=>order.status===4)} openCancel={handleClickOpenCancel}/>
+                    <ListRender isFetching={isFetching} orders={orders.filter(order=>order.status===4)} openCancel={handleClickOpenCancel}/>
                 }
                 {value===4 &&
-                    <ListRender orders={orders.filter(order=>order.status===5)} openCancel={handleClickOpenCancel}/>
+                    <ListRender isFetching={isFetching} orders={orders.filter(order=>order.status===5)} openCancel={handleClickOpenCancel}/>
                 }
                 {value===5 &&
-                    <ListRender orders={orders.filter(order=>order.status===0)} openCancel={handleClickOpenCancel}/>
+                    <ListRender isFetching={isFetching} orders={orders.filter(order=>order.status===0)} openCancel={handleClickOpenCancel}/>
                 }
 
                 <Dialog
@@ -225,15 +221,16 @@ const chipColor=(status:number):string=>{
             return "error";
     }
 }
-function ListRender(props:{orders:orderData[],openCancel:(id:string)=>void}) {
+function ListRender(props:{orders:orderData[],openCancel:(id:string)=>void,isFetching:boolean}) {
+    const navigate=useNavigate()
     return(
         <>
-            {props.orders.length===0 &&
+            {(props.orders.length===0 && !props.isFetching)  &&
                 <Typography textAlign={"center"} color="textSecondary">Không có dữ liệu</Typography>
             }
             {props.orders.map((order)=>(
                 <Card key={order.id} elevation={12} sx={{ minWidth: 275,marginBottom:"10px" }}>
-                    <CardActionArea>
+                    <CardActionArea onClick={()=>navigate(order.id)}>
                         <CardContent>
                             <div style={{display:"flex",gap:2,justifyContent:"space-between"}}>
                                 <Typography variant="h4" color="textPrimary">
@@ -275,7 +272,7 @@ function ListRender(props:{orders:orderData[],openCancel:(id:string)=>void}) {
                                 Hủy
                             </Button>
                         }
-                        <Button variant="contained" color="primary">
+                        <Button onClick={()=>navigate(order.id)} variant="contained" color="primary">
                             Xem chi tiết
                         </Button>
                     </CardActions>

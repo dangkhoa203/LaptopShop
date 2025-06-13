@@ -6,21 +6,20 @@ using Microsoft.EntityFrameworkCore;
 
 namespace APIShopLaptop.Feature.User.Caterory {
     public class GetProductsFromSubCaterory : IEndpoint {
-        public record Request(string Id,int Page);
         public record ProductDTO(string Id, string Name, float Price, int Quantity, bool IsDiscount, float PriceAfterDiscount);
         public record Response(bool Success, List<ProductDTO> Data, string ErrorMessage);
 
         public static void MapEndpoint(IEndpointRouteBuilder app) {
-            app.MapGet("/api/Caterory/Sub", Handler).WithTags("Caterory");
+            app.MapGet("/api/Category/Sub/{id}/{page}", Handler).WithTags("Caterory");
         }
-        private static async Task<IResult> Handler([FromBody] Request request, ApplicationDBContext context) {
+        private static async Task<IResult> Handler(string Id,int page, ApplicationDBContext context) {
             try {
                 int perPage = 12;
                 var Products = await context.CateroryItems
-                    .Where(i => i.CateroryId == request.Id)
+                    .Where(i => i.CateroryId == Id)
                     .Include(i => i.ProductNavigation)
                     .Where(i => i.ProductNavigation.Status == PRODUCTSTATUS.ACTIVE)
-                    .Skip(perPage*(request.Page-1))
+                    .Skip(perPage*(page- 1))
                     .Select(i => new ProductDTO(
                             i.ProductNavigation.Id,
                             i.ProductNavigation.Name,

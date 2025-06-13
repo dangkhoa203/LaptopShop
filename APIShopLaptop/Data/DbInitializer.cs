@@ -52,11 +52,11 @@ namespace APIShopLaptop.Data {
                 _context.SaveChanges();
             }
             if (!_context.MainCaterories.Any()) {
-                int count = 1;
+                int count = 0;
 
                 List<MainCaterory> mainCaterories = [
                     new MainCaterory {
-                        Id=$"DM-{count++}",
+                        Id=$"DM-{++count}",
                         Name="Laptop",
                         Description="Laptop",
                         SubCaterories= [
@@ -71,7 +71,7 @@ namespace APIShopLaptop.Data {
                         ]
                     },
                     new MainCaterory {
-                        Id=$"DM-{count++}",
+                        Id=$"DM-{++count}",
                         Name="Macbook",
                         Description="Apple Macbook",
                         SubCaterories= [
@@ -87,7 +87,7 @@ namespace APIShopLaptop.Data {
                     },
 
                     new MainCaterory {
-                        Id=$"DM-{count++}",
+                        Id=$"DM-{++count}",
                         Name="Laptop Acer",
                         Description="Acer laptop",
                         SubCaterories= [
@@ -103,7 +103,7 @@ namespace APIShopLaptop.Data {
                     },
 
                     new MainCaterory {
-                        Id=$"DM-{count++}",
+                        Id=$"DM-{++count}",
                         Name="Laptop Asus",
                         Description="Asus laptop",
                         SubCaterories= [
@@ -119,7 +119,7 @@ namespace APIShopLaptop.Data {
                     },
 
                     new MainCaterory {
-                        Id=$"DM-{count++}",
+                        Id=$"DM-{++count}",
                         Name="Laptop MSI",
                         Description="MSI laptop",
                         SubCaterories= [
@@ -135,7 +135,7 @@ namespace APIShopLaptop.Data {
                     },
 
                     new MainCaterory {
-                        Id=$"DM-{count++}",
+                        Id=$"DM-{++count}",
                         Name="Laptop Lenovo",
                         Description="Asus laptop",
                         SubCaterories= [
@@ -159,7 +159,7 @@ namespace APIShopLaptop.Data {
                     },
 
                     new MainCaterory {
-                        Id=$"DM-{count++}",
+                        Id=$"DM-{++count}",
                         Name="Laptop Dell",
                         Description="Dell laptop",
                         SubCaterories= [
@@ -183,7 +183,7 @@ namespace APIShopLaptop.Data {
                     },
 
                     new MainCaterory {
-                        Id=$"DM-{count++}",
+                        Id=$"DM-{++count}",
                         Name="Laptop HP",
                         Description="HP laptop",
                         SubCaterories= [
@@ -203,7 +203,7 @@ namespace APIShopLaptop.Data {
                     },
 
                     new MainCaterory {
-                        Id=$"DM-{count++}",
+                        Id=$"DM-{++count}",
                         Name="Gaming Acer",
                         Description="Acer gaming laptop",
                         SubCaterories= [
@@ -219,7 +219,7 @@ namespace APIShopLaptop.Data {
                     },
 
                     new MainCaterory {
-                        Id=$"DM-{count++}",
+                        Id=$"DM-{++count}",
                         Name="Gaming Asus",
                         Description="Asus gaming laptop",
                         SubCaterories= [
@@ -239,7 +239,7 @@ namespace APIShopLaptop.Data {
                     },
 
                     new MainCaterory {
-                        Id=$"DM-{count++}",
+                        Id=$"DM-{++count}",
                         Name="Gaming MSI",
                         Description="MSI gaming laptop",
                         SubCaterories= [
@@ -259,7 +259,7 @@ namespace APIShopLaptop.Data {
                     },
 
                     new MainCaterory {
-                        Id=$"DM-{count++}",
+                        Id=$"DM-{++count}",
                         Name="Gaming Lenovo",
                         Description="Lenovo gaming laptop",
                         SubCaterories= [
@@ -279,7 +279,7 @@ namespace APIShopLaptop.Data {
                     },
 
                     new MainCaterory {
-                        Id=$"DM-{count++}",
+                        Id=$"DM-{++count}",
                         Name="Gaming Dell",
                         Description="Dell gaming laptop",
                         SubCaterories= [
@@ -295,7 +295,7 @@ namespace APIShopLaptop.Data {
                     },
 
                     new MainCaterory {
-                        Id=$"DM-{count++}",
+                        Id=$"DM-{++count}",
                         Name="Gaming HP",
                         Description="HP gaming laptop",
                         SubCaterories= [
@@ -311,7 +311,7 @@ namespace APIShopLaptop.Data {
                     },
 
                     new MainCaterory {
-                        Id=$"DM-{count++}",
+                        Id=$"DM-{++count}",
                         Name="Linh kiện Laptop",
                         Description="Linh kiện cho laptop",
                         SubCaterories= [
@@ -331,7 +331,7 @@ namespace APIShopLaptop.Data {
                     },
 
                     new MainCaterory {
-                        Id=$"DM-{count++}",
+                        Id=$"DM-{++count}",
                         Name="Card đồ họa",
                         Description="VGA",
                         SubCaterories= [
@@ -351,7 +351,7 @@ namespace APIShopLaptop.Data {
                     },
 
                     new MainCaterory {
-                        Id=$"DM-{count++}",
+                        Id=$"DM-{++count}",
                         Name="Bo mạch",
                         Description="Motherboard",
                         SubCaterories= [
@@ -379,7 +379,7 @@ namespace APIShopLaptop.Data {
                     },
 
                     new MainCaterory {
-                        Id=$"DM-{count++}",
+                        Id=$"DM-{++count}",
                         Name="CPU",
                         Description="Motherboard",
                         SubCaterories= [
@@ -395,7 +395,7 @@ namespace APIShopLaptop.Data {
                     },
 
                     new MainCaterory {
-                        Id=$"DM-{count++}",
+                        Id=$"DM-{++count}",
                         Name="Case",
                         Description="Case máy tính",
                         SubCaterories= [
@@ -415,7 +415,7 @@ namespace APIShopLaptop.Data {
                     },
 
                     new MainCaterory {
-                        Id=$"DM-{count++}",
+                        Id=$"DM-{++count}",
                         Name="Nguồn",
                         Description="Nguồn máy tính",
                         SubCaterories= [
@@ -443,7 +443,7 @@ namespace APIShopLaptop.Data {
                     },
 
                     new MainCaterory {
-                        Id=$"DM-{count++}",
+                        Id=$"DM-{++count}",
                         Name="Nguồn",
                         Description="Nguồn máy tính",
                         SubCaterories= [
@@ -471,7 +471,7 @@ namespace APIShopLaptop.Data {
                     },
 
                     new MainCaterory {
-                        Id=$"DM-{count++}",
+                        Id=$"DM-{++count}",
                         Name="RAM",
                         Description="RAM máy tính",
                         SubCaterories= [
@@ -503,7 +503,7 @@ namespace APIShopLaptop.Data {
                     },
 
                     new MainCaterory {
-                        Id=$"DM-{count++}",
+                        Id=$"DM-{++count}",
                         Name="RAM",
                         Description="RAM máy tính",
                         SubCaterories= [
@@ -535,7 +535,7 @@ namespace APIShopLaptop.Data {
                     },
 
                     new MainCaterory {
-                        Id=$"DM-{count++}",
+                        Id=$"DM-{++count}",
                         Name="Ổ cứng",
                         Description="Ổ cứng máy tính",
                         SubCaterories= [
@@ -551,7 +551,7 @@ namespace APIShopLaptop.Data {
                     },
 
                     new MainCaterory {
-                        Id=$"DM-{count++}",
+                        Id=$"DM-{++count}",
                         Name="Màn hình",
                         Description="Màn hình máy tính",
                         SubCaterories= [
@@ -574,6 +574,36 @@ namespace APIShopLaptop.Data {
                             new SubCaterory {
                                 Id=$"DM-{count}-5",
                                Name="4K",
+                            },
+                        ]
+                    },
+                    new MainCaterory {
+                        Id=$"DM-{++count}",
+                        Name="PC",
+                        Description="Máy tính",
+                        SubCaterories= [
+                            new SubCaterory {
+                                Id=$"DM-{count}-1",
+                                Name="Văn phòng",
+                            },
+                            new SubCaterory {
+                                Id=$"DM-{count}-2",
+                               Name="Gaming",
+                            },
+                        ]
+                    },
+                    new MainCaterory {
+                        Id=$"DM-DB",
+                        Name="Đặt biệt",
+                        Description="",
+                        SubCaterories= [
+                            new SubCaterory {
+                                Id=$"DM-DB-Sale",
+                                Name="Sale",
+                            },
+                            new SubCaterory {
+                                Id=$"DM-DB-Notable",
+                               Name="Nổi bật",
                             },
                         ]
                     },

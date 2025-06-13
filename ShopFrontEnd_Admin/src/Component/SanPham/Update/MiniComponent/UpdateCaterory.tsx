@@ -146,7 +146,7 @@ export default function UpdateCaterory(props:{id:string}) {
                                                     />
                                                 </TableCell>
                                                 <TableCell >
-                                                    <Button color="warning" onClick={()=>handleCheckChange(row.id)}> {row.name}</Button>
+                                                    <Button color="warning" onClick={()=>handleCheckChange(row.id)}> {row.name} ({row.id})</Button>
                                                 </TableCell>
                                             </TableRow>
                                         ))}

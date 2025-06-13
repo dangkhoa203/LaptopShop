@@ -18,6 +18,8 @@ namespace APIShopLaptop.Extension {
         private static void AddCategoryFeature(this WebApplication app) {
             GetProductsFromSubCaterory.MapEndpoint(app);
             GetProductFromMainCategory.MapEndpoint(app);
+            GetProductForMainPage_MainCategory.MapEndpoint(app);
+            GetProductForMainPage_SubCategory.MapEndpoint(app);
         }
         private static void AddProductFeature(this WebApplication app) {
             GetProductThumbnail.MapEndpoint(app);

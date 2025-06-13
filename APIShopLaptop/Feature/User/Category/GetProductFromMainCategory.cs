@@ -11,14 +11,14 @@ namespace APIShopLaptop.Feature.User.Category {
         public record Response(bool Success, List<ProductDTO> Data, string ErrorMessage);
 
         public static void MapEndpoint(IEndpointRouteBuilder app) {
-            app.MapGet("/api/Category/Main", Handler).WithTags("Category");
+            app.MapGet("/api/Category/Main/{id}/{page}", Handler).WithTags("Category");
         }
-        private static async Task<IResult> Handler([FromBody] Request request, ApplicationDBContext context) {
+        private static async Task<IResult> Handler([FromRoute]string Id, [FromRoute]int page, ApplicationDBContext context) {
             try {
                 int perPage = 12;
                 var subCategory = await context.SubCaterories
                     .Include(c => c.MainCaterory)
-                    .Where(c => c.MainCaterory.Id == request.Id)
+                    .Where(c => c.MainCaterory.Id == Id)
                     .Select(c => c.Id)
                     .ToListAsync();
 
@@ -26,9 +26,9 @@ namespace APIShopLaptop.Feature.User.Category {
                    .Include(i => i.ProductNavigation)
                        .ThenInclude(p => p.Brand)
                    .Where(i => subCategory.Any(c => c == i.CateroryId))
-                   .Where(i => !request.SortByBrand.Any() || request.SortByBrand.Any(b => b == i.ProductNavigation.Brand.Tag))
+                   //.Where(i => !request.SortByBrand.Any() || request.SortByBrand.Any(b => b == i.ProductNavigation.Brand.Tag))
                    .GroupBy(i => i.ProductId)
-                   .Skip(perPage * (request.Page - 1))
+                   .Skip(perPage * (page - 1))
                    .Select(i => new ProductDTO(
                            i.First().ProductNavigation.Id,
                            i.First().ProductNavigation.Name,

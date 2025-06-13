@@ -1,93 +1,101 @@
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import {useMutation} from "@tanstack/react-query";
-import {Response} from "../Type/Respone.ts";
-import {useCart} from "../State/Cart.ts";
+
+import Container from "@mui/material/Container";
+import { Carousel } from 'react-responsive-carousel';
+import banner1 from "../assets/banner1.jpg"
+import banner2 from "../assets/banner2.jpg"
+import banner3 from "../assets/banner3.jpg"
+import banner4 from "../assets/banner4.jpg"
+import banner5 from "../assets/banner5.jpg"
+import banner7 from "../assets/banner7.gif"
+import {CardActionArea, Grid, Paper} from "@mui/material";
+import MainPageMainCategoryProduct from "./Product/MainPageMainCategoryProduct.tsx";
+import MainPageCategory from "./MainPageCategory.tsx";
+
+
 
 export default function HomePage() {
-    const reFetch=useCart((state)=>state.reFetch)
-    const {mutate}=useMutation({
-        mutationFn:async (id:string)=>{
-            const response = await fetch(`https://localhost:7075/api/Cart`, {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                credentials: 'include',
-                body: JSON.stringify({productId:id})
-            })
-            return await response.json();
-        },
-        onSuccess:(data:Response)=>{
-            if(data.success){
-                reFetch();
-            }
-            else {
-                console.log(data);
-            }
-        }
-    })
     return (
-        <div style={{display:"flex",gap:2}}>
-            <Card sx={{ maxWidth: 345 }}>
-                <CardMedia
-                    sx={{ height: 140 }}
-                    image={`https://localhost:7075/api/Products/SP-G4O1E3/Thumbnail`}
-                    title="green iguana"
-                />
-                <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
-                        Lizard
-                    </Typography>
-                    <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                        Lizards are a widespread group of squamate reptiles, with over 6,000
-                        species, ranging across all continents except Antarctica
-                    </Typography>
-                </CardContent>
-                <CardActions>
-                    <Button onClick={()=>mutate("SP-G4O1E3")} size="small">Share</Button>
-                </CardActions>
-            </Card>
-            <Card sx={{ maxWidth: 345 }}>
-                <CardMedia
-                    sx={{ height: 140 }}
-                    image={`https://localhost:7075/api/Products/SP-E0YGD3/Thumbnail`}
-                    title="green iguana"
-                />
-                <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
-                        Lizard
-                    </Typography>
-                    <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                        Lizards are a widespread group of squamate reptiles, with over 6,000
-                        species, ranging across all continents except Antarctica
-                    </Typography>
-                </CardContent>
-                <CardActions>
-                    <Button onClick={()=>mutate("SP-E0YGD3")} size="small">Share</Button>
-                </CardActions>
-            </Card>
-            <Card sx={{ maxWidth: 345 }}>
-                <CardMedia
-                    sx={{ height: 140 }}
-                    image={`https://localhost:7075/api/Products/SP-HV7IEX/Thumbnail`}
-                    title="green iguana"
-                />
-                <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
-                        Lizard
-                    </Typography>
-                    <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                        Lizards are a widespread group of squamate reptiles, with over 6,000
-                        species, ranging across all continents except Antarctica
-                    </Typography>
-                </CardContent>
-                <CardActions>
-                    <Button onClick={()=>mutate("SP-HV7IEX")} size="small">Share</Button>
-                </CardActions>
-            </Card>
-        </div>
+        <Container sx={{display: "flex", justifyContent: "center",flexDirection:"column", alignItems:"center",gap:3}}>
+            <div>
+                <Paper elevation={12} sx={{marginBottom:"30px"}}>
+                    <Carousel showThumbs={false} showStatus={false} stopOnHover autoPlay={true} infiniteLoop={true} dynamicHeight={false}>
+                        <Card sx={{ maxWidth: "100%" }}>
+                            <CardActionArea>
+                                <CardMedia
+                                    component="img"
+                                    image={banner1}
+
+                                    alt="green iguana"
+                                />
+                            </CardActionArea>
+                        </Card>
+                        <Card sx={{ maxWidth: "100%" }}>
+                            <CardActionArea>
+                                <CardMedia
+                                    component="img"
+                                    image={banner2}
+                                    height={"auto"}
+                                    alt="green iguana"
+                                />
+                            </CardActionArea>
+                        </Card>
+                        <Card sx={{ maxWidth: "100%" }}>
+                            <CardActionArea>
+                                <CardMedia
+                                    component="img"
+                                    image={banner3}
+                                    alt="green iguana"
+                                />
+                            </CardActionArea>
+                        </Card>
+                    </Carousel>
+                </Paper>
+                <Grid container spacing={2}>
+                    <Grid size={6}>
+                        <Card elevation={6} sx={{ maxWidth: "100%" }}>
+                            <CardActionArea>
+                                <CardMedia
+                                    component="img"
+                                    image={banner4}
+                                    alt="green iguana"
+                                />
+                            </CardActionArea>
+                        </Card>
+                    </Grid>
+                    <Grid size={6}>
+                        <Card elevation={6} sx={{ maxWidth: "100%" }}>
+                            <CardActionArea>
+                                <CardMedia
+                                    component="img"
+                                    image={banner5}
+                                    alt="green iguana"
+                                />
+                            </CardActionArea>
+                        </Card>
+                    </Grid>
+                    <Grid size={12}>
+                        <MainPageCategory/>
+                    </Grid>
+                </Grid>
+            </div>
+            <MainPageMainCategoryProduct isMain={true} category={"Laptop"} categoryId={"DM-1"}/>
+            <Paper elevation={6}>
+                <Card sx={{ maxWidth: "100%" }}>
+                    <CardActionArea>
+                        <CardMedia
+                            component="img"
+                            image={banner7}
+                            height={"auto"}
+                            alt="green iguana"
+                        />
+                    </CardActionArea>
+                </Card>
+            </Paper>
+            <MainPageMainCategoryProduct isMain={true} category={"CPU"} categoryId={"DM-18"}/>
+            <MainPageMainCategoryProduct isMain={true} category={"PC"} categoryId={"DM-26"}/>
+        </Container>
+
     );
 }

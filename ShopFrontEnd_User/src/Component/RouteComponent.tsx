@@ -5,6 +5,7 @@ import HomePage from "./HomePage.tsx";
 import CartPage from "./Cart/CartPage.tsx";
 import CreateOrderPage from "./Order/CreateOrderPage.tsx";
 import OrderHistory from "./Order/OrderHistory.tsx";
+import OrderDetail from "./Order/OrderDetail.tsx";
 
 export default function RouteComponent(){
     return (
@@ -14,7 +15,10 @@ export default function RouteComponent(){
                 <Route path="GioHang" element={<CartPage/>}/>
                 <Route path="TaiKhoan" element={<AccountPage/> }/>
                 <Route path="DatHang" element={<CreateOrderPage/> }/>
-                <Route path="DonHang" element={<OrderHistory/> }></Route>
+                <Route path="DonHang" >
+                    <Route path="" element={<OrderHistory/> }></Route>
+                    <Route path=":id" element={<OrderDetail/>}></Route>
+                </Route>
             </Route>
         </Routes>
     )
