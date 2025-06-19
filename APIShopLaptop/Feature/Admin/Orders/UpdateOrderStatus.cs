@@ -11,7 +11,7 @@ namespace APIShopLaptop.Feature.Admin.Orders {
         public record Response(bool Success, string ErrorMessage);
         
         public static void MapEndpoint(IEndpointRouteBuilder app) {
-            app.MapPut("/api/Admin/Orders", Handler).WithTags("Orders");
+            app.MapPut("/api/Admin/Orders", Handler).WithTags("Admin_Orders");
         }
         public static async Task<IResult> Handler(Request request, ApplicationDBContext context) {
             try {

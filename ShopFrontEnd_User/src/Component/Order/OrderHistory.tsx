@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import {
     CardActionArea,
-    Chip,
+    Chip, CircularProgress,
     Dialog,
     DialogContent,
     DialogTitle,
@@ -30,7 +30,9 @@ type orderData={
     orderDate:string,
     status:number,
     value:number,
-    detailId:string[]
+    detailId:string[],
+    isMomoPaid:boolean,
+    paymentMethod:number
 }
 export default function OrderHistory(){
     const [value, setValue] = useState(0);
@@ -109,97 +111,106 @@ export default function OrderHistory(){
             }
         }
     })
-
+    const [momoLoading,setMomoLoading]=useState(false)
     // @ts-ignore
     return(
         <Container>
-            <ThemeProvider theme={Threedom}>
-                <Tabs
-                    centered
-                    value={value}
-                    onChange={handleChange}
-                    variant="scrollable"
-                    allowScrollButtonsMobile
-                >
-                    <Tab label="Tất cả" />
-                    <Tab label="Chờ xác nhận" />
-                    <Tab label="Chuẩn bị" />
-                    <Tab label="Giao hàng" />
-                    <Tab label="Hoàn thành" />
-                    <Tab label="Đã hủy" />
-                </Tabs>
-                <Divider sx={{marginBottom:"10px"}}/>
-                {isFetching && <LinearProgress />}
-                {value===0 &&
-                    <ListRender isFetching={isFetching} orders={orders} openCancel={handleClickOpenCancel}/>
-                }
-                {value===1 &&
-                    <ListRender isFetching={isFetching} orders={orders.filter(order=>order.status===1)} openCancel={handleClickOpenCancel}/>
-                }
-                {value===2 &&
-                    <ListRender isFetching={isFetching} orders={orders.filter(order=>(order.status===2 || order.status===3))} openCancel={handleClickOpenCancel}/>
-                }
-                {value===3 &&
-                    <ListRender isFetching={isFetching} orders={orders.filter(order=>order.status===4)} openCancel={handleClickOpenCancel}/>
-                }
-                {value===4 &&
-                    <ListRender isFetching={isFetching} orders={orders.filter(order=>order.status===5)} openCancel={handleClickOpenCancel}/>
-                }
-                {value===5 &&
-                    <ListRender isFetching={isFetching} orders={orders.filter(order=>order.status===0)} openCancel={handleClickOpenCancel}/>
-                }
-
-                <Dialog
-                    open={openCancel}
-                    onClose={handleCloseCancel}
-                    fullWidth
-                    maxWidth="md"
-                >
-                    <DialogTitle >
-                        Hủy đơn {cancelModel}
-                    </DialogTitle>
-                    <IconButton
-                        color="warning"
-                        onClick={handleCloseCancel}
-                        sx={(theme) => ({
-                            position: 'absolute',
-                            right: 8,
-                            top: 8,
-                            color: theme.palette.grey[500],
-                        })}
+            {momoLoading ?
+                <>
+                    <CircularProgress size="4rem" />
+                    <Typography sx={{marginTop:"10px"}} variant="h4">
+                        Chuyển đến thanh toán Momo
+                    </Typography>
+                </>
+                :
+                <>
+                    <Tabs
+                        centered
+                        value={value}
+                        onChange={handleChange}
+                        variant="scrollable"
+                        allowScrollButtonsMobile
                     >
-                        <CloseIcon color="warning" />
-                    </IconButton>
-                    <DialogContent >
-                        <DialogContentText >
-                            <Typography>
-                                Bạn có muốn hủy đơn hàng?
-                            </Typography>
-                        </DialogContentText>
-                    </DialogContent>
-                    <DialogActions sx={{minHeight:"55px"}}>
-                        {CANCEL.isPending?
-                            <Box sx={{ width: '100%' }}>
-                                <LinearProgress />
-                            </Box>
-                            :
-                            <>
-                                <div style={{color:"red"}}>
-                                    {globalError}
-                                </div>
-                                <Button variant="contained" fullWidth color="warning" onClick={()=> {
-                                    CANCEL.mutate(cancelModel)
-                                }} autoFocus
-                                >
-                                    Hủy
-                                </Button>
-                            </>
+                        <Tab label="Tất cả" />
+                        <Tab label="Chờ xác nhận" />
+                        <Tab label="Chuẩn bị" />
+                        <Tab label="Giao hàng" />
+                        <Tab label="Hoàn thành" />
+                        <Tab label="Đã hủy" />
+                    </Tabs>
+                    <Divider sx={{marginBottom:"10px"}}/>
+                    {isFetching && <LinearProgress />}
+                    {value===0 &&
+                        <ListRender momoLoading={momoLoading} setMomoLoading={setMomoLoading} isFetching={isFetching} orders={orders} openCancel={handleClickOpenCancel}/>
+                    }
+                    {value===1 &&
+                        <ListRender momoLoading={momoLoading} setMomoLoading={setMomoLoading} isFetching={isFetching} orders={orders.filter(order=>order.status===1)} openCancel={handleClickOpenCancel}/>
+                    }
+                    {value===2 &&
+                        <ListRender momoLoading={momoLoading} setMomoLoading={setMomoLoading} isFetching={isFetching} orders={orders.filter(order=>(order.status===2 || order.status===3))} openCancel={handleClickOpenCancel}/>
+                    }
+                    {value===3 &&
+                        <ListRender momoLoading={momoLoading} setMomoLoading={setMomoLoading} isFetching={isFetching} orders={orders.filter(order=>order.status===4)} openCancel={handleClickOpenCancel}/>
+                    }
+                    {value===4 &&
+                        <ListRender momoLoading={momoLoading} setMomoLoading={setMomoLoading} isFetching={isFetching} orders={orders.filter(order=>order.status===5)} openCancel={handleClickOpenCancel}/>
+                    }
+                    {value===5 &&
+                        <ListRender momoLoading={momoLoading} setMomoLoading={setMomoLoading} isFetching={isFetching} orders={orders.filter(order=>order.status===0)} openCancel={handleClickOpenCancel}/>
+                    }
 
-                        }
+                    <Dialog
+                        open={openCancel}
+                        onClose={handleCloseCancel}
+                        fullWidth
+                        maxWidth="md"
+                    >
+                        <DialogTitle >
+                            Hủy đơn {cancelModel}
+                        </DialogTitle>
+                        <IconButton
+                            color="warning"
+                            onClick={handleCloseCancel}
+                            sx={(theme) => ({
+                                position: 'absolute',
+                                right: 8,
+                                top: 8,
+                                color: theme.palette.grey[500],
+                            })}
+                        >
+                            <CloseIcon color="warning" />
+                        </IconButton>
+                        <DialogContent >
+                            <DialogContentText >
+                                <Typography>
+                                    Bạn có muốn hủy đơn hàng?
+                                </Typography>
+                            </DialogContentText>
+                        </DialogContent>
+                        <DialogActions sx={{minHeight:"55px"}}>
+                            {CANCEL.isPending?
+                                <Box sx={{ width: '100%' }}>
+                                    <LinearProgress />
+                                </Box>
+                                :
+                                <>
+                                    <div style={{color:"red"}}>
+                                        {globalError}
+                                    </div>
+                                    <Button variant="contained" fullWidth color="warning" onClick={()=> {
+                                        CANCEL.mutate(cancelModel)
+                                    }} autoFocus
+                                    >
+                                        Hủy
+                                    </Button>
+                                </>
 
-                    </DialogActions>
-                </Dialog>
-            </ThemeProvider>
+                            }
+
+                        </DialogActions>
+                    </Dialog>
+                </>
+            }
         </Container>
     )
 }
@@ -221,8 +232,32 @@ const chipColor=(status:number):string=>{
             return "error";
     }
 }
-function ListRender(props:{orders:orderData[],openCancel:(id:string)=>void,isFetching:boolean}) {
+function ListRender(props:{orders:orderData[],openCancel:(id:string)=>void,isFetching:boolean,momoLoading:boolean,setMomoLoading:(value:boolean)=>void}) {
     const navigate=useNavigate()
+
+    const NEWTRANSACTION=useMutation({
+        mutationFn:async (id:string)=>{
+            const response = await fetch(`https://localhost:7075/api/Orders/Momo`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                credentials: 'include',
+                body: JSON.stringify({orderId:id})
+            })
+            return await response.json();
+        },
+        onSuccess:(data:Response)=>{
+            if(data.success){
+                if(data.data!==""){
+                    props.setMomoLoading(true)
+                    window.location.replace(data.data)
+                }
+                else {
+
+                }
+            }
+
+        }
+    })
     return(
         <>
             {(props.orders.length===0 && !props.isFetching)  &&
@@ -236,11 +271,21 @@ function ListRender(props:{orders:orderData[],openCancel:(id:string)=>void,isFet
                                 <Typography variant="h4" color="textPrimary">
                                     Đơn {order.id}
                                 </Typography>
-                                <Chip
-                                    // @ts-expect-error
-                                    color={
-                                        chipColor(order.status)
-                                    } label={OrderStatus[order.status]} size="small" />
+                                <div style={{display:"flex",gap:1}}>
+                                    {(order.isMomoPaid && (order.status!==0 && order.status!==5)) &&
+                                        <Chip
+                                            // @ts-expect-error
+                                            color={
+                                                "success"
+                                            } label={"Đã thanh toán Momo"} size="small" />
+                                    }
+                                    <Chip
+                                        // @ts-expect-error
+                                        color={
+                                            chipColor(order.status)
+                                        } label={OrderStatus[order.status]} size="small" />
+                                </div>
+
                             </div>
                             <Typography variant="h6" color="textSecondary">
                                 {new Date(order.orderDate).toLocaleString('En-GB', {
@@ -275,6 +320,15 @@ function ListRender(props:{orders:orderData[],openCancel:(id:string)=>void,isFet
                         <Button onClick={()=>navigate(order.id)} variant="contained" color="primary">
                             Xem chi tiết
                         </Button>
+                        {(order.paymentMethod===2 && order.status!==0 && order.status!==5) &&
+                            <>
+                            {!order.isMomoPaid &&
+                                <Button variant="contained" loading={NEWTRANSACTION.isPending || props.momoLoading} onClick={()=>NEWTRANSACTION.mutate(order.id)} sx={{width:"151px"}} color="success">
+                                    Thanh toán
+                                </Button>
+                            }
+                            </>
+                        }
                     </CardActions>
                 </Card>
             ))}

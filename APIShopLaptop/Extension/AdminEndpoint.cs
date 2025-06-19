@@ -4,6 +4,7 @@ using APIShopLaptop.Feature.Admin.Category;
 using APIShopLaptop.Feature.Admin.DiscountCodes;
 using APIShopLaptop.Feature.Admin.ImageStorage;
 using APIShopLaptop.Feature.Admin.Orders;
+using APIShopLaptop.Feature.Admin.Orders.Momo;
 using APIShopLaptop.Feature.Admin.Products;
 using APIShopLaptop.Feature.Admin.Products.Category;
 using APIShopLaptop.Feature.Admin.Products.Compatibility;
@@ -62,8 +63,10 @@ namespace APIShopLaptop.Extension {
             GetOrder.MapEndpoint(app);
             GetOrders.MapEndpoint(app);
             UpdateOrderStatus.MapEndpoint(app);
+            ConfirmMomoOrder.MapEndpoint(app);
+            GetTransactions.MapEndpoint(app);
         }
-        private static void AddCateroryFeature(this WebApplication app) {
+        private static void AddCategoryFeature(this WebApplication app) {
             GetCategory.MapEndpoint(app);
         }
         private static void AddSpecificationFeature(this WebApplication app) {
@@ -86,7 +89,7 @@ namespace APIShopLaptop.Extension {
             AddDiscountCodeFeature(app);
             AddProductFeature(app);
             AddOrderFeature(app);
-            AddCateroryFeature(app);
+            AddCategoryFeature(app);
             AddAccountFeature(app);
             AddSpecificationFeature(app);
         }

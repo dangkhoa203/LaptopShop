@@ -6,6 +6,7 @@ import CartPage from "./Cart/CartPage.tsx";
 import CreateOrderPage from "./Order/CreateOrderPage.tsx";
 import OrderHistory from "./Order/OrderHistory.tsx";
 import OrderDetail from "./Order/OrderDetail.tsx";
+import MomoConfirmPage from "./Order/MomoConfirmPage.tsx";
 
 export default function RouteComponent(){
     return (
@@ -19,6 +20,7 @@ export default function RouteComponent(){
                     <Route path="" element={<OrderHistory/> }></Route>
                     <Route path=":id" element={<OrderDetail/>}></Route>
                 </Route>
+                <Route path="Momo" element={<MomoConfirmPage></MomoConfirmPage>}></Route>
             </Route>
         </Routes>
     )

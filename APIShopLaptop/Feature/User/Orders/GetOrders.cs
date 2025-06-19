@@ -7,7 +7,7 @@ using APIShopLaptop.Model.Enum;
 
 namespace APIShopLaptop.Feature.User.Orders {
     public class GetOrders:IEndpoint {
-        public record OrderDTO(string Id,DateTime OrderDate,float Value,ORDERSTATUS Status,List<string> DetailId);
+        public record OrderDTO(string Id,DateTime OrderDate,float Value,ORDERSTATUS Status,List<string> DetailId,bool IsMomoPaid,PAYMENTMETHOD PaymentMethod);
         public record Response(bool Success, List<OrderDTO> Data, string ErrorMessage);
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapGet("/api/Orders", Handler).WithTags("Order");
@@ -18,6 +18,8 @@ namespace APIShopLaptop.Feature.User.Orders {
                 var Order = await context.Users
                     .Include(u => u.Orders)
                         .ThenInclude(u => u.Details)
+                    .Include(u => u.Orders)
+                        .ThenInclude(u=>u.MomoTransaction)
                     .Where(u => u.UserName == User.Identity.Name)
                     .Select(u => u.Orders)
                     .FirstOrDefaultAsync();
@@ -27,7 +29,9 @@ namespace APIShopLaptop.Feature.User.Orders {
                         o.DateOfOrder,
                         o.Value,
                         o.Status,
-                        o.Details.Select(d => d.ProductId).ToList()
+                        o.Details.Select(d => d.ProductId).ToList(),
+                        o.MomoTransaction==null ? false : o.MomoTransaction.IsPaid,
+                        o.PaymentMethod
                     )).ToList();
                 return Results.Ok(new Response(true, Data, ""));
             }

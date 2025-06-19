@@ -12,6 +12,7 @@ import ProductList from "./SanPham/ProductList.tsx";
 import UpdateProductPage from "./SanPham/Update/UpdateProductPage.tsx";
 import Order from "./Order/Order.tsx";
 import OrderDetail from "./Order/OrderDetail.tsx";
+import Transaction from "./Transaction/Transaction.tsx";
 
 export default function RouteComponent(){
     return (
@@ -31,6 +32,7 @@ export default function RouteComponent(){
                 <Route path="HangSanXuat" element={<Brand/> }></Route>
                 <Route path="MaGiamGia" element={<DiscountCode/> }></Route>
                 <Route path="ThongSo" element={<Specification/> }></Route>
+                <Route path="ThanhToan" element={<Transaction/> }></Route>
             </Route>
             <Route path="Login" element={<AdminLogin/>}></Route>
         </Routes>

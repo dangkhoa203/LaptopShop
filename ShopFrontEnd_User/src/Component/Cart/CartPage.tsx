@@ -23,7 +23,7 @@ export default function CartPage(){
         <Container maxWidth="lg">
             <Grid container sx={{padding:"10px"}} spacing={2} >
                 <Grid size={{xs:12,sm:12,md:12,lg:9}}>
-                    <Paper sx={{padding:"10px",maxHeight:"580px",overflowY:"auto"}} elevation={12}>
+                    <Paper sx={{padding:"10px",maxHeight:"480px",overflowY:"auto"}} elevation={12}>
                         {cartItems.length===0 &&
                         <>
                         Chưa có sản phẩm trong giỏ hàng

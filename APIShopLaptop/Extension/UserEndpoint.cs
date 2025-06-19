@@ -6,6 +6,7 @@ using APIShopLaptop.Feature.User.Cart;
 using APIShopLaptop.Feature.User.Category;
 using APIShopLaptop.Feature.User.Caterory;
 using APIShopLaptop.Feature.User.Orders;
+using APIShopLaptop.Feature.User.Orders.MoMo;
 using APIShopLaptop.Feature.User.Products;
 using APIShopLaptop.Feature.User.UserAccount;
 using APIShopLaptop.Feature.User.UserAccount.ChangeEmail;
@@ -35,6 +36,8 @@ namespace APIShopLaptop.Extension {
             CancelOrder.MapEndpoint(app);
             Feature.User.Orders.GetOrders.MapEndpoint(app);
             Feature.User.Orders.GetOrder.MapEndpoint(app);
+            CreateNewMomoTransaction.MapEndpoint(app);
+            ConfirmMomoTransaction.MapEndpoint(app);
         }
         private static void AddUserAccountFeature(this WebApplication app) {
             Login.MapEndpoint(app);

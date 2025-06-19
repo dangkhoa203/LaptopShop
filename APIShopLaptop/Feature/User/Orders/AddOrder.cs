@@ -1,5 +1,6 @@
 ﻿using APIShopLaptop.Data;
 using APIShopLaptop.Endpoint;
+using APIShopLaptop.Middleware.Momo;
 using APIShopLaptop.Model.Entity.Order_Related;
 using APIShopLaptop.Model.Entity.Product_Related;
 using APIShopLaptop.Model.Enum;
@@ -7,12 +8,13 @@ using FluentValidation;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using NanoidDotNet;
 using System.Security.Claims;
 
 namespace APIShopLaptop.Feature.User.Orders {
     public class AddOrder:IEndpoint {
         public record Request(string Receiver,string PhoneNumber,string Address,PAYMENTMETHOD PaymentMethod);
-        public record Response(bool Success, string ErrorMessage, ValidationResult? ValidationError);
+        public record Response(bool Success, string ErrorMessage, ValidationResult? ValidationError,string data);
         public sealed class Validator : AbstractValidator<Request> {
             public Validator() {
                 RuleFor(r => r.PhoneNumber).Length(10).WithMessage("Số điện thoại không phù hợp");
@@ -23,11 +25,11 @@ namespace APIShopLaptop.Feature.User.Orders {
             app.MapPost("/api/Orders", Handler).WithTags("Orders");
         }
 
-        private static async Task<IResult> Handler([FromBody] Request request, ApplicationDBContext context, ClaimsPrincipal User) {
+        private static async Task<IResult> Handler([FromBody] Request request, ApplicationDBContext context, MoMoService moMoService, ClaimsPrincipal User) {
             var Validator = new Validator();
             var ValidatedResult = Validator.Validate(request);
             if (!ValidatedResult.IsValid) {
-                return Results.BadRequest(new Response(false, "Lỗi xảy ra", ValidatedResult));
+                return Results.BadRequest(new Response(false, "Lỗi xảy ra", ValidatedResult,""));
             }
 
             var Cart = await context.Users
@@ -39,7 +41,7 @@ namespace APIShopLaptop.Feature.User.Orders {
                      .FirstOrDefaultAsync();
             var account = await context.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
             if (Cart.CartProducts.Any(p => p.Quantity > p.ProductNavigation.Quantity)) {
-                return Results.BadRequest(new Response(false,"Lỗi thực hiện!",ValidatedResult));
+                return Results.BadRequest(new Response(false,"Lỗi thực hiện!",ValidatedResult, ""));
             }
             var Details = new List<OrderDetail>();
             var Order = new Order() {
@@ -64,11 +66,34 @@ namespace APIShopLaptop.Feature.User.Orders {
                 context.CartProducts.Remove(product);
             }
             Order.Details = Details;
-            await context.Orders.AddAsync(Order);
-            if (await context.SaveChangesAsync() > 0) {
-                return Results.Ok(new Response(true, "", ValidatedResult));
+            if (Order.PaymentMethod == PAYMENTMETHOD.BANK) {
+                Order.NoteFromOrder =   "Chuyển khoản vào:\t" +
+                                        "VietComBank-1010101010\t" +
+                                        "AGBank-2020202020\t" +
+                                        $"Với nội dung: {Order.Id}-{Order.User.UserName}-TRA TIEN";
             }
-            return Results.BadRequest(new Response(false,"Lỗi thực hiện!",ValidatedResult));
+            if (Order.PaymentMethod == PAYMENTMETHOD.MOMO) {
+                var requestId = Order.Id + Nanoid.Generate(Nanoid.Alphabets.UppercaseLettersAndDigits, 6);
+                var Transaction = new MomoTransaction() {
+                    IsPaid = false,
+                    Order = Order,
+                    OrderId = Order.Id,
+                    RequestId = requestId,
+                };
+                Order.MomoTransaction = Transaction;
+            }
+            await context.Orders.AddAsync(Order);
+
+            if (await context.SaveChangesAsync() > 0) {
+                if (Order.PaymentMethod == PAYMENTMETHOD.MOMO) {
+                    var response = await moMoService.CreatePaymentAsync(Order.MomoTransaction.RequestId, $"{Order.Receiver},{Order.Address},{Order.PhoneNumber}", Order.Value,Order.MomoTransaction.RequestId);
+                    if (response.ErrorCode == 0) {
+                        return Results.Ok(new Response(true, "", ValidatedResult, response.PayUrl));
+                    }
+                }
+                return Results.Ok(new Response(true, "", ValidatedResult, ""));
+            }
+            return Results.BadRequest(new Response(false,"Lỗi thực hiện!",ValidatedResult, ""));
         }
     }
 }

@@ -56,553 +56,485 @@ namespace APIShopLaptop.Data {
 
                 List<MainCaterory> mainCaterories = [
                     new MainCaterory {
-                        Id=$"DM-{++count}",
+                        Id=$"LAPTOP",
                         Name="Laptop",
                         Description="Laptop",
                         SubCaterories= [
                             new SubCaterory {
-                                Id=$"DM-{count}-1",
+                                Id=$"LAPTOP_VANPHONG",
                                 Name="Văn phòng",
                             },
                             new SubCaterory {
-                                Id=$"DM-{count}-2",
+                                Id=$"LAPTOP_GAMING",
                                Name="Gaming",
                             },
                         ]
                     },
                     new MainCaterory {
-                        Id=$"DM-{++count}",
+                        Id=$"MACBOOK",
                         Name="Macbook",
                         Description="Apple Macbook",
                         SubCaterories= [
                             new SubCaterory {
-                                Id=$"DM-{count}-1",
+                                Id=$"MACBOOK_13",
                                 Name="Macbook Air 13 inch",
                             },
                             new SubCaterory {
-                                Id=$"DM-{count}-2",
+                                Id=$"MACBOOK_14",
                                Name="Macbook Air 14 inch",
                             },
                         ]
                     },
 
                     new MainCaterory {
-                        Id=$"DM-{++count}",
+                        Id=$"LAPTOP_ACER",
                         Name="Laptop Acer",
                         Description="Acer laptop",
                         SubCaterories= [
                             new SubCaterory {
-                                Id=$"DM-{count}-1",
+                                Id=$"LAPTOP_ACER_ASPIRE",
                                 Name="Aspire",
                             },
                             new SubCaterory {
-                                Id=$"DM-{count}-2",
+                                Id=$"LAPTOP_ACER_SWIFT",
                                Name="Swift",
                             }
                         ]
                     },
 
                     new MainCaterory {
-                        Id=$"DM-{++count}",
+                        Id=$"LAPTOP_ASUS",
                         Name="Laptop Asus",
                         Description="Asus laptop",
                         SubCaterories= [
                             new SubCaterory {
-                                Id=$"DM-{count}-1",
+                                Id=$"LAPTOP_ACER_ZENBOOK",
                                 Name="Zenbook",
                             },
                             new SubCaterory {
-                                Id=$"DM-{count}-2",
+                                Id=$"LAPTOP_ACER_VIVOBOOK",
                                Name="Vivobook",
                             },
                         ]
                     },
 
                     new MainCaterory {
-                        Id=$"DM-{++count}",
+                        Id=$"LAPTOP_MSI",
                         Name="Laptop MSI",
                         Description="MSI laptop",
                         SubCaterories= [
                             new SubCaterory {
-                                Id=$"DM-{count}-1",
+                                Id=$"LAPTOP_MSI_MODERN",
                                 Name="Modern",
                             },
                             new SubCaterory {
-                                Id=$"DM-{count}-2",
+                                Id=$"LAPTOP_MSI_PRESTIGE",
                                Name="Prestige",
                             },
                         ]
                     },
 
                     new MainCaterory {
-                        Id=$"DM-{++count}",
+                        Id=$"LAPTOP_LENOVO",
                         Name="Laptop Lenovo",
                         Description="Asus laptop",
                         SubCaterories= [
                             new SubCaterory {
-                                Id=$"DM-{count}-1",
+                                Id=$"LAPTOP_LENOVO_THINKPAD",
                                 Name="Thinkpad",
                             },
                             new SubCaterory {
-                                Id=$"DM-{count}-2",
+                                Id=$"LAPTOP_LENOVO_YOGA",
                                Name="Yoga",
                             },
                             new SubCaterory {
-                                Id=$"DM-{count}-3",
+                                Id=$"LAPTOP_LENOVO_IDEAPAD",
                                Name="Ideapad",
                             },
                             new SubCaterory {
-                                Id=$"DM-{count}-4",
+                                Id=$"LAPTOP_LENOVO_THINKBOOK",
                                Name="Thinkbook",
                             },
                         ]
                     },
 
                     new MainCaterory {
-                        Id=$"DM-{++count}",
+                        Id=$"LAPTOP_DELL",
                         Name="Laptop Dell",
                         Description="Dell laptop",
                         SubCaterories= [
                             new SubCaterory {
-                                Id=$"DM-{count}-1",
+                                Id=$"LAPTOP_DELL_INSPRIRON",
                                 Name="Inspriron",
                             },
                             new SubCaterory {
-                                Id=$"DM-{count}-2",
+                                Id=$"LAPTOP_DELL_VOSTRO",
                                Name="Vostro",
                             },
                             new SubCaterory {
-                                Id=$"DM-{count}-3",
+                                Id=$"LAPTOP_DELL_LATITUDE",
                                Name="Latitude",
                             },
                             new SubCaterory {
-                                Id=$"DM-{count}-4",
+                                Id=$"LAPTOP_DELL_XPS",
                                Name="XPS",
                             },
                         ]
                     },
 
                     new MainCaterory {
-                        Id=$"DM-{++count}",
+                        Id=$"LAPTOP_HP",
                         Name="Laptop HP",
                         Description="HP laptop",
                         SubCaterories= [
                             new SubCaterory {
-                                Id=$"DM-{count}-1",
+                                Id=$"LAPTOP_HP_PAVILION",
                                 Name="Pavilion",
                             },
                             new SubCaterory {
-                                Id=$"DM-{count}-2",
+                                Id=$"LAPTOP_HP_ENVY",
                                Name="Envy",
                             },
                             new SubCaterory {
-                                Id=$"DM-{count}-3",
+                                Id=$"LAPTOP_HP_ELITEBOOK",
                                Name="Elitebook",
                             },
                         ]
                     },
 
                     new MainCaterory {
-                        Id=$"DM-{++count}",
+                        Id=$"GAMING_ACER",
                         Name="Gaming Acer",
                         Description="Acer gaming laptop",
                         SubCaterories= [
                             new SubCaterory {
-                                Id=$"DM-{count}-1",
+                                Id=$"GAMING_ACER_NITRO",
                                 Name="Nitro",
                             },
                             new SubCaterory {
-                                Id=$"DM-{count}-2",
+                                Id=$"GAMING_ACER_PREDATOR",
                                Name="Predator",
                             },
                         ]
                     },
 
                     new MainCaterory {
-                        Id=$"DM-{++count}",
+                        Id=$"GAMING_ASUS",
                         Name="Gaming Asus",
                         Description="Asus gaming laptop",
                         SubCaterories= [
                             new SubCaterory {
-                                Id=$"DM-{count}-1",
+                                Id=$"GAMING_ASUS_ROG",
                                 Name="ROG",
                             },
                             new SubCaterory {
-                                Id=$"DM-{count}-2",
+                                Id=$"GAMING_ASUS_TUF",
                                Name="TUF",
                             },
                             new SubCaterory {
-                                Id=$"DM-{count}-3",
+                                Id=$"GAMING_ASUS_ZEPHYRUS",
                                Name="Zephyrus",
                             },
                         ]
                     },
 
                     new MainCaterory {
-                        Id=$"DM-{++count}",
+                        Id=$"GAMING_MSI",
                         Name="Gaming MSI",
                         Description="MSI gaming laptop",
                         SubCaterories= [
                             new SubCaterory {
-                                Id=$"DM-{count}-1",
+                                Id=$"GAMING_MSI_THIN",
                                 Name="Thin",
                             },
                             new SubCaterory {
-                                Id=$"DM-{count}-2",
+                                Id=$"GAMING_MSI_RAIDER",
                                Name="Raider",
                             },
                             new SubCaterory {
-                                Id=$"DM-{count}-3",
+                                Id=$"GAMING_MSI_KATANA",
                                Name="Katana",
                             },
                         ]
                     },
 
                     new MainCaterory {
-                        Id=$"DM-{++count}",
+                        Id=$"GAMING_LENOVO",
                         Name="Gaming Lenovo",
                         Description="Lenovo gaming laptop",
                         SubCaterories= [
                             new SubCaterory {
-                                Id=$"DM-{count}-1",
+                                Id=$"GAMING_LENOVO_LEGION",
                                 Name="Legion",
                             },
                             new SubCaterory {
-                                Id=$"DM-{count}-2",
+                                Id=$"GAMING_LENOVO_LOQ",
                                Name="LOQ",
-                            },
-                            new SubCaterory {
-                                Id=$"DM-{count}-3",
-                               Name="Katana",
                             },
                         ]
                     },
 
                     new MainCaterory {
-                        Id=$"DM-{++count}",
+                        Id=$"GAMING_DELL",
                         Name="Gaming Dell",
                         Description="Dell gaming laptop",
                         SubCaterories= [
                             new SubCaterory {
-                                Id=$"DM-{count}-1",
+                                Id=$"GAMING_DELL_GSERIES",
                                 Name="Dell Gaming G",
                             },
                             new SubCaterory {
-                                Id=$"DM-{count}-2",
+                                Id=$"GAMING_DELL_ALIENWARE",
                                Name="Alienware",
                             },
                         ]
                     },
 
                     new MainCaterory {
-                        Id=$"DM-{++count}",
+                        Id=$"GAMING_HP",
                         Name="Gaming HP",
                         Description="HP gaming laptop",
                         SubCaterories= [
                             new SubCaterory {
-                                Id=$"DM-{count}-1",
+                                Id=$"GAMING_HP_OMEN",
                                 Name="Omen",
                             },
                             new SubCaterory {
-                                Id=$"DM-{count}-2",
+                                Id=$"GAMING_HP_VICTUS",
                                Name="Victus",
                             },
                         ]
                     },
 
+                    
                     new MainCaterory {
-                        Id=$"DM-{++count}",
-                        Name="Linh kiện Laptop",
-                        Description="Linh kiện cho laptop",
-                        SubCaterories= [
-                            new SubCaterory {
-                                Id=$"DM-{count}-1",
-                                Name="RAM",
-                            },
-                            new SubCaterory {
-                                Id=$"DM-{count}-2",
-                               Name="SSD",
-                            },
-                            new SubCaterory {
-                                Id=$"DM-{count}-3",
-                               Name="Ổ cứng di động",
-                            },
-                        ]
-                    },
-
-                    new MainCaterory {
-                        Id=$"DM-{++count}",
+                        Id=$"CARD",
                         Name="Card đồ họa",
                         Description="VGA",
                         SubCaterories= [
                             new SubCaterory {
-                                Id=$"DM-{count}-1",
+                                Id=$"CARD_NVIDIA",
                                 Name="NVDIA",
                             },
                             new SubCaterory {
-                                Id=$"DM-{count}-2",
+                                Id=$"CARD_AMD",
                                Name="AMD",
                             },
                             new SubCaterory {
-                                Id=$"DM-{count}-3",
+                                Id=$"CARD_INTEL",
                                Name="Intel",
                             },
                         ]
                     },
 
                     new MainCaterory {
-                        Id=$"DM-{++count}",
+                        Id=$"MOTHERBOARD",
                         Name="Bo mạch",
                         Description="Motherboard",
                         SubCaterories= [
                             new SubCaterory {
-                                Id=$"DM-{count}-1",
+                                Id=$"MOTHERBOARD_INTEL",
                                 Name="Intel",
                             },
                             new SubCaterory {
-                                Id=$"DM-{count}-2",
+                                Id=$"MOTHERBOARD_AMD",
                                Name="AMD",
                             },
                             new SubCaterory {
-                                Id=$"DM-{count}-3",
+                                Id=$"MOTHERBOARD_ATX",
                                Name="ATX",
                             },
                             new SubCaterory {
-                                Id=$"DM-{count}-4",
+                                Id=$"MOTHERBOARD_MICROATX",
                                Name="Micro-ATX",
                             },
                             new SubCaterory {
-                                Id=$"DM-{count}-5",
+                                Id=$"DM-{count}-ITX",
                                Name="Micro-ITX",
                             },
                         ]
                     },
 
                     new MainCaterory {
-                        Id=$"DM-{++count}",
+                        Id=$"CPU",
                         Name="CPU",
-                        Description="Motherboard",
+                        Description="CPU",
                         SubCaterories= [
                             new SubCaterory {
-                                Id=$"DM-{count}-1",
+                                Id=$"CPU_INTEL",
                                 Name="Intel",
                             },
                             new SubCaterory {
-                                Id=$"DM-{count}-2",
+                                Id=$"CPU_AMD",
                                Name="AMD",
                             },
                         ]
                     },
 
                     new MainCaterory {
-                        Id=$"DM-{++count}",
+                        Id=$"CASE",
                         Name="Case",
                         Description="Case máy tính",
                         SubCaterories= [
                             new SubCaterory {
-                                Id=$"DM-{count}-1",
+                                Id=$"CASE_MINIITX",
                                 Name="Mini-ITX",
                             },
                             new SubCaterory {
-                                Id=$"DM-{count}-2",
+                                Id=$"CASE_MICROATX",
                                Name="Micro-ATX",
                             },
                             new SubCaterory {
-                                Id=$"DM-{count}-3",
+                                Id=$"CASE_TOWER",
                                Name="Tower",
                             },
                         ]
                     },
 
                     new MainCaterory {
-                        Id=$"DM-{++count}",
+                        Id=$"PSU",
                         Name="Nguồn",
                         Description="Nguồn máy tính",
                         SubCaterories= [
                             new SubCaterory {
-                                Id=$"DM-{count}-1",
+                                Id=$"PSU_100W",
                                 Name="Từ 100W - 300W",
                             },
                             new SubCaterory {
-                                Id=$"DM-{count}-2",
+                                Id=$"PSU_300W",
                                Name="Từ 300W - 500W",
                             },
                             new SubCaterory {
-                                Id=$"DM-{count}-3",
-                               Name="Từ 500W - 600W",
+                                Id=$"PSU_500W",
+                               Name="Từ 500W - 800W",
                             },
                             new SubCaterory {
-                                Id=$"DM-{count}-4",
-                               Name="Từ 600W - 800W",
-                            },
-                            new SubCaterory {
-                                Id=$"DM-{count}-5",
+                                Id=$"PSU_800W",
                                Name="800W trở lên",
                             },
                         ]
                     },
 
-                    new MainCaterory {
-                        Id=$"DM-{++count}",
-                        Name="Nguồn",
-                        Description="Nguồn máy tính",
-                        SubCaterories= [
-                            new SubCaterory {
-                                Id=$"DM-{count}-1",
-                                Name="Từ 100W - 300W",
-                            },
-                            new SubCaterory {
-                                Id=$"DM-{count}-2",
-                               Name="Từ 300W - 500W",
-                            },
-                            new SubCaterory {
-                                Id=$"DM-{count}-3",
-                               Name="Từ 500W - 600W",
-                            },
-                            new SubCaterory {
-                                Id=$"DM-{count}-4",
-                               Name="Từ 600W - 800W",
-                            },
-                            new SubCaterory {
-                                Id=$"DM-{count}-5",
-                               Name="800W trở lên",
-                            },
-                        ]
-                    },
+                   
 
                     new MainCaterory {
-                        Id=$"DM-{++count}",
+                        Id=$"RAM",
                         Name="RAM",
                         Description="RAM máy tính",
                         SubCaterories= [
                             new SubCaterory {
-                                Id=$"DM-{count}-1",
+                                Id=$"RAM_DDR4",
                                 Name="DDR4",
                             },
                             new SubCaterory {
-                                Id=$"DM-{count}-2",
+                                Id=$"RAM_DDR5",
                                Name="DDR5",
                             },
                             new SubCaterory {
-                                Id=$"DM-{count}-3",
+                                Id=$"RAM_4GB",
                                Name="4GB",
                             },
                             new SubCaterory {
-                                Id=$"DM-{count}-4",
+                                Id=$"RAM_8GB",
                                Name="8GB",
                             },
                             new SubCaterory {
-                                Id=$"DM-{count}-5",
+                                Id=$"RAM_16GB",
                                Name="16GB",
                             },
                             new SubCaterory {
-                                Id=$"DM-{count}-6",
+                                Id=$"RAM_32GB",
                                Name="32GB",
                             },
                         ]
                     },
 
-                    new MainCaterory {
-                        Id=$"DM-{++count}",
-                        Name="RAM",
-                        Description="RAM máy tính",
-                        SubCaterories= [
-                            new SubCaterory {
-                                Id=$"DM-{count}-1",
-                                Name="DDR4",
-                            },
-                            new SubCaterory {
-                                Id=$"DM-{count}-2",
-                               Name="DDR5",
-                            },
-                            new SubCaterory {
-                                Id=$"DM-{count}-3",
-                               Name="4GB",
-                            },
-                            new SubCaterory {
-                                Id=$"DM-{count}-4",
-                               Name="8GB",
-                            },
-                            new SubCaterory {
-                                Id=$"DM-{count}-5",
-                               Name="16GB",
-                            },
-                            new SubCaterory {
-                                Id=$"DM-{count}-6",
-                               Name="32GB",
-                            },
-                        ]
-                    },
 
                     new MainCaterory {
-                        Id=$"DM-{++count}",
+                        Id=$"OCUNG",
                         Name="Ổ cứng",
                         Description="Ổ cứng máy tính",
                         SubCaterories= [
                             new SubCaterory {
-                                Id=$"DM-{count}-1",
+                                Id=$"OCUNG_SSD",
                                 Name="SSD",
                             },
                             new SubCaterory {
-                                Id=$"DM-{count}-2",
+                                Id=$"OCUNG_HDD",
                                Name="HDD",
+                            },
+                            new SubCaterory {
+                                Id=$"OCUNG_NVME",
+                               Name="NVME",
+                            },
+                            new SubCaterory {
+                                Id=$"OCUNG_M2SATA",
+                               Name="M.2 SATA",
+                            },
+                            new SubCaterory {
+                                Id=$"OCUNG_SATA",
+                               Name="SATA",
                             },
                         ]
                     },
 
                     new MainCaterory {
-                        Id=$"DM-{++count}",
+                        Id=$"MANHINH",
                         Name="Màn hình",
                         Description="Màn hình máy tính",
                         SubCaterories= [
                             new SubCaterory {
-                                Id=$"DM-{count}-1",
+                                Id=$"MANHINH_60HZ",
                                 Name="60Hz",
                             },
                             new SubCaterory {
-                                Id=$"DM-{count}-2",
-                               Name="120Hz",
+                                Id=$"MANHINH_120HZ",
+                               Name="144Hz",
                             },
                             new SubCaterory {
-                                Id=$"DM-{count}-3",
+                                Id=$"MANHINH_240HZ",
+                               Name="240HZ",
+                            },
+                            new SubCaterory {
+                                Id=$"MANHINH_1080P",
                                Name="1080p",
                             },
                             new SubCaterory {
-                                Id=$"DM-{count}-4",
+                                Id=$"MONITOR_2K",
                                Name="2K",
                             },
                             new SubCaterory {
-                                Id=$"DM-{count}-5",
+                                Id=$"MONITOR_4K",
                                Name="4K",
                             },
                         ]
                     },
                     new MainCaterory {
-                        Id=$"DM-{++count}",
+                        Id=$"pPC",
                         Name="PC",
                         Description="Máy tính",
                         SubCaterories= [
                             new SubCaterory {
-                                Id=$"DM-{count}-1",
+                                Id=$"PC_VANPHONG",
                                 Name="Văn phòng",
                             },
                             new SubCaterory {
-                                Id=$"DM-{count}-2",
+                                Id=$"PC_GAMING",
                                Name="Gaming",
                             },
                         ]
                     },
                     new MainCaterory {
-                        Id=$"DM-DB",
+                        Id=$"DB",
                         Name="Đặt biệt",
                         Description="",
                         SubCaterories= [
                             new SubCaterory {
-                                Id=$"DM-DB-Sale",
+                                Id=$"SALE",
                                 Name="Sale",
                             },
                             new SubCaterory {
-                                Id=$"DM-DB-Notable",
+                                Id=$"NOIBAT",
                                Name="Nổi bật",
                             },
                         ]

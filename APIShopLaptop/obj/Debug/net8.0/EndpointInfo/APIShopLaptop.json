@@ -629,6 +629,82 @@
         }
       }
     },
+    "/api/Admin/Orders/{id}": {
+      "get": {
+        "tags": [
+          "Admin_Orders"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Admin/Orders": {
+      "get": {
+        "tags": [
+          "Admin_Orders"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Admin_Orders"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/APIShopLaptop.Feature.Admin.Orders.UpdateOrderStatus.Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Admin/Orders/Confirm": {
+      "put": {
+        "tags": [
+          "Admin_Orders"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/APIShopLaptop.Feature.Admin.Orders.ConfirmMomoOrder.Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Admin/Product/{id}/Thumbnail": {
       "put": {
         "tags": [
@@ -1299,6 +1375,18 @@
         }
       }
     },
+    "/api/Admin/Transactions": {
+      "get": {
+        "tags": [
+          "Admin_Transactions"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Cart": {
       "post": {
         "tags": [
@@ -1613,60 +1701,6 @@
         }
       }
     },
-    "/api/Admin/Orders/{id}": {
-      "get": {
-        "tags": [
-          "Orders"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Admin/Orders": {
-      "get": {
-        "tags": [
-          "Orders"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Orders"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/APIShopLaptop.Feature.Admin.Orders.UpdateOrderStatus.Request"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/api/Orders/Cancel": {
       "put": {
         "tags": [
@@ -1704,6 +1738,50 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Orders/Momo": {
+      "post": {
+        "tags": [
+          "Orders"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/APIShopLaptop.Feature.User.Orders.MoMo.CreateNewMomoTransaction.Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Orders/Momo/Confirm": {
+      "post": {
+        "tags": [
+          "Orders"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/APIShopLaptop.Feature.User.Orders.MoMo.ConfirmMomoTransaction.Request"
+              }
+            }
+          },
+          "required": true
+        },
         "responses": {
           "200": {
             "description": "OK"
@@ -1866,6 +1944,16 @@
         "type": "object",
         "properties": {
           "name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "APIShopLaptop.Feature.Admin.Orders.ConfirmMomoOrder.Request": {
+        "type": "object",
+        "properties": {
+          "orderId": {
             "type": "string",
             "nullable": true
           }
@@ -2153,6 +2241,34 @@
         "type": "object",
         "properties": {
           "id": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "APIShopLaptop.Feature.User.Orders.MoMo.ConfirmMomoTransaction.Request": {
+        "type": "object",
+        "properties": {
+          "orderId": {
+            "type": "string",
+            "nullable": true
+          },
+          "requestId": {
+            "type": "string",
+            "nullable": true
+          },
+          "transactionId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "APIShopLaptop.Feature.User.Orders.MoMo.CreateNewMomoTransaction.Request": {
+        "type": "object",
+        "properties": {
+          "orderId": {
             "type": "string",
             "nullable": true
           }

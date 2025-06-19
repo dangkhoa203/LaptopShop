@@ -781,7 +781,7 @@
       }
     ],
     "Tags": [
-      "Orders"
+      "Admin_Orders"
     ]
   },
   {
@@ -806,7 +806,7 @@
       }
     ],
     "Tags": [
-      "Orders"
+      "Admin_Orders"
     ]
   },
   {
@@ -831,7 +831,32 @@
       }
     ],
     "Tags": [
-      "Orders"
+      "Admin_Orders"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.Admin.Orders.ConfirmMomoOrder",
+    "Method": "Handler",
+    "RelativePath": "api/Admin/Orders/Confirm",
+    "HttpMethod": "PUT",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "APIShopLaptop.Feature.Admin.Orders.ConfirmMomoOrder\u002BRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Admin_Orders"
     ]
   },
   {
@@ -1458,6 +1483,25 @@
     ]
   },
   {
+    "ContainingType": "APIShopLaptop.Feature.Admin.Orders.Momo.GetTransactions",
+    "Method": "Handler",
+    "RelativePath": "api/Admin/Transactions",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Admin_Transactions"
+    ]
+  },
+  {
     "ContainingType": "APIShopLaptop.Feature.User.UserAppUser.ChangeEmail.ChangeEmail",
     "Method": "Handler",
     "RelativePath": "api/AppUser/EmailChange/{userId}/{newEmail}/{code}",
@@ -1776,6 +1820,56 @@
       {
         "Name": "request",
         "Type": "APIShopLaptop.Feature.User.Orders.CancelOrder\u002BRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Orders"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.Orders.MoMo.CreateNewMomoTransaction",
+    "Method": "Handler",
+    "RelativePath": "api/Orders/Momo",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "APIShopLaptop.Feature.User.Orders.MoMo.CreateNewMomoTransaction\u002BRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Orders"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.Orders.MoMo.ConfirmMomoTransaction",
+    "Method": "Handler",
+    "RelativePath": "api/Orders/Momo/Confirm",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "APIShopLaptop.Feature.User.Orders.MoMo.ConfirmMomoTransaction\u002BRequest",
         "IsRequired": true
       }
     ],

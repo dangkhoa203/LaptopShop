@@ -49,6 +49,7 @@ namespace APIShopLaptop.Feature.User.UserAccount {
                     Email = request.Email,
                     UserName = request.UserName,
                     Cart=new Model.Entity.Cart_Related.Cart(),
+                    
                 };
                 var Result = await userManager.CreateAsync(account, request.Password);
 

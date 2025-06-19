@@ -27,7 +27,7 @@ namespace APIShopLaptop.Feature.Admin.Products.Compatibility {
                     SpecificationNavigation = Specification,
                     Value = request.Value,
                 };
-                await context.CompatibilityDatas.AddAsync(Data);
+                await context.CompatibilityData.AddAsync(Data);
                 if (await context.SaveChangesAsync() > 0) {
                     return Results.Ok(new Response(true, ""));
                 }

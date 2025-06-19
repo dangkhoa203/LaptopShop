@@ -1,5 +1,6 @@
 ﻿using APIShopLaptop.Data;
 using APIShopLaptop.Endpoint;
+using APIShopLaptop.Model.Enum;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -23,6 +24,7 @@ namespace APIShopLaptop.Feature.User.Category {
                 var Products = context.CateroryItems
                    .Include(i => i.ProductNavigation)
                    .Where(i => subCategory.Any(c => c == i.CateroryId))
+                   .Where(i=>i.ProductNavigation.Status==PRODUCTSTATUS.ACTIVE)
                    .GroupBy(i => i.ProductId).ToList();
                    //.Where(i => !request.SortByBrand.Any() || request.SortByBrand.Any(b => b == i.ProductNavigation.Brand.Tag))
                    

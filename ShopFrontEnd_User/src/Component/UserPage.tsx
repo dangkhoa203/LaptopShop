@@ -15,9 +15,8 @@ import { styled, alpha } from '@mui/material/styles';
 import {
     Alert,
     Badge, ButtonGroup, Divider,
-    Grid, InputBase,
-    List, ListItemButton,
-    ListItemText, MenuItem, Slide, Snackbar, ThemeProvider, useScrollTrigger
+    InputBase,
+    MenuItem, Slide, Snackbar, ThemeProvider, useScrollTrigger
 } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingBasketOutlinedIcon from '@mui/icons-material/ShoppingBasketOutlined';
@@ -31,6 +30,7 @@ import {useMutation} from "@tanstack/react-query";
 import {Outlet, useNavigate} from 'react-router';
 import {useCart} from "../State/Cart.ts";
 import {useAppError} from "../State/AppErrorState.ts";
+import CategoryList from "./CategoryList.tsx";
 
 export default function UserPage() {
     const navigate = useNavigate();
@@ -61,10 +61,7 @@ export default function UserPage() {
         setAnchorEl(null);
     };
 
-    const [categoryContent, setCategoryContent] = React.useState(1);
-    const handleCategory=(num:number)=>{
-        setCategoryContent(num);
-    }
+
     const userInfo=useUserInfo((state)=> state.user);
     const refetch=useUserInfo((state)=> state.reFetch);
     const [openLogin, setOpenLogin] = useState(false);
@@ -204,7 +201,7 @@ export default function UserPage() {
                                             anchorEl={anchorEl}
                                             open={open}
                                             onClose={handleClose}
-                                            onScrollCapture={handleClose}
+                                            sx={{maxHeight:"700px",overflowX:"auto"}}
                                             slotProps={{
                                                 list: {
                                                     'aria-labelledby': 'basic-button',
@@ -213,54 +210,7 @@ export default function UserPage() {
                                             disableScrollLock={true}
                                             elevation={20}
                                         >
-                                            <Grid container sx={{width:"800px"}} spacing={2}>
-                                                <Grid size={3} sx={{borderRight:"1px solid black"}}>
-                                                    <List
-                                                        sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
-                                                        component="nav"
-                                                    >
-                                                        <ListItemButton onMouseEnter={()=>handleCategory(1)}>
-                                                            <ListItemText primary="Laptop" />
-                                                        </ListItemButton>
-                                                        <ListItemButton onMouseEnter={()=>handleCategory(2)}>
-                                                            <ListItemText primary="PC" />
-                                                        </ListItemButton>
-                                                        <ListItemButton onMouseEnter={()=>handleCategory(3)}>
-                                                            <ListItemText primary="CPU" />
-                                                        </ListItemButton>
-                                                        <ListItemButton onMouseEnter={()=>handleCategory(4)}>
-                                                            <ListItemText primary="Motherboard" />
-                                                        </ListItemButton>
-                                                        <ListItemButton onMouseEnter={()=>handleCategory(5)}>
-                                                            <ListItemText primary="Card đồ họa" />
-                                                        </ListItemButton>
-                                                        <ListItemButton onMouseEnter={()=>handleCategory(6)}>
-                                                            <ListItemText primary="Nguồn" />
-                                                        </ListItemButton>
-                                                        <ListItemButton onMouseEnter={()=>handleCategory(7)}>
-                                                            <ListItemText primary="Màn hình" />
-                                                        </ListItemButton>
-                                                        <ListItemButton onMouseEnter={()=>handleCategory(8)}>
-                                                            <ListItemText primary="Case" />
-                                                        </ListItemButton>
-                                                        <ListItemButton onMouseEnter={()=>handleCategory(9)}>
-                                                            <ListItemText primary="Linh kiện" />
-                                                        </ListItemButton>
-                                                    </List>
-
-                                                </Grid>
-                                                <Grid size={9}>
-                                                    {categoryContent===1 && 1}
-                                                    {categoryContent===2 && 2}
-                                                    {categoryContent===3 && 3}
-                                                    {categoryContent===4 && 4}
-                                                    {categoryContent===5 && 5}
-                                                    {categoryContent===6 && 6}
-                                                    {categoryContent===7 && 7}
-                                                    {categoryContent===8 && 8}
-                                                    {categoryContent===9 && 9}
-                                                </Grid>
-                                            </Grid>
+                                            <CategoryList/>
                                         </Menu>
                                     </div>
                                     <Search>
@@ -418,7 +368,6 @@ function HideOnScroll(props: Props) {
     const { children } = props;
 
     const trigger = useScrollTrigger();
-    console.log(props.open)
     return (
         <Slide appear={false} direction="down" in={props.openUser!==null||props.open!==null || !trigger}>
             {children ?? <div />}

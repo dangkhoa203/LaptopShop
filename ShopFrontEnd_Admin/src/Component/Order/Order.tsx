@@ -17,6 +17,8 @@ type orderData={
     dateOfOrder: string,
     userName: string,
     status:number ,
+    isMomoPaid:boolean,
+    paymentMethod:number
 }
 export default function Order(){
     const [success, setSuccess] = useState(false);
@@ -90,6 +92,7 @@ export default function Order(){
                 return {
                     id:c.data.id,
                     status:c.data.status,
+                    paymentMethod:c.data.paymentMethod
                 }
             },
             sortable:false,
@@ -105,16 +108,23 @@ export default function Order(){
                     {params.value.status===1 &&
                         <>
                             <Divider orientation="vertical" variant="middle" flexItem />
-                            <Tooltip title="Xác nhận đơn hàng" placement="right">
-                                <Button loading={confirmLoading.includes(params.value.id)} color="warning"  onClick={()=>CONFIRM.mutate({id:params.value.id,status:2})}>Xác nhận</Button>
-                            </Tooltip>
+                            {params.value.paymentMethod==2 ?
+                                <Tooltip title="Xác nhận đơn hàng" placement="right">
+                                    <Button loading={confirmLoading.includes(params.value.id)} color="warning"  onClick={()=>CONFIRM.mutate(params.value.id)}>Xác nhận Momo</Button>
+                                </Tooltip>
+                                :
+                                <Tooltip title="Xác nhận đơn hàng" placement="right">
+                                    <Button loading={confirmLoading.includes(params.value.id)} color="warning"  onClick={()=>UPDATESTATUS.mutate({id:params.value.id,status:2})}>Xác nhận</Button>
+                                </Tooltip>
+                            }
+
                         </>
                     }
                     {params.value.status===2 &&
                         <>
                             <Divider orientation="vertical" variant="middle" flexItem />
                             <Tooltip title="Chuẩn bị đơn hàng" placement="right">
-                                <Button loading={confirmLoading.includes(params.value.id)} color="warning"  onClick={()=>CONFIRM.mutate({id:params.value.id,status:3})}>Chuẩn bị</Button>
+                                <Button loading={confirmLoading.includes(params.value.id)} color="warning"  onClick={()=>UPDATESTATUS.mutate({id:params.value.id,status:3})}>Chuẩn bị</Button>
                             </Tooltip>
                         </>
                     }
@@ -122,7 +132,7 @@ export default function Order(){
                         <>
                             <Divider orientation="vertical" variant="middle" flexItem />
                             <Tooltip title="Giao đơn hàng" placement="right">
-                                <Button loading={confirmLoading.includes(params.value.id)} color="warning"  onClick={()=>CONFIRM.mutate({id:params.value.id,status:4})}>Giao hàng</Button>
+                                <Button loading={confirmLoading.includes(params.value.id)} color="warning"  onClick={()=>UPDATESTATUS.mutate({id:params.value.id,status:4})}>Giao hàng</Button>
                             </Tooltip>
                         </>
                     }
@@ -130,7 +140,7 @@ export default function Order(){
                         <>
                             <Divider orientation="vertical" variant="middle" flexItem />
                             <Tooltip title="Hoàn thành đơn hàng" placement="right">
-                                <Button loading={confirmLoading.includes(params.value.id)} color="warning"  onClick={()=>CONFIRM.mutate({id:params.value.id,status:5})}>Hoàn thành</Button>
+                                <Button loading={confirmLoading.includes(params.value.id)} color="warning"  onClick={()=>UPDATESTATUS.mutate({id:params.value.id,status:5})}>Hoàn thành</Button>
                             </Tooltip>
                         </>
                     }
@@ -139,7 +149,7 @@ export default function Order(){
         },
     ]);
     const [confirmLoading, setConfirmLoading] = useState<string[]>([]);
-    const CONFIRM=useMutation({
+    const UPDATESTATUS=useMutation({
         mutationFn:async (info:{id: string, status: number})=>{
             setError("")
             setConfirmLoading([...confirmLoading,info.id])
@@ -159,6 +169,30 @@ export default function Order(){
             else {
                 setError(data.errorMessage)
                 }
+        }
+    })
+    const CONFIRM=useMutation({
+        mutationFn:async (id:string)=>{
+            setError("")
+            setConfirmLoading([...confirmLoading,id])
+            const response = await fetch(`https://localhost:7075/api/Admin/Orders/Confirm`, {
+                method: 'PUT',
+                headers: {'Content-Type': 'application/json'},
+                credentials: 'include',
+                body: JSON.stringify({
+                    orderId:id,
+                })
+            })
+            setConfirmLoading(confirmLoading.filter(i=>i!==id));
+            return await response.json();
+        },
+        onSuccess:(data:Response)=>{
+            if(data.success){
+                refetch()
+            }
+            else {
+                setError(data.errorMessage)
+            }
         }
     })
     const openError=error.length>0

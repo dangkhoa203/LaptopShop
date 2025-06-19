@@ -1,8 +1,15 @@
 ﻿using System.Net.Mail;
 using System.Net;
+using APIShopLaptop.Middleware.Config;
+using Microsoft.Extensions.Options;
 
 namespace APIShopLaptop.Middleware.Email {
     public class EmailSender {
+        private readonly IOptions<EmailSenderConfig> _options;
+
+        public EmailSender(IOptions<EmailSenderConfig> options) {
+            _options = options;
+        }
         public async Task<bool> SendEmail(string toEmail, string subject, string content, string confirmLink, string linkAction) {
             try {
                 string body = $@"
@@ -181,9 +188,9 @@ namespace APIShopLaptop.Middleware.Email {
 ";
                 using (SmtpClient client = new SmtpClient("smtp.gmail.com")) {
                     client.Port = 587;
-                    client.Credentials = new NetworkCredential("dkwebsoftware@gmail.com", "tnmx nqah rtlq ekwp");
+                    client.Credentials = new NetworkCredential(_options.Value.Email, _options.Value.Password);
                     client.EnableSsl = true;
-                    using (var message = new MailMessage("dkwebsoftware@gmail.com", toEmail)) {
+                    using (var message = new MailMessage(_options.Value.Email, toEmail)) {
                         message.Subject = subject;
                         message.Body = body;
                         message.BodyEncoding = System.Text.Encoding.UTF8;

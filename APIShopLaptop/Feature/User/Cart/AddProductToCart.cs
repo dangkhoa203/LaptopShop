@@ -32,7 +32,7 @@ namespace APIShopLaptop.Feature.User.Cart {
                 }
 
                 var Product = await context.Products
-                    .Where(p => p.Quantity > 0 || p.Status == Model.Enum.PRODUCTSTATUS.ACTIVE)
+                    .Where(p => p.Quantity > 0 && p.Status == Model.Enum.PRODUCTSTATUS.ACTIVE)
                     .FirstOrDefaultAsync(p => p.Id == request.ProductId);
                 if (Product == null) {
                     return Results.BadRequest(new Response(false));

@@ -11,7 +11,7 @@ namespace APIShopLaptop.Feature.Admin.Orders {
         public record DetailDTO(string Id,string Name,float Price,int Quantity);
         public record Response(bool Success, OrderDTO? data, string ErrorMessage);
         public static void MapEndpoint(IEndpointRouteBuilder app) {
-            app.MapGet("/api/Admin/Orders/{id}", Handler).WithTags("Orders");
+            app.MapGet("/api/Admin/Orders/{id}", Handler).WithTags("Admin_Orders");
         }
         private static async Task<IResult> Handler(string id,ApplicationDBContext context) {
             try {
