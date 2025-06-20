@@ -11,20 +11,19 @@ import {
     DialogContent,
     DialogTitle,
     Divider, LinearProgress,
-    Paper, Tab, Tabs,
-    ThemeProvider
+    Paper, Tab, Tabs
 } from "@mui/material";
 import Box from "@mui/material/Box";
 import CardActions from "@mui/material/CardActions";
 import Button from "@mui/material/Button";
 import {OrderStatus} from "../../Type/OrderStatus.ts";
-import {Threedom} from "../../Type/ThreedomPalette.ts";
 import {Response} from "../../Type/Respone.ts";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogActions from "@mui/material/DialogActions";
 import {useNavigate} from "react-router";
+import {useAppError} from "../../State/AppErrorState.ts";
 type orderData={
     id:string,
     orderDate:string,
@@ -46,30 +45,13 @@ export default function OrderHistory(){
         queryKey: ["orders"],
         refetchOnWindowFocus:false,
         queryFn:async ()=>{
-            try {
                 const response = await fetch('https://localhost:7075/api/Orders', {
                     headers: {'Content-Type': 'application/json'},
                     credentials: 'include',
                     method:"GET"
                 });
-                if (!response.ok) {
-                    return({
-                        userName: '',
-                        userEmail: '',
-                        userId: '',
-                        isLogged: false,
-                    })
-                }
                 const content = await response.json();
                 return(content);
-            } catch  {
-                return({
-                    userName: '',
-                    userEmail: '',
-                    userId: '',
-                    isLogged: false,
-                })
-            }
         },
     })
     useEffect(() => {
@@ -234,7 +216,7 @@ const chipColor=(status:number):string=>{
 }
 function ListRender(props:{orders:orderData[],openCancel:(id:string)=>void,isFetching:boolean,momoLoading:boolean,setMomoLoading:(value:boolean)=>void}) {
     const navigate=useNavigate()
-
+    const error=useAppError()
     const NEWTRANSACTION=useMutation({
         mutationFn:async (id:string)=>{
             const response = await fetch(`https://localhost:7075/api/Orders/Momo`, {
@@ -252,7 +234,7 @@ function ListRender(props:{orders:orderData[],openCancel:(id:string)=>void,isFet
                     window.location.replace(data.data)
                 }
                 else {
-
+                    error.setError(data.errorMessage)
                 }
             }
 
@@ -274,13 +256,12 @@ function ListRender(props:{orders:orderData[],openCancel:(id:string)=>void,isFet
                                 <div style={{display:"flex",gap:1}}>
                                     {(order.isMomoPaid && (order.status!==0 && order.status!==5)) &&
                                         <Chip
-                                            // @ts-expect-error
                                             color={
                                                 "success"
                                             } label={"Đã thanh toán Momo"} size="small" />
                                     }
                                     <Chip
-                                        // @ts-expect-error
+                                        // @ts-ignore
                                         color={
                                             chipColor(order.status)
                                         } label={OrderStatus[order.status]} size="small" />

@@ -49,7 +49,7 @@ namespace APIShopLaptop.Feature.User.UserAccount {
                     Email = request.Email,
                     UserName = request.UserName,
                     Cart=new Model.Entity.Cart_Related.Cart(),
-                    
+                    Build=new Model.Entity.PC_Build_Related.Build(),
                 };
                 var Result = await userManager.CreateAsync(account, request.Password);
 

@@ -510,7 +510,7 @@ namespace APIShopLaptop.Data {
                         ]
                     },
                     new MainCaterory {
-                        Id=$"pPC",
+                        Id=$"PC",
                         Name="PC",
                         Description="Máy tính",
                         SubCaterories= [

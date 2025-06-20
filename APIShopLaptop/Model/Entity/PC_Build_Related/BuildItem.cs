@@ -8,5 +8,6 @@ namespace APIShopLaptop.Model.Entity.PC_Build_Related {
         public Product ProductNavigation { get; set; }
         public Build BuildNavigation { get; set; }
         public int Quantity { get; set; }
+        public string ComponentName { get; set; }
     }
 }

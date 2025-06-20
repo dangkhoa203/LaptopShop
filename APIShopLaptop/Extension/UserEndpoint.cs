@@ -2,6 +2,7 @@
 using APIShopLaptop.Feature.Admin.ImageStorage;
 using APIShopLaptop.Feature.Admin.Orders;
 using APIShopLaptop.Feature.Admin.Products;
+using APIShopLaptop.Feature.User.Builds;
 using APIShopLaptop.Feature.User.Cart;
 using APIShopLaptop.Feature.User.Category;
 using APIShopLaptop.Feature.User.Caterory;
@@ -31,6 +32,13 @@ namespace APIShopLaptop.Extension {
             UpdateProductQuantityInCart.MapEndpoint(app);
             GetCurrentCart.MapEndpoint(app);
         }
+        private static void AddBuildFeature(this WebApplication app) {
+            AddToBuild.MapEndpoint(app);
+            DeleteBuildItem.MapEndpoint(app);
+            UpdateBuildItemQuantity.MapEndpoint(app);
+            GetBuild.MapEndpoint(app);
+            GetProductForBuild.MapEndpoint(app);
+        }
         private static void AddOrderFeature(this WebApplication app) {
             AddOrder.MapEndpoint(app);
             CancelOrder.MapEndpoint(app);
@@ -59,6 +67,7 @@ namespace APIShopLaptop.Extension {
             AddUserAccountFeature(app);
             AddProductFeature(app);
             AddCartFeature(app);
+            AddBuildFeature(app);
             AddOrderFeature(app);
         }
     }

@@ -1537,6 +1537,125 @@
     ]
   },
   {
+    "ContainingType": "APIShopLaptop.Feature.User.Builds.AddToBuild",
+    "Method": "Handler",
+    "RelativePath": "api/Build",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "APIShopLaptop.Feature.User.Builds.AddToBuild\u002BRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Build"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.Builds.DeleteBuildItem",
+    "Method": "Handler",
+    "RelativePath": "api/Build",
+    "HttpMethod": "DELETE",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "APIShopLaptop.Feature.User.Builds.DeleteBuildItem\u002BRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Build"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.Builds.UpdateBuildItemQuantity",
+    "Method": "Handler",
+    "RelativePath": "api/Build",
+    "HttpMethod": "PUT",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "APIShopLaptop.Feature.User.Builds.UpdateBuildItemQuantity\u002BRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Build"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.Builds.GetBuild",
+    "Method": "Handler",
+    "RelativePath": "api/Build",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Build"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.Builds.GetProductForBuild",
+    "Method": "Handler",
+    "RelativePath": "api/Build/Product",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "APIShopLaptop.Feature.User.Builds.GetProductForBuild\u002BRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Build"
+    ]
+  },
+  {
     "ContainingType": "APIShopLaptop.Feature.User.Cart.AddProductToCart",
     "Method": "Handler",
     "RelativePath": "api/Cart",

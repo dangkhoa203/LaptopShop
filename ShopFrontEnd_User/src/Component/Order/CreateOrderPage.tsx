@@ -73,7 +73,7 @@ export default function CreateOrderPage(){
     const navigate=useNavigate();
 
     const reFetch=useCart(state => state.reFetch)
-    const [success,setSuccess]=useState(false)
+
     const [momoLoading,setMomoLoading]=useState(false)
     const ORDER=useMutation({
         mutationFn:async ()=>{
@@ -97,7 +97,6 @@ export default function CreateOrderPage(){
                     window.location.replace(data.data)
                 }
                 else {
-                    setSuccess(true)
                     reFetch()
                 }
             }

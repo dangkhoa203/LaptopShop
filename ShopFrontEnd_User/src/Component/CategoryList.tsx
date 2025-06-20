@@ -1,9 +1,15 @@
 import {Divider, Grid, List, ListItem, ListItemButton, ListItemText} from "@mui/material";
 import * as React from "react";
 import Typography from "@mui/material/Typography";
+import {useNavigate} from "react-router";
+import {useAppError} from "../State/AppErrorState.ts";
+import {useUserInfo} from "../State/User.ts";
 
 export default function CategoryList(){
+    const error=useAppError()
+    const userInfo=useUserInfo(state=>state.user)
     const [categoryContent, setCategoryContent] = React.useState(1);
+    const navigate = useNavigate();
     const handleCategory=(num:number)=>{
         setCategoryContent(num);
     }
@@ -32,6 +38,14 @@ export default function CategoryList(){
                         </ListItemButton>
                         <ListItemButton onMouseEnter={()=>handleCategory(6)}>
                             <ListItemText primary="Phụ kiện" />
+                        </ListItemButton>
+                        <ListItemButton onClick={()=>{
+                            if(userInfo.isLogged)
+                                navigate("/Dung-PC")
+                            else
+                                error.setError("Chưa đăng nhập")
+                        }}>
+                            <ListItemText primary="Xây dựng PC" />
                         </ListItemButton>
                     </List>
                 </Grid>

@@ -3,39 +3,12 @@
   "WorkspaceRootPath": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\data\\dbinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\data\\dbinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\user\\builds\\getbuild.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\user\\builds\\getbuild.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\model\\entity\\pc_build_related\\build.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\model\\entity\\pc_build_related\\build.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\model\\entity\\account\\appuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\model\\entity\\account\\appuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\user\\useraccount\\register.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\user\\useraccount\\register.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/DESKTOP_N0V3KE1/Shop/True/SqlTable/dbo.Builds.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\admin\\orders\\momo\\gettransactions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\admin\\orders\\momo\\gettransactions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\admin\\orders\\confirmmomoorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\admin\\orders\\confirmmomoorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\admin\\orders\\getorders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\admin\\orders\\getorders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\user\\builds\\addtobuild.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\user\\builds\\addtobuild.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,66 +23,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "DbInitializer.cs",
-              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Data\\DbInitializer.cs",
-              "RelativeDocumentMoniker": "APIShopLaptop\\Data\\DbInitializer.cs",
-              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Data\\DbInitializer.cs",
-              "RelativeToolTip": "APIShopLaptop\\Data\\DbInitializer.cs",
-              "ViewState": "AgIAAMsBAAAAAAAAAAAAABgCAAArAAAAAAAAAA==",
+              "Title": "GetBuild.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\User\\Builds\\GetBuild.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\User\\Builds\\GetBuild.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\User\\Builds\\GetBuild.cs",
+              "RelativeToolTip": "APIShopLaptop\\Feature\\User\\Builds\\GetBuild.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAkwCMAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-19T16:15:27.904Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Build.cs",
-              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Model\\Entity\\PC_Build_Related\\Build.cs",
-              "RelativeDocumentMoniker": "APIShopLaptop\\Model\\Entity\\PC_Build_Related\\Build.cs",
-              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Model\\Entity\\PC_Build_Related\\Build.cs",
-              "RelativeToolTip": "APIShopLaptop\\Model\\Entity\\PC_Build_Related\\Build.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-19T16:15:10.719Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ApplicationDBContext.cs",
-              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Data\\ApplicationDBContext.cs",
-              "RelativeDocumentMoniker": "APIShopLaptop\\Data\\ApplicationDBContext.cs",
-              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Data\\ApplicationDBContext.cs",
-              "RelativeToolTip": "APIShopLaptop\\Data\\ApplicationDBContext.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAYwCoAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-19T16:13:55.391Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AppUser.cs",
-              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Model\\Entity\\Account\\AppUser.cs",
-              "RelativeDocumentMoniker": "APIShopLaptop\\Model\\Entity\\Account\\AppUser.cs",
-              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Model\\Entity\\Account\\AppUser.cs",
-              "RelativeToolTip": "APIShopLaptop\\Model\\Entity\\Account\\AppUser.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-19T16:13:29.172Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Register.cs",
-              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\User\\UserAccount\\Register.cs",
-              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\User\\UserAccount\\Register.cs",
-              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\User\\UserAccount\\Register.cs",
-              "RelativeToolTip": "APIShopLaptop\\Feature\\User\\UserAccount\\Register.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAowDMAAAAUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-19T16:12:38.94Z",
+              "WhenOpened": "2025-06-20T18:06:30.42Z",
               "EditorCaption": ""
             },
             {
@@ -118,51 +39,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "dbo.Builds [Data]",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/DESKTOP_N0V3KE1/Shop/True/SqlTable/dbo.Builds.sql",
-              "ToolTip": "dbo.Builds [Data]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2025-06-19T16:11:50.827Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "GetTransactions.cs",
-              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Orders\\Momo\\GetTransactions.cs",
-              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\Admin\\Orders\\Momo\\GetTransactions.cs",
-              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Orders\\Momo\\GetTransactions.cs",
-              "RelativeToolTip": "APIShopLaptop\\Feature\\Admin\\Orders\\Momo\\GetTransactions.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAABiAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "AddToBuild.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\User\\Builds\\AddToBuild.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\User\\Builds\\AddToBuild.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\User\\Builds\\AddToBuild.cs",
+              "RelativeToolTip": "APIShopLaptop\\Feature\\User\\Builds\\AddToBuild.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAACsAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-19T15:40:27.945Z",
+              "WhenOpened": "2025-06-20T18:06:12.732Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "ConfirmMomoOrder.cs",
-              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Orders\\ConfirmMomoOrder.cs",
-              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\Admin\\Orders\\ConfirmMomoOrder.cs",
-              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Orders\\ConfirmMomoOrder.cs",
-              "RelativeToolTip": "APIShopLaptop\\Feature\\Admin\\Orders\\ConfirmMomoOrder.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAcwBsAAABcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-18T17:01:41.272Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "GetOrders.cs",
-              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Orders\\GetOrders.cs",
-              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\Admin\\Orders\\GetOrders.cs",
-              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\Orders\\GetOrders.cs",
-              "RelativeToolTip": "APIShopLaptop\\Feature\\Admin\\Orders\\GetOrders.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAA4AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-18T16:49:58.008Z"
             }
           ]
         },
