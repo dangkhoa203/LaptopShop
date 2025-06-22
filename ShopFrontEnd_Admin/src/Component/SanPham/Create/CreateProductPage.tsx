@@ -29,7 +29,7 @@ export default function CreateProductPage(){
         quantity:0,
         priceAfterDiscount:0,
         isDiscount:false,
-        status:1
+        status:0
     })
     const [description, setDescription] = useState<string>("");
     const [thumbnail, setThumbnail] = useState<any>(null);

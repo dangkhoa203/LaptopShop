@@ -1459,21 +1459,38 @@
         }
       }
     },
-    "/api/Build/Product": {
+    "/api/Build/Product/{CategoryId}": {
       "get": {
         "tags": [
           "Build"
         ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/APIShopLaptop.Feature.User.Builds.GetProductForBuild.Request"
-              }
+        "parameters": [
+          {
+            "name": "CategoryId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
           },
-          "required": true
-        },
+          {
+            "name": "search",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -2282,6 +2299,10 @@
           "productId": {
             "type": "string",
             "nullable": true
+          },
+          "componentName": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -2292,36 +2313,9 @@
           "productId": {
             "type": "string",
             "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "APIShopLaptop.Feature.User.Builds.GetProductForBuild.CompatibilityDTO": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "nullable": true
           },
-          "value": {
+          "componentName": {
             "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "APIShopLaptop.Feature.User.Builds.GetProductForBuild.Request": {
-        "type": "object",
-        "properties": {
-          "categoryId": {
-            "type": "string",
-            "nullable": true
-          },
-          "compatibilities": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/APIShopLaptop.Feature.User.Builds.GetProductForBuild.CompatibilityDTO"
-            },
             "nullable": true
           }
         },

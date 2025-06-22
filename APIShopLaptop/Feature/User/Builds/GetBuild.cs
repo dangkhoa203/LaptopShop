@@ -40,7 +40,8 @@ namespace APIShopLaptop.Feature.User.Builds {
                         product.ProductNavigation.PriceAfterDiscount,
                         product.Quantity,
                         product.ProductNavigation.Quantity,
-                        product.ComponentName));
+                        product.ComponentName
+                        ));
                 }
                 if (changedFlag) {
                     await context.SaveChangesAsync();

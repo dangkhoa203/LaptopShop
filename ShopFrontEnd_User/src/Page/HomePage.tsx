@@ -80,7 +80,7 @@ export default function HomePage() {
                     </Grid>
                 </Grid>
             </div>
-            <MainPageMainCategoryProduct isMain={true} category={"Laptop"} categoryId={"MOTHERboard"}/>
+            <MainPageMainCategoryProduct isMain={true} category={"MAINBOARD"} categoryId={"MOTHERBOARD"}/>
             <Paper elevation={6}>
                 <Card sx={{ maxWidth: "100%" }}>
                     <CardActionArea>

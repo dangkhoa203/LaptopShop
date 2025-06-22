@@ -8,7 +8,7 @@ using System.Security.Claims;
 
 namespace APIShopLaptop.Feature.User.Builds {
     public class DeleteBuildItem : IEndpoint {
-        public record Request(string ProductId);
+        public record Request(string ProductId,string ComponentName);
         public record Response(bool Success);
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapDelete("/api/Build", Handler).WithTags("Build");
@@ -22,7 +22,7 @@ namespace APIShopLaptop.Feature.User.Builds {
                     .Select(u => u.Build)
                     .FirstOrDefaultAsync();
 
-                var Product = Build.BuildItems.FirstOrDefault(p => p.ProductId == request.ProductId);
+                var Product = Build.BuildItems.FirstOrDefault(p => p.ProductId == request.ProductId && p.ComponentName==request.ComponentName);
                 if (Product == null) {
                     return Results.BadRequest(new Response(false));
                 }

@@ -7,7 +7,7 @@ import CreateOrderPage from "./Order/CreateOrderPage.tsx";
 import OrderHistory from "./Order/OrderHistory.tsx";
 import OrderDetail from "./Order/OrderDetail.tsx";
 import MomoConfirmPage from "./Order/MomoConfirmPage.tsx";
-import PCBuilder from "./Build/PCBuilder.tsx";
+import PCBuilderPage from "./Build/PCBuilderPage.tsx";
 
 export default function RouteComponent(){
     return (
@@ -22,7 +22,7 @@ export default function RouteComponent(){
                     <Route path=":id" element={<OrderDetail/>}></Route>
                 </Route>
                 <Route path="Momo" element={<MomoConfirmPage></MomoConfirmPage>}></Route>
-                <Route path="Dung-PC" element={<PCBuilder></PCBuilder>}></Route>
+                <Route path="Dung-PC" element={<PCBuilderPage></PCBuilderPage>}></Route>
             </Route>
         </Routes>
     )

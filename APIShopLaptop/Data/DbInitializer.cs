@@ -349,7 +349,7 @@ namespace APIShopLaptop.Data {
                                Name="Micro-ATX",
                             },
                             new SubCaterory {
-                                Id=$"DM-{count}-ITX",
+                                Id=$"MOTHERBOARD_MICROITX",
                                Name="Micro-ITX",
                             },
                         ]

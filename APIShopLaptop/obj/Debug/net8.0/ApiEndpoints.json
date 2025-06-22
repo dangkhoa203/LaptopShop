@@ -1633,14 +1633,24 @@
   {
     "ContainingType": "APIShopLaptop.Feature.User.Builds.GetProductForBuild",
     "Method": "Handler",
-    "RelativePath": "api/Build/Product",
+    "RelativePath": "api/Build/Product/{CategoryId}",
     "HttpMethod": "GET",
     "IsController": false,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "request",
-        "Type": "APIShopLaptop.Feature.User.Builds.GetProductForBuild\u002BRequest",
+        "Name": "CategoryId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "search",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "page",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],

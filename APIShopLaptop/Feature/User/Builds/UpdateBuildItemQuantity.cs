@@ -19,6 +19,7 @@ namespace APIShopLaptop.Feature.User.Builds {
                 var Build = await context.Users
                    .Include(u => u.Build)
                    .ThenInclude(u => u.BuildItems)
+                    .ThenInclude(i=>i.ProductNavigation)
                    .Where(u => u.UserName == User.Identity.Name)
                    .Select(u => u.Build)
                    .FirstOrDefaultAsync();

@@ -71,11 +71,11 @@ export default function CartProductCard(props:{product:cartItem}){
                     <div style={{width:"100%"}}>
                         <Container style={{width:"100%",justifyContent:"end",display:"flex",gap:2}}>
                             {props.product.priceAfterDiscount===0?
-                                <Typography>{props.product.price}</Typography>
+                                <Typography>{props.product.price.toLocaleString(undefined, { minimumFractionDigits: 0 })} VNĐ</Typography>
                                 :
                                 <>
-                                    <Typography variant="subtitle1">{props.product.priceAfterDiscount.toLocaleString(undefined, { minimumFractionDigits: 0 })} VND</Typography>
-                                    <Typography variant="subtitle2" sx={{textDecoration:"line-through"}}>{props.product.price.toLocaleString(undefined, { minimumFractionDigits: 0 })} VND</Typography>
+                                    <Typography variant="subtitle1">{props.product.priceAfterDiscount.toLocaleString(undefined, { minimumFractionDigits: 0 })} VNĐ</Typography>
+                                    <Typography variant="subtitle2" sx={{textDecoration:"line-through"}}>{props.product.price.toLocaleString(undefined, { minimumFractionDigits: 0 })} VNĐ</Typography>
                                 </>
                             }
                         </Container>

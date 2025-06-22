@@ -1,5 +1,5 @@
 import './App.css'
-import RouteComponent from "./Component/RouteComponent.tsx"
+import RouteComponent from "./Page/RouteComponent.tsx"
 import {useEffect} from "react";
 import {useUserInfo} from "./State/User.ts";
 import {useQuery} from "@tanstack/react-query";

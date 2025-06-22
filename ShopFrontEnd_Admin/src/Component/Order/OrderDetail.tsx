@@ -147,9 +147,12 @@ export default function OrderDetail(){
                                         </Typography>
                                     </Grid>
                                 }
-                                <Grid size={12}>
-                                    <Button fullWidth color="warning" variant="contained" onClick={handleClickOpenUpdate}>Sửa trạng thái</Button>
-                                </Grid>
+                                {orderDetail.status!==5 &&
+                                    <Grid size={12}>
+                                        <Button fullWidth color="warning" variant="contained" onClick={handleClickOpenUpdate}>Sửa trạng thái</Button>
+                                    </Grid>
+                                }
+
                             </Grid>
 
                             <Divider/>
@@ -247,7 +250,7 @@ export default function OrderDetail(){
                             <Grid size={12}>
                                 <Typography textAlign="center" variant="h4">Lỗi xảy ra</Typography>
                             </Grid>
-                            <Grid sx={{display:"flex",justifyContent:"center"}} size={12}>
+                            <Grid sx={{display: "flex",justifyContent:"center"}} size={12}>
                                 <Button startIcon={<ArrowBackIcon/>} variant="contained" sx={{width:"150px"}} onClick={()=>navigate(-1)}>Quay về</Button>
                             </Grid>
 

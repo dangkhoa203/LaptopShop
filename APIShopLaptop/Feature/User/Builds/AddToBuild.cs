@@ -10,7 +10,7 @@ using System.Security.Claims;
 namespace APIShopLaptop.Feature.User.Builds {
     public class AddToBuild : IEndpoint {
         public record Request(string ProductId,string ComponentName);
-        public record Response(bool Success);
+        public record Response(bool Success,string ErrorMessage);
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapPost("/api/Build", Handler).WithTags("Build");
         }
@@ -23,18 +23,16 @@ namespace APIShopLaptop.Feature.User.Builds {
                     .Select(u => u.Build)
                     .FirstOrDefaultAsync();
 
-                var BuildItem = Build.BuildItems.FirstOrDefault(p => p.ProductId == request.ProductId);
+                var BuildItem = Build.BuildItems.FirstOrDefault(p => p.ProductId == request.ProductId || p.ComponentName==request.ComponentName);
                 if (BuildItem != null) {
-                    BuildItem.Quantity++;
-                    await context.SaveChangesAsync();
-                    return Results.Ok(new Response(true));
+                    return Results.BadRequest(new Response(false,"Đã có sản phẩm"));
                 }
 
                 var Product = await context.Products
                     .Where(p => p.Quantity > 0 && p.Status == Model.Enum.PRODUCTSTATUS.ACTIVE)
                     .FirstOrDefaultAsync(p => p.Id == request.ProductId);
                 if (Product == null) {
-                    return Results.BadRequest(new Response(false));
+                    return Results.BadRequest(new Response(false, "Không tìm thấy sản phẩm"));
                 }
 
                 var NewBuildItem = new BuildItem() {
@@ -46,12 +44,12 @@ namespace APIShopLaptop.Feature.User.Builds {
 
                 await context.BuildItems.AddAsync(NewBuildItem);
                 if (await context.SaveChangesAsync() > 0) {
-                    return Results.Ok(new Response(true));
+                    return Results.Ok(new Response(true, ""));
                 }
-                return Results.BadRequest(new Response(false));
+                return Results.BadRequest(new Response(false, "Lỗi xảy ra"));
             }
             catch (Exception ex) {
-                return Results.Ok(new Response(false));
+                return Results.Ok(new Response(false, "Lỗi server"));
             }
 
         }

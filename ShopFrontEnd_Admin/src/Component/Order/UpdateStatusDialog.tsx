@@ -13,7 +13,7 @@ import Button from "@mui/material/Button";
 import {useEffect, useState} from "react";
 import {useMutation} from "@tanstack/react-query";
 import {Response} from "../../Type/Respone.ts";
-import {OrderStatus} from "../../Type/OrderStatus.ts";
+
 
 
 export default function UpdateStatusDialog(props:{id:string,status:number,open:boolean,handleClose:()=>void,reFetch:any}){
@@ -91,9 +91,13 @@ export default function UpdateStatusDialog(props:{id:string,status:number,open:b
                             label="Trạng thái"
                             onChange={handleStatusChange}
                         >
-                            {OrderStatus.map((status,index) =>
-                                <MenuItem value={index}>{status}</MenuItem>
-                            )}
+                            {props.status!==5 && <MenuItem value={0}>Hủy</MenuItem>}
+                            {props.status <= 1 && <MenuItem value={1}>Chờ xác nhận</MenuItem>}
+                            {props.status <= 2 && <MenuItem value={2}>Chờ đợi</MenuItem>}
+                            {props.status <= 3 && <MenuItem value={3}>Chuẩn bị</MenuItem>}
+                            {props.status <= 4 && <MenuItem value={4}>Đang giao hàng</MenuItem>}
+                            {props.status <= 5 &&  <MenuItem value={5}>Hoàn thành</MenuItem>}
+
                         </Select>
                     </FormControl>
                 </DialogContentText>
@@ -110,7 +114,7 @@ export default function UpdateStatusDialog(props:{id:string,status:number,open:b
                             {globalError}
                         </div>
                         <Button color="error" variant={"outlined"} onClick={close}>Hủy</Button>
-                        <Button variant="contained" color="warning" onClick={()=> {
+                        <Button disabled={props.status===5} variant="contained" color="warning" onClick={()=> {
                             mutate()
                         }} autoFocus
                         >

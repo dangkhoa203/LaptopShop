@@ -294,7 +294,7 @@ function ListRender(props:{orders:orderData[],openCancel:(id:string)=>void,isFet
                     <Divider/>
                     <CardActions sx={{display:"flex",justifyContent:"end",gap:1}}>
                         {(order.status===1||order.status===2)&&
-                            <Button onClick={()=>props.openCancel(order.id)} variant="outlined" color="error">
+                            <Button loading={NEWTRANSACTION.isPending || props.momoLoading} onClick={()=>props.openCancel(order.id)} variant="outlined" color="error">
                                 Hủy
                             </Button>
                         }
