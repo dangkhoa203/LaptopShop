@@ -1939,6 +1939,31 @@
     ]
   },
   {
+    "ContainingType": "APIShopLaptop.Feature.User.Orders.Build.AddOrderFromBuild",
+    "Method": "Handler",
+    "RelativePath": "api/Orders/Build",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "APIShopLaptop.Feature.User.Orders.Build.AddOrderFromBuild\u002BRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Orders"
+    ]
+  },
+  {
     "ContainingType": "APIShopLaptop.Feature.User.Orders.CancelOrder",
     "Method": "Handler",
     "RelativePath": "api/Orders/Cancel",

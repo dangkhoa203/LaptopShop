@@ -64,7 +64,7 @@ export default function BuildItemChooseCard(props:{componentName:string,category
                 credentials: 'include',
                 body: JSON.stringify({
                     productId: productId,
-                    componentName:props.componentName,
+                    componentName:props.categoryId,
                 })
             })
             return await response.json();
@@ -100,13 +100,13 @@ export default function BuildItemChooseCard(props:{componentName:string,category
     }, [data]);
     return(
         <>
-            <Card  sx={{ display: 'flex',justifyContent:"center",marginBottom:"10px" }} elevation={3}>
-                <CardContent sx={{minWidth:"100%",paddingX:"5px",display:"flex",flexDirection:"column"}}>
-                    <Typography textAlign="center" component={"div"} sx={{width:"100%"}}  variant="h6">
+            <Card  sx={{ display: 'flex',justifyContent:"center",marginBottom:"10px",minHeight:"193px" }} elevation={3}>
+                <CardContent sx={{minWidth:"100%",paddingX:"5px",display:"flex",flexDirection:"column",margin:"auto"}}>
+                    <Typography textAlign="center" component={"div"} sx={{width:"100%",fontSize:"2.6em"}}  variant="h6">
                         {props.componentName}
                     </Typography>
                     <div style={{width:"100%",display:"flex",justifyContent:"center"}}>
-                        <Button onClick={handleClickOpen} variant={"contained"} sx={{width:"130px"}}>Test</Button>
+                        <Button onClick={handleClickOpen} variant={"contained"} color={"success"} sx={{width:"130px"}}>Chọn</Button>
                     </div>
                 </CardContent>
             </Card>
@@ -180,7 +180,12 @@ export default function BuildItemChooseCard(props:{componentName:string,category
                                                     </Typography>
                                                 </div>
                                             </div>
-                                            <Button loading={ADD.isPending} color={"success"} variant={"contained"} onClick={()=>ADD.mutate(data.id)}>Chọn</Button>
+                                            {data.quantity>0?
+                                                <Button sx={{minWidth:"85px"}} loading={ADD.isPending} color={"success"} variant={"contained"} onClick={()=>ADD.mutate(data.id)}>Chọn</Button>
+                                                :
+                                                <Button sx={{minWidth:"85px"}} disabled  variant={"contained"} >Hết hàng</Button>
+                                            }
+
                                         </Card>
                                     </>
                                 )

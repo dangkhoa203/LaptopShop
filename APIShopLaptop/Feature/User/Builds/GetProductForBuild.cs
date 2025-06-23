@@ -43,13 +43,13 @@ namespace APIShopLaptop.Feature.User.Builds {
                        .Select(c => c.Id)
                        .ToListAsync();
 
-                var Products =  context.CateroryItems
+                var Products = await context.CateroryItems
                    .Include(i => i.ProductNavigation)
                    .ThenInclude(p => p.Compatibilitys)
-                   .Where(i => i.ProductNavigation.Quantity > 0 && i.ProductNavigation.Quantity > 0)
+                   .Where(i => i.ProductNavigation.Status==Model.Enum.PRODUCTSTATUS.ACTIVE)
                    .Where(i => subCategory.Any(c => c == i.CateroryId))
                    .Where(i=>i.ProductNavigation.Name.Contains(search))
-                   .Select(p=>p.ProductNavigation);
+                   .Select(p=>p.ProductNavigation).ToListAsync();
                 var Filter = compatibilities.Count<=0 ? 
                                             Products
                                             :
@@ -58,6 +58,7 @@ namespace APIShopLaptop.Feature.User.Builds {
                                                 p.Compatibilitys.All(c=>!compatibilities.Any(r=>r.Id==c.SpecificationId))||
                                                 p.Compatibilitys.Any(c=> compatibilities.Any(r=>r.Id==c.SpecificationId && r.Value==c.Value))
                                             );
+                var test= Filter.ToList();
                 var data= Filter.GroupBy(i => i.Id)
                    .Select(i => new ProductDTO(
                            i.First().Id,
@@ -69,7 +70,7 @@ namespace APIShopLaptop.Feature.User.Builds {
                        ));
                 var Total= data.Count();
                 var TotalPage = (data.Count() / 10) + 1;
-                var list = await data.Skip(10 * (page - 1)).Take(10).ToListAsync();
+                var list = data.Skip(10 * (page - 1)).Take(10).ToList();
                 
                 return Results.Ok(new Response(true,new DataDTO(list,TotalPage,Total), ""));
             }

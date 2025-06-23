@@ -12,35 +12,18 @@ export default function MainPageMainCategoryProduct(props:{isMain:boolean,catego
         queryKey: [`category_${props.categoryId}`],
         refetchOnWindowFocus:false,
         queryFn:async ()=>{
-            try {
                 const response = await fetch(`https://localhost:7075/api/Category/${props.isMain ? "Main":"Sub"}/${props.categoryId}/Main_Page`, {
                     headers: {'Content-Type': 'application/json'},
                     credentials: 'include',
                     method:"GET",
                 });
-                if (!response.ok) {
-                    return({
-                        userName: '',
-                        userEmail: '',
-                        userId: '',
-                        isLogged: false,
-                    })
-                }
-                const content = await response.json();
-                return(content);
-            } catch  {
-                return({
-                    userName: '',
-                    userEmail: '',
-                    userId: '',
-                    isLogged: false,
-                })
-            }
+                return await response.json()
         },
     })
     useEffect(() => {
         if(data){
-            setProducts(data.data)
+            if(data?.success)
+                setProducts(data.data)
         }
     }, [data]);
 

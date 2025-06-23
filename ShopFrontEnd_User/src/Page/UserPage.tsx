@@ -106,6 +106,10 @@ export default function UserPage() {
         }});
     const cartCount=userInfo.isLogged? cart.count():0
     const globalError=useAppError()
+    const [searchGlobal,setSearchGlobal]=useState("")
+    const handleGlobalSearchChange=(e:any) => {
+        setSearchGlobal(e.currentTarget.value)
+    }
     return (
         <div style={{display:"flex",minHeight:"100vh",flexDirection:"column"}}>
         <ThemeProvider theme={Threedom}>
@@ -220,8 +224,22 @@ export default function UserPage() {
                                         <StyledInputBase
                                             placeholder="Search…"
                                             inputProps={{ 'aria-label': 'search' }}
+                                            value={searchGlobal}
+                                            onChange={handleGlobalSearchChange}
+                                            onKeyDown={(event)=>{
+                                                if(event.key === 'Enter'){
+                                                    if(searchGlobal.length!==0){
+                                                        navigate(`/Tim/${encodeURIComponent(searchGlobal)}`)
+                                                    }
+                                                }
+                                            }}
                                         />
+                                        {searchGlobal.length>0 && <Button color="inherit" onClick={()=>navigate(`/Tim/${encodeURIComponent(searchGlobal)}`)}
+
+                                        >Tìm</Button>}
                                     </Search>
+
+
                                 </Box>
                                 <Box sx={{ flexGrow: 0,display:"flex",gap:2 }}>
                                     {userInfo.isLogged ?

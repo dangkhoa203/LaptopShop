@@ -13,7 +13,7 @@ import {useMutation} from "@tanstack/react-query";
 import {Response} from "../../../Type/Respone.ts";
 import {buildProduct} from "../PCBuilderPage.tsx";
 
-export default function BuildItemProductCard(props:{product:buildProduct,componentName:string,reFetchBuild:()=>void,updateAble:boolean}) {
+export default function BuildItemProductCard(props:{product:buildProduct,categoryId:string,componentName:string,reFetchBuild:()=>void,updateAble:boolean}) {
     const DELETE=useMutation({
         mutationFn:async (productId:string)=>{
             const response = await fetch(`https://localhost:7075/api/Build`, {
@@ -22,7 +22,7 @@ export default function BuildItemProductCard(props:{product:buildProduct,compone
                 credentials: 'include',
                 body: JSON.stringify({
                     productId: productId,
-                    componentName:props.componentName,
+                    componentName:props.categoryId,
                 })
             })
             return await response.json();
@@ -59,7 +59,7 @@ export default function BuildItemProductCard(props:{product:buildProduct,compone
     })
     return(
         <>
-            <Card key={props.product.productId} sx={{ display: 'flex',justifyContent:"center",marginBottom:"10px" }} elevation={3}>
+            <Card key={props.product.productId} sx={{ display: 'flex',justifyContent:"center",marginBottom:"10px",minHeight:"193px" }} elevation={3}>
                 <CardMedia
                     component="img"
                     sx={{ margin:"auto",width: 150,height:150 }}
@@ -74,13 +74,13 @@ export default function BuildItemProductCard(props:{product:buildProduct,compone
                         </Typography>
                         <div style={{width:"100%"}}>
                             <Container style={{width:"100%",justifyContent:"end",display:"flex",gap:2}}>
-                                {props.product.priceAfterDiscount===0?
-                                    <Typography>{props.product.price}</Typography>
+                                {props.product.isDiscount?
+                                    <div style={{display:"flex",flexDirection:"column",justifyContent:"center"}}>
+                                        <Typography component="div" textAlign={"center"} variant="subtitle2" sx={{textDecoration:"line-through"}}>{props.product.price.toLocaleString(undefined, { minimumFractionDigits: 0 })} VND</Typography>
+                                        <Typography component="div" textAlign={"center"} variant="subtitle1">{props.product.priceAfterDiscount.toLocaleString(undefined, { minimumFractionDigits: 0 })} VND</Typography>
+                                    </div>
                                     :
-                                    <>
-                                        <Typography variant="subtitle1">{props.product.priceAfterDiscount.toLocaleString(undefined, { minimumFractionDigits: 0 })} VND</Typography>
-                                        <Typography variant="subtitle2" sx={{textDecoration:"line-through"}}>{props.product.price.toLocaleString(undefined, { minimumFractionDigits: 0 })} VND</Typography>
-                                    </>
+                                    <Typography>{props.product.price.toLocaleString(undefined, { minimumFractionDigits: 0 })} VNĐ</Typography>
                                 }
                             </Container>
                         </div>

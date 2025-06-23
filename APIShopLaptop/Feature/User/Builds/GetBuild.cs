@@ -5,7 +5,7 @@ using System.Security.Claims;
 
 namespace APIShopLaptop.Feature.User.Builds {
     public class GetBuild : IEndpoint {
-        public record BuildProductDTO(string ProductId, string ProductName, float Price, float PriceAfterDiscount, int Quantity, int StorageCount,string ComponentName);
+        public record BuildProductDTO(string ProductId, string ProductName, float Price, float PriceAfterDiscount,bool IsDiscount, int Quantity, int StorageCount,string ComponentName);
         public record Response(bool Success, List<BuildProductDTO> Data, string ErrorMessage);
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapGet("/api/Build", Handler).WithTags("Build");
@@ -38,6 +38,7 @@ namespace APIShopLaptop.Feature.User.Builds {
                         product.ProductNavigation.Name,
                         product.ProductNavigation.Price,
                         product.ProductNavigation.PriceAfterDiscount,
+                        product.ProductNavigation.IsDiscount,
                         product.Quantity,
                         product.ProductNavigation.Quantity,
                         product.ComponentName

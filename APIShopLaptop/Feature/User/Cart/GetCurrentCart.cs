@@ -7,7 +7,7 @@ using System.Security.Claims;
 
 namespace APIShopLaptop.Feature.User.Cart {
     public class GetCurrentCart : IEndpoint {
-        public record CartProductDTO(string ProductId,string ProductName,float Price,float PriceAfterDiscount,int Quantity,int StorageCount);
+        public record CartProductDTO(string ProductId,string ProductName,float Price,float PriceAfterDiscount,bool IsDiscount,int Quantity,int StorageCount);
         public record Response(bool Success,List<CartProductDTO> Data, string ErrorMessage);
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapGet("/api/Cart", Handler).WithTags("Cart");
@@ -40,6 +40,7 @@ namespace APIShopLaptop.Feature.User.Cart {
                         product.ProductNavigation.Name,
                         product.ProductNavigation.Price,
                         product.ProductNavigation.PriceAfterDiscount,
+                        product.ProductNavigation.IsDiscount,
                         product.Quantity,
                         product.ProductNavigation.Quantity));
                 }

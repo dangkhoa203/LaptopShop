@@ -1900,6 +1900,28 @@
         }
       }
     },
+    "/api/Orders/Build": {
+      "post": {
+        "tags": [
+          "Orders"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/APIShopLaptop.Feature.User.Orders.Build.AddOrderFromBuild.Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Products/{id}/Thumbnail": {
       "get": {
         "tags": [
@@ -2370,6 +2392,27 @@
         "additionalProperties": false
       },
       "APIShopLaptop.Feature.User.Orders.AddOrder.Request": {
+        "type": "object",
+        "properties": {
+          "receiver": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "paymentMethod": {
+            "$ref": "#/components/schemas/APIShopLaptop.Model.Enum.PAYMENTMETHOD"
+          }
+        },
+        "additionalProperties": false
+      },
+      "APIShopLaptop.Feature.User.Orders.Build.AddOrderFromBuild.Request": {
         "type": "object",
         "properties": {
           "receiver": {
