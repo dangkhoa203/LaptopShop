@@ -10,6 +10,7 @@ using APIShopLaptop.Feature.User.Orders;
 using APIShopLaptop.Feature.User.Orders.Build;
 using APIShopLaptop.Feature.User.Orders.MoMo;
 using APIShopLaptop.Feature.User.Products;
+using APIShopLaptop.Feature.User.Reviews;
 using APIShopLaptop.Feature.User.UserAccount;
 using APIShopLaptop.Feature.User.UserAccount.ChangeEmail;
 using APIShopLaptop.Feature.User.UserAccount.ChangePassword;
@@ -26,12 +27,20 @@ namespace APIShopLaptop.Extension {
         }
         private static void AddProductFeature(this WebApplication app) {
             GetProductThumbnail.MapEndpoint(app);
+            SearchProduct.MapEndpoint(app);
+            GetProductImage.MapEndpoint(app);
+            GetProduct.MapEndpoint(app);
         }
         private static void AddCartFeature(this WebApplication app) {
             AddProductToCart.MapEndpoint(app);
             DeleteProductFromCart.MapEndpoint(app);
             UpdateProductQuantityInCart.MapEndpoint(app);
             GetCurrentCart.MapEndpoint(app);
+        }
+        private static void AddReviewFeature(this WebApplication app) {
+            AddReview.MapEndpoint(app);
+            UpdateReview.MapEndpoint(app);
+            GetReviews.MapEndpoint(app);
         }
         private static void AddBuildFeature(this WebApplication app) {
             AddToBuild.MapEndpoint(app);
@@ -71,6 +80,7 @@ namespace APIShopLaptop.Extension {
             AddCartFeature(app);
             AddBuildFeature(app);
             AddOrderFeature(app);
+            AddReviewFeature(app);
         }
     }
 }

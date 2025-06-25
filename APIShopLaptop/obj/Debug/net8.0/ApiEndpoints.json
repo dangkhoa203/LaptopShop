@@ -2039,6 +2039,91 @@
     ]
   },
   {
+    "ContainingType": "APIShopLaptop.Feature.User.Products.SearchProduct",
+    "Method": "Handler",
+    "RelativePath": "api/Products",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "search",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Products"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.Products.GetProduct",
+    "Method": "Handler",
+    "RelativePath": "api/Products/{id}",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Products"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.Products.GetProductImage",
+    "Method": "Handler",
+    "RelativePath": "api/Products/{id}/Images/{imageId}",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "imageId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Product"
+    ]
+  },
+  {
     "ContainingType": "APIShopLaptop.Feature.User.Products.GetProductThumbnail",
     "Method": "Handler",
     "RelativePath": "api/Products/{id}/Thumbnail",
@@ -2061,6 +2146,75 @@
     ],
     "Tags": [
       "Product"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.Reviews.AddReview",
+    "Method": "Handler",
+    "RelativePath": "api/Reviews",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "APIShopLaptop.Feature.User.Reviews.AddReview\u002BRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Reviews"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.Reviews.UpdateReview",
+    "Method": "Handler",
+    "RelativePath": "api/Reviews",
+    "HttpMethod": "PUT",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "APIShopLaptop.Feature.User.Reviews.UpdateReview\u002BRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Reviews"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.Reviews.GetReviews",
+    "Method": "Handler",
+    "RelativePath": "api/Reviews",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Reviews"
     ]
   }
 ]

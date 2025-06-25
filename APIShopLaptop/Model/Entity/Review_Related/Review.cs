@@ -7,10 +7,12 @@ namespace APIShopLaptop.Model.Entity.Review_Related {
     public class Review:EntityGeneric {
         public string Id { get; set; }
         public string Content { get; set; }
-        public int Score { get; set; }
+        public float Score { get; set; }
         public DateTime DateOfReview { get; set; }
+        public bool IsEdit { get; set; }
         public Review():base() {
             Id = "RV-" + Nanoid.Generate(Nanoid.Alphabets.UppercaseLettersAndDigits, 6);
+            DateOfReview = DateTime.Now;
         }
         public AppUser User { get; set; }
         public Product Product { get; set; }

@@ -1,4 +1,4 @@
-import {ProductData} from "../../Type/ProductData.ts";
+import {ProductData} from "../../../Type/ProductData.ts";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
@@ -6,11 +6,13 @@ import Typography from "@mui/material/Typography";
 import CardActions from "@mui/material/CardActions";
 import Button from "@mui/material/Button";
 import {Grid, Stack} from "@mui/material";
-import {useCart} from "../../State/Cart.ts";
+import {useCart} from "../../../State/Cart.ts";
 import {useMutation} from "@tanstack/react-query";
-import {Response} from "../../Type/Respone.ts";
-import {useUserInfo} from "../../State/User.ts";
-import {useAppError} from "../../State/AppErrorState.ts";
+import {Response} from "../../../Type/Respone.ts";
+import {useUserInfo} from "../../../State/User.ts";
+import {useAppError} from "../../../State/AppErrorState.ts";
+import {useNavigate} from "react-router";
+import Tooltip from "@mui/material/Tooltip";
 
 export default function MainPageProductCard(props: {product:ProductData}){
     const reFetch=useCart((state)=>state.reFetch)
@@ -35,20 +37,24 @@ export default function MainPageProductCard(props: {product:ProductData}){
             }
         }
     })
+    const navigate=useNavigate();
     return(
         <Grid sx={{display:"flex",justifyContent:"center"}} size={{xs:6,sm:4,md:3,lg:3}}>
             <Card elevation={3} sx={{display:"flex",flexDirection:"column",justifyContent:"space-between",minHeight:"100%"}}>
                 <CardMedia
                     sx={{ objectFit: "contain" }}
                     image={`https://localhost:7075/api/Products/${props.product.id}/Thumbnail`}
-                    title="green iguana"
+                    title={props.product.name}
                     component="img"
                 />
                 <CardContent sx={{flexGrow:2}}>
-                    <Typography className="ProductName" sx={{
-                        fontSize:"1em"}} component="p" >
-                        {props.product.name}
-                    </Typography>
+                    <Tooltip title={props.product.name}>
+                        <Typography className="ProductName" sx={{
+                            fontSize:"1em",cursor:"pointer"}} onClick={()=>navigate(`/SanPham/${props.product.id}`)} component="p" >
+                            {props.product.name}
+                        </Typography>
+                    </Tooltip>
+
                 </CardContent>
                 <CardActions sx={{maxHeight:"130px"}}>
                     <Stack width="100%">

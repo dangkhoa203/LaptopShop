@@ -1,4 +1,4 @@
-import {Routes,Route} from "react-router";
+import {Routes, Route, Navigate} from "react-router";
 import UserPage from "./UserPage.tsx";
 import AccountPage from "./Account/AccountPage.tsx";
 import HomePage from "./HomePage.tsx";
@@ -10,6 +10,7 @@ import MomoConfirmPage from "./Order/MomoConfirmPage.tsx";
 import PCBuilderPage from "./Build/PCBuilderPage.tsx";
 import BuildOrderPage from "./Build/BuildOrderPage.tsx";
 import SearchPage from "./Product/SearchPage.tsx";
+import ProductPage from "./Product/ProductPage.tsx";
 
 export default function RouteComponent(){
     return (
@@ -17,7 +18,11 @@ export default function RouteComponent(){
             <Route path="/" element={ <UserPage></UserPage>}>
                 <Route path="" element={<HomePage/> }/>
                 <Route path="Tim">
+                    <Route path="" element={<Navigate to={"/"}/> }></Route>
                     <Route path={":query"} element={<SearchPage/> }></Route>
+                </Route>
+                <Route path="SanPham">
+                    <Route path=":id" element={<ProductPage/>}></Route>
                 </Route>
                 <Route path="GioHang" element={<CartPage/>}/>
                 <Route path="TaiKhoan" element={<AccountPage/> }/>

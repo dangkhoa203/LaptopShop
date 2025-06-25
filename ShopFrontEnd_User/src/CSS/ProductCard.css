@@ -5,3 +5,9 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+.ProductDescription{
+    b{
+        font-size: 1.4em;
+    }
+    font-size: 1.1em;
+}

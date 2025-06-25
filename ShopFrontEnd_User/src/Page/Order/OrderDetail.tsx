@@ -9,6 +9,8 @@ import {PaymentMethods} from "../../Type/PaymentMethod.ts";
 import {OrderStatus} from "../../Type/OrderStatus.ts";
 import Button from "@mui/material/Button";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ReviewDialog from "./ReviewDialog.tsx";
+import Tooltip from "@mui/material/Tooltip";
 type orderDetail={
     id:string,
     dateOfOrder:string,
@@ -25,6 +27,7 @@ type orderDetail={
         name:string,
         price:number,
         quantity:number,
+        reviewAble:boolean
     }[]
 }
 export default function OrderDetail(){
@@ -45,7 +48,7 @@ export default function OrderDetail(){
             details:[]
         }
     );
-    const {data,isPending}=useQuery({
+    const {data,isPending,refetch}=useQuery({
         queryKey:[`Order_${id}`],
         refetchOnWindowFocus:false,
         queryFn:async ()=>{
@@ -64,6 +67,21 @@ export default function OrderDetail(){
         }
     }, [data]);
 
+    const [product, setProduct] = useState({
+        id:"",
+        name:"",
+    });
+    const [open, setOpen] = useState(false);
+
+    const handleClickOpen = (productName:string,productId:string) => {
+        setProduct({name: productName,id:productId});
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setProduct({name: "",id:""});
+        setOpen(false);
+    };
 
     const navigate=useNavigate();
     // @ts-ignore
@@ -174,9 +192,16 @@ export default function OrderDetail(){
                                             />
                                             <Container sx={{ borderLeft:"1px solid black",display: 'flex', flexDirection: 'column' }}>
                                                 <CardContent sx={{minWidth:"100%",paddingX:"5px"}}>
-                                                    <Typography  variant="h6">
-                                                        {detail.name}
-                                                    </Typography>
+                                                    <Tooltip title={detail.name} placement="bottom-start">
+                                                        <Typography sx={{cursor:"pointer"}}
+                                                                    onClick={()=>
+                                                                        navigate(`/SanPham/${detail.id}`)
+                                                                    }
+                                                                    variant="h6">
+                                                            {detail.name}
+                                                        </Typography>
+                                                    </Tooltip>
+
                                                     <Grid container spacing={2}>
                                                         <Grid size={6}>
                                                             <Typography  variant="subtitle1" color="textSecondary">
@@ -190,11 +215,12 @@ export default function OrderDetail(){
                                                         </Grid>
                                                     </Grid>
                                                     <Divider/>
-                                                    <Typography sx={{marginTop:"10px"}}  variant="h5" color="textPrimary">
+                                                    <Typography sx={{marginY:"10px"}}  variant="h5" color="textPrimary">
                                                         Tổng giá trị: {(detail.price*detail.quantity).toLocaleString(undefined, { minimumFractionDigits: 0 })} VNĐ
                                                     </Typography>
-
-
+                                                    {detail.reviewAble &&
+                                                        <Button onClick={()=>handleClickOpen(detail.name,detail.id)} variant={"outlined"} color="secondary">Review</Button>
+                                                    }
                                                 </CardContent>
                                             </Container>
                                         </Card>
@@ -215,6 +241,7 @@ export default function OrderDetail(){
                     }
                 </>
             }
+            <ReviewDialog open={open} handleClose={handleClose}  orderId={id} productName={product.name} productId={product.id} refetch={refetch}/>
         </Container>
     )
 }

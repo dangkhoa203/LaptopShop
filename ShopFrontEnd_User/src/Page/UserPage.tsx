@@ -21,7 +21,7 @@ import {
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingBasketOutlinedIcon from '@mui/icons-material/ShoppingBasketOutlined';
 import {useUserInfo} from "../State/User.ts";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import LoginDialog from "./Account/LoginDialog.tsx";
 import {Threedom} from "../Type/ThreedomPalette.ts";
 import RegisterDialog from "./Account/RegisterDialog.tsx";
@@ -104,17 +104,22 @@ export default function UserPage() {
                 console.log("Error")
             }
         }});
-    const cartCount=userInfo.isLogged? cart.count():0
-    const globalError=useAppError()
     const [searchGlobal,setSearchGlobal]=useState("")
     const handleGlobalSearchChange=(e:any) => {
         setSearchGlobal(e.currentTarget.value)
     }
+    const [cartCount,setCartCount]=useState(0)
+    useEffect(() => {
+        setCartCount(userInfo.isLogged? cart.count():0)
+    }, [cart.cartItems]);
+
+    const globalError=useAppError()
+
     return (
         <div style={{display:"flex",minHeight:"100vh",flexDirection:"column"}}>
         <ThemeProvider theme={Threedom}>
             <HideOnScroll openUser={anchorElUser} open={anchorEl}>
-                <AppBar position="fixed">
+                <AppBar sx={{ zIndex: 3}} position="fixed">
                         <Container sx={{bgcolor:"#e17f04"}} maxWidth="xl">
                             <Toolbar disableGutters>
                                 <LaptopIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -230,11 +235,15 @@ export default function UserPage() {
                                                 if(event.key === 'Enter'){
                                                     if(searchGlobal.length!==0){
                                                         navigate(`/Tim/${encodeURIComponent(searchGlobal)}`)
+                                                        setSearchGlobal("")
                                                     }
                                                 }
                                             }}
                                         />
-                                        {searchGlobal.length>0 && <Button color="inherit" onClick={()=>navigate(`/Tim/${encodeURIComponent(searchGlobal)}`)}
+                                        {searchGlobal.length>0 && <Button color="inherit" onClick={()=>{
+                                            navigate(`/Tim/${encodeURIComponent(searchGlobal)}`)
+                                            setSearchGlobal("")
+                                        }}
 
                                         >Tìm</Button>}
                                     </Search>

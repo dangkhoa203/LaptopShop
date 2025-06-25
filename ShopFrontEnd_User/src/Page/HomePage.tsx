@@ -10,17 +10,19 @@ import banner4 from "../assets/banner4.jpg"
 import banner5 from "../assets/banner5.jpg"
 import banner7 from "../assets/banner7.gif"
 import {CardActionArea, Grid, Paper} from "@mui/material";
-import MainPageMainCategoryProduct from "./Product/MainPageMainCategoryProduct.tsx";
+import MainPageMainCategoryProduct from "./Product/Component/MainPageMainCategoryProduct.tsx";
 import MainPageCategory from "./MainPageCategory.tsx";
 
 
 
 export default function HomePage() {
+
     return (
         <Container sx={{display: "flex", justifyContent: "center",flexDirection:"column", alignItems:"center",gap:3}}>
             <div>
                 <Paper elevation={12} sx={{marginBottom:"30px"}}>
-                    <Carousel showThumbs={false} showStatus={false} stopOnHover autoPlay={true} infiniteLoop={true} dynamicHeight={false}>
+                    <Carousel
+                        showThumbs={false} showStatus={false} stopOnHover autoPlay={true} infiniteLoop={true} dynamicHeight={false}>
                         <Card sx={{ maxWidth: "100%" }}>
                             <CardActionArea>
                                 <CardMedia

@@ -1,8 +1,8 @@
 import Typography from "@mui/material/Typography";
-import {ProductData} from "../../Type/ProductData.ts";
+import {ProductData} from "../../../Type/ProductData.ts";
 import {useEffect, useState} from "react";
 import {useQuery} from "@tanstack/react-query";
-import "../../CSS/ProductCard.css"
+import "../../../CSS/ProductCard.css"
 import {Grid, Paper} from "@mui/material";
 import Button from "@mui/material/Button";
 import MainPageProductCard from "./MainPageProductCard.tsx";

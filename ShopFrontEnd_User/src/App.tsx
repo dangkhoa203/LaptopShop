@@ -5,7 +5,8 @@ import {useUserInfo} from "./State/User.ts";
 import {useQuery} from "@tanstack/react-query";
 import {Backdrop, CircularProgress} from "@mui/material";
 import {useCart} from "./State/Cart.ts";
-
+import "./CSS/CardAnimation.css"
+import "./CSS/ProductDescription.css"
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 function App() {
     const setUserInfo=useUserInfo((state)=> state.setUserInfo);
