@@ -11,6 +11,8 @@ import {useUserInfo} from "../../../State/User.ts";
 import {useAppError} from "../../../State/AppErrorState.ts";
 import {useMutation} from "@tanstack/react-query";
 import {Response} from "../../../Type/Respone.ts";
+import Tooltip from "@mui/material/Tooltip";
+import {useNavigate} from "react-router";
 export default function MainPageProductCard(props: {product:ProductData}){
     const reFetch=useCart((state)=>state.reFetch)
     const userInfo=useUserInfo(state => state.user)
@@ -34,7 +36,7 @@ export default function MainPageProductCard(props: {product:ProductData}){
             }
         }
     })
-
+    const navigate=useNavigate()
     return(
         <Card elevation={12} className="productCard" sx={{display:"flex",flexDirection:"column",justifyContent:"space-between",minHeight:"100%"}}>
             <CardMedia
@@ -45,10 +47,12 @@ export default function MainPageProductCard(props: {product:ProductData}){
                 component="img"
             />
             <CardContent sx={{flexGrow:2}}>
-                <Typography className="ProductName" sx={{
-                    fontSize:"1em"}} component="p" >
-                    {props.product.name}
-                </Typography>
+                <Tooltip title={props.product.name}>
+                    <Typography className="ProductName" sx={{
+                        fontSize:"1em",cursor:"pointer"}} onClick={()=>navigate(`/SanPham/${props.product.id}`)} component="p" >
+                        {props.product.name}
+                    </Typography>
+                </Tooltip>
             </CardContent>
             <CardActions sx={{maxHeight:"130px"}}>
                 <Stack width="100%">

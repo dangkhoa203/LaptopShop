@@ -3,6 +3,7 @@ using APIShopLaptop.Endpoint;
 using APIShopLaptop.Model.Entity.Product_Related;
 using APIShopLaptop.Model.Enum;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,7 +15,7 @@ namespace APIShopLaptop.Feature.Admin.Products.Description {
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapPut("/api/Admin/Products/{id}/Description", Handler).WithTags("Admin_Products");
         }
-
+        [Authorize(Roles = "Admin")]
         private static async Task<IResult> Handler([FromRoute] string id, Request request, IWebHostEnvironment env, ApplicationDBContext context) {
             Product? product = await context.Products.FirstOrDefaultAsync(p => p.Id == id);
             if (product == null) {

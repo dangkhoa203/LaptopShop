@@ -3,35 +3,23 @@
   "WorkspaceRootPath": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\user\\products\\getproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\user\\products\\getproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\user\\category\\getproductsfromsubcaterory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\user\\category\\getproductsfromsubcaterory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\user\\orders\\getorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\user\\orders\\getorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\user\\category\\getproductfrommaincategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\user\\category\\getproductfrommaincategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/DESKTOP_N0V3KE1/Shop/True/SqlTable/dbo.Reviews.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/DESKTOP_N0V3KE1/Shop/True/SqlTable/dbo.SubCaterories.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\user\\reviews\\addreview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\user\\reviews\\addreview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\user\\products\\searchproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\user\\products\\searchproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\user\\reviews\\getreviews.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\user\\reviews\\getreviews.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\extension\\userendpoint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\extension\\userendpoint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\user\\reviews\\updatereview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\user\\reviews\\updatereview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\migrations\\20250625153233_update4.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\migrations\\20250625153233_update4.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\model\\enum\\sortmode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\model\\enum\\sortmode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -41,7 +29,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -49,99 +37,64 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "GetProduct.cs",
-              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\User\\Products\\GetProduct.cs",
-              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\User\\Products\\GetProduct.cs",
-              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\User\\Products\\GetProduct.cs",
-              "RelativeToolTip": "APIShopLaptop\\Feature\\User\\Products\\GetProduct.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAA9wBwAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-25T16:59:39.157Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "dbo.Reviews [Data]",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/DESKTOP_N0V3KE1/Shop/True/SqlTable/dbo.Reviews.sql",
-              "ToolTip": "dbo.Reviews [Data]",
+              "Title": "dbo.SubCaterories [Data]",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/DESKTOP_N0V3KE1/Shop/True/SqlTable/dbo.SubCaterories.sql",
+              "ToolTip": "dbo.SubCaterories [Data]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2025-06-25T16:46:34.286Z",
+              "WhenOpened": "2025-07-02T12:52:34.83Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "UserEndpoint.cs",
-              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Extension\\UserEndpoint.cs",
-              "RelativeDocumentMoniker": "APIShopLaptop\\Extension\\UserEndpoint.cs",
-              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Extension\\UserEndpoint.cs",
-              "RelativeToolTip": "APIShopLaptop\\Extension\\UserEndpoint.cs",
-              "ViewState": "AgIAADwAAAAAAAAAAAAswFIAAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-25T16:40:46.391Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "20250625153233_Update4.cs",
-              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Migrations\\20250625153233_Update4.cs",
-              "RelativeDocumentMoniker": "APIShopLaptop\\Migrations\\20250625153233_Update4.cs",
-              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Migrations\\20250625153233_Update4.cs",
-              "RelativeToolTip": "APIShopLaptop\\Migrations\\20250625153233_Update4.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-25T15:32:33.988Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "GetOrder.cs",
-              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\User\\Orders\\GetOrder.cs",
-              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\User\\Orders\\GetOrder.cs",
-              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\User\\Orders\\GetOrder.cs",
-              "RelativeToolTip": "APIShopLaptop\\Feature\\User\\Orders\\GetOrder.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA8AAABcAAAAAAAAAA==",
+              "Title": "GetProductFromMainCategory.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\User\\Category\\GetProductFromMainCategory.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\User\\Category\\GetProductFromMainCategory.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\User\\Category\\GetProductFromMainCategory.cs",
+              "RelativeToolTip": "APIShopLaptop\\Feature\\User\\Category\\GetProductFromMainCategory.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAADwvxEAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-25T15:25:48.123Z",
+              "WhenOpened": "2025-07-02T12:03:56.82Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GetProductsFromSubCaterory.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\User\\Category\\GetProductsFromSubCaterory.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\User\\Category\\GetProductsFromSubCaterory.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\User\\Category\\GetProductsFromSubCaterory.cs",
+              "RelativeToolTip": "APIShopLaptop\\Feature\\User\\Category\\GetProductsFromSubCaterory.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAgwBEAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-02T10:39:01.956Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "GetReviews.cs",
-              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\User\\Reviews\\GetReviews.cs",
-              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\User\\Reviews\\GetReviews.cs",
-              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\User\\Reviews\\GetReviews.cs",
-              "RelativeToolTip": "APIShopLaptop\\Feature\\User\\Reviews\\GetReviews.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAAAAsAAAAJAAAAAAAAAA==",
+              "Title": "SortMode.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Model\\Enum\\SortMode.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Model\\Enum\\SortMode.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Model\\Enum\\SortMode.cs",
+              "RelativeToolTip": "APIShopLaptop\\Model\\Enum\\SortMode.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-25T15:21:14.09Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "UpdateReview.cs",
-              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\User\\Reviews\\UpdateReview.cs",
-              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\User\\Reviews\\UpdateReview.cs",
-              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\User\\Reviews\\UpdateReview.cs",
-              "RelativeToolTip": "APIShopLaptop\\Feature\\User\\Reviews\\UpdateReview.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAA7wBkAAAB2AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-25T15:02:31.964Z"
+              "WhenOpened": "2025-07-02T11:23:00.33Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "AddReview.cs",
-              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\User\\Reviews\\AddReview.cs",
-              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\User\\Reviews\\AddReview.cs",
-              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\User\\Reviews\\AddReview.cs",
-              "RelativeToolTip": "APIShopLaptop\\Feature\\User\\Reviews\\AddReview.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAAwA4AAABSAAAAAAAAAA==",
+              "Title": "SearchProduct.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\User\\Products\\SearchProduct.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\User\\Products\\SearchProduct.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\User\\Products\\SearchProduct.cs",
+              "RelativeToolTip": "APIShopLaptop\\Feature\\User\\Products\\SearchProduct.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-25T14:40:22.303Z",
+              "WhenOpened": "2025-07-02T10:40:17.956Z",
               "EditorCaption": ""
             }
           ]

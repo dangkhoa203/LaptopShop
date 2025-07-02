@@ -2,6 +2,7 @@
 using APIShopLaptop.Endpoint;
 using APIShopLaptop.Middleware.Momo;
 using APIShopLaptop.Model.Enum;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
@@ -14,7 +15,7 @@ namespace APIShopLaptop.Feature.Admin.Orders {
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapPut("/api/Admin/Orders/Confirm", Handler).WithTags("Admin_Orders");
         }
-
+        [Authorize(Roles = "Admin")]
         private static async Task<IResult> Handler([FromBody] Request request, MoMoService moMoService, ApplicationDBContext context, ClaimsPrincipal User) {
             try {
                 var Order = await context.Orders

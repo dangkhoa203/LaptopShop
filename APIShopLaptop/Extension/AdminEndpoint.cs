@@ -13,6 +13,7 @@ using APIShopLaptop.Feature.Admin.Products.Images;
 using APIShopLaptop.Feature.Admin.Products.Info;
 using APIShopLaptop.Feature.Admin.Products.Specifications;
 using APIShopLaptop.Feature.Admin.Specifications;
+using APIShopLaptop.Feature.Admin.Summary;
 
 namespace APIShopLaptop.Extension {
     public static class AdminEndpoint {
@@ -83,6 +84,15 @@ namespace APIShopLaptop.Extension {
             UpdateUserPassword.MapEndpoint(app);
             UpdateUserEmail.MapEndpoint(app);
         }
+        private static void AddSummaryFeature(this WebApplication app) {
+            GetTop10Product.MapEndpoint(app);
+            GetTopMainCategory.MapEndpoint(app);
+            GetAllSubCategorySale.MapEndpoint(app);
+            GetAllMainCategorySale.MapEndpoint(app);
+            GetTop5Customer.MapEndpoint(app);
+            GetAllCustomerSale.MapEndpoint(app);
+            GetAllOrderStatus.MapEndpoint(app);
+        }
         public static void AddAllEndPoint(this WebApplication app) {
             AddImageStorageService(app);
             AddBrandService(app);
@@ -92,6 +102,7 @@ namespace APIShopLaptop.Extension {
             AddCategoryFeature(app);
             AddAccountFeature(app);
             AddSpecificationFeature(app);
+            AddSummaryFeature(app);
         }
     }
 }

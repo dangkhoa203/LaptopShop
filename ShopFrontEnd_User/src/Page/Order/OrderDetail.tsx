@@ -9,7 +9,7 @@ import {PaymentMethods} from "../../Type/PaymentMethod.ts";
 import {OrderStatus} from "../../Type/OrderStatus.ts";
 import Button from "@mui/material/Button";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import ReviewDialog from "./ReviewDialog.tsx";
+import ReviewDialog from "../Review/Component/ReviewDialog.tsx";
 import Tooltip from "@mui/material/Tooltip";
 type orderDetail={
     id:string,

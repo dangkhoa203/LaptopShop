@@ -10,6 +10,7 @@ namespace APIShopLaptop.Feature.Admin.Brands {
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapGet("/api/Admin/Brands", Handler).WithTags("Admin_Brands");
         }
+        [Authorize(Roles = "Admin")]
         private static async Task<IResult> Handler(ApplicationDBContext context) {
             try {
                 var Brands = await context.Brands

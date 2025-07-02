@@ -12,8 +12,7 @@ namespace APIShopLaptop.Feature.User.Reviews {
         public record Response(bool Success, string ErrorMessage, ValidationResult? ValidationError);
         public sealed class Validator : AbstractValidator<Request> {
             public Validator() {
-                RuleFor(r => r.Content).NotEmpty().WithMessage("Chưa nhập nội dung!");
-                RuleFor(r => r.Score).ExclusiveBetween(0, 5).WithMessage("Không hợp lệ");
+                RuleFor(r => r.Score).ExclusiveBetween(0, 6).WithMessage("Không hợp lệ");
             }
         }
         public static void MapEndpoint(IEndpointRouteBuilder app) {

@@ -6,14 +6,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace APIShopLaptop.Feature.User.Category {
     public class GetProductFromMainCategory : IEndpoint {
-        public record Request(string Id, int Page, List<string> SortByBrand);
         public record ProductDTO(string Id, string Name, float Price, int Quantity, bool IsDiscount, float PriceAfterDiscount);
-        public record Response(bool Success, List<ProductDTO> Data, string ErrorMessage);
+        public record DataDTO(List<ProductDTO> Products, int MaxPage, int Total);
+        public record Response(bool Success, DataDTO Data, string ErrorMessage);
 
         public static void MapEndpoint(IEndpointRouteBuilder app) {
-            app.MapGet("/api/Category/Main/{id}/{page}", Handler).WithTags("Category");
+            app.MapGet("/api/Category/Main/{id}", Handler).WithTags("Category");
         }
-        private static async Task<IResult> Handler([FromRoute]string Id, [FromRoute]int page, ApplicationDBContext context) {
+        private static async Task<IResult> Handler([FromRoute] string Id, [FromQuery] int page, [FromQuery] SORTMODE sortMode, ApplicationDBContext context) {
             try {
                 int perPage = 12;
                 var subCategory = await context.SubCaterories
@@ -22,27 +22,59 @@ namespace APIShopLaptop.Feature.User.Category {
                     .Select(c => c.Id)
                     .ToListAsync();
 
-                var Products = await context.CateroryItems
+                var Products =await context.CateroryItems
                    .Include(i => i.ProductNavigation)
                        .ThenInclude(p => p.Brand)
-                   .Where(i => subCategory.Any(c => c == i.CateroryId))
-                   //.Where(i => !request.SortByBrand.Any() || request.SortByBrand.Any(b => b == i.ProductNavigation.Brand.Tag))
-                   .GroupBy(i => i.ProductId)
-                   .Skip(perPage * (page - 1))
-                   .Select(i => new ProductDTO(
-                           i.First().ProductNavigation.Id,
-                           i.First().ProductNavigation.Name,
-                           i.First().ProductNavigation.Price,
-                           i.First().ProductNavigation.Quantity,
-                           i.First().ProductNavigation.IsDiscount,
-                           i.First().ProductNavigation.PriceAfterDiscount
-                       ))
-                   .Take(perPage)
-                   .ToListAsync();
-                return Results.Ok(new Response(true, Products, ""));
+                   .Where(i => subCategory.Any(c => c == i.CateroryId) && i.ProductNavigation.Status==PRODUCTSTATUS.ACTIVE)
+                   .GroupBy(i => i.ProductId).ToListAsync();
+               
+                List<ProductDTO> Sort;
+                switch (sortMode) {
+                    case SORTMODE.NAME_ASC:
+                    Sort = Products.OrderBy(p => p.First().ProductNavigation.Name).Select(p => new ProductDTO(
+                                          p.First().ProductNavigation.Id, p.First().ProductNavigation.Name, p.First().ProductNavigation.Price, p.First().ProductNavigation.Quantity, p.First().ProductNavigation.IsDiscount, p.First().ProductNavigation.PriceAfterDiscount
+                                       )).ToList();
+                    break;
+
+                    case SORTMODE.NAME_DES:
+                    Sort = Products.OrderByDescending(p => p.First().ProductNavigation.Name).Select(p => new ProductDTO(
+                                          p.First().ProductNavigation.Id, p.First().ProductNavigation.Name, p.First().ProductNavigation.Price, p.First().ProductNavigation.Quantity, p.First().ProductNavigation.IsDiscount, p.First().ProductNavigation.PriceAfterDiscount
+                                       )).ToList();
+                    break;
+                    case SORTMODE.NEWEST:
+                    Sort = Products.OrderBy(p => p.First().ProductNavigation.CreatedAt).Select(p => new ProductDTO(
+                                          p.First().ProductNavigation.Id, p.First().ProductNavigation.Name, p.First().ProductNavigation.Price, p.First().ProductNavigation.Quantity, p.First().ProductNavigation.IsDiscount, p.First().ProductNavigation.PriceAfterDiscount
+                                       )).ToList();
+                    break;
+                    case SORTMODE.OLDEST:
+                    Sort = Products.OrderByDescending(p => p.First().ProductNavigation.CreatedAt).Select(p => new ProductDTO(
+                                          p.First().ProductNavigation.Id, p.First().ProductNavigation.Name, p.First().ProductNavigation.Price, p.First().ProductNavigation.Quantity, p.First().ProductNavigation.IsDiscount, p.First().ProductNavigation.PriceAfterDiscount
+                                       )).ToList();
+                    break;
+                    case SORTMODE.PRICE_ASC:
+                    Sort = Products.OrderBy(p => p.First().ProductNavigation.IsDiscount ? p.First().ProductNavigation.PriceAfterDiscount : p.First().ProductNavigation.Price).Select(p => new ProductDTO(
+                                          p.First().ProductNavigation.Id, p.First().ProductNavigation.Name, p.First().ProductNavigation.Price, p.First().ProductNavigation.Quantity, p.First().ProductNavigation.IsDiscount, p.First().ProductNavigation.PriceAfterDiscount
+                                       )).ToList();
+                    break;
+                    case SORTMODE.PRICE_DES:
+                    Sort = Products.OrderByDescending(p => p.First().ProductNavigation.IsDiscount ? p.First().ProductNavigation.PriceAfterDiscount : p.First().ProductNavigation.Price).Select(p => new ProductDTO(
+                                          p.First().ProductNavigation.Id, p.First().ProductNavigation.Name, p.First().ProductNavigation.Price, p.First().ProductNavigation.Quantity, p.First().ProductNavigation.IsDiscount, p.First().ProductNavigation.PriceAfterDiscount
+                                       )).ToList();
+                    break;
+                    default:
+                    Sort = Products.OrderBy(p => p.First().ProductNavigation.Name).Select(p => new ProductDTO(
+                                          p.First().ProductNavigation.Id, p.First().ProductNavigation.Name, p.First().ProductNavigation.Price, p.First().ProductNavigation.Quantity, p.First().ProductNavigation.IsDiscount, p.First().ProductNavigation.PriceAfterDiscount
+                                       )).ToList();
+                    break;
+
+                }
+                var Total = Sort.Count();
+                var TotalPage = (int)Math.Ceiling((double)Total / perPage);
+                var list = Sort.Skip(perPage * (page - 1)).Take(perPage).ToList();
+                return Results.Ok(new Response(true, new DataDTO(list, TotalPage, Total), ""));
             }
             catch (Exception ex) {
-                return Results.BadRequest(new Response(false, [], "Lỗi đã xảy ra!"));
+                return Results.BadRequest(new Response(false, new DataDTO([], 1, 0), "Lỗi đã xảy ra!"));
             }
         }
     }

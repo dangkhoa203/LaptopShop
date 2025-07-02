@@ -1483,6 +1483,139 @@
     ]
   },
   {
+    "ContainingType": "APIShopLaptop.Feature.Admin.Summary.GetAllCustomerSale",
+    "Method": "Handler",
+    "RelativePath": "api/Admin/Summary/All_Customer",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Admin_Summary"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.Admin.Summary.GetAllMainCategorySale",
+    "Method": "Handler",
+    "RelativePath": "api/Admin/Summary/All_Main_Sale",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Admin_Summary"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.Admin.Summary.GetAllOrderStatus",
+    "Method": "Handler",
+    "RelativePath": "api/Admin/Summary/All_Order",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Admin_Summary"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.Admin.Summary.GetAllSubCategorySale",
+    "Method": "Handler",
+    "RelativePath": "api/Admin/Summary/All_Sub_Sale",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Admin_Summary"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.Admin.Summary.GetTopMainCategory",
+    "Method": "Handler",
+    "RelativePath": "api/Admin/Summary/Top_Category",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Admin_Summary"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.Admin.Summary.GetTop5Customer",
+    "Method": "Handler",
+    "RelativePath": "api/Admin/Summary/Top_Customer",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Admin_Summary"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.Admin.Summary.GetTop10Product",
+    "Method": "Handler",
+    "RelativePath": "api/Admin/Summary/Top_Product",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Admin_Summary"
+    ]
+  },
+  {
     "ContainingType": "APIShopLaptop.Feature.Admin.Orders.Momo.GetTransactions",
     "Method": "Handler",
     "RelativePath": "api/Admin/Transactions",
@@ -1762,7 +1895,7 @@
   {
     "ContainingType": "APIShopLaptop.Feature.User.Category.GetProductFromMainCategory",
     "Method": "Handler",
-    "RelativePath": "api/Category/Main/{id}/{page}",
+    "RelativePath": "api/Category/Main/{id}",
     "HttpMethod": "GET",
     "IsController": false,
     "Order": 0,
@@ -1775,6 +1908,11 @@
       {
         "Name": "page",
         "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "sortMode",
+        "Type": "APIShopLaptop.Model.Enum.SORTMODE",
         "IsRequired": true
       }
     ],
@@ -1817,7 +1955,7 @@
   {
     "ContainingType": "APIShopLaptop.Feature.User.Caterory.GetProductsFromSubCaterory",
     "Method": "Handler",
-    "RelativePath": "api/Category/Sub/{id}/{page}",
+    "RelativePath": "api/Category/Sub/{id}",
     "HttpMethod": "GET",
     "IsController": false,
     "Order": 0,
@@ -1831,6 +1969,11 @@
         "Name": "page",
         "Type": "System.Int32",
         "IsRequired": true
+      },
+      {
+        "Name": "sortMode",
+        "Type": "APIShopLaptop.Model.Enum.SORTMODE",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": [
@@ -1841,7 +1984,7 @@
       }
     ],
     "Tags": [
-      "Caterory"
+      "Category"
     ]
   },
   {
@@ -2055,6 +2198,11 @@
         "Name": "page",
         "Type": "System.Int32",
         "IsRequired": true
+      },
+      {
+        "Name": "mode",
+        "Type": "APIShopLaptop.Model.Enum.SEARCHMODE",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": [
@@ -2121,6 +2269,36 @@
     ],
     "Tags": [
       "Product"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.Products.GetProductReviews",
+    "Method": "Handler",
+    "RelativePath": "api/Products/{id}/Reviews",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "preview",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Products"
     ]
   },
   {
@@ -2202,6 +2380,25 @@
     "ContainingType": "APIShopLaptop.Feature.User.Reviews.GetReviews",
     "Method": "Handler",
     "RelativePath": "api/Reviews",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Reviews"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.Reviews.GetReviewAble",
+    "Method": "Handler",
+    "RelativePath": "api/Reviews/ReviewAble",
     "HttpMethod": "GET",
     "IsController": false,
     "Order": 0,

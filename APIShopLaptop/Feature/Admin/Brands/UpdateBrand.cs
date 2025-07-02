@@ -26,6 +26,7 @@ namespace APIShopLaptop.Feature.Admin.Brands {
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapPut("/api/Admin/Brands/{id}", Handler).WithTags("Admin_Brands");
         }
+        [Authorize(Roles = "Admin")]
         private static async Task<IResult> Handler(string id,Request request, ApplicationDBContext context) {
             try {
                 var Validator = new Validator();

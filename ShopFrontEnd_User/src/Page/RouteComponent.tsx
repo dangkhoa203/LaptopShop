@@ -11,6 +11,9 @@ import PCBuilderPage from "./Build/PCBuilderPage.tsx";
 import BuildOrderPage from "./Build/BuildOrderPage.tsx";
 import SearchPage from "./Product/SearchPage.tsx";
 import ProductPage from "./Product/ProductPage.tsx";
+import ProductReviewPage from "./Product/ProductReviewPage.tsx";
+import ReviewPage from "./Review/ReviewPage.tsx";
+import CategoryPage from "./Product/CategoryPage.tsx";
 
 export default function RouteComponent(){
     return (
@@ -19,12 +22,15 @@ export default function RouteComponent(){
                 <Route path="" element={<HomePage/> }/>
                 <Route path="Tim">
                     <Route path="" element={<Navigate to={"/"}/> }></Route>
-                    <Route path={":query"} element={<SearchPage/> }></Route>
+                    <Route path={":mode/:query"} element={<SearchPage/> }></Route>
                 </Route>
                 <Route path="SanPham">
+                    <Route path="" element={<Navigate to={"/"}/> }></Route>
                     <Route path=":id" element={<ProductPage/>}></Route>
+                    <Route path=":id/Review" element={<ProductReviewPage/>}></Route>
                 </Route>
                 <Route path="GioHang" element={<CartPage/>}/>
+                <Route path="Review" element={<ReviewPage/>}/>
                 <Route path="TaiKhoan" element={<AccountPage/> }/>
                 <Route path="DatHang" element={<CreateOrderPage/> }/>
                 <Route path="DonHang" >
@@ -35,6 +41,13 @@ export default function RouteComponent(){
                 <Route path="Dung-PC" >
                     <Route index path="" element={<PCBuilderPage></PCBuilderPage>}></Route>
                     <Route path="DatHang" element={<BuildOrderPage/> }></Route>
+                </Route>
+                <Route path="Motherboard" >
+                    <Route path="AMD" element={<CategoryPage title={"Motherboard thích hợp với CPU AMD"} categoryId={"MOTHERBOARD_AMD"} isMain={false}/> }/>
+                    <Route path="Intel" element={<CategoryPage title={"Motherboard thích hợp với CPU Intel"} categoryId={"MOTHERBOARD_INTEL"} isMain={false}/> }/>
+                    <Route path="ATX" element={<CategoryPage title={"Motherboard thích hợp với case ATX"} categoryId={"MOTHERBOARD_ATX"} isMain={false}/> }/>
+                    <Route path="Micro-ATX" element={<CategoryPage title={"Motherboard thích hợp với case Micro-ATX"} categoryId={"MOTHERBOARD_MicroATX"} isMain={false}/> }/>
+                    <Route path="Micro-ITX" element={<CategoryPage title={"Motherboard thích hợp với case Micro-ITX"} categoryId={"MOTHERBOARD_MicroITX"} isMain={false}/> }/>
                 </Route>
             </Route>
         </Routes>

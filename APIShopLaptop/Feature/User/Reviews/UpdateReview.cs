@@ -13,8 +13,7 @@ namespace APIShopLaptop.Feature.User.Reviews {
         public record Response(bool Success, string ErrorMessage, ValidationResult? ValidationError);
         public sealed class Validator : AbstractValidator<Request> {
             public Validator() {
-                RuleFor(r => r.Content).NotEmpty().WithMessage("Chưa nhập tag!");
-                RuleFor(r => r.Score).ExclusiveBetween(0, 5).WithMessage("Không hợp lệ");
+                RuleFor(r => r.Score).ExclusiveBetween(0, 6).WithMessage("Không hợp lệ");
             }
             public bool CheckSame(Request request, Review review) {
                 return request.Score == review.Score && request.Content == review.Content;

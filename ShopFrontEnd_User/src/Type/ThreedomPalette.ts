@@ -5,7 +5,7 @@ export const Threedom = createTheme({
         primary:{
             main: '#ed6c02',
             light: '#ff8f32',
-            dark:'#2e1a01',
+            dark:'#da7900',
         },
         success:{
             main: '#00b584',
@@ -24,7 +24,7 @@ export const Threedom = createTheme({
             main: '#dfe0df',
             light: '#ffffff',
             dark: '#acabab',
-            contrastText: '#040404',
+            contrastText: '#fffbfb',
         }
     }
 }

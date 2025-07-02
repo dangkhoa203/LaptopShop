@@ -4,8 +4,8 @@ import DialogActions from "@mui/material/DialogActions";
 import {useState} from "react";
 import Button from "@mui/material/Button";
 import {useMutation} from "@tanstack/react-query";
-import {Response} from "../../Type/Respone.ts";
-import {useAppError} from "../../State/AppErrorState.ts";
+import {Response} from "../../../Type/Respone.ts";
+import {useAppError} from "../../../State/AppErrorState.ts";
 
 export default function ReviewDialog(props:{open:boolean,handleClose:()=>void,orderId:string,productName:string,productId:string,refetch:any}) {
     const [reviewModel, setReviewModel] = useState({

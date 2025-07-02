@@ -2,6 +2,7 @@
 using APIShopLaptop.Endpoint;
 using APIShopLaptop.Model.Entity.Product_Related;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,7 +14,7 @@ namespace APIShopLaptop.Feature.Admin.Products.Category {
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapPut("/api/Admin/Products/{id}/Category", Handler).WithTags("Admin_Products");
         }
-
+        [Authorize(Roles = "Admin")]
         private static async Task<IResult> Handler(Request request, string id, ApplicationDBContext context) {
             try {
                 var Product = context.Products.Include(p=>p.CateroryItems).FirstOrDefault(p => p.Id == id);

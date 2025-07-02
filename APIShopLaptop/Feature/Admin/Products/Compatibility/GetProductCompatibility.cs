@@ -1,5 +1,6 @@
 ﻿using APIShopLaptop.Data;
 using APIShopLaptop.Endpoint;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 
 namespace APIShopLaptop.Feature.Admin.Products.Compatibility {
@@ -10,7 +11,7 @@ namespace APIShopLaptop.Feature.Admin.Products.Compatibility {
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapGet("/api/Admin/Products/{id}/Compatibility", Handler).WithTags("Admin_Products");
         }
-
+        [Authorize(Roles = "Admin")]
         private static async Task<IResult> Handler(string id, ApplicationDBContext context) {
             try {
                 var Product = await context.Products

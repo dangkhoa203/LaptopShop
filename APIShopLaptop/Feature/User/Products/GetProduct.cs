@@ -3,13 +3,14 @@ using APIShopLaptop.Endpoint;
 using APIShopLaptop.Model.Enum;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Security.Claims;
 
 namespace APIShopLaptop.Feature.User.Products {
     public class GetProduct : IEndpoint {
         public record ReviewDTO(string Content,float Score,string Username);
         public record SpecificationDTO(string Name,string Value);
-        public record ProductDTO(string Id, string Name, float Price, int Quantity, bool IsDiscount, float PriceAfterDiscount,string Description,List<SpecificationDTO> Specifications,List<string> ProductImage,List<ReviewDTO> Reviews);
+        public record ProductDTO(string Id, string Name, float Price, int Quantity, bool IsDiscount, float PriceAfterDiscount,string Description,List<SpecificationDTO> Specifications,List<string> ProductImage,float AverageScore,int ReviewCount);
         public record Response(bool Success, ProductDTO Data, string ErrorMessage);
 
         public static void MapEndpoint(IEndpointRouteBuilder app) {
@@ -21,6 +22,7 @@ namespace APIShopLaptop.Feature.User.Products {
                 if (Product == null) {
                     return Results.BadRequest(new Response(false, null, "Không tìm thấy!"));
                 }
+                
                 var Data = new ProductDTO(
                     Product.Id,
                     Product.Name,
@@ -31,7 +33,8 @@ namespace APIShopLaptop.Feature.User.Products {
                     Product.Description,
                     Product.Specifications.Select(s => new SpecificationDTO(s.SpecificationNavigation.Name, s.Value)).ToList(),
                     Product.Images.Where(i => !i.IsThumbnail).Select(i => i.Id).ToList(),
-                    Product.Reviews.Select(r=>new ReviewDTO(r.Content,r.Score,r.User.UserName)).ToList()
+                    Product.Reviews.Count>0 ? Product.Reviews.Sum(r=>r.Score)/ Product.Reviews.Count :0,
+                    Product.Reviews.Count
                     );
                 return Results.Ok(new Response(true, Data, ""));
             }

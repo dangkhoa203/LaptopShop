@@ -4,6 +4,7 @@ import Typography from "@mui/material/Typography";
 import {useNavigate} from "react-router";
 import {useAppError} from "../State/AppErrorState.ts";
 import {useUserInfo} from "../State/User.ts";
+import Tooltip from "@mui/material/Tooltip";
 
 export default function CategoryList(){
     const error=useAppError()
@@ -101,23 +102,6 @@ const LaptopCategory=()=>{
                     </ListItem>
                     <ListItem>
                         <ListItemText sx={{paddingLeft:"5px"}} primary="Gaming" />
-                    </ListItem>
-                </List>
-            </Grid>
-            <Grid size={4}>
-                <List
-                    sx={{ width: '100%', maxWidth: 360 }}
-                >
-                    <ListItem>
-                        <Typography sx={{fontSize:"1.3em"}} color="primary"  >
-                            Theo hãng
-                        </Typography>
-                    </ListItem>
-                    <ListItem >
-                        <ListItemText sx={{paddingLeft:"5px"}} primary="Asus" />
-                    </ListItem>
-                    <ListItem>
-                        <ListItemText sx={{paddingLeft:"5px"}} primary="Drafts" />
                     </ListItem>
                 </List>
             </Grid>
@@ -325,6 +309,7 @@ const PCCategory=()=>{
     )
 }
 const PCComponentCategory=()=>{
+    const navigate=useNavigate();
     return(
         <Grid container spacing={1}>
             <Grid size={4}>
@@ -337,10 +322,15 @@ const PCComponentCategory=()=>{
                         </Typography>
                     </ListItem>
                     <ListItem sx={{paddingTop:0}}>
-                        <ListItemText sx={{paddingLeft:"5px"}} primary="Intel" />
+                        <Tooltip placement="bottom-start" title={"Motherboard tương thích CPU Intel"}>
+                            <ListItemText onClick={()=>navigate("/Motherboard/Intel")} sx={{cursor:"pointer",paddingLeft:"5px"}} primary="Intel" />
+                        </Tooltip>
                     </ListItem>
                     <ListItem>
-                        <ListItemText sx={{paddingLeft:"5px"}} primary="AMD" />
+                        <Tooltip placement="bottom-start" title={"Motherboard tương thích CPU AMD"}>
+                            <ListItemText onClick={()=>navigate("/Motherboard/AMD")} sx={{cursor:"pointer",paddingLeft:"5px"}} primary="AMD" />
+                        </Tooltip>
+
                     </ListItem>
                 </List>
             </Grid>
@@ -354,13 +344,19 @@ const PCComponentCategory=()=>{
                         </Typography>
                     </ListItem>
                     <ListItem sx={{paddingTop:0}}>
-                        <ListItemText sx={{paddingLeft:"5px"}} primary="ATX" />
+                        <Tooltip placement="bottom-start" title={"Motherboard tương thích case ATX"}>
+                            <ListItemText onClick={()=>navigate("/Motherboard/ATX")} sx={{cursor:"pointer",paddingLeft:"5px"}} primary="ATX" />
+                        </Tooltip>
                     </ListItem>
                     <ListItem>
-                        <ListItemText sx={{paddingLeft:"5px"}} primary="Micro-ATX" />
+                        <Tooltip placement="bottom-start" title={"Motherboard tương thích case Micro-ATX"}>
+                            <ListItemText onClick={()=>navigate("/Motherboard/Micro-ATX")} sx={{cursor:"pointer",paddingLeft:"5px"}} primary="Micro-ATX" />
+                        </Tooltip>
                     </ListItem>
                     <ListItem>
-                        <ListItemText sx={{paddingLeft:"5px"}} primary="Mini-ITX" />
+                        <Tooltip placement="bottom-start" title={"Motherboard tương thích case Micro-ITX"}>
+                            <ListItemText onClick={()=>navigate("/Motherboard/Micro-ITX")} sx={{cursor:"pointer",paddingLeft:"5px"}} primary="Micro-ITX" />
+                        </Tooltip>
                     </ListItem>
                 </List>
             </Grid>

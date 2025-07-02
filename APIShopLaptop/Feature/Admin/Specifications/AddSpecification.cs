@@ -4,6 +4,7 @@ using APIShopLaptop.Model.Entity.Product_Related;
 using APIShopLaptop.Model.Entity.Spec_And_Filter;
 using FluentValidation;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
 
 namespace APIShopLaptop.Feature.Admin.Specifications {
     public class AddSpecification:IEndpoint {
@@ -17,6 +18,7 @@ namespace APIShopLaptop.Feature.Admin.Specifications {
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapPost("/api/Admin/Specifications", Handler).WithTags("Admin_Specifications");
         }
+        [Authorize(Roles = "Admin")]
         private static async Task<IResult> Handler(Request request, ApplicationDBContext context) {
             try {
                 var Validator = new Validator();

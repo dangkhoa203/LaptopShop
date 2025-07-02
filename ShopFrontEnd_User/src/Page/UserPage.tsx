@@ -14,9 +14,9 @@ import LaptopIcon from '@mui/icons-material/Laptop';
 import { styled, alpha } from '@mui/material/styles';
 import {
     Alert,
-    Badge, ButtonGroup, Divider,
+    Badge, ButtonGroup, Divider, FormControl,
     InputBase,
-    MenuItem, Slide, Snackbar, ThemeProvider, useScrollTrigger
+    MenuItem, Select, Slide, Snackbar, ThemeProvider, useScrollTrigger
 } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingBasketOutlinedIcon from '@mui/icons-material/ShoppingBasketOutlined';
@@ -31,6 +31,8 @@ import {Outlet, useNavigate} from 'react-router';
 import {useCart} from "../State/Cart.ts";
 import {useAppError} from "../State/AppErrorState.ts";
 import CategoryList from "./CategoryList.tsx";
+import {UseSearch} from "../State/Search.ts";
+import {SearchMode} from "../Type/SearchMode.ts";
 
 export default function UserPage() {
     const navigate = useNavigate();
@@ -104,9 +106,10 @@ export default function UserPage() {
                 console.log("Error")
             }
         }});
-    const [searchGlobal,setSearchGlobal]=useState("")
+
+    const search=UseSearch()
     const handleGlobalSearchChange=(e:any) => {
-        setSearchGlobal(e.currentTarget.value)
+        search.setQuery(e.currentTarget.value,search.mode)
     }
     const [cartCount,setCartCount]=useState(0)
     useEffect(() => {
@@ -229,25 +232,42 @@ export default function UserPage() {
                                         <StyledInputBase
                                             placeholder="Search…"
                                             inputProps={{ 'aria-label': 'search' }}
-                                            value={searchGlobal}
+                                            value={search.query}
                                             onChange={handleGlobalSearchChange}
                                             onKeyDown={(event)=>{
                                                 if(event.key === 'Enter'){
-                                                    if(searchGlobal.length!==0){
-                                                        navigate(`/Tim/${encodeURIComponent(searchGlobal)}`)
-                                                        setSearchGlobal("")
+                                                    if(search.query.length!==0){
+                                                        navigate(`/Tim/${SearchMode[search.mode]}/${encodeURIComponent(search.query)}`)
                                                     }
                                                 }
                                             }}
                                         />
-                                        {searchGlobal.length>0 && <Button color="inherit" onClick={()=>{
-                                            navigate(`/Tim/${encodeURIComponent(searchGlobal)}`)
-                                            setSearchGlobal("")
+                                        {search.query.length>0 && <Button color="inherit" onClick={()=>{
+                                            navigate(`/Tim/${SearchMode[search.mode]}/${encodeURIComponent(search.query)}`)
                                         }}
 
                                         >Tìm</Button>}
-                                    </Search>
 
+                                    </Search>
+                                    <FormControl sx={{width:"120px"}} size="small">
+
+                                        <Select
+                                            value={search.mode}
+                                            onChange={(e)=>{
+                                                search.setQuery(search.query,e.target.value)
+                                            }}
+                                            sx={{
+                                                '.MuiSvgIcon-root': {
+                                                    fill: "white !important",
+                                                },
+                                            }}
+                                            input={<BootstrapInput />}
+                                        >
+                                            <MenuItem color="white" value={0}>Tên</MenuItem>
+                                            <MenuItem color="white" value={1}>Cấu hinh</MenuItem>
+                                            <MenuItem color="white" value={2}>Hãng</MenuItem>
+                                        </Select>
+                                    </FormControl>
 
                                 </Box>
                                 <Box sx={{ flexGrow: 0,display:"flex",gap:2 }}>
@@ -295,6 +315,9 @@ export default function UserPage() {
                                                 </MenuItem>
                                                 <MenuItem onClick={()=>navigate("/DonHang")} disabled={LOGOUT.isPending}>
                                                     Đơn hàng
+                                                </MenuItem>
+                                                <MenuItem onClick={()=>navigate("/Review")} disabled={LOGOUT.isPending}>
+                                                    Review
                                                 </MenuItem>
                                             </Menu>
                                         </>
@@ -359,6 +382,7 @@ const Search = styled('div')(({ theme }) => ({
 const SearchIconWrapper = styled('div')(({ theme }) => ({
     padding: theme.spacing(0, 2),
     height: '100%',
+
     position: 'absolute',
     pointerEvents: 'none',
     display: 'flex',
@@ -401,3 +425,38 @@ function HideOnScroll(props: Props) {
         </Slide>
     );
 }
+const BootstrapInput = styled(InputBase)(({ theme }) => ({
+    'label + &': {
+        marginTop: theme.spacing(3),
+    },
+    '& .MuiInputBase-input': {
+        borderRadius: theme.shape.borderRadius,
+        backgroundColor: alpha(theme.palette.common.white, 0.15),
+        '&:hover': {
+            backgroundColor: alpha(theme.palette.common.white, 0.25),
+        },
+
+        position: 'relative',
+        fontSize: 14,
+        color: theme.palette.common.white,
+
+        padding: '7px 26px 7px 12px',
+        transition: theme.transitions.create(['border-color', 'box-shadow']),
+        // Use the system font instead of the default Roboto font.
+        fontFamily: [
+            '-apple-system',
+            'BlinkMacSystemFont',
+            '"Segoe UI"',
+            'Roboto',
+            '"Helvetica Neue"',
+            'Arial',
+            'sans-serif',
+            '"Apple Color Emoji"',
+            '"Segoe UI Emoji"',
+            '"Segoe UI Symbol"',
+        ].join(','),
+        '&:focus': {
+            backgroundColor: alpha(theme.palette.common.white, 0.25),
+        },
+    },
+}));

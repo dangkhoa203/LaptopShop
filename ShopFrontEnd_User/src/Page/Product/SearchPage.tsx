@@ -6,9 +6,10 @@ import Container from "@mui/material/Container";
 import MainPageProductCard from "./Component/ProductCard.tsx";
 import {Grid, Pagination} from "@mui/material";
 import Typography from "@mui/material/Typography";
-
+import {SearchMode} from "../../Type/SearchMode.ts";
+const showMode=["tên","cấu hình","hãng"]
 export default function SearchPage(){
-    const {query}=useParams();
+    const {query,mode}=useParams();
 
     const [maxPage, setMaxPage] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
@@ -20,10 +21,10 @@ export default function SearchPage(){
     const [total,setTotal] = useState(0);
 
     const {data,refetch}=useQuery({
-        queryKey: [`search_products`],
+        queryKey: [`search_products_${mode}`],
         refetchOnWindowFocus:false,
         queryFn:async ()=>{// @ts-ignore
-            const response = await fetch(`https://localhost:7075/api/Products?search=${decodeURIComponent(query)}&page=${currentPage}`, {
+            const response = await fetch(`https://localhost:7075/api/Products?search=${decodeURIComponent(query)}&mode=${SearchMode.indexOf(mode)}&page=${currentPage}`, {
                 headers: {'Content-Type': 'application/json'},
                 credentials: 'include',
                 method:"GET",
@@ -51,6 +52,8 @@ export default function SearchPage(){
         refetch();
         window.scrollTo(0, 0)
     }, [currentPage]);
+
+
     return(
         <Container sx={{display:"flex",flexDirection:"column",justifyContent:"center",gap:2}} maxWidth="lg">
             <div >
@@ -61,7 +64,9 @@ export default function SearchPage(){
                 </Container>
             </div>
             <Typography>
-                Kết quả tìm kiếm cho " <span style={{fontWeight:"bolder"}}>{query}</span>"
+                Kết quả tìm kiếm {
+                // @ts-ignore
+                showMode[SearchMode.indexOf(mode)!==-1 ? SearchMode.indexOf(mode):0]} cho " <span style={{fontWeight:"bolder"}}>{query}</span>"
             </Typography>
             <Grid container spacing={3}>
                 {products.map(product=>

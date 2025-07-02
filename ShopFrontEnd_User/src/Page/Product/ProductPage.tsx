@@ -3,7 +3,7 @@ import { useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router";
 import {Carousel} from "react-responsive-carousel";
 import ImageViewer from 'react-simple-image-viewer';
-import {Grid, Paper, Table, TableBody, TableCell, TableContainer, TableRow} from "@mui/material";
+import {Grid, Paper, Rating, Table, TableBody, TableCell, TableContainer, TableRow} from "@mui/material";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
@@ -13,14 +13,10 @@ import Typography from "@mui/material/Typography";
 import {useCart} from "../../State/Cart.ts";
 import {useAppError} from "../../State/AppErrorState.ts";
 import {Response} from "../../Type/Respone.ts";
+import ProductReviewPreviewBox from "./Component/ProductReviewPreviewBox.tsx";
 type specification={
     name: string,
     value: string,
-}
-type review={
-    content:string,
-    score: number,
-    userName: string,
 }
 type product={
     id:string,
@@ -32,7 +28,8 @@ type product={
     description: string,
     specifications:specification[],
     productImage: string[],
-    reviews:review[],
+    averageScore:number,
+    reviewCount:number
 }
 export default function ProductPage(){
     const [currentImage, setCurrentImage] = useState(0);
@@ -48,10 +45,11 @@ export default function ProductPage(){
         specifications:[],
         priceAfterDiscount:0,
         quantity:0,
-        reviews:[]
+        averageScore:0,
+        reviewCount:0,
     });
     const {data}=useQuery({
-        queryKey: [`search_products`],
+        queryKey: [`product_${id}`],
         refetchOnWindowFocus:false,
         queryFn:async ()=>{// @ts-ignore
             const response = await fetch(`https://localhost:7075/api/Products/${id}`, {
@@ -187,6 +185,9 @@ export default function ProductPage(){
                                 Tình trạng: <Typography component="span" variant={"body1"} sx={{fontWeight:"bold"}} color="primary">{product.quantity===0 ? "Hết hàng":"Còn hàng"}</Typography>
                             </Typography>
                         </Grid>
+                        <Grid sx={{display:"flex"}} size={12}>
+                            <Rating readOnly value={product.averageScore} precision={0.5} /> <Typography> ({product.reviewCount})</Typography>
+                        </Grid>
                         <Grid size={12}>
                             <div style={{display:"flex",marginBottom:"10px"}}>
                                 <Typography component="div"  color="primary" textAlign="start" sx={{fontSize:"1.2em",fontWeight:600,marginRight:'5px'}}>
@@ -258,6 +259,9 @@ export default function ProductPage(){
                         </Table>
                     </TableContainer>
                 </Paper>
+            </Grid>
+            <Grid size={12}>
+               <ProductReviewPreviewBox id={id}/>
             </Grid>
             {isViewerOpen && (
                 <ImageViewer

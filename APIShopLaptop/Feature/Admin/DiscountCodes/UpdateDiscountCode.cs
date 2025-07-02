@@ -3,6 +3,7 @@ using APIShopLaptop.Endpoint;
 using APIShopLaptop.Model.Entity.Order_Related;
 using FluentValidation;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
 namespace APIShopLaptop.Feature.Admin.DiscountCodes {
     public class UpdateDiscountCode:IEndpoint {
         public record Request(string Name, string Description, float Percent, bool IsActive,DateTime EndDate);
@@ -20,6 +21,7 @@ namespace APIShopLaptop.Feature.Admin.DiscountCodes {
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapPost("/api/Admin/Discount-Codes/{id}", Handler).WithTags("Admin_DiscountCode");
         }
+        [Authorize(Roles = "Admin")]
         public static async Task<IResult> Handler(string id, Request request, ApplicationDBContext context) {
             try {
                 var Validator = new Validator();

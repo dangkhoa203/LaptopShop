@@ -1,5 +1,6 @@
 ﻿using APIShopLaptop.Data;
 using APIShopLaptop.Endpoint;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 
@@ -10,6 +11,7 @@ namespace APIShopLaptop.Feature.Admin.Orders.Momo {
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapGet("/api/Admin/Transactions", Handler).WithTags("Admin_Transactions");
         }
+        [Authorize(Roles = "Admin")]
         private static async Task<IResult> Handler(ApplicationDBContext context, ClaimsPrincipal User) {
             try {
 

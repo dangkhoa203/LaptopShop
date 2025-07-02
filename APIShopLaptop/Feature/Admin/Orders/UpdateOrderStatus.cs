@@ -4,6 +4,7 @@ using APIShopLaptop.Model.Entity.Order_Related;
 using APIShopLaptop.Model.Enum;
 using FluentValidation;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
 
 namespace APIShopLaptop.Feature.Admin.Orders {
     public class UpdateOrderStatus:IEndpoint {
@@ -13,6 +14,7 @@ namespace APIShopLaptop.Feature.Admin.Orders {
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapPut("/api/Admin/Orders", Handler).WithTags("Admin_Orders");
         }
+        [Authorize(Roles = "Admin")]
         public static async Task<IResult> Handler(Request request, ApplicationDBContext context) {
             try {
                 var Order = context.Orders.FirstOrDefault(d => d.Id ==request.Id);

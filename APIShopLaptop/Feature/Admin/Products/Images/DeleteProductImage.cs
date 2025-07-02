@@ -1,5 +1,6 @@
 ﻿using APIShopLaptop.Data;
 using APIShopLaptop.Endpoint;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,6 +11,7 @@ namespace APIShopLaptop.Feature.Admin.Products.Images {
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapDelete("/api/Admin/Products/{id}/Images", Handler).WithTags("Admin_Products");
         }
+        [Authorize(Roles = "Admin")]
         public static async Task<IResult> Handler([FromBody]Request request, string id, ApplicationDBContext context, IWebHostEnvironment env) {
             try {
                 string StoragePath = Path.Combine(env.ContentRootPath, "Image", "Product");

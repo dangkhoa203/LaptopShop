@@ -1375,6 +1375,90 @@
         }
       }
     },
+    "/api/Admin/Summary/Top_Product": {
+      "get": {
+        "tags": [
+          "Admin_Summary"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Admin/Summary/Top_Category": {
+      "get": {
+        "tags": [
+          "Admin_Summary"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Admin/Summary/All_Sub_Sale": {
+      "get": {
+        "tags": [
+          "Admin_Summary"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Admin/Summary/All_Main_Sale": {
+      "get": {
+        "tags": [
+          "Admin_Summary"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Admin/Summary/Top_Customer": {
+      "get": {
+        "tags": [
+          "Admin_Summary"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Admin/Summary/All_Customer": {
+      "get": {
+        "tags": [
+          "Admin_Summary"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Admin/Summary/All_Order": {
+      "get": {
+        "tags": [
+          "Admin_Summary"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Admin/Transactions": {
       "get": {
         "tags": [
@@ -1570,7 +1654,7 @@
         }
       }
     },
-    "/api/Category/Main/{id}/{page}": {
+    "/api/Category/Sub/{id}": {
       "get": {
         "tags": [
           "Category"
@@ -1586,11 +1670,58 @@
           },
           {
             "name": "page",
-            "in": "path",
+            "in": "query",
             "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "sortMode",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/APIShopLaptop.Model.Enum.SORTMODE"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Category/Main/{id}": {
+      "get": {
+        "tags": [
+          "Category"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "sortMode",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/APIShopLaptop.Model.Enum.SORTMODE"
             }
           }
         ],
@@ -1635,37 +1766,6 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Category/Sub/{id}/{page}": {
-      "get": {
-        "tags": [
-          "Caterory"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "page",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
             }
           }
         ],
@@ -1996,6 +2096,14 @@
               "type": "integer",
               "format": "int32"
             }
+          },
+          {
+            "name": "mode",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/APIShopLaptop.Model.Enum.SEARCHMODE"
+            }
           }
         ],
         "responses": {
@@ -2017,6 +2125,37 @@
             "required": true,
             "schema": {
               "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Products/{id}/Reviews": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "preview",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
             }
           }
         ],
@@ -2068,6 +2207,18 @@
           }
         }
       },
+      "get": {
+        "tags": [
+          "Reviews"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Reviews/ReviewAble": {
       "get": {
         "tags": [
           "Reviews"
@@ -2766,6 +2917,27 @@
         "enum": [
           0,
           1
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "APIShopLaptop.Model.Enum.SEARCHMODE": {
+        "enum": [
+          0,
+          1,
+          2
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "APIShopLaptop.Model.Enum.SORTMODE": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
         ],
         "type": "integer",
         "format": "int32"

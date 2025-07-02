@@ -1,6 +1,7 @@
 ﻿using APIShopLaptop.Data;
 using APIShopLaptop.Endpoint;
 using APIShopLaptop.Model.Entity.Product_Related;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SixLabors.ImageSharp;
@@ -13,6 +14,7 @@ namespace APIShopLaptop.Feature.Admin.Products.Images {
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapPut("/api/Admin/Product/{id}/Thumbnail", Handler).WithTags("Admin_Product").DisableAntiforgery();
         }
+        [Authorize(Roles = "Admin")]
         private static async Task<IResult> Handler([FromForm] Request request, string id, ApplicationDBContext context, IWebHostEnvironment env) {
             var NewThumbnail = new ProductImage() { IsThumbnail = true };
             string StoragePath = Path.Combine(env.ContentRootPath, "Image", "Product");

@@ -41,6 +41,7 @@ namespace APIShopLaptop.Extension {
             AddReview.MapEndpoint(app);
             UpdateReview.MapEndpoint(app);
             GetReviews.MapEndpoint(app);
+            GetReviewAble.MapEndpoint(app);
         }
         private static void AddBuildFeature(this WebApplication app) {
             AddToBuild.MapEndpoint(app);
@@ -48,6 +49,7 @@ namespace APIShopLaptop.Extension {
             UpdateBuildItemQuantity.MapEndpoint(app);
             GetBuild.MapEndpoint(app);
             GetProductForBuild.MapEndpoint(app);
+            GetProductReviews.MapEndpoint(app);
         }
         private static void AddOrderFeature(this WebApplication app) {
             AddOrder.MapEndpoint(app);
@@ -57,6 +59,7 @@ namespace APIShopLaptop.Extension {
             CreateNewMomoTransaction.MapEndpoint(app);
             ConfirmMomoTransaction.MapEndpoint(app);
             AddOrderFromBuild.MapEndpoint(app);
+
         }
         private static void AddUserAccountFeature(this WebApplication app) {
             Login.MapEndpoint(app);
