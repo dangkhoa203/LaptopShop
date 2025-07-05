@@ -133,6 +133,10 @@ namespace APIShopLaptop.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -536,6 +540,9 @@ namespace APIShopLaptop.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("SearchAble")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime>("UpdateAt")
                         .HasColumnType("datetime2");

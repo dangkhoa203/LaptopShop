@@ -20,6 +20,7 @@ import {useNavigate} from "react-router";
 import {useMutation} from "@tanstack/react-query";
 import {Response} from "../../Type/Respone.ts";
 import Typography from "@mui/material/Typography";
+import DiscountCodeCheckOut from "./DiscountCodeCheckOut.tsx";
 type orderInfo = {
     receiver:string,
     phoneNumber:string,
@@ -194,8 +195,9 @@ export default function CreateOrderPage(){
                     </Grid>
                     <Grid size={{xs:12,sm:12,md:6,lg:5}}>
                         <Paper elevation={12} sx={{padding:"10px",marginBottom:"10px",display:"flex",justifyContent:"center"}}>
-                            Giá trị : {getTotal()} VNĐ
+                            Giá trị : {getTotal().toLocaleString(undefined, {minimumFractionDigits: 0}) + " VNĐ"}
                         </Paper>
+                        <DiscountCodeCheckOut/>
                         <Paper sx={{padding:"10px",maxHeight:"480px",overflowY:"auto"}} elevation={12}>
                             {cartItems.length===0 &&
                                 <>

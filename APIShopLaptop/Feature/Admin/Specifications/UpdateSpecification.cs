@@ -9,15 +9,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace APIShopLaptop.Feature.Admin.Specifications {
     public class UpdateSpecification:IEndpoint {
-        public record Request(string Name);
+        public record Request(string Name,bool SearchAble);
         public record Response(bool Success, string ErrorMessage, ValidationResult? ValidationError);
         public sealed class Validator : AbstractValidator<Request> {
             public Validator() {
                 RuleFor(r => r.Name).NotEmpty().WithMessage("Chưa nhập tên!");
-                RuleFor(r => r.Name).MinimumLength(4).WithMessage("Tên phải nhập tối thiểu 4 ký tự!");
             }
             public bool CheckSame(Request request, Specification specification) {
-                return request.Name == specification.Name;
+                return request.Name == specification.Name && request.SearchAble==specification.SearchAble;
             }
         }
         public static void MapEndpoint(IEndpointRouteBuilder app) {
@@ -39,6 +38,7 @@ namespace APIShopLaptop.Feature.Admin.Specifications {
 
                 if (!Validator.CheckSame(request, Specification)) {
                     Specification.Name = request.Name;
+                    Specification.SearchAble=request.SearchAble;
                     Specification.UpdateAt = DateTime.Now;
                     if (await context.SaveChangesAsync() < 1) {
                         return Results.BadRequest(new Response(false, "Lỗi xảy ra khi đang thực hiện!", ValidatedResult));

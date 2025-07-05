@@ -18,6 +18,7 @@ type codeInfo = {
     name: string,
     description: string,
     percent:number,
+    code:string
     isActive:boolean,
     endDate:string
 }
@@ -37,6 +38,7 @@ export default function CreateNewDiscountCodeDialog(props:{open:boolean,handleCl
             name:"",
             description:"",
             percent:0,
+            code:"",
             isActive:false,
             endDate:showDate,
         }
@@ -49,6 +51,9 @@ export default function CreateNewDiscountCodeDialog(props:{open:boolean,handleCl
     }
     const handleDPercentChange = (e:any) => {
         setCodeInfo({...codeInfo, percent: e.target.value});
+    }
+    const handleCodeChange = (e:any) => {
+        setCodeInfo({...codeInfo, code: e.target.value});
     }
     const handleIsActiveChange = (e:any) => {
         setCodeInfo({...codeInfo, isActive: e.target.checked});
@@ -74,6 +79,7 @@ export default function CreateNewDiscountCodeDialog(props:{open:boolean,handleCl
                     name:"",
                     description:"",
                     percent:0,
+                    code:"",
                     isActive:false,
                     endDate:showDate,
                 })
@@ -113,6 +119,7 @@ export default function CreateNewDiscountCodeDialog(props:{open:boolean,handleCl
                     name:"",
                     description:"",
                     percent:0,
+                    code:"",
                     isActive:false,
                     endDate:showDate,
                 })
@@ -139,6 +146,7 @@ export default function CreateNewDiscountCodeDialog(props:{open:boolean,handleCl
                         name:"",
                         description:"",
                         percent:0,
+                        code:"",
                         isActive:false,
                         endDate:showDate,
                     })
@@ -170,6 +178,11 @@ export default function CreateNewDiscountCodeDialog(props:{open:boolean,handleCl
                             <TextField value={codeInfo.endDate} onChange={handleEndDateChange} fullWidth
                                        color="primary" type="date"
                                        size={"medium"} label="Hạn dùng" variant="filled" />
+                        </Grid>
+                        <Grid size={12}>
+                            <TextField value={codeInfo.code} onChange={handleCodeChange} fullWidth
+                                       color="primary"
+                                       size={"medium"} label="Code" variant="filled" />
                         </Grid>
                         <Grid size={6}>
                             <Switch value={codeInfo.isActive} onChange={handleIsActiveChange} /> Hoạt động
@@ -206,6 +219,7 @@ export default function CreateNewDiscountCodeDialog(props:{open:boolean,handleCl
                                 name:"",
                                 description:"",
                                 percent:0,
+                                code:"",
                                 isActive:false,
                                 endDate:showDate,
                             })

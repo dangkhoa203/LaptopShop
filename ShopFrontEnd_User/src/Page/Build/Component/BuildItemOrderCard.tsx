@@ -29,8 +29,12 @@ export default function BuildItemOrderCard(props:{product:buildProduct}){
                                 <Typography component="div" textAlign={"center"} variant="subtitle1">{props.product.priceAfterDiscount.toLocaleString(undefined, { minimumFractionDigits: 0 })} VND</Typography>
                             </div>
                             :
-                            <Typography>{props.product.price.toLocaleString(undefined, { minimumFractionDigits: 0 })} VNĐ</Typography>
+                            <Typography>{(props.product.price*props.product.quantity).toLocaleString(undefined, { minimumFractionDigits: 0 })} VNĐ</Typography>
                         }
+
+                    </div>
+                    <div>
+                        Số lượng: {props.product.quantity}
                     </div>
                 </CardContent>
             </Container>

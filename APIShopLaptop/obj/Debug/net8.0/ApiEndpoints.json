@@ -1974,6 +1974,11 @@
         "Name": "sortMode",
         "Type": "APIShopLaptop.Model.Enum.SORTMODE",
         "IsRequired": true
+      },
+      {
+        "Name": "brands",
+        "Type": "System.String",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": [
@@ -2010,6 +2015,50 @@
     ],
     "Tags": [
       "Category"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.DiscountCode.GetValidCode",
+    "Method": "Handler",
+    "RelativePath": "api/Discount-Codes",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Discount-Codes"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.DiscountCode.ValidateCode",
+    "Method": "Handler",
+    "RelativePath": "api/Discount-Codes",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "APIShopLaptop.Feature.User.DiscountCode.ValidateCode\u002BRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Discount-Codes"
     ]
   },
   {
@@ -2412,6 +2461,60 @@
     ],
     "Tags": [
       "Reviews"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.Specification.SearchProductOnSpecification",
+    "Method": "Handler",
+    "RelativePath": "api/Specifications/Product",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "APIShopLaptop.Feature.User.Specification.SearchProductOnSpecification\u002BRequest",
+        "IsRequired": true
+      },
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "sortMode",
+        "Type": "APIShopLaptop.Model.Enum.SORTMODE",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Specifications"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.Specification.GetSearchableSpec",
+    "Method": "Handler",
+    "RelativePath": "api/Specifications/Searchable",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Specifications"
     ]
   }
 ]

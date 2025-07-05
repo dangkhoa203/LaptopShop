@@ -4,9 +4,10 @@ using APIShopLaptop.Model.Entity.Order_Related;
 using FluentValidation;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 namespace APIShopLaptop.Feature.Admin.DiscountCodes {
     public class UpdateDiscountCode:IEndpoint {
-        public record Request(string Name, string Description, float Percent, bool IsActive,DateTime EndDate);
+        public record Request(string Name, string Description, float Percent,string Code, bool IsActive,DateTime EndDate);
         public record Response(bool Success, string ErrorMessage, ValidationResult? ValidationError);
         public sealed class Validator : AbstractValidator<Request> {
             public Validator() {
@@ -14,7 +15,7 @@ namespace APIShopLaptop.Feature.Admin.DiscountCodes {
                 RuleFor(r => r.Percent).InclusiveBetween(0, 100).WithMessage("Phần trăm không thích hợp!");
             }
             public bool CheckSame(Request request, DiscountCode code) {
-                var old = new Request(code.Name, code.Description, code.Percent, code.IsActive,code.EndDate);
+                var old = new Request(code.Name, code.Description, code.Percent,code.Code, code.IsActive,code.EndDate);
                 return request == old;
             }
         }
@@ -29,16 +30,19 @@ namespace APIShopLaptop.Feature.Admin.DiscountCodes {
                 if (!ValidationResult.IsValid) {
                     return Results.BadRequest(new Response(false, "Lỗi xảy ra", ValidationResult));
                 }
-
+                
                 var DiscountCode = context.DiscountCodes.FirstOrDefault(d => d.Id == id);
                 if (DiscountCode == null)
                     return Results.NotFound(new Response(false, "Không tìm thấy mã!", ValidationResult));
-
+                if (DiscountCode.Code != request.Code && await context.DiscountCodes.FirstOrDefaultAsync(c => c.Code == request.Code) != null) {
+                    return Results.BadRequest(new Response(false, "Mã đã được sử dụng!", ValidationResult));
+                }
                 if (!Validator.CheckSame(request, DiscountCode)) {
                     DiscountCode.Name = request.Name;
                     DiscountCode.Description = request.Description;
                     DiscountCode.Percent = request.Percent;
                     DiscountCode.IsActive = request.IsActive;
+                    DiscountCode.Code = request.Code;
                     DiscountCode.EndDate = request.EndDate;
                     DiscountCode.UpdateAt=DateTime.Now;
                     if (await context.SaveChangesAsync() < 1) {

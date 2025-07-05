@@ -10,9 +10,11 @@ import {AG_GRID_LOCALE_VN} from "@ag-grid-community/locale";
 import Container from "@mui/material/Container";
 import CreateNewSpecificationDiaglog from "./CreateNewSpecificationDiaglog.tsx";
 import UpdateSpecificationDiaglig from "./UpdateSpecificationDiaglig.tsx";
+import Typography from "@mui/material/Typography";
 type specificationData={
     id: string,
     name: string,
+    searchAble:boolean
 }
 export default function Specification(){
     const [success, setSuccess] = useState(false);
@@ -29,14 +31,16 @@ export default function Specification(){
 
 
     const [openUpdate, setOpenUpdate] = useState(false);
-    const [updateModel, setUpdateModel] = useState({
+    const [updateModel, setUpdateModel] = useState<specificationData>({
         id:"",
-        name: ""
+        name: "",
+        searchAble: false,
     });
-    const handleClickOpenUpdate =(id:string,name:string) => {
+    const handleClickOpenUpdate =(id:string,name:string,searchAble:boolean) => {
         setUpdateModel({
             id:id,
-            name: name
+            name: name,
+            searchAble:searchAble
         })
         setOpenUpdate(true);
     };
@@ -44,7 +48,8 @@ export default function Specification(){
     const handleCloseUpdate = () => {
         setUpdateModel({
             id:"",
-            name: ""
+            name: "",
+            searchAble: false,
         })
         setOpenUpdate(false);
     };
@@ -90,11 +95,25 @@ export default function Specification(){
             unSortIcon: true,flex: 2,
             minWidth:200,
             floatingFilter: true },
-
+        { valueGetter:c=>c.data.searchAble,
+            cellDataType: "boolean",
+            cellRenderer:(params:ICellRendererParams)=>
+                <div style={{display:"flex",flexDirection:"row",justifyContent:"center",gap:"3px",fontSize:"1.3em",width:"100%",height:"42px",alignItems:"center"}}>
+                    {params.value? <Typography color="success"> Có</Typography>:<Typography color="error">Không</Typography>}
+                </div>
+            ,
+            wrapHeaderText:true,
+            wrapText:true,
+            headerName:"Hoạt động",filter:false,
+            resizable:false,
+            unSortIcon: true,flex: 1,
+            minWidth:150,
+            floatingFilter: true },
         { valueGetter:c=> {
                 return {
                     id:c.data.id,
                     name:c.data.name,
+                    searchAble:c.data.searchAble,
                 }
             },
             sortable:false,
@@ -105,7 +124,7 @@ export default function Specification(){
             cellRenderer:(params:ICellRendererParams)=>
                 <div style={{display:"flex",flexDirection:"row",justifyContent:"center",gap:"3px",width:"100%",height:"100%",alignItems:"center"}}>
                     <Tooltip title="Sửa hãng">
-                        <Button color="warning"  onClick={()=>handleClickOpenUpdate(params.value.id,params.value.name)}>Sửa thông số</Button>
+                        <Button color="warning"  onClick={()=>handleClickOpenUpdate(params.value.id,params.value.name,params.value.searchAble)}>Sửa thông số</Button>
                     </Tooltip>
                 </div>
             ,
@@ -145,7 +164,7 @@ export default function Specification(){
                                 />
                             </div>
                             <CreateNewSpecificationDiaglog open={openCreate} handleClose={handleCloseCreate} reFetch={refetch}/>
-                            <UpdateSpecificationDiaglig id={updateModel.id} name={updateModel.name} open={openUpdate} handleClose={handleCloseUpdate} reFetch={refetch}/>
+                            <UpdateSpecificationDiaglig searchAble={updateModel.searchAble} id={updateModel.id} name={updateModel.name} open={openUpdate} handleClose={handleCloseUpdate} reFetch={refetch}/>
                         </>
                     }
                 </>

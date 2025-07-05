@@ -4,7 +4,7 @@ import {
     DialogContent,
     DialogContentText,
     DialogTitle, Grid,
-    LinearProgress,
+    LinearProgress, Switch,
     TextField
 } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
@@ -15,14 +15,17 @@ import {useEffect, useState} from "react";
 import {useMutation} from "@tanstack/react-query";
 import {Response} from "../../Type/Respone.ts";
 
-export default function UpdateSpecificationDiaglig(props:{id:string,name:string,open:boolean,handleClose:()=>void,reFetch:any}){
+export default function UpdateSpecificationDiaglig(props:{id:string,name:string,searchAble:boolean,open:boolean,handleClose:()=>void,reFetch:any}){
     const [globalError, setGlobalError] = useState("");
     const [validationError, setValidationError] = useState("");
     const [newName, setNewName] = useState("");
     const handleNameChange = (e:any) => {
         setNewName(e.target.value);
     }
-
+    const [searchable, setSearchable] = useState(false);
+    const handleSearchableChange = (e:any) => {
+        setSearchable(e.target.checked);
+    }
     const {isPending,mutate}=useMutation({
         mutationFn:async ()=>{
             setGlobalError("")
@@ -30,7 +33,7 @@ export default function UpdateSpecificationDiaglig(props:{id:string,name:string,
                 method: 'PUT',
                 headers: {'Content-Type': 'application/json'},
                 credentials: 'include',
-                body: JSON.stringify({name:newName})
+                body: JSON.stringify({name:newName,searchAble:searchable})
             })
             return await response.json();
         },
@@ -52,6 +55,7 @@ export default function UpdateSpecificationDiaglig(props:{id:string,name:string,
     })
     useEffect(()=>{
         setNewName(props.name)
+        setSearchable(props.searchAble)
     },[props.id])
     return(
         <Dialog
@@ -97,6 +101,9 @@ export default function UpdateSpecificationDiaglig(props:{id:string,name:string,
                                        color="warning"
                                        size={"medium"} label="Tên" variant="filled" />
                         </Grid>
+                        <Grid size={12}>
+                            <Switch color="warning" value={searchable} onChange={handleSearchableChange} checked={searchable} /> Tìm kiếm sản phẩm theo thông số
+                        </Grid>
                     </Grid>
                 </DialogContentText>
 
@@ -104,7 +111,7 @@ export default function UpdateSpecificationDiaglig(props:{id:string,name:string,
             <DialogActions sx={{minHeight:"55px"}}>
                 {isPending?
                     <Box sx={{ width: '100%' }}>
-                        <LinearProgress />
+                        <LinearProgress color="warning"/>
                     </Box>
                     :
                     <>

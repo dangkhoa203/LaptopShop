@@ -4,7 +4,7 @@ import {
     DialogContent,
     DialogContentText,
     DialogTitle, Grid,
-    LinearProgress,
+    LinearProgress, Switch,
     TextField
 } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
@@ -19,10 +19,14 @@ export default function CreateNewSpecificationDiaglog(props:{open:boolean,handle
     const [globalError, setGlobalError] = useState("");
     const [validationError, setValidationError] = useState("");
     const [name, setName] = useState("");
+
     const handleNameChange = (e:any) => {
         setName(e.target.value);
     }
-
+    const [searchable, setSearchable] = useState(false);
+    const handleSearchableChange = (e:any) => {
+        setSearchable(e.target.checked);
+    }
     const {isPending,mutate}=useMutation({
         mutationFn:async ()=>{
             setGlobalError("")
@@ -30,7 +34,7 @@ export default function CreateNewSpecificationDiaglog(props:{open:boolean,handle
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 credentials: 'include',
-                body: JSON.stringify({name:name})
+                body: JSON.stringify({name:name,searchAble:searchable})
             })
             return await response.json();
         },
@@ -93,6 +97,9 @@ export default function CreateNewSpecificationDiaglog(props:{open:boolean,handle
                                        error={validationError.length>0}  helperText={validationError}
                                        color="primary"
                                        size={"medium"} label="Tên" variant="filled" />
+                        </Grid>
+                        <Grid size={12}>
+                            <Switch value={searchable} onChange={handleSearchableChange} /> Tìm kiếm sản phẩm theo thông số
                         </Grid>
                     </Grid>
                 </DialogContentText>

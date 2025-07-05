@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace APIShopLaptop.Feature.Admin.Specifications {
     public class GetSpecifications:IEndpoint {
-        public record SpecificationDTO(string Id, string Name);
+        public record SpecificationDTO(string Id, string Name,bool searchAble);
         public record Response(bool Success, List<SpecificationDTO>? Data, string ErrorMessage);
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapGet("/api/Admin/Specifications", Handler).WithTags("Admin_Specifications");
@@ -16,7 +16,8 @@ namespace APIShopLaptop.Feature.Admin.Specifications {
                 var Specifications = await context.Specifications
                      .Select(b => new SpecificationDTO(
                          b.Id,
-                         b.Name
+                         b.Name,
+                         b.SearchAble
                          ))
                      .ToListAsync();
 

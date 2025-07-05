@@ -1684,6 +1684,14 @@
             "schema": {
               "$ref": "#/components/schemas/APIShopLaptop.Model.Enum.SORTMODE"
             }
+          },
+          {
+            "name": "brands",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -1769,6 +1777,38 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Discount-Codes": {
+      "get": {
+        "tags": [
+          "Discount-Codes"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Discount-Codes"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/APIShopLaptop.Feature.User.DiscountCode.ValidateCode.Request"
+              }
+            }
+          },
+          "required": true
+        },
         "responses": {
           "200": {
             "description": "OK"
@@ -2229,6 +2269,59 @@
           }
         }
       }
+    },
+    "/api/Specifications/Searchable": {
+      "get": {
+        "tags": [
+          "Specifications"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Specifications/Product": {
+      "post": {
+        "tags": [
+          "Specifications"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "sortMode",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/APIShopLaptop.Model.Enum.SORTMODE"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/APIShopLaptop.Feature.User.Specification.SearchProductOnSpecification.Request"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -2310,6 +2403,10 @@
             "type": "number",
             "format": "float"
           },
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
           "isActive": {
             "type": "boolean"
           },
@@ -2334,6 +2431,10 @@
           "percent": {
             "type": "number",
             "format": "float"
+          },
+          "code": {
+            "type": "string",
+            "nullable": true
           },
           "isActive": {
             "type": "boolean"
@@ -2587,6 +2688,9 @@
           "name": {
             "type": "string",
             "nullable": true
+          },
+          "searchAble": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false
@@ -2597,6 +2701,9 @@
           "name": {
             "type": "string",
             "nullable": true
+          },
+          "searchAble": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false
@@ -2673,6 +2780,16 @@
           "quantity": {
             "type": "integer",
             "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "APIShopLaptop.Feature.User.DiscountCode.ValidateCode.Request": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -2791,6 +2908,33 @@
             "format": "float"
           },
           "content": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "APIShopLaptop.Feature.User.Specification.SearchProductOnSpecification.Request": {
+        "type": "object",
+        "properties": {
+          "specifications": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/APIShopLaptop.Feature.User.Specification.SearchProductOnSpecification.SpecificationDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "APIShopLaptop.Feature.User.Specification.SearchProductOnSpecification.SpecificationDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
             "type": "string",
             "nullable": true
           }

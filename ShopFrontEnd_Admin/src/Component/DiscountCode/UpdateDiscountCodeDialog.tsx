@@ -19,6 +19,7 @@ type oldCodeInfo = {
     name: string,
     description: string,
     percent:number,
+    code:string,
     isActive:boolean,
     endDate:Date
 }
@@ -26,6 +27,7 @@ type newCodeInfo = {
     name: string,
     description: string,
     percent:number,
+    code:string,
     isActive:boolean,
     endDate:string
 }
@@ -46,6 +48,7 @@ export default function UpdateDiscountCodeDialog(props:{old:oldCodeInfo,open:boo
             name:'',
             description:'',
             percent:1,
+            code:'',
             isActive:false,
             endDate:showDate,
         }
@@ -58,6 +61,9 @@ export default function UpdateDiscountCodeDialog(props:{old:oldCodeInfo,open:boo
     }
     const handleDPercentChange = (e:any) => {
         setNewCodeInfo({...newCodeInfo, percent: e.target.value});
+    }
+    const handleCodeChange = (e:any) => {
+        setCodeInfo({...codeInfo, code: e.target.value});
     }
     const handleIsActiveChange = (e:any) => {
         setNewCodeInfo({...newCodeInfo, isActive: e.target.checked});
@@ -96,6 +102,7 @@ export default function UpdateDiscountCodeDialog(props:{old:oldCodeInfo,open:boo
                     name:'',
                     description:'',
                     percent:1,
+                    code:'',
                     isActive:false,
                     endDate:showDate,
                 })
@@ -132,6 +139,7 @@ export default function UpdateDiscountCodeDialog(props:{old:oldCodeInfo,open:boo
             name:props.old.name,
             description:props.old.description,
             percent:props.old.percent,
+            code:props.old.code,
             isActive:props.old.isActive,
             endDate: oldDate.toISOString().split('T')[0],
         })
@@ -146,6 +154,7 @@ export default function UpdateDiscountCodeDialog(props:{old:oldCodeInfo,open:boo
                     name:'',
                     description:'',
                     percent:1,
+                    code:'',
                     isActive:false,
                     endDate:showDate,
                 })
@@ -172,6 +181,7 @@ export default function UpdateDiscountCodeDialog(props:{old:oldCodeInfo,open:boo
                         name:'',
                         description:'',
                         percent:1,
+                        code:'',
                         isActive:false,
                         endDate:showDate,
                     })
@@ -203,6 +213,11 @@ export default function UpdateDiscountCodeDialog(props:{old:oldCodeInfo,open:boo
                             <TextField value={newCodeInfo.endDate} onChange={handleEndDateChange} fullWidth
                                        color="warning" type="date"
                                        size={"medium"} label="Hạn dùng" variant="filled" />
+                        </Grid>
+                        <Grid size={12}>
+                            <TextField value={newCodeInfo.code} onChange={handleCodeChange} fullWidth
+                                       color="primary"
+                                       size={"medium"} label="Code" variant="filled" />
                         </Grid>
                         <Grid size={6}>
                             <Switch color="warning" value={newCodeInfo.isActive} onChange={handleIsActiveChange} checked={newCodeInfo.isActive} /> Hoạt động
@@ -239,6 +254,7 @@ export default function UpdateDiscountCodeDialog(props:{old:oldCodeInfo,open:boo
                                 name:'',
                                 description:'',
                                 percent:1,
+                                code:'',
                                 isActive:false,
                                 endDate:showDate,
                             })

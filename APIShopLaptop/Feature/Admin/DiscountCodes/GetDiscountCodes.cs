@@ -6,7 +6,7 @@ using System.Security.Claims;
 
 namespace APIShopLaptop.Feature.Admin.DiscountCodes {
     public class GetDiscountCodes:IEndpoint {
-        public record DiscountCodeDTO(string Id, string Name, string Description, float Percent, bool IsActive,DateTime EndDate);
+        public record DiscountCodeDTO(string Id, string Name, string Description, float Percent,string Code, bool IsActive,DateTime EndDate);
         public record Response(bool Success, List<DiscountCodeDTO> Data, string ErrorMessage);
 
         public static void MapEndpoint(IEndpointRouteBuilder app) {
@@ -21,6 +21,7 @@ namespace APIShopLaptop.Feature.Admin.DiscountCodes {
                         c.Name,
                         c.Description,
                         c.Percent,
+                        c.Code,
                         c.IsActive,
                         c.EndDate
                         ))

@@ -71,10 +71,10 @@ export default function OrderDetailCard(props:{product:cartItem}){
                     <div style={{width:"100%"}}>
                         <Container style={{width:"100%",justifyContent:"end",display:"flex",gap:2}}>
                             {props.product.priceAfterDiscount===0?
-                                <Typography>{props.product.price}</Typography>
+                                <Typography>{props.product.price.toLocaleString(undefined, {minimumFractionDigits: 0}) + " VNĐ"}</Typography>
                                 :
                                 <>
-                                    <Typography variant="subtitle2">{props.product.priceAfterDiscount} VND</Typography>
+                                    <Typography variant="subtitle2">{props.product.priceAfterDiscount.toLocaleString(undefined, {minimumFractionDigits: 0}) + " VNĐ"}</Typography>
                                     <Typography variant="caption" sx={{textDecoration:"line-through"}}>{props.product.price} VND</Typography>
                                 </>
                             }

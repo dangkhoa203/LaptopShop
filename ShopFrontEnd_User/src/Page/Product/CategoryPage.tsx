@@ -4,18 +4,18 @@ import {
     Divider,
     FormControl,
     Grid,
-    LinearProgress,
     MenuItem,
     Pagination,
-    Select
+    Select, ToggleButton,  ToggleButtonGroup
 } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import {useEffect, useState} from "react";
 import {ProductData} from "../../Type/ProductData.ts";
 import {useQuery} from "@tanstack/react-query";
 import MainPageProductCard from "./Component/ProductCard.tsx";
+import {styled} from "@mui/material/styles";
 
-export default function CategoryPage(props:{title:string,categoryId:string,isMain:boolean }) {
+export default function CategoryPage(props:{title:string,categoryId:string,isMain:boolean,brands:{name:string,tag:string}[]}) {
     const [maxPage, setMaxPage] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
     // @ts-ignore
@@ -29,11 +29,21 @@ export default function CategoryPage(props:{title:string,categoryId:string,isMai
         setCurrentPage(1)
         setSortMode(event.target.value);
     };
+    const [brands, setBrands] = useState<string[]>([]);
+
+
+    const handleBrands = (
+        // @ts-ignore
+        event: React.MouseEvent<HTMLElement>,
+        newFormats: string[],
+    ) => {
+        setBrands(newFormats);
+    };
     const {data,refetch,isFetching}=useQuery ({
         queryKey: [`Category_${props.categoryId}_${sortMode}`],
         refetchOnWindowFocus:false,
         queryFn:async ()=>{// @ts-ignore
-            const response = await fetch(`https://localhost:7075/api/Category/${props.isMain ? "Main":"Sub"}/${props.categoryId}?sortMode=${sortMode}&page=${currentPage}`, {
+            const response = await fetch(`https://localhost:7075/api/Category/${props.isMain ? "Main":"Sub"}/${props.categoryId}?sortMode=${sortMode}&page=${currentPage}&brands=${brands.map(b=>b)}`, {
                 headers: {'Content-Type': 'application/json'},
                 credentials: 'include',
                 method:"GET",
@@ -55,6 +65,14 @@ export default function CategoryPage(props:{title:string,categoryId:string,isMai
         refetch();
         window.scrollTo(0, 0)
     }, [currentPage]);
+    useEffect(() => {
+        console.log("test")
+        if(currentPage===1)
+            refetch()
+        else
+            setCurrentPage(1)
+    }, [brands]);
+    {console.log(props.brands)}
     return (
         <Container>
             <Grid container spacing={0}>
@@ -82,6 +100,23 @@ export default function CategoryPage(props:{title:string,categoryId:string,isMai
                 <Grid size={12}>
                     <Typography variant="h6" color="textSecondary">Có <span style={{fontWeight:"bolder"}}>{total}</span> sản phẩm</Typography>
                 </Grid>
+                {props.brands.length > 0 &&
+                    <Grid size={12}>
+                        <StyledToggleButtonGroup
+                            sx={{flexWrap:"wrap"}}
+                            value={brands}
+                            onChange={handleBrands}
+                            aria-label="text formatting"
+                        >
+                            {props.brands.map(b=>
+                                <ToggleButton key={b.tag} sx={{minWidth:"80px"}} color="primary" value={b.tag} >
+                                    {b.name}
+                                </ToggleButton>
+                            )}
+                        </StyledToggleButtonGroup>
+                    </Grid>
+                }
+
                 <Grid sx={{marginY:"20px"}} size={12}>
                     <Divider />
                 </Grid>
@@ -116,3 +151,16 @@ export default function CategoryPage(props:{title:string,categoryId:string,isMai
         </Container>
     )
 }
+const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
+    gap: '1.5rem',
+
+    [`& *`]:
+        {
+            fontWeight: '600',
+            fontSize: '1.05rem',
+            borderRadius:0,
+            border: `1px solid ${(theme.vars || theme).palette.action.disabledBackground}`,
+            borderLeft: `1px solid ${(theme.vars || theme).palette.action.disabledBackground}`,
+        },
+
+}));

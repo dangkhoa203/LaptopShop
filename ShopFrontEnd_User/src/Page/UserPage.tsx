@@ -254,7 +254,11 @@ export default function UserPage() {
                                         <Select
                                             value={search.mode}
                                             onChange={(e)=>{
-                                                search.setQuery(search.query,e.target.value)
+                                                if(e.target.value===1) {
+                                                    navigate("/Tim/CauHinh")
+                                                }else {
+                                                    search.setQuery(search.query, e.target.value)
+                                                }
                                             }}
                                             sx={{
                                                 '.MuiSvgIcon-root': {
@@ -264,8 +268,8 @@ export default function UserPage() {
                                             input={<BootstrapInput />}
                                         >
                                             <MenuItem color="white" value={0}>Tên</MenuItem>
-                                            <MenuItem color="white" value={1}>Cấu hinh</MenuItem>
                                             <MenuItem color="white" value={2}>Hãng</MenuItem>
+                                            <MenuItem color="white" value={1}>Cấu hinh</MenuItem>
                                         </Select>
                                     </FormControl>
 

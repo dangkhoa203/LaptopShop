@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace APIShopLaptop.Feature.Admin.Specifications {
     public class AddSpecification:IEndpoint {
-        public record Request(string Name);
+        public record Request(string Name,bool SearchAble);
         public record Response(bool Success, string ErrorMessage, ValidationResult? ValidationError);
         public sealed class Validator : AbstractValidator<Request> {
             public Validator() {
@@ -27,7 +27,7 @@ namespace APIShopLaptop.Feature.Admin.Specifications {
                     return Results.BadRequest(new Response(false, "Lỗi xảy ra", ValidatedResult));
                 }
 
-                Specification Specification = new(request.Name);
+                Specification Specification = new(request.Name,request.SearchAble);
 
                 await context.Specifications.AddAsync(Specification);
                 if (await context.SaveChangesAsync() > 0) {

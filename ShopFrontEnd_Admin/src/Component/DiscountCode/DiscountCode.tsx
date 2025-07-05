@@ -18,6 +18,7 @@ type discountCodeData={
     name: string,
     description: string,
     percent:number,
+    code:string,
     isActive:boolean,
     endDate:Date,
 }
@@ -40,6 +41,7 @@ export default function DiscountCode(){
         name:'',
         description:'',
         percent:1,
+        code:'',
         isActive:false,
         endDate:new Date(),
     });
@@ -98,9 +100,18 @@ export default function DiscountCode(){
             minWidth:150,
             floatingFilter: true },
 
+        { valueGetter:c=>c.data.code,
+            cellRenderer:(params:ICellRendererParams)=> <Tooltip title={params.value} >{params.value}</Tooltip> ,
+            wrapHeaderText:true,
+            wrapText:true,
+            headerName:"Code",filter:true,
+            resizable:false,
+            unSortIcon: true,flex: 1,
+            minWidth:150,
+            floatingFilter: true },
         { valueGetter:c=>c.data.description,
             cellRenderer:(params:ICellRendererParams)=>
-                <div style={{ display:"flex",flexDirection:"row",justifyContent:"center",gap:"3px",fontSize:"1.3em",width:"100%",height:"42px",alignItems:"center"}}>
+                <div style={{ display:"flex",flexDirection:"row",justifyContent:"center",gap:"3px",fontSize:"1em",width:"100%",height:"42px",alignItems:"center"}}>
                     {params.value.length===0? "Không có" :
                         <Tooltip title={params.value} >{params.value}</Tooltip> }
                 </div>,
@@ -109,7 +120,7 @@ export default function DiscountCode(){
             headerName:"Mô tả",filter:true,
             resizable:false,
             unSortIcon: true,flex: 1,
-            minWidth:200,
+            minWidth:150,
             floatingFilter: true },
 
         { valueGetter:c=>c.data.percent,
@@ -148,7 +159,6 @@ export default function DiscountCode(){
         { valueGetter:c=> c.data,
             sortable:false,
             resizable:false,
-            flex: 3,
             minWidth:150
             ,floatingFilter: true,
             cellRenderer:(params:ICellRendererParams)=>

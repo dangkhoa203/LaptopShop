@@ -6,11 +6,13 @@ using APIShopLaptop.Feature.User.Builds;
 using APIShopLaptop.Feature.User.Cart;
 using APIShopLaptop.Feature.User.Category;
 using APIShopLaptop.Feature.User.Caterory;
+using APIShopLaptop.Feature.User.DiscountCode;
 using APIShopLaptop.Feature.User.Orders;
 using APIShopLaptop.Feature.User.Orders.Build;
 using APIShopLaptop.Feature.User.Orders.MoMo;
 using APIShopLaptop.Feature.User.Products;
 using APIShopLaptop.Feature.User.Reviews;
+using APIShopLaptop.Feature.User.Specification;
 using APIShopLaptop.Feature.User.UserAccount;
 using APIShopLaptop.Feature.User.UserAccount.ChangeEmail;
 using APIShopLaptop.Feature.User.UserAccount.ChangePassword;
@@ -30,6 +32,10 @@ namespace APIShopLaptop.Extension {
             SearchProduct.MapEndpoint(app);
             GetProductImage.MapEndpoint(app);
             GetProduct.MapEndpoint(app);
+        }
+        private static void AddSpecificationFeature(this WebApplication app) {
+            GetSearchableSpec.MapEndpoint(app);
+            SearchProductOnSpecification.MapEndpoint(app);
         }
         private static void AddCartFeature(this WebApplication app) {
             AddProductToCart.MapEndpoint(app);
@@ -59,7 +65,10 @@ namespace APIShopLaptop.Extension {
             CreateNewMomoTransaction.MapEndpoint(app);
             ConfirmMomoTransaction.MapEndpoint(app);
             AddOrderFromBuild.MapEndpoint(app);
-
+        }
+        private static void AddDiscountCodeFeature(this WebApplication app) {
+            GetValidCode.MapEndpoint(app);
+            ValidateCode.MapEndpoint(app);
         }
         private static void AddUserAccountFeature(this WebApplication app) {
             Login.MapEndpoint(app);
@@ -80,10 +89,12 @@ namespace APIShopLaptop.Extension {
             AddCategoryFeature(app);
             AddUserAccountFeature(app);
             AddProductFeature(app);
+            AddSpecificationFeature(app);
             AddCartFeature(app);
             AddBuildFeature(app);
             AddOrderFeature(app);
             AddReviewFeature(app);
+            AddDiscountCodeFeature(app);
         }
     }
 }

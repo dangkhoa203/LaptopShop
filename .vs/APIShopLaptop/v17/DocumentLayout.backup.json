@@ -3,23 +3,24 @@
   "WorkspaceRootPath": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\user\\category\\getproductsfromsubcaterory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\user\\category\\getproductsfromsubcaterory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\admin\\discountcodes\\updatediscountcode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\admin\\discountcodes\\updatediscountcode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\user\\category\\getproductfrommaincategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\user\\category\\getproductfrommaincategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\user\\discountcode\\validatecode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\user\\discountcode\\validatecode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/DESKTOP_N0V3KE1/Shop/True/SqlTable/dbo.SubCaterories.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\user\\discountcode\\getvalidcode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\user\\discountcode\\getvalidcode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\feature\\user\\products\\searchproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\feature\\user\\products\\searchproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\extension\\userendpoint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\extension\\userendpoint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|c:\\workspace\\csharp\\fullstack\\apishoplaptop\\apishoplaptop\\model\\enum\\sortmode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D1ED25E-ED9C-45BC-8D30-92AEBF33535B}|APIShopLaptop\\APIShopLaptop.csproj|solutionrelative:apishoplaptop\\model\\enum\\sortmode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Migrations\\20250705165907_Update6.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:APIShopLaptop\\Migrations\\20250705165907_Update6.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -29,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -37,64 +38,67 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "dbo.SubCaterories [Data]",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/DESKTOP_N0V3KE1/Shop/True/SqlTable/dbo.SubCaterories.sql",
-              "ToolTip": "dbo.SubCaterories [Data]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2025-07-02T12:52:34.83Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "GetProductFromMainCategory.cs",
-              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\User\\Category\\GetProductFromMainCategory.cs",
-              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\User\\Category\\GetProductFromMainCategory.cs",
-              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\User\\Category\\GetProductFromMainCategory.cs",
-              "RelativeToolTip": "APIShopLaptop\\Feature\\User\\Category\\GetProductFromMainCategory.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAADwvxEAAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-02T12:03:56.82Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "GetProductsFromSubCaterory.cs",
-              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\User\\Category\\GetProductsFromSubCaterory.cs",
-              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\User\\Category\\GetProductsFromSubCaterory.cs",
-              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\User\\Category\\GetProductsFromSubCaterory.cs*",
-              "RelativeToolTip": "APIShopLaptop\\Feature\\User\\Category\\GetProductsFromSubCaterory.cs*",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAgwBEAAAAgAAAAAAAAAA==",
+              "Title": "UpdateDiscountCode.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\DiscountCodes\\UpdateDiscountCode.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\Admin\\DiscountCodes\\UpdateDiscountCode.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\Admin\\DiscountCodes\\UpdateDiscountCode.cs*",
+              "RelativeToolTip": "APIShopLaptop\\Feature\\Admin\\DiscountCodes\\UpdateDiscountCode.cs*",
+              "ViewState": "AgIAABUAAAAAAAAAAAAowCQAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-02T10:39:01.956Z",
+              "WhenOpened": "2025-07-05T17:18:49.805Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "SortMode.cs",
-              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Model\\Enum\\SortMode.cs",
-              "RelativeDocumentMoniker": "APIShopLaptop\\Model\\Enum\\SortMode.cs",
-              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Model\\Enum\\SortMode.cs",
-              "RelativeToolTip": "APIShopLaptop\\Model\\Enum\\SortMode.cs",
+              "Title": "20250705165907_Update6.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Migrations\\20250705165907_Update6.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Migrations\\20250705165907_Update6.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Migrations\\20250705165907_Update6.cs",
+              "RelativeToolTip": "APIShopLaptop\\Migrations\\20250705165907_Update6.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-02T11:23:00.33Z",
+              "WhenOpened": "2025-07-05T16:59:07.654Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "SearchProduct.cs",
-              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\User\\Products\\SearchProduct.cs",
-              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\User\\Products\\SearchProduct.cs",
-              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\User\\Products\\SearchProduct.cs",
-              "RelativeToolTip": "APIShopLaptop\\Feature\\User\\Products\\SearchProduct.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Title": "UserEndpoint.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Extension\\UserEndpoint.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Extension\\UserEndpoint.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Extension\\UserEndpoint.cs",
+              "RelativeToolTip": "APIShopLaptop\\Extension\\UserEndpoint.cs",
+              "ViewState": "AgIAAEoAAAAAAAAAAADwv2AAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-02T10:40:17.956Z",
+              "WhenOpened": "2025-07-05T16:57:56.622Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ValidateCode.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\User\\DiscountCode\\ValidateCode.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\User\\DiscountCode\\ValidateCode.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\User\\DiscountCode\\ValidateCode.cs",
+              "RelativeToolTip": "APIShopLaptop\\Feature\\User\\DiscountCode\\ValidateCode.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAkwBkAAABaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-05T16:49:55.091Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GetValidCode.cs",
+              "DocumentMoniker": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\User\\DiscountCode\\GetValidCode.cs",
+              "RelativeDocumentMoniker": "APIShopLaptop\\Feature\\User\\DiscountCode\\GetValidCode.cs",
+              "ToolTip": "C:\\Workspace\\CSharp\\Fullstack\\APIShopLaptop\\APIShopLaptop\\Feature\\User\\DiscountCode\\GetValidCode.cs",
+              "RelativeToolTip": "APIShopLaptop\\Feature\\User\\DiscountCode\\GetValidCode.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAYwCAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-05T16:37:21.937Z",
               "EditorCaption": ""
             }
           ]

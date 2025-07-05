@@ -13,14 +13,19 @@ namespace APIShopLaptop.Feature.User.Caterory {
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapGet("/api/Category/Sub/{id}", Handler).WithTags("Category");
         }
-        private static async Task<IResult> Handler([FromRoute]string Id,[FromQuery]int page, [FromQuery]SORTMODE sortMode, ApplicationDBContext context) {
+        private static async Task<IResult> Handler([FromRoute]string Id,[FromQuery]int page, [FromQuery]SORTMODE sortMode, [FromQuery] string brands, ApplicationDBContext context) {
             try {
+                List<string> brand = brands.Split(",").ToList();
                 int perPage = 12;
                 var Products = context.CateroryItems
                     .Where(i => i.CateroryId == Id)
                     .Include(i => i.ProductNavigation)
+                    .ThenInclude(i=>i.Brand)
                     .Where(i => i.ProductNavigation.Status == PRODUCTSTATUS.ACTIVE);
                 IQueryable<ProductDTO> Sort;
+                if (brand[0] !="") {
+                    Products = Products.Where(i=>brand.Any(b=>b==i.ProductNavigation.Brand.Tag));
+                }
                 switch (sortMode) {
                     case SORTMODE.NAME_ASC:
                         Sort = Products.OrderBy(p => p.ProductNavigation.Name).Select(p => new ProductDTO(
