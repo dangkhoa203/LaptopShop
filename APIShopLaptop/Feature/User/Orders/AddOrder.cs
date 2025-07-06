@@ -13,7 +13,7 @@ using System.Security.Claims;
 
 namespace APIShopLaptop.Feature.User.Orders {
     public class AddOrder:IEndpoint {
-        public record Request(string Receiver,string PhoneNumber,string Address,PAYMENTMETHOD PaymentMethod);
+        public record Request(string Receiver,string PhoneNumber,string Address,PAYMENTMETHOD PaymentMethod,string codeId);
         public record Response(bool Success, string ErrorMessage, ValidationResult? ValidationError,string data);
         public sealed class Validator : AbstractValidator<Request> {
             public Validator() {
@@ -81,6 +81,11 @@ namespace APIShopLaptop.Feature.User.Orders {
                     RequestId = requestId,
                 };
                 Order.MomoTransaction = Transaction;
+            }
+            var Code = await context.DiscountCodes.FirstOrDefaultAsync(c => c.Id == request.codeId) ;
+            if (Code != null) {
+                Order.DiscountCode = Code ;
+                Order.Value = Order.Value * ((100 - Code.Percent) / 100);
             }
             await context.Orders.AddAsync(Order);
 

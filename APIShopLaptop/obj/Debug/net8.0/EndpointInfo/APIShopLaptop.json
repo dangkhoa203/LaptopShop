@@ -1459,6 +1459,41 @@
         }
       }
     },
+    "/api/Admin/Summary/Sale/{year}": {
+      "get": {
+        "tags": [
+          "Admin_Summary"
+        ],
+        "parameters": [
+          {
+            "name": "year",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Admin/Summary/Sale": {
+      "get": {
+        "tags": [
+          "Admin_Summary"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Admin/Transactions": {
       "get": {
         "tags": [
@@ -2811,6 +2846,10 @@
           },
           "paymentMethod": {
             "$ref": "#/components/schemas/APIShopLaptop.Model.Enum.PAYMENTMETHOD"
+          },
+          "codeId": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -2832,6 +2871,10 @@
           },
           "paymentMethod": {
             "$ref": "#/components/schemas/APIShopLaptop.Model.Enum.PAYMENTMETHOD"
+          },
+          "codeId": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false

@@ -63,7 +63,7 @@ export default function UpdateDiscountCodeDialog(props:{old:oldCodeInfo,open:boo
         setNewCodeInfo({...newCodeInfo, percent: e.target.value});
     }
     const handleCodeChange = (e:any) => {
-        setCodeInfo({...codeInfo, code: e.target.value});
+        setNewCodeInfo({...newCodeInfo, code: e.target.value});
     }
     const handleIsActiveChange = (e:any) => {
         setNewCodeInfo({...newCodeInfo, isActive: e.target.checked});

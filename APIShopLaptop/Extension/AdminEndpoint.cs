@@ -92,6 +92,8 @@ namespace APIShopLaptop.Extension {
             GetTop5Customer.MapEndpoint(app);
             GetAllCustomerSale.MapEndpoint(app);
             GetAllOrderStatus.MapEndpoint(app);
+            GetSaleFigureOfYear.MapEndpoint(app);
+            GetSaleFigure.MapEndpoint(app);
         }
         public static void AddAllEndPoint(this WebApplication app) {
             AddImageStorageService(app);

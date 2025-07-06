@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 namespace APIShopLaptop.Feature.User.DiscountCode {
     public class ValidateCode : IEndpoint {
         public record Request(string Code);
-        public record DiscountCodeDTO(string Id, string Name, string Description, float Percent);
+        public record DiscountCodeDTO(string Id, string Name, string Description, float Percent, string Code);
         public record Response(bool Success, DiscountCodeDTO Data, string ErrorMessage);
 
         public static void MapEndpoint(IEndpointRouteBuilder app) {
@@ -19,7 +19,8 @@ namespace APIShopLaptop.Feature.User.DiscountCode {
                         c.Id,
                         c.Name,
                         c.Description,
-                        c.Percent
+                        c.Percent,
+                        c.Code
                         ))
                     .FirstOrDefaultAsync();
                 if (DiscountCode == null) {

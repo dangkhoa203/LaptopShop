@@ -1559,6 +1559,50 @@
     ]
   },
   {
+    "ContainingType": "APIShopLaptop.Feature.Admin.Summary.GetSaleFigure",
+    "Method": "Handler",
+    "RelativePath": "api/Admin/Summary/Sale",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Admin_Summary"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.Admin.Summary.GetSaleFigureOfYear",
+    "Method": "Handler",
+    "RelativePath": "api/Admin/Summary/Sale/{year}",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "year",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Admin_Summary"
+    ]
+  },
+  {
     "ContainingType": "APIShopLaptop.Feature.Admin.Summary.GetTopMainCategory",
     "Method": "Handler",
     "RelativePath": "api/Admin/Summary/Top_Category",

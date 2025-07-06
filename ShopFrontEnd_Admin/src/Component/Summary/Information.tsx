@@ -6,9 +6,14 @@ import AllMainCategoriesSale from "./AllMainCategoriesSale.tsx";
 import TopCustomer from "./TopCustomer.tsx";
 import AllCustomerOrder from "./AllCustomerOrder.tsx";
 import OrderStatusChart from "./OrderStatusChart.tsx";
+import SaleOfYear from "./SaleOfYear.tsx";
+import AllSale from "./AllSale.tsx";
 export default function Information(){
     return(
         <Container maxWidth="lg">
+            <SaleOfYear year={new Date().getFullYear()}/>
+            <AllSale/>
+            <Divider sx={{marginY:"10px"}}/>
             <TopCategoryChart/>
             <AllMainCategoriesSale/>
             <Divider sx={{marginY:"10px"}}/>

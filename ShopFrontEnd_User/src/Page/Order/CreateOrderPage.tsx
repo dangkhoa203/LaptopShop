@@ -27,7 +27,21 @@ type orderInfo = {
     address:string,
     paymentMethod:number
 }
+export type validCode={
+    id:string,
+    name:string,
+    description:string,
+    percent:number,
+    code:string,
+}
 export default function CreateOrderPage(){
+    const [validCode,setValidCode] = useState<validCode>({
+        id:"",
+        name:"",
+        description:"",
+        percent:0,
+        code:"",
+    });
     const cartItems=useCart((state)=>state.cartItems);
     const [districtInfo, setDistrictInfo] = useState({
         id:-1,
@@ -87,6 +101,7 @@ export default function CreateOrderPage(){
                     phoneNumber:orderInfo.phoneNumber,
                     address:`${orderInfo.address}, ${districtInfo.district}, ${wardInfo}`,
                     paymentMethod:orderInfo.paymentMethod,
+                    codeId:validCode.id,
                 })
             })
             return await response.json();
@@ -194,10 +209,27 @@ export default function CreateOrderPage(){
                         </Paper>
                     </Grid>
                     <Grid size={{xs:12,sm:12,md:6,lg:5}}>
-                        <Paper elevation={12} sx={{padding:"10px",marginBottom:"10px",display:"flex",justifyContent:"center"}}>
-                            Giá trị : {getTotal().toLocaleString(undefined, {minimumFractionDigits: 0}) + " VNĐ"}
+                        <Paper elevation={12} sx={{padding:"10px",marginBottom:"10px",display:"flex",flexDirection:"column",textAlign:"center"}}>
+                            {validCode.id==="" ?
+                                <>
+                                    Giá trị : {getTotal().toLocaleString(undefined, {minimumFractionDigits: 0}) + " VNĐ"}
+                                </>
+                                :
+                                <>
+                                    <div>
+                                        {getTotal().toLocaleString(undefined, {minimumFractionDigits: 0}) + " VNĐ"}
+                                    </div>
+                                    <div>
+                                        -{(getTotal()*(validCode.percent/100)).toLocaleString(undefined, {minimumFractionDigits: 0}) + " VNĐ"}
+                                    </div>
+                                    <div>
+                                        Giá trị : {(getTotal()*((100-validCode.percent)/100)).toLocaleString(undefined, {minimumFractionDigits: 0}) + " VNĐ"}
+                                    </div>
+                                </>
+                            }
+
                         </Paper>
-                        <DiscountCodeCheckOut/>
+                        <DiscountCodeCheckOut validCode={validCode} setValidCode={setValidCode} />
                         <Paper sx={{padding:"10px",maxHeight:"480px",overflowY:"auto"}} elevation={12}>
                             {cartItems.length===0 &&
                                 <>
