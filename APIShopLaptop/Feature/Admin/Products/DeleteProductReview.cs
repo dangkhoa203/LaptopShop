@@ -1,5 +1,6 @@
 ﻿using APIShopLaptop.Data;
 using APIShopLaptop.Endpoint;
+using Microsoft.AspNetCore.Authorization;
 
 namespace APIShopLaptop.Feature.Admin.Products {
     public class DeleteProductReview:IEndpoint {
@@ -8,6 +9,7 @@ namespace APIShopLaptop.Feature.Admin.Products {
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapDelete("/api/Admin/Products/Reviews", Handler).WithTags("Admin_Products");
         }
+        [Authorize(Roles = "Admin")]
         public static async Task<IResult> Handler(Request request, ApplicationDBContext context) {
             try {
                 var review = context.Reviews.FirstOrDefault(d => d.Id == request.Id);

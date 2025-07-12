@@ -16,7 +16,6 @@ namespace APIShopLaptop.Feature.Admin.Brands {
                 RuleFor(r => r.Tag).NotEmpty().WithMessage("Chưa nhập tag!");
                 RuleFor(r => r.Tag).Matches("^[A-Z]*$").WithMessage("Tag không được ghi dấu!");
                 RuleFor(r => r.Name).NotEmpty().WithMessage("Chưa nhập tên!");
-                RuleFor(r => r.Name).MinimumLength(4).WithMessage("Tên phải nhập tối thiểu 4 ký tự!");
             }
         }
         public static void MapEndpoint(IEndpointRouteBuilder app) {

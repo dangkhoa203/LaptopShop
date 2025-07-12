@@ -3,10 +3,12 @@ using APIShopLaptop.Endpoint;
 using APIShopLaptop.Model.Entity.Order_Related;
 using FluentValidation;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 
 namespace APIShopLaptop.Feature.Admin.DiscountCodes {
     public class AddDiscountCode : IEndpoint {
-        public record Request(string Name,string Description,float Percent,bool IsActive,DateTime EndDate);
+        public record Request(string Name,string Description,float Percent,string Code,bool IsActive,DateTime EndDate);
         public record Response(bool Success, string ErrorMessage, ValidationResult? ValidationError);
         public sealed class Validator : AbstractValidator<Request> {
             public Validator() {
@@ -17,6 +19,7 @@ namespace APIShopLaptop.Feature.Admin.DiscountCodes {
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapPost("/api/Admin/Discount-Codes", Handler).WithTags("Admin_DiscountCode");
         }
+        [Authorize(Roles = "Admin")]
         public static async Task<IResult> Handler(Request request, ApplicationDBContext context) {
             try {
                 var Validator = new Validator();
@@ -24,13 +27,16 @@ namespace APIShopLaptop.Feature.Admin.DiscountCodes {
                 if (!ValidationResult.IsValid) {
                     return Results.BadRequest(new Response(false, "Lỗi xảy ra", ValidationResult));
                 }
-
+                if(await context.DiscountCodes.FirstOrDefaultAsync(c => c.Code == request.Code)!=null) {
+                    return Results.BadRequest(new Response(false, "Mã đã được sử dụng!", ValidationResult));
+                }
                 var DiscountCode=new DiscountCode() {
                    Name = request.Name,
                    Description = request.Description,
                    Percent = request.Percent,
                    IsActive = request.IsActive,
-                   EndDate = request.EndDate
+                   EndDate = request.EndDate,
+                   Code = request.Code,
                };
 
                 context.DiscountCodes.Add(DiscountCode);

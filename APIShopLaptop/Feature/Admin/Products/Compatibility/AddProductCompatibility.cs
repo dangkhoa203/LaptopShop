@@ -1,6 +1,7 @@
 ﻿using APIShopLaptop.Data;
 using APIShopLaptop.Endpoint;
 using APIShopLaptop.Model.Entity.Spec_And_Filter;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,7 +13,7 @@ namespace APIShopLaptop.Feature.Admin.Products.Compatibility {
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapPost("/api/Admin/Products/{id}/Compatibility", Handler).WithTags("Admin_Products");
         }
-
+        [Authorize(Roles = "Admin")]
         private static async Task<IResult> Handler([FromBody] Request request, string id, ApplicationDBContext context) {
             try {
                 var Product = await context.Products
@@ -27,7 +28,7 @@ namespace APIShopLaptop.Feature.Admin.Products.Compatibility {
                     SpecificationNavigation = Specification,
                     Value = request.Value,
                 };
-                await context.CompatibilityDatas.AddAsync(Data);
+                await context.CompatibilityData.AddAsync(Data);
                 if (await context.SaveChangesAsync() > 0) {
                     return Results.Ok(new Response(true, ""));
                 }

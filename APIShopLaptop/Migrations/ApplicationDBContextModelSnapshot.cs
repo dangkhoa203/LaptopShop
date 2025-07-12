@@ -133,6 +133,10 @@ namespace APIShopLaptop.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -159,6 +163,35 @@ namespace APIShopLaptop.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("DiscountCodes");
+                });
+
+            modelBuilder.Entity("APIShopLaptop.Model.Entity.Order_Related.MomoTransaction", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("IsPaid")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("OrderId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("RequestId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("TransactionDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("TransactionId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId")
+                        .IsUnique();
+
+                    b.ToTable("MomoTransactions");
                 });
 
             modelBuilder.Entity("APIShopLaptop.Model.Entity.Order_Related.Order", b =>
@@ -244,7 +277,8 @@ namespace APIShopLaptop.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Builds");
                 });
@@ -256,6 +290,10 @@ namespace APIShopLaptop.Migrations
 
                     b.Property<string>("BuildId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ComponentName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
@@ -421,6 +459,9 @@ namespace APIShopLaptop.Migrations
                     b.Property<DateTime>("DateOfReview")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("IsEdit")
+                        .HasColumnType("bit");
+
                     b.Property<string>("OrderId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
@@ -429,8 +470,8 @@ namespace APIShopLaptop.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("Score")
-                        .HasColumnType("int");
+                    b.Property<float>("Score")
+                        .HasColumnType("real");
 
                     b.Property<DateTime>("UpdateAt")
                         .HasColumnType("datetime2");
@@ -485,7 +526,7 @@ namespace APIShopLaptop.Migrations
 
                     b.HasIndex("SpecificationId");
 
-                    b.ToTable("CompatibilityDatas");
+                    b.ToTable("CompatibilityData");
                 });
 
             modelBuilder.Entity("APIShopLaptop.Model.Entity.Spec_And_Filter.Specification", b =>
@@ -499,6 +540,9 @@ namespace APIShopLaptop.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("SearchAble")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime>("UpdateAt")
                         .HasColumnType("datetime2");
@@ -690,6 +734,17 @@ namespace APIShopLaptop.Migrations
                     b.Navigation("ProductNavigation");
                 });
 
+            modelBuilder.Entity("APIShopLaptop.Model.Entity.Order_Related.MomoTransaction", b =>
+                {
+                    b.HasOne("APIShopLaptop.Model.Entity.Order_Related.Order", "Order")
+                        .WithOne("MomoTransaction")
+                        .HasForeignKey("APIShopLaptop.Model.Entity.Order_Related.MomoTransaction", "OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+                });
+
             modelBuilder.Entity("APIShopLaptop.Model.Entity.Order_Related.Order", b =>
                 {
                     b.HasOne("APIShopLaptop.Model.Entity.Order_Related.DiscountCode", "DiscountCode")
@@ -727,8 +782,8 @@ namespace APIShopLaptop.Migrations
             modelBuilder.Entity("APIShopLaptop.Model.Entity.PC_Build_Related.Build", b =>
                 {
                     b.HasOne("APIShopLaptop.Model.Entity.Account.AppUser", "User")
-                        .WithMany("Builds")
-                        .HasForeignKey("UserId")
+                        .WithOne("Build")
+                        .HasForeignKey("APIShopLaptop.Model.Entity.PC_Build_Related.Build", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -929,7 +984,8 @@ namespace APIShopLaptop.Migrations
 
             modelBuilder.Entity("APIShopLaptop.Model.Entity.Account.AppUser", b =>
                 {
-                    b.Navigation("Builds");
+                    b.Navigation("Build")
+                        .IsRequired();
 
                     b.Navigation("Cart")
                         .IsRequired();
@@ -952,6 +1008,9 @@ namespace APIShopLaptop.Migrations
             modelBuilder.Entity("APIShopLaptop.Model.Entity.Order_Related.Order", b =>
                 {
                     b.Navigation("Details");
+
+                    b.Navigation("MomoTransaction")
+                        .IsRequired();
 
                     b.Navigation("Reviews");
                 });

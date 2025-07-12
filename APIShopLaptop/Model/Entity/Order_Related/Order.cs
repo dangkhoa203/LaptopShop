@@ -20,6 +20,7 @@ namespace APIShopLaptop.Model.Entity.Order_Related {
         }
         public virtual DiscountCode? DiscountCode { get; set; }
         public AppUser User { get; set; }
+        public virtual MomoTransaction MomoTransaction { get; set; }
         public virtual ICollection<OrderDetail> Details { get; set; }   
         public virtual ICollection<Review> Reviews { get; set; }
 

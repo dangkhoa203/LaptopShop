@@ -37,6 +37,16 @@ namespace APIShopLaptop.Data {
                 .WithOne(c => c.User)
                 .HasForeignKey<Cart>(c => c.UserId);
 
+            builder.Entity<AppUser>()
+                .HasOne(u => u.Build)
+                .WithOne(b => b.User)
+                .HasForeignKey<Build>(b => b.UserId);
+
+            builder.Entity<Order>()
+                .HasOne(o => o.MomoTransaction)
+                .WithOne(t => t.Order)
+                .HasForeignKey<MomoTransaction>(t => t.OrderId);
+
             builder.Entity<CartProduct>(entity => {
                 entity.HasKey(e => new { e.ProductId, e.CartId });
                 entity.HasOne(cp => cp.ProductNavigation)
@@ -122,12 +132,13 @@ namespace APIShopLaptop.Data {
         public virtual DbSet<ProductImage> ProductImages { get; set; }
         public virtual DbSet<Specification> Specifications { get; set; }
         public virtual DbSet<SpecificationData> SpecificationsData { get; set; }
-        public virtual DbSet<CompatibilityData> CompatibilityDatas { get; set; }
+        public virtual DbSet<CompatibilityData> CompatibilityData { get; set; }
         public virtual DbSet<Cart> Carts { get; set; }
         public virtual DbSet<CartProduct> CartProducts { get; set; }
         public virtual DbSet<Build> Builds { get; set; }
         public virtual DbSet<BuildItem> BuildItems { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<MomoTransaction> MomoTransactions { get; set; }
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
         public virtual DbSet<DiscountCode> DiscountCodes { get; set; }
         public virtual DbSet<Review> Reviews { get; set; }

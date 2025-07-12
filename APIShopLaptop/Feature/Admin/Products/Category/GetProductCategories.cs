@@ -1,6 +1,7 @@
 ﻿using APIShopLaptop.Data;
 using APIShopLaptop.Endpoint;
 using APIShopLaptop.Model.Entity.Product_Related;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 
 namespace APIShopLaptop.Feature.Admin.Products.Category {
@@ -10,7 +11,7 @@ namespace APIShopLaptop.Feature.Admin.Products.Category {
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapGet("/api/Admin/Products/{id}/Category", Handler).WithTags("Admin_Products");
         }
-
+        [Authorize(Roles = "Admin")]
         private static async Task<IResult> Handler(string id, ApplicationDBContext context) {
             try {
                 var Product = await context.Products

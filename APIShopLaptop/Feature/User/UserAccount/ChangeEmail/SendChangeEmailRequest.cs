@@ -43,6 +43,9 @@ namespace APIShopLaptop.Feature.User.UserAccount.ChangeEmail {
             try {
                 var Validator = new Validator();
                 AppUser userDetail = await userManager.FindByNameAsync(User.Identity.Name);
+                if (userDetail.Email != request.OldEmail) {
+                    return Results.BadRequest(new Response(false, "Email cũ chưa hợp lệ"));
+                }
                 var ValidateResult = await Validator.CheckValid(request, userManager, userDetail);
                 if (ValidateResult != null)
                     return ValidateResult;

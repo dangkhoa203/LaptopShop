@@ -1,5 +1,4 @@
 import Button from "@mui/material/Button";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import Container from "@mui/material/Container";
 import {useNavigate, useParams} from "react-router";
 import UpdateThumbnail from "./MiniComponent/UpdateThumbnail.tsx";
@@ -9,14 +8,15 @@ import UpdateImage from "./MiniComponent/UpdateImage.tsx";
 import UpdateCaterory from "./MiniComponent/UpdateCaterory.tsx";
 import UpdateProductSpecification from "./MiniComponent/UpdateProductSpecification.tsx";
 import UpdateCompatibility from "./MiniComponent/UpdateCompatibility.tsx";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 export default function UpdateProductPage(){
     const navigate = useNavigate();
     const {id} = useParams() as {id:string};
     return(
         <Container sx={{display:"flex", flexDirection:"column", justifyContent:"center",gap:2}}>
-            <Button sx={{width:"200px"}} startIcon={<ArrowBackIosIcon/>} onClick={()=>navigate("..")} variant="contained" color="warning">Quay về</Button>
             <p style={{textAlign:"center",fontSize:"2.5em",margin:"0"}}>Sửa sản phẩm</p>
+            <Button startIcon={<ArrowBackIcon/>} sx={{width:"150px"}} onClick={()=>navigate(-1)}>Quay về</Button>
             <Container sx={{display:"flex", flexDirection: {xs:"column",sm:"column",md:"column",lg:"row"}, justifyContent:"center",gap:2}}>
                 <Container sx={{flex:1}}>
                     <UpdateThumbnail id={id}/>

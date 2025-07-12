@@ -21,7 +21,6 @@ type productSpecification={
 export default function UpdateProductSpecification(props:{id:string}) {
     const [success, setSuccess] = useState(false);
     const [specificationData, setSpecificationData] = useState<specificationData[]>([])
-
     const {data,isPending}=useQuery({
         queryKey:["specification_list"],
         refetchOnWindowFocus:false,

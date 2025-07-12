@@ -14,7 +14,7 @@ using APIShopLaptop.Middleware.Email;
 namespace APIShopLaptop.Feature.User.UserAccount.ChangePassword {
     public class SendChangePasswordRequest : IEndpoint {
         public record Request(string OldPassword, string NewPassword, string ConfirmNewPassword);
-        public record Response(bool Success, string ErrorMessage, ValidationResult? Result);
+        public record Response(bool Success, string ErrorMessage, ValidationResult? ValidationError);
         public sealed class Validator : AbstractValidator<Request> {
             public Validator() {
                 RuleFor(r => r.OldPassword).NotEmpty().WithMessage("Chưa nhập mật khẩu!");
@@ -25,7 +25,7 @@ namespace APIShopLaptop.Feature.User.UserAccount.ChangePassword {
             }
         }
         public static void MapEndpoint(IEndpointRouteBuilder app) {
-            app.MapPost("/api/Account/PasswordChange/", Handler).WithTags("Account");
+            app.MapPost("/api/Account/PasswordChange", Handler).WithTags("Account");
         }
         [Authorize()]
         private static async Task<IResult> Handler(Request request, UserManager<AppUser> userManager, ClaimsPrincipal User, EmailSender emailSender) {
@@ -33,7 +33,7 @@ namespace APIShopLaptop.Feature.User.UserAccount.ChangePassword {
                 var Validator = new Validator();
                 var ValidateResult = await Validator.ValidateAsync(request);
                 if (!ValidateResult.IsValid) {
-                    return Results.BadRequest(new Response(false, "", ValidateResult));
+                    return Results.BadRequest(new Response(false, "Lỗi xảy ra", ValidateResult));
                 }
                 AppUser UserDetail = await userManager.FindByNameAsync(User.Identity.Name);
 

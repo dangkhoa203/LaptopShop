@@ -1,6 +1,7 @@
 ﻿using APIShopLaptop.Data;
 using APIShopLaptop.Endpoint;
 using APIShopLaptop.Model.Enum;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 
 namespace APIShopLaptop.Feature.Admin.Orders {
@@ -11,8 +12,9 @@ namespace APIShopLaptop.Feature.Admin.Orders {
         public record DetailDTO(string Id,string Name,float Price,int Quantity);
         public record Response(bool Success, OrderDTO? data, string ErrorMessage);
         public static void MapEndpoint(IEndpointRouteBuilder app) {
-            app.MapGet("/api/Admin/Orders/{id}", Handler).WithTags("Orders");
+            app.MapGet("/api/Admin/Orders/{id}", Handler).WithTags("Admin_Orders");
         }
+        [Authorize(Roles = "Admin")]
         private static async Task<IResult> Handler(string id,ApplicationDBContext context) {
             try {
                 var Order = await context.Orders
@@ -28,7 +30,7 @@ namespace APIShopLaptop.Feature.Admin.Orders {
                          o.NoteFromOrder,
                          new UserDTO(o.User.Id,o.User.UserName,o.User.Email),
                          new DeliveryInfo(o.Receiver,o.PhoneNumber,o.Address),
-                         o.Details.Select(d=>new DetailDTO(d.ProductId,d.ProductNavigation.Name, d.ProductNavigation.Price, d.Quantity)).ToList()
+                         o.Details.Select(d=>new DetailDTO(d.ProductId,d.ProductNavigation.Name, d.Price, d.Quantity)).ToList()
                          ))
                      .FirstOrDefaultAsync();
 

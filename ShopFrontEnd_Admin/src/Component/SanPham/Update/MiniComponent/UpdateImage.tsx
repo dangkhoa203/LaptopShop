@@ -159,7 +159,7 @@ export default function UpdateImage(props:{id:string}) {
                                 marginBottom:"10px"}} container spacing={2}>
                                 {oldImages.map((image:any)=>
                                     <Grid sx={{display:"flex",justifyContent:"center"}} size={{sm:12,xs:12,md:6,lg:3}}>
-                                        <Card elevation={6} key={image} sx={{ backgroundColor:"rgba(181,208,236,0.56)",width: 250,height:310 }}>
+                                        <Card elevation={6} key={image} sx={{ backgroundColor:"rgba(237, 108, 2,0.56)",width: 250,height:310 }}>
                                             <CardMedia
                                                 sx={{ height: 250 }}
                                                 image={`https://localhost:7075/api/Admin/Product/${props.id}/Images/${image}`}

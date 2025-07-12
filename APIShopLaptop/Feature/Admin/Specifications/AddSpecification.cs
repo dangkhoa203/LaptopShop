@@ -4,10 +4,11 @@ using APIShopLaptop.Model.Entity.Product_Related;
 using APIShopLaptop.Model.Entity.Spec_And_Filter;
 using FluentValidation;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
 
 namespace APIShopLaptop.Feature.Admin.Specifications {
     public class AddSpecification:IEndpoint {
-        public record Request(string Name);
+        public record Request(string Name,bool SearchAble);
         public record Response(bool Success, string ErrorMessage, ValidationResult? ValidationError);
         public sealed class Validator : AbstractValidator<Request> {
             public Validator() {
@@ -17,6 +18,7 @@ namespace APIShopLaptop.Feature.Admin.Specifications {
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapPost("/api/Admin/Specifications", Handler).WithTags("Admin_Specifications");
         }
+        [Authorize(Roles = "Admin")]
         private static async Task<IResult> Handler(Request request, ApplicationDBContext context) {
             try {
                 var Validator = new Validator();
@@ -25,7 +27,7 @@ namespace APIShopLaptop.Feature.Admin.Specifications {
                     return Results.BadRequest(new Response(false, "Lỗi xảy ra", ValidatedResult));
                 }
 
-                Specification Specification = new(request.Name);
+                Specification Specification = new(request.Name,request.SearchAble);
 
                 await context.Specifications.AddAsync(Specification);
                 if (await context.SaveChangesAsync() > 0) {

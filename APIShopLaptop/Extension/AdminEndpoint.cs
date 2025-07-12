@@ -4,6 +4,7 @@ using APIShopLaptop.Feature.Admin.Category;
 using APIShopLaptop.Feature.Admin.DiscountCodes;
 using APIShopLaptop.Feature.Admin.ImageStorage;
 using APIShopLaptop.Feature.Admin.Orders;
+using APIShopLaptop.Feature.Admin.Orders.Momo;
 using APIShopLaptop.Feature.Admin.Products;
 using APIShopLaptop.Feature.Admin.Products.Category;
 using APIShopLaptop.Feature.Admin.Products.Compatibility;
@@ -12,6 +13,7 @@ using APIShopLaptop.Feature.Admin.Products.Images;
 using APIShopLaptop.Feature.Admin.Products.Info;
 using APIShopLaptop.Feature.Admin.Products.Specifications;
 using APIShopLaptop.Feature.Admin.Specifications;
+using APIShopLaptop.Feature.Admin.Summary;
 
 namespace APIShopLaptop.Extension {
     public static class AdminEndpoint {
@@ -39,7 +41,7 @@ namespace APIShopLaptop.Extension {
             GetProducts.MapEndpoint(app);
             UpdateProductInfo.MapEndpoint(app);
             UpdateProductThumbnail.MapEndpoint(app);
-            UpdateProductCaterory.MapEndpoint(app);
+            UpdateProductCategory.MapEndpoint(app);
             UpdateProductDescription.MapEndpoint(app);
             GetProductThumbnail.MapEndpoint(app);
             GetProductInfo.MapEndpoint(app);
@@ -62,8 +64,10 @@ namespace APIShopLaptop.Extension {
             GetOrder.MapEndpoint(app);
             GetOrders.MapEndpoint(app);
             UpdateOrderStatus.MapEndpoint(app);
+            ConfirmMomoOrder.MapEndpoint(app);
+            GetTransactions.MapEndpoint(app);
         }
-        private static void AddCateroryFeature(this WebApplication app) {
+        private static void AddCategoryFeature(this WebApplication app) {
             GetCategory.MapEndpoint(app);
         }
         private static void AddSpecificationFeature(this WebApplication app) {
@@ -80,15 +84,27 @@ namespace APIShopLaptop.Extension {
             UpdateUserPassword.MapEndpoint(app);
             UpdateUserEmail.MapEndpoint(app);
         }
+        private static void AddSummaryFeature(this WebApplication app) {
+            GetTop10Product.MapEndpoint(app);
+            GetTopMainCategory.MapEndpoint(app);
+            GetAllSubCategorySale.MapEndpoint(app);
+            GetAllMainCategorySale.MapEndpoint(app);
+            GetTop5Customer.MapEndpoint(app);
+            GetAllCustomerSale.MapEndpoint(app);
+            GetAllOrderStatus.MapEndpoint(app);
+            GetSaleFigureOfYear.MapEndpoint(app);
+            GetSaleFigure.MapEndpoint(app);
+        }
         public static void AddAllEndPoint(this WebApplication app) {
             AddImageStorageService(app);
             AddBrandService(app);
             AddDiscountCodeFeature(app);
             AddProductFeature(app);
             AddOrderFeature(app);
-            AddCateroryFeature(app);
+            AddCategoryFeature(app);
             AddAccountFeature(app);
             AddSpecificationFeature(app);
+            AddSummaryFeature(app);
         }
     }
 }

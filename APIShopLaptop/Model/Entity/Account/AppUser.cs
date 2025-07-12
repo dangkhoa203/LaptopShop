@@ -10,9 +10,9 @@ namespace APIShopLaptop.Model.Entity.Account {
         public AppUser() {
             DateCreated = DateTime.Now;
         }
-        public Cart Cart { get; set; }
-        public ICollection<Build> Builds { get; set; }
-        public ICollection<Review> Reviews { get; set; }
-        public ICollection<Order> Orders { get; set; }
+        public virtual Cart Cart { get; set; }
+        public virtual Build Build { get; set; }
+        public virtual ICollection<Review> Reviews { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

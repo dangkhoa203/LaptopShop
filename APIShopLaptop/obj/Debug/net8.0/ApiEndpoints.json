@@ -1,5 +1,24 @@
 [
   {
+    "ContainingType": "APIShopLaptop.Feature.User.UserAccount.GetAccountInfo",
+    "Method": "Handler",
+    "RelativePath": "api/Account/",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Account"
+    ]
+  },
+  {
     "ContainingType": "APIShopLaptop.Feature.Admin.Account.LogOutAdmin",
     "Method": "Handler",
     "RelativePath": "api/Account/Admin/LogOut",
@@ -19,6 +38,61 @@
     ]
   },
   {
+    "ContainingType": "APIShopLaptop.Feature.User.UserAccount.ConfirmAccount",
+    "Method": "Handler",
+    "RelativePath": "api/Account/ConfirmAccount/{userName}/{code}",
+    "HttpMethod": "PUT",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userName",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "code",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Account"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.UserAccount.ChangeEmail.SendChangeEmailRequest",
+    "Method": "Handler",
+    "RelativePath": "api/Account/EmailChange/",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "APIShopLaptop.Feature.User.UserAccount.ChangeEmail.SendChangeEmailRequest\u002BRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Account"
+    ]
+  },
+  {
     "ContainingType": "APIShopLaptop.Feature.User.UserAccount.Login",
     "Method": "Handler",
     "RelativePath": "api/Account/Login",
@@ -29,6 +103,170 @@
       {
         "Name": "request",
         "Type": "APIShopLaptop.Feature.User.UserAccount.Login\u002BRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Account"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.UserAccount.LogOut",
+    "Method": "Handler",
+    "RelativePath": "api/Account/LogOut",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Account"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.UserAccount.ChangePassword.SendChangePasswordRequest",
+    "Method": "Handler",
+    "RelativePath": "api/Account/PasswordChange",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "APIShopLaptop.Feature.User.UserAccount.ChangePassword.SendChangePasswordRequest\u002BRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Account"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.UserAccount.ChangePassword.ChangePassword",
+    "Method": "Handler",
+    "RelativePath": "api/Account/PasswordChange/{userId}/{newPassword}/{code}",
+    "HttpMethod": "PUT",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "newPassword",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "code",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Account"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.UserAccount.ResetPassword.SendResetPasswordRequest",
+    "Method": "Handler",
+    "RelativePath": "api/Account/PasswordReset/",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "APIShopLaptop.Feature.User.UserAccount.ResetPassword.SendResetPasswordRequest\u002BRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Account"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.UserAccount.ResetPassword.ResetPassword",
+    "Method": "Handler",
+    "RelativePath": "api/Account/PasswordReset/{userId}/{code}",
+    "HttpMethod": "PUT",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "APIShopLaptop.Feature.User.UserAccount.ResetPassword.ResetPassword\u002BRequest",
+        "IsRequired": true
+      },
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "code",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Account"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.UserAccount.ResetPassword.CheckAccountForReset",
+    "Method": "Handler",
+    "RelativePath": "api/Account/PasswordReset/ResetValidation/{userid}/",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userid",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],
@@ -341,7 +579,7 @@
     ]
   },
   {
-    "ContainingType": "APIShopLaptop.Feature.Admin.Category.GetCaterory",
+    "ContainingType": "APIShopLaptop.Feature.Admin.Category.GetCategory",
     "Method": "Handler",
     "RelativePath": "api/Admin/Category",
     "HttpMethod": "GET",
@@ -543,7 +781,7 @@
       }
     ],
     "Tags": [
-      "Orders"
+      "Admin_Orders"
     ]
   },
   {
@@ -568,7 +806,7 @@
       }
     ],
     "Tags": [
-      "Orders"
+      "Admin_Orders"
     ]
   },
   {
@@ -593,7 +831,32 @@
       }
     ],
     "Tags": [
-      "Orders"
+      "Admin_Orders"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.Admin.Orders.ConfirmMomoOrder",
+    "Method": "Handler",
+    "RelativePath": "api/Admin/Orders/Confirm",
+    "HttpMethod": "PUT",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "APIShopLaptop.Feature.Admin.Orders.ConfirmMomoOrder\u002BRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Admin_Orders"
     ]
   },
   {
@@ -726,7 +989,7 @@
     ]
   },
   {
-    "ContainingType": "APIShopLaptop.Feature.Admin.Products.Caterory.UpdateProductCaterory",
+    "ContainingType": "APIShopLaptop.Feature.Admin.Products.Category.UpdateProductCategory",
     "Method": "Handler",
     "RelativePath": "api/Admin/Products/{id}/Category",
     "HttpMethod": "PUT",
@@ -735,7 +998,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "APIShopLaptop.Feature.Admin.Products.Caterory.UpdateProductCaterory\u002BRequest",
+        "Type": "APIShopLaptop.Feature.Admin.Products.Category.UpdateProductCategory\u002BRequest",
         "IsRequired": true
       },
       {
@@ -756,7 +1019,7 @@
     ]
   },
   {
-    "ContainingType": "APIShopLaptop.Feature.Admin.Products.Caterory.GetProductCategories",
+    "ContainingType": "APIShopLaptop.Feature.Admin.Products.Category.GetProductCategories",
     "Method": "Handler",
     "RelativePath": "api/Admin/Products/{id}/Category",
     "HttpMethod": "GET",
@@ -1220,16 +1483,111 @@
     ]
   },
   {
-    "ContainingType": "APIShopLaptop.Feature.User.Caterory.GetProductFromMainCategory",
+    "ContainingType": "APIShopLaptop.Feature.Admin.Summary.GetAllCustomerSale",
     "Method": "Handler",
-    "RelativePath": "api/Caterory/Main",
+    "RelativePath": "api/Admin/Summary/All_Customer",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Admin_Summary"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.Admin.Summary.GetAllMainCategorySale",
+    "Method": "Handler",
+    "RelativePath": "api/Admin/Summary/All_Main_Sale",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Admin_Summary"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.Admin.Summary.GetAllOrderStatus",
+    "Method": "Handler",
+    "RelativePath": "api/Admin/Summary/All_Order",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Admin_Summary"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.Admin.Summary.GetAllSubCategorySale",
+    "Method": "Handler",
+    "RelativePath": "api/Admin/Summary/All_Sub_Sale",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Admin_Summary"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.Admin.Summary.GetSaleFigure",
+    "Method": "Handler",
+    "RelativePath": "api/Admin/Summary/Sale",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Admin_Summary"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.Admin.Summary.GetSaleFigureOfYear",
+    "Method": "Handler",
+    "RelativePath": "api/Admin/Summary/Sale/{year}",
     "HttpMethod": "GET",
     "IsController": false,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "request",
-        "Type": "APIShopLaptop.Feature.User.Caterory.GetProductFromMainCategory\u002BRequest",
+        "Name": "year",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
@@ -1241,20 +1599,429 @@
       }
     ],
     "Tags": [
-      "Caterory"
+      "Admin_Summary"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.Admin.Summary.GetTopMainCategory",
+    "Method": "Handler",
+    "RelativePath": "api/Admin/Summary/Top_Category",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Admin_Summary"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.Admin.Summary.GetTop5Customer",
+    "Method": "Handler",
+    "RelativePath": "api/Admin/Summary/Top_Customer",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Admin_Summary"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.Admin.Summary.GetTop10Product",
+    "Method": "Handler",
+    "RelativePath": "api/Admin/Summary/Top_Product",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Admin_Summary"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.Admin.Orders.Momo.GetTransactions",
+    "Method": "Handler",
+    "RelativePath": "api/Admin/Transactions",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Admin_Transactions"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.UserAppUser.ChangeEmail.ChangeEmail",
+    "Method": "Handler",
+    "RelativePath": "api/AppUser/EmailChange/{userId}/{newEmail}/{code}",
+    "HttpMethod": "PUT",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "newEmail",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "code",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Account"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.Builds.AddToBuild",
+    "Method": "Handler",
+    "RelativePath": "api/Build",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "APIShopLaptop.Feature.User.Builds.AddToBuild\u002BRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Build"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.Builds.DeleteBuildItem",
+    "Method": "Handler",
+    "RelativePath": "api/Build",
+    "HttpMethod": "DELETE",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "APIShopLaptop.Feature.User.Builds.DeleteBuildItem\u002BRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Build"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.Builds.UpdateBuildItemQuantity",
+    "Method": "Handler",
+    "RelativePath": "api/Build",
+    "HttpMethod": "PUT",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "APIShopLaptop.Feature.User.Builds.UpdateBuildItemQuantity\u002BRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Build"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.Builds.GetBuild",
+    "Method": "Handler",
+    "RelativePath": "api/Build",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Build"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.Builds.GetProductForBuild",
+    "Method": "Handler",
+    "RelativePath": "api/Build/Product/{CategoryId}",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "CategoryId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "search",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Build"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.Cart.AddProductToCart",
+    "Method": "Handler",
+    "RelativePath": "api/Cart",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "APIShopLaptop.Feature.User.Cart.AddProductToCart\u002BRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Cart"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.Cart.DeleteProductFromCart",
+    "Method": "Handler",
+    "RelativePath": "api/Cart",
+    "HttpMethod": "DELETE",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "APIShopLaptop.Feature.User.Cart.DeleteProductFromCart\u002BRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Cart"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.Cart.UpdateProductQuantityInCart",
+    "Method": "Handler",
+    "RelativePath": "api/Cart",
+    "HttpMethod": "PUT",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "APIShopLaptop.Feature.User.Cart.UpdateProductQuantityInCart\u002BRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Cart"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.Cart.GetCurrentCart",
+    "Method": "Handler",
+    "RelativePath": "api/Cart",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Cart"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.Category.GetProductFromMainCategory",
+    "Method": "Handler",
+    "RelativePath": "api/Category/Main/{id}",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "sortMode",
+        "Type": "APIShopLaptop.Model.Enum.SORTMODE",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Category"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.Category.GetProductForMainPage_MainCategory",
+    "Method": "Handler",
+    "RelativePath": "api/Category/Main/{id}/Main_Page",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Category"
     ]
   },
   {
     "ContainingType": "APIShopLaptop.Feature.User.Caterory.GetProductsFromSubCaterory",
     "Method": "Handler",
-    "RelativePath": "api/Caterory/Sub",
+    "RelativePath": "api/Category/Sub/{id}",
     "HttpMethod": "GET",
     "IsController": false,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "request",
-        "Type": "APIShopLaptop.Feature.User.Caterory.GetProductsFromSubCaterory\u002BRequest",
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "sortMode",
+        "Type": "APIShopLaptop.Model.Enum.SORTMODE",
+        "IsRequired": true
+      },
+      {
+        "Name": "brands",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],
@@ -1266,7 +2033,532 @@
       }
     ],
     "Tags": [
-      "Caterory"
+      "Category"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.Category.GetProductForMainPage_SubCategory",
+    "Method": "Handler",
+    "RelativePath": "api/Category/Sub/{id}/Main_Page",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Category"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.DiscountCode.GetValidCode",
+    "Method": "Handler",
+    "RelativePath": "api/Discount-Codes",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Discount-Codes"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.DiscountCode.ValidateCode",
+    "Method": "Handler",
+    "RelativePath": "api/Discount-Codes",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "APIShopLaptop.Feature.User.DiscountCode.ValidateCode\u002BRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Discount-Codes"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.Orders.AddOrder",
+    "Method": "Handler",
+    "RelativePath": "api/Orders",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "APIShopLaptop.Feature.User.Orders.AddOrder\u002BRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Orders"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.Orders.GetOrders",
+    "Method": "Handler",
+    "RelativePath": "api/Orders",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Order"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.Orders.GetOrder",
+    "Method": "Handler",
+    "RelativePath": "api/Orders/{id}",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Orders"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.Orders.Build.AddOrderFromBuild",
+    "Method": "Handler",
+    "RelativePath": "api/Orders/Build",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "APIShopLaptop.Feature.User.Orders.Build.AddOrderFromBuild\u002BRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Orders"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.Orders.CancelOrder",
+    "Method": "Handler",
+    "RelativePath": "api/Orders/Cancel",
+    "HttpMethod": "PUT",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "APIShopLaptop.Feature.User.Orders.CancelOrder\u002BRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Orders"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.Orders.MoMo.CreateNewMomoTransaction",
+    "Method": "Handler",
+    "RelativePath": "api/Orders/Momo",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "APIShopLaptop.Feature.User.Orders.MoMo.CreateNewMomoTransaction\u002BRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Orders"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.Orders.MoMo.ConfirmMomoTransaction",
+    "Method": "Handler",
+    "RelativePath": "api/Orders/Momo/Confirm",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "APIShopLaptop.Feature.User.Orders.MoMo.ConfirmMomoTransaction\u002BRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Orders"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.Products.SearchProduct",
+    "Method": "Handler",
+    "RelativePath": "api/Products",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "search",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "mode",
+        "Type": "APIShopLaptop.Model.Enum.SEARCHMODE",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Products"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.Products.GetProduct",
+    "Method": "Handler",
+    "RelativePath": "api/Products/{id}",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Products"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.Products.GetProductImage",
+    "Method": "Handler",
+    "RelativePath": "api/Products/{id}/Images/{imageId}",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "imageId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Product"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.Products.GetProductReviews",
+    "Method": "Handler",
+    "RelativePath": "api/Products/{id}/Reviews",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "preview",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Products"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.Products.GetProductThumbnail",
+    "Method": "Handler",
+    "RelativePath": "api/Products/{id}/Thumbnail",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Product"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.Reviews.AddReview",
+    "Method": "Handler",
+    "RelativePath": "api/Reviews",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "APIShopLaptop.Feature.User.Reviews.AddReview\u002BRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Reviews"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.Reviews.UpdateReview",
+    "Method": "Handler",
+    "RelativePath": "api/Reviews",
+    "HttpMethod": "PUT",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "APIShopLaptop.Feature.User.Reviews.UpdateReview\u002BRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Reviews"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.Reviews.GetReviews",
+    "Method": "Handler",
+    "RelativePath": "api/Reviews",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Reviews"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.Reviews.GetReviewAble",
+    "Method": "Handler",
+    "RelativePath": "api/Reviews/ReviewAble",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Reviews"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.Specification.SearchProductOnSpecification",
+    "Method": "Handler",
+    "RelativePath": "api/Specifications/Product",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "APIShopLaptop.Feature.User.Specification.SearchProductOnSpecification\u002BRequest",
+        "IsRequired": true
+      },
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "sortMode",
+        "Type": "APIShopLaptop.Model.Enum.SORTMODE",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Specifications"
+    ]
+  },
+  {
+    "ContainingType": "APIShopLaptop.Feature.User.Specification.GetSearchableSpec",
+    "Method": "Handler",
+    "RelativePath": "api/Specifications/Searchable",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Specifications"
     ]
   }
 ]

@@ -1,5 +1,6 @@
 ﻿using APIShopLaptop.Data;
 using APIShopLaptop.Endpoint;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 
 namespace APIShopLaptop.Feature.Admin.Category {
@@ -9,14 +10,17 @@ namespace APIShopLaptop.Feature.Admin.Category {
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapGet("/api/Admin/Category", Handler).WithTags("Admin_Category");
         }
+        [Authorize(Roles = "Admin")]
         private static async Task<IResult> Handler(ApplicationDBContext context) {
             try {
                 var Categories = await context.SubCaterories
                      .Include(c=>c.MainCaterory)
+                     .OrderBy(c => c.MainCaterory.Name)
                      .Select(c => new CategoryDTO(
                          c.Id,
                          $"{c.MainCaterory.Name} > {c.Name}"
                          ))
+                      
                      .ToListAsync();
 
                 return Results.Ok(new Response(true, Categories, ""));

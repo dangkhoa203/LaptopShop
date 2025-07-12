@@ -186,6 +186,7 @@ export default function UpdateProductInfo(props:{id:string}){
             }
         }
     })
+    // @ts-ignore
     return(
         <>
             {isEdit ?
@@ -193,6 +194,7 @@ export default function UpdateProductInfo(props:{id:string}){
                     <Grid size={6}>
                         <TextField
                             fullWidth
+                            color="warning"
                             label="Tên"
                             variant="filled"
                             value={newInfo.name}
@@ -203,6 +205,7 @@ export default function UpdateProductInfo(props:{id:string}){
                     </Grid>
                     <Grid size={6}>
                         <NumericFormat
+                            color="warning"
                             isAllowed={(values) => {
                                 const { floatValue } = values;
                                 // @ts-ignore
@@ -225,6 +228,7 @@ export default function UpdateProductInfo(props:{id:string}){
                     </Grid>
                     <Grid size={6}>
                         <TextField
+                            color="warning"
                             fullWidth
                             label="Số lượng"
                             type="number"
@@ -237,16 +241,17 @@ export default function UpdateProductInfo(props:{id:string}){
                     </Grid>
                     <Grid size={6}>
                         {brandSuccess?
-                            <FormControl error={validateError.brandId.length>0}
+                            <FormControl color="warning"  error={validateError.brandId.length>0}
                                          variant="filled" fullWidth>
                                 <InputLabel >Hãng</InputLabel>
                                 <Select
+                                    color="warning"
                                     value={newInfo.brandId}
                                     onChange={handleBrandIdChange}
                                 >
                                     <MenuItem value="0" disabled>Chọn hãng</MenuItem>
                                     {brands.map((item) => (
-                                        <MenuItem value={item.id}>{item.name}</MenuItem>
+                                        <MenuItem color="warning" value={item.id}>{item.name}</MenuItem>
                                     ))}
                                 </Select>
                                 <FormHelperText>
@@ -261,7 +266,7 @@ export default function UpdateProductInfo(props:{id:string}){
 
                     </Grid>
                     <Grid size={6}>
-                        <Switch onChange={handleIsDiscountChange} value={newInfo.isDiscount}/> Giảm
+                        <Switch color={"warning"} checked={newInfo.isDiscount} onChange={handleIsDiscountChange} value={newInfo.isDiscount}/> Giảm
                     </Grid>
                     <Grid size={6}>
                         <NumericFormat
@@ -284,6 +289,7 @@ export default function UpdateProductInfo(props:{id:string}){
                             suffix={" VNĐ"}
                             thousandSeparator
                             customInput={TextField}
+                            color="warning"
                         />
                     </Grid>
                     <Grid size={12} sx={{display:"flex",justifyContent:"center"}}>
@@ -354,7 +360,7 @@ export default function UpdateProductInfo(props:{id:string}){
                                 />
                             </Grid>
                             <Grid size={6}>
-                                <Switch disabled value={oldInfo.isDiscount}/> Giảm
+                                <Switch checked={newInfo.isDiscount} color="default" disabled value={oldInfo.isDiscount}/> Giảm
                             </Grid>
                             <Grid size={6}>
                                 <NumericFormat

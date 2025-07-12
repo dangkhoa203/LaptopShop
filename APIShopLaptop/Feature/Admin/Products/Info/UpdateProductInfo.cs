@@ -4,6 +4,7 @@ using APIShopLaptop.Model.Entity.Product_Related;
 using APIShopLaptop.Model.Enum;
 using FluentValidation;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -28,7 +29,7 @@ namespace APIShopLaptop.Feature.Admin.Products.Info {
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapPut("/api/Admin/Products/{id}/Info", Handler).WithTags("Admin_Products");
         }
-
+        [Authorize(Roles = "Admin")]
         private static async Task<IResult> Handler([FromRoute] string id, Request request, IWebHostEnvironment env, ApplicationDBContext context) {
             var Validator = new Validator();
             var ValidatedResult = Validator.Validate(request);

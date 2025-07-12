@@ -1,0 +1,104 @@
+﻿using APIShopLaptop.Data;
+using APIShopLaptop.Endpoint;
+using APIShopLaptop.Middleware.Momo;
+using APIShopLaptop.Model.Entity.Order_Related;
+using APIShopLaptop.Model.Entity.Product_Related;
+using APIShopLaptop.Model.Enum;
+using FluentValidation;
+using FluentValidation.Results;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using NanoidDotNet;
+using System.Security.Claims;
+
+namespace APIShopLaptop.Feature.User.Orders {
+    public class AddOrder:IEndpoint {
+        public record Request(string Receiver,string PhoneNumber,string Address,PAYMENTMETHOD PaymentMethod,string codeId);
+        public record Response(bool Success, string ErrorMessage, ValidationResult? ValidationError,string data);
+        public sealed class Validator : AbstractValidator<Request> {
+            public Validator() {
+                RuleFor(r => r.PhoneNumber).Length(10).WithMessage("Số điện thoại không phù hợp");
+                RuleFor(r => r.PhoneNumber).Matches("^[0-9]*$").WithMessage("Số điện thoại không phù hợp");
+            }
+        }
+        public static void MapEndpoint(IEndpointRouteBuilder app) {
+            app.MapPost("/api/Orders", Handler).WithTags("Orders");
+        }
+
+        private static async Task<IResult> Handler([FromBody] Request request, ApplicationDBContext context, MoMoService moMoService, ClaimsPrincipal User) {
+            var Validator = new Validator();
+            var ValidatedResult = Validator.Validate(request);
+            if (!ValidatedResult.IsValid) {
+                return Results.BadRequest(new Response(false, "Lỗi xảy ra", ValidatedResult,""));
+            }
+
+            var Cart = await context.Users
+                     .Include(u => u.Cart)
+                         .ThenInclude(u => u.CartProducts)
+                             .ThenInclude(p => p.ProductNavigation)
+                     .Where(u => u.UserName == User.Identity.Name)
+                     .Select(u => u.Cart)
+                     .FirstOrDefaultAsync();
+            var account = await context.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+            if (Cart.CartProducts.Any(p => p.Quantity > p.ProductNavigation.Quantity)) {
+                return Results.BadRequest(new Response(false,"Lỗi thực hiện!",ValidatedResult, ""));
+            }
+            var Details = new List<OrderDetail>();
+            var Order = new Order() {
+                User=account,
+                Address=request.Address,
+                DateOfOrder=DateTime.Now,
+                Receiver=request.Receiver,
+                PhoneNumber=request.PhoneNumber,
+                PaymentMethod=request.PaymentMethod,
+                NoteFromOrder="",
+                Value=0
+            };
+            foreach (var product in Cart.CartProducts) {
+                Details.Add(new OrderDetail() {
+                    OrderNavigation=Order,
+                    ProductNavigation=product.ProductNavigation,
+                    Quantity=product.Quantity,
+                    Price=product.ProductNavigation.IsDiscount? product.ProductNavigation.PriceAfterDiscount: product.ProductNavigation.Price,
+                });
+                product.ProductNavigation.Quantity -= product.Quantity;
+                Order.Value += product.ProductNavigation.IsDiscount ? product.ProductNavigation.PriceAfterDiscount * product.Quantity : product.ProductNavigation.Price * product.Quantity;
+                context.CartProducts.Remove(product);
+            }
+            Order.Details = Details;
+            if (Order.PaymentMethod == PAYMENTMETHOD.BANK) {
+                Order.NoteFromOrder =   "Chuyển khoản vào:\t" +
+                                        "VietComBank-1010101010\t" +
+                                        "AGBank-2020202020\t" +
+                                        $"Với nội dung: {Order.Id}-{Order.User.UserName}-TRA TIEN";
+            }
+            if (Order.PaymentMethod == PAYMENTMETHOD.MOMO) {
+                var requestId = Order.Id + Nanoid.Generate(Nanoid.Alphabets.UppercaseLettersAndDigits, 6);
+                var Transaction = new MomoTransaction() {
+                    IsPaid = false,
+                    Order = Order,
+                    OrderId = Order.Id,
+                    RequestId = requestId,
+                };
+                Order.MomoTransaction = Transaction;
+            }
+            var Code = await context.DiscountCodes.FirstOrDefaultAsync(c => c.Id == request.codeId) ;
+            if (Code != null) {
+                Order.DiscountCode = Code ;
+                Order.Value = Order.Value * ((100 - Code.Percent) / 100);
+            }
+            await context.Orders.AddAsync(Order);
+
+            if (await context.SaveChangesAsync() > 0) {
+                if (Order.PaymentMethod == PAYMENTMETHOD.MOMO) {
+                    var response = await moMoService.CreatePaymentAsync(Order.MomoTransaction.RequestId, $"{Order.Receiver},{Order.Address},{Order.PhoneNumber}", Order.Value,Order.MomoTransaction.RequestId);
+                    if (response.ErrorCode == 0) {
+                        return Results.Ok(new Response(true, "", ValidatedResult, response.PayUrl));
+                    }
+                }
+                return Results.Ok(new Response(true, "", ValidatedResult, ""));
+            }
+            return Results.BadRequest(new Response(false,"Lỗi thực hiện!",ValidatedResult, ""));
+        }
+    }
+}

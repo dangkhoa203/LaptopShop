@@ -9,6 +9,7 @@ using APIShopLaptop.Middleware.Email;
 
 
 using APIShopLaptop.Extension;
+using APIShopLaptop.Middleware.Momo;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,8 +34,10 @@ builder.Services.AddCors(options => {
     }); ;
 });
 builder.Services.Configure<EmailSenderConfig>(builder.Configuration.GetSection("EmailSenderConfig"));
+builder.Services.Configure<MoMoOption>(builder.Configuration.GetSection("MoMoAPI"));
 builder.Services.AddOptions();
 builder.Services.AddScoped<EmailSender>();
+builder.Services.AddScoped<MoMoService>();
 builder.Services.AddAuthorization();
 builder.Services.AddDbContext<ApplicationDBContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("Database")));
 

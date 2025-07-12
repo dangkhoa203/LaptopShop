@@ -1,0 +1,14 @@
+.productCard{
+    transform: scale(1.0);
+    transition: all 0.2s;
+}
+.productCard:hover{
+
+    transition: all 0.2s;
+}
+.cardImg{
+    transition: all 0.7s;
+}
+.cardImg:hover{
+    transform: scale(1.1);
+}

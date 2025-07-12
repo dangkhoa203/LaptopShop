@@ -1,6 +1,7 @@
 ﻿using APIShopLaptop.Data;
 using APIShopLaptop.Endpoint;
 using APIShopLaptop.Model.Entity.Product_Related;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SixLabors.ImageSharp;
@@ -13,7 +14,7 @@ namespace APIShopLaptop.Feature.Admin.Products.Images {
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapPost("/api/Admin/Products/{id}/Images", Handler).WithTags("Admin_Products").DisableAntiforgery();
         }
-
+        [Authorize(Roles = "Admin")]
         private static async Task<IResult> Handler([FromRoute] string id, [FromForm] Request request, IWebHostEnvironment env, ApplicationDBContext context) {
             Product? Product = await context.Products.FirstOrDefaultAsync(p => p.Id == id);
             if (Product == null) {

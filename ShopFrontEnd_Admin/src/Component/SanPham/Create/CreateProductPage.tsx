@@ -11,7 +11,7 @@ import Divider from "@mui/material/Divider";
 import {useMutation} from "@tanstack/react-query";
 import {Response} from "../../../Type/Respone.ts";
 import {useNavigate} from "react-router";
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 export type productValidationError={
     price:string,
     priceAfterDiscount:string,
@@ -29,7 +29,7 @@ export default function CreateProductPage(){
         quantity:0,
         priceAfterDiscount:0,
         isDiscount:false,
-        status:1
+        status:0
     })
     const [description, setDescription] = useState<string>("");
     const [thumbnail, setThumbnail] = useState<any>(null);
@@ -49,7 +49,7 @@ export default function CreateProductPage(){
         formData.append("price",productInfo.price.toString());
         formData.append("brandId",productInfo.brandId);
         formData.append("quantity",productInfo.quantity.toString());
-        formData.append("priceAfterDiscount",productInfo.isDiscount? productInfo.price.toString():"0");
+        formData.append("priceAfterDiscount",productInfo.isDiscount? productInfo.priceAfterDiscount.toString():"0");
         formData.append("isDiscount",productInfo.isDiscount.toString());
         formData.append("status",productInfo.status.toString());
         formData.append("description",description);
@@ -123,8 +123,8 @@ export default function CreateProductPage(){
     // @ts-ignore
     return(
         <Container sx={{display:"flex", flexDirection:"column", justifyContent:"center",gap:2}}>
-            <Button sx={{width:"200px"}} startIcon={<ArrowBackIosIcon/>} onClick={()=>navigate("..")} variant="contained" color="primary">Quay về</Button>
             <p style={{textAlign:"center",fontSize:"2.5em",margin:"0"}}>Tạo sản phẩm</p>
+            <Button startIcon={<ArrowBackIcon/>} sx={{width:"150px"}} onClick={()=>navigate(-1)}>Quay về</Button>
             <Container sx={{display:"flex", flexDirection: {xs:"column",sm:"column",md:"column",lg:"row"}, justifyContent:"center",gap:2}}>
                 <Container sx={{flex:1}}>
                     <NewThumbnail thumbnail={thumbnail} setThumbnail={setThumbnail} error={thumbnailError}/>

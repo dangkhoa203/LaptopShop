@@ -159,3 +159,6 @@ C:\Workspace\CSharp\Fullstack\APIShopLaptop\APIShopLaptop\obj\Debug\net8.0\ref\A
 C:\Workspace\CSharp\Fullstack\APIShopLaptop\APIShopLaptop\bin\Debug\net8.0\SixLabors.ImageSharp.dll
 C:\Workspace\CSharp\Fullstack\APIShopLaptop\APIShopLaptop\bin\Debug\net8.0\MoreLinq.dll
 C:\Workspace\CSharp\Fullstack\APIShopLaptop\APIShopLaptop\obj\Debug\net8.0\APIShopLaptop.sourcelink.json
+C:\Workspace\CSharp\Fullstack\APIShopLaptop\APIShopLaptop\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Workspace\CSharp\Fullstack\APIShopLaptop\APIShopLaptop\bin\Debug\net8.0\RestSharp.dll
+C:\Workspace\CSharp\Fullstack\APIShopLaptop\APIShopLaptop\bin\Debug\net8.0\libman.json

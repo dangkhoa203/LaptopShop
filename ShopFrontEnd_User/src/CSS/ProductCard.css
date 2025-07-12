@@ -1,0 +1,13 @@
+.ProductName{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.ProductDescription{
+    b{
+        font-size: 1.4em;
+    }
+    font-size: 1.1em;
+}

@@ -1,5 +1,6 @@
 ﻿using APIShopLaptop.Data;
 using APIShopLaptop.Model.Enum;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,6 +11,7 @@ namespace APIShopLaptop.Feature.Admin.Products.Description {
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapGet("/api/Admin/Products/{id}/Description", Handler).WithTags("Admin_Products");
         }
+        [Authorize(Roles = "Admin")]
         private static async Task<IResult> Handler([FromRoute] string id, ApplicationDBContext context) {
             try {
                 var Product = await context.Products
