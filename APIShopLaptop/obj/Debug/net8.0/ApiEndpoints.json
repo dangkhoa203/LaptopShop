@@ -1958,6 +1958,11 @@
         "Name": "sortMode",
         "Type": "APIShopLaptop.Model.Enum.SORTMODE",
         "IsRequired": true
+      },
+      {
+        "Name": "brands",
+        "Type": "System.String",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": [

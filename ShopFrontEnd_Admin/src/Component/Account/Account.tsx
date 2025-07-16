@@ -84,7 +84,9 @@ export default function Account(){
     }, [data]);
 
     const [rowData, setRowData] = useState<Array<accountData>>([]);
-
+    useEffect(()=>{
+        document.title="Tài khoản"
+    },[])
     // @ts-ignore
     const [colDefs, setColDefs] = useState<ColDef[]>([
         { valueGetter:c=>c.data.userName,

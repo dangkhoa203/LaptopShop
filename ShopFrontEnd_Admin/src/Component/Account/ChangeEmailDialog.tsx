@@ -50,7 +50,11 @@ export default function ChangeEmailDialog(props:{username:string,email:string,id
             }
         }
     })
-
+    const handleKeyDown = (event:any) => {
+        if (event.key === 'Enter') {
+            mutate()
+        }
+    }
     return(
         <Dialog
             open={props.open}
@@ -92,6 +96,7 @@ export default function ChangeEmailDialog(props:{username:string,email:string,id
                         Email cũ: {props.email}
                     </Typography>
                     <TextField type="email" value={newEmail} onChange={handleEmailPassword} fullWidth
+                               onKeyDown={handleKeyDown}
                                error={validateError.length>0}  helperText={validateError}
                                color="warning"
                                size={"medium"} label="Email mới" variant="filled" />

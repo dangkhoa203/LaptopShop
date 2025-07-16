@@ -123,7 +123,7 @@ export default function UpdateCaterory(props:{id:string}) {
                 <>
                     {success?
                         <>
-                            <TextField value={search} onChange={handleSearchChange} fullWidth label="search" variant="outlined"/>
+                            <TextField color="warning" value={search} onChange={handleSearchChange} fullWidth label="search" variant="outlined"/>
                             <TableContainer sx={{height:400,marginTop:"10px",overflowY:"scroll",border:"2px solid rgb(237, 108, 2)"}} component={Paper}>
                                 <Table stickyHeader aria-label="simple table">
                                     <TableHead>

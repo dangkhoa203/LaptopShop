@@ -3,7 +3,8 @@ import {useCart} from "../../State/Cart.ts";
 import Button from "@mui/material/Button";
 import {Grid, Paper} from "@mui/material";
 import CartProductCard from "./CartProductCard.tsx";
-import {useNavigate} from "react-router";
+import {Navigate, useNavigate} from "react-router";
+import {useUserInfo} from "../../State/User.ts";
 export default function CartPage(){
     const navigate = useNavigate();
     const cartItems=useCart((state)=>state.cartItems);
@@ -18,7 +19,10 @@ export default function CartPage(){
         })
         return total;
     }
-
+    const userInfo=useUserInfo(state=>state.user);
+    if(!userInfo.isLogged){
+        return <Navigate to={"/"}></Navigate>
+    }
     return(
         <Container maxWidth="lg">
             <Grid container sx={{padding:"10px"}} spacing={2} >

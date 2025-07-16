@@ -17,6 +17,7 @@ type orderDetail={
     paymentMethod:number,
     status:number,
     noteFromOrder:string,
+    value:number,
     deliveryInfo:{
         receiver:string,
         phoneNumber:string,
@@ -28,7 +29,12 @@ type orderDetail={
         price:number,
         quantity:number,
         reviewAble:boolean
-    }[]
+    }[],
+    discountCode:{
+        id:string,
+        name:string,
+        percent:number,
+    }
 }
 export default function OrderDetail(){
     const {id} = useParams() as {id:string};
@@ -40,12 +46,18 @@ export default function OrderDetail(){
             paymentMethod:0,
             status:0,
             noteFromOrder:"",
+            value:0,
             deliveryInfo:{
                 address:"",
                 phoneNumber:"",
                 receiver:""
             },
-            details:[]
+            details:[],
+            discountCode:{
+                id:"",
+                name:"",
+                percent:0
+            }
         }
     );
     const {data,isPending,refetch}=useQuery({
@@ -84,6 +96,7 @@ export default function OrderDetail(){
     };
 
     const navigate=useNavigate();
+    const orginalPrice=orderDetail.discountCode.id!=="" ? (orderDetail.value/(100-orderDetail.discountCode.percent))*100 :0
     // @ts-ignore
     return(
         <Container maxWidth="lg" sx={{paddingTop:"5px",display:"flex",flexDirection:"column"}}>
@@ -137,11 +150,11 @@ export default function OrderDetail(){
                                     </Typography>
                                 </Grid>
                                 {orderDetail.noteFromOrder!=="" &&
-                                    <Grid size={6}>
+                                    <Grid size={12}>
                                         <Typography textAlign="center" variant="h5" color="textPrimary">
                                             Ghi Chú
                                         </Typography>
-                                        <Typography textAlign="center" variant="body1" color="textSecondary">
+                                        <Typography component="pre" textAlign="center" variant="body1" color="textSecondary">
                                             {orderDetail.noteFromOrder}
                                         </Typography>
                                     </Grid>
@@ -174,59 +187,76 @@ export default function OrderDetail(){
                                         {orderDetail.deliveryInfo.address}
                                     </Typography>
                                 </Grid>
-                            </Grid>
-                            <Divider/>
-                            <div style={{margin:"10px 0px"}}>
-                                <Typography  textAlign="center" variant="h5" color="textPrimary">
-                                    Chi tiết
-                                </Typography>
-                                <Paper sx={{marginY:"10px",padding:"10px",maxHeight:"400px",overflowY:"auto"}} elevation={12}>
+                                <Grid size={12}>
+                                    <Divider/>
+                                </Grid>
 
-                                    {orderDetail.details.map(detail =>
-                                        <Card  sx={{border:"1px solid rgba(9,8,8,0.2)",display: 'flex',justifyContent:"center",marginBottom:"10px" }} elevation={3}>
-                                            <CardMedia
-                                                component="img"
-                                                sx={{ margin:"auto",width: 150,height:150 }}
-                                                image={`https://localhost:7075/api/Products/${detail.id}/Thumbnail`}
-                                                alt="Live from space album cover"
-                                            />
-                                            <Container sx={{ borderLeft:"1px solid black",display: 'flex', flexDirection: 'column' }}>
-                                                <CardContent sx={{minWidth:"100%",paddingX:"5px"}}>
-                                                    <Tooltip title={detail.name} placement="bottom-start">
-                                                        <Typography sx={{cursor:"pointer"}}
-                                                                    onClick={()=>
-                                                                        navigate(`/SanPham/${detail.id}`)
-                                                                    }
-                                                                    variant="h6">
-                                                            {detail.name}
+                                <Grid size={12} style={{margin:"10px 0px"}}>
+                                    <Typography  textAlign="center" variant="h5" color="textPrimary">
+                                        Chi tiết
+                                    </Typography>
+                                    <Paper sx={{marginY:"10px",padding:"10px",maxHeight:"400px",overflowY:"auto"}} elevation={12}>
+
+                                        {orderDetail.details.map(detail =>
+                                            <Card  sx={{border:"1px solid rgba(9,8,8,0.2)",display: 'flex',justifyContent:"center",marginBottom:"10px" }} elevation={3}>
+                                                <CardMedia
+                                                    component="img"
+                                                    sx={{ margin:"auto",width: 150,height:150 }}
+                                                    image={`https://localhost:7075/api/Products/${detail.id}/Thumbnail`}
+                                                    alt="Live from space album cover"
+                                                />
+                                                <Container sx={{ borderLeft:"1px solid black",display: 'flex', flexDirection: 'column' }}>
+                                                    <CardContent sx={{minWidth:"100%",paddingX:"5px"}}>
+                                                        <Tooltip title={detail.name} placement="bottom-start">
+                                                            <Typography sx={{cursor:"pointer"}}
+                                                                        onClick={()=>
+                                                                            navigate(`/SanPham/${detail.id}`)
+                                                                        }
+                                                                        variant="h6">
+                                                                {detail.name}
+                                                            </Typography>
+                                                        </Tooltip>
+
+                                                        <Grid container spacing={2}>
+                                                            <Grid size={6}>
+                                                                <Typography  variant="subtitle1" color="textSecondary">
+                                                                    Giá: {detail.price.toLocaleString(undefined, { minimumFractionDigits: 0 })} VNĐ
+                                                                </Typography>
+                                                            </Grid>
+                                                            <Grid size={6}>
+                                                                <Typography  variant="subtitle1" color="textSecondary">
+                                                                    Số lượng: {detail.quantity}
+                                                                </Typography>
+                                                            </Grid>
+                                                        </Grid>
+                                                        <Divider/>
+                                                        <Typography sx={{marginY:"10px"}}  variant="h5" color="textPrimary">
+                                                            Tổng giá trị: {(detail.price*detail.quantity).toLocaleString(undefined, { minimumFractionDigits: 0 })} VNĐ
                                                         </Typography>
-                                                    </Tooltip>
+                                                        {detail.reviewAble &&
+                                                            <Button onClick={()=>handleClickOpen(detail.name,detail.id)} variant={"outlined"} color="secondary">Review</Button>
+                                                        }
+                                                    </CardContent>
+                                                </Container>
+                                            </Card>
+                                        )}
+                                    </Paper>
+                                </Grid>
+                                <Grid size={12}>
+                                    {orderDetail.discountCode.id !="" ?
+                                        <>
+                                            <Typography textAlign={"end"} variant={"h5"}>Giá trị gốc : {orginalPrice.toLocaleString(undefined, { minimumFractionDigits: 0 })} VNĐ</Typography>
+                                            <Typography textAlign={"end"} color="error" variant={"h5"}>- {(orginalPrice-orderDetail.value).toLocaleString(undefined, { minimumFractionDigits: 0 })} VNĐ</Typography>
+                                            <Typography textAlign={"end"} variant={"h4"}>Giá trị đơn hàng : {orderDetail.value.toLocaleString(undefined, { minimumFractionDigits: 0 })} VNĐ</Typography>
+                                        </>
+                                        :
+                                        <Typography textAlign={"end"} variant={"h5"}>Giá trị đơn hàng : {orderDetail.value.toLocaleString(undefined, { minimumFractionDigits: 0 })} VNĐ</Typography>
+                                    }
 
-                                                    <Grid container spacing={2}>
-                                                        <Grid size={6}>
-                                                            <Typography  variant="subtitle1" color="textSecondary">
-                                                                Giá: {detail.price.toLocaleString(undefined, { minimumFractionDigits: 0 })} VNĐ
-                                                            </Typography>
-                                                        </Grid>
-                                                        <Grid size={6}>
-                                                            <Typography  variant="subtitle1" color="textSecondary">
-                                                                Số lượng: {detail.quantity}
-                                                            </Typography>
-                                                        </Grid>
-                                                    </Grid>
-                                                    <Divider/>
-                                                    <Typography sx={{marginY:"10px"}}  variant="h5" color="textPrimary">
-                                                        Tổng giá trị: {(detail.price*detail.quantity).toLocaleString(undefined, { minimumFractionDigits: 0 })} VNĐ
-                                                    </Typography>
-                                                    {detail.reviewAble &&
-                                                        <Button onClick={()=>handleClickOpen(detail.name,detail.id)} variant={"outlined"} color="secondary">Review</Button>
-                                                    }
-                                                </CardContent>
-                                            </Container>
-                                        </Card>
-                                    )}
-                                </Paper>
-                            </div>
+                                </Grid>
+                            </Grid>
+
+
                         </>
                         :
                         <Grid container spacing={2}  >

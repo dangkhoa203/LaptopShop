@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace APIShopLaptop.Feature.User.Category {
     public class GetProductForMainPage_SubCategory : IEndpoint {
         public record Request(string Id, int Page, List<string> SortByBrand);
-        public record ProductDTO(string Id, string Name, float Price, int Quantity, bool IsDiscount, float PriceAfterDiscount);
+        public record ProductDTO(string Id, string Name, float Price, int Quantity, bool IsDiscount, float PriceAfterDiscount,float Score);
         public record Response(bool Success, List<ProductDTO> Data, string ErrorMessage);
 
         public static void MapEndpoint(IEndpointRouteBuilder app) {
@@ -18,6 +18,7 @@ namespace APIShopLaptop.Feature.User.Category {
                 var Products = await context.CateroryItems
                     .Where(i => i.CateroryId == Id)
                     .Include(i => i.ProductNavigation)
+                    .ThenInclude(p => p.Reviews)
                     .OrderByDescending(i => i.ProductNavigation.CreatedAt)
                     .Where(i => i.ProductNavigation.Status == PRODUCTSTATUS.ACTIVE)
                     .Select(i => new ProductDTO(
@@ -26,9 +27,10 @@ namespace APIShopLaptop.Feature.User.Category {
                             i.ProductNavigation.Price,
                             i.ProductNavigation.Quantity,
                             i.ProductNavigation.IsDiscount,
-                            i.ProductNavigation.PriceAfterDiscount
+                            i.ProductNavigation.PriceAfterDiscount,
+                            i.ProductNavigation.Reviews.Count > 0 ? i.ProductNavigation.Reviews.Sum(r => r.Score) / i.ProductNavigation.Reviews.Count : 0
                         ))
-                    .Take(6)
+                    .Take(15)
                     .ToListAsync();
 
                 return Results.Ok(new Response(true, Products, ""));

@@ -525,6 +525,52 @@ namespace APIShopLaptop.Data {
                         ]
                     },
                     new MainCaterory {
+                        Id=$"TANNHIET",
+                        Name="Tản nhiệt",
+                        Description="Tản nhiệt máy tính",
+                        SubCaterories= [
+                            new SubCaterory {
+                                Id=$"TANNHIET_QUAT",
+                                Name="Quạt máy tính",
+                            },
+                            new SubCaterory {
+                                Id=$"TANNHIET_KEM",
+                               Name="Kem tản nhiệt",
+                            },
+                        ]
+                    },
+                    new MainCaterory {
+                        Id=$"PHUKIEN",
+                        Name="Phụ kiện",
+                        Description="Phụ kiện máy tính",
+                        SubCaterories= [
+                            new SubCaterory {
+                                Id=$"PHUKIEN_CHUOT",
+                                Name="Chuột máy tính",
+                            },
+                            new SubCaterory {
+                                Id=$"PHUKIEN_LOTCHUOT",
+                                Name="Lót chuột máy tính",
+                            },
+                            new SubCaterory {
+                                Id=$"PHUKIEN_PHIMCO",
+                                Name="Bàn phím cơ",
+                            },
+                            new SubCaterory {
+                                Id=$"PHUKIEN_PHIMVANPHONG",
+                                Name="Bàn phím văn phòng",
+                            },
+                            new SubCaterory {
+                                Id=$"PHUKIEN_HUB",
+                                Name="Hub",
+                            },
+                            new SubCaterory {
+                                Id=$"PHUKIEN_CAP",
+                                Name="CAP",
+                            },
+                        ]
+                    },
+                    new MainCaterory {
                         Id=$"DB",
                         Name="Đặt biệt",
                         Description="",

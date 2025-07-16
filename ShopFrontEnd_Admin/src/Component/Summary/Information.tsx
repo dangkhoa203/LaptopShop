@@ -8,7 +8,11 @@ import AllCustomerOrder from "./AllCustomerOrder.tsx";
 import OrderStatusChart from "./OrderStatusChart.tsx";
 import SaleOfYear from "./SaleOfYear.tsx";
 import AllSale from "./AllSale.tsx";
+import {useEffect} from "react";
 export default function Information(){
+    useEffect(()=>{
+        document.title="Thống kê"
+    },[])
     return(
         <Container maxWidth="lg">
             <SaleOfYear year={new Date().getFullYear()}/>

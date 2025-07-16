@@ -73,7 +73,7 @@ export default function ProductList(){
             floatingFilter: true },
 
         { valueGetter:c=>c.data.name,
-            cellRenderer:(params:ICellRendererParams)=> <Tooltip sx={{cursor:"pointer"}} title={params.value}>{params.value}</Tooltip> ,
+            cellRenderer:(params:ICellRendererParams)=> <Tooltip  sx={{cursor:"pointer"}} title={params.value}>{params.value}</Tooltip> ,
             wrapText:true,
             wrapHeaderText:true,
             headerName:"Tên",filter:true,
@@ -112,7 +112,7 @@ export default function ProductList(){
             floatingFilter: false },
 
         { valueGetter:c=>c.data.priceAfterDiscount,
-            valueFormatter:c=>c.data.isDiscount? c.data.price.toLocaleString(undefined, { minimumFractionDigits: 0 })+" VNĐ":"Không giảm",
+            valueFormatter:c=>c.data.isDiscount? c.data.priceAfterDiscount.toLocaleString(undefined, { minimumFractionDigits: 0 })+" VNĐ":"Không giảm",
             wrapHeaderText:true,
             headerName:"Giá giảm",filter:true,
             resizable:false,
@@ -156,7 +156,9 @@ export default function ProductList(){
     ]);
 
 
-
+    useEffect(()=>{
+        document.title="Sản phẩm"
+    },[])
     return(
         <Container sx={{display:"flex", flexDirection:"column", justifyContent:"center",gap:2}}>
             <p style={{textAlign:"center",fontSize:"2.5em",margin:"0"}}>Danh sách sản phẩm</p>

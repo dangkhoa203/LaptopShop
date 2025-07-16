@@ -5,4 +5,5 @@ export type ProductData = {
     quantity: number;
     isDiscount: boolean;
     priceAfterDiscount: number;
+    score:number
 }

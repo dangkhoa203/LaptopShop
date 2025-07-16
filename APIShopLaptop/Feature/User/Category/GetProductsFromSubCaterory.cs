@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace APIShopLaptop.Feature.User.Caterory {
     public class GetProductsFromSubCaterory : IEndpoint {
-        public record ProductDTO(string Id, string Name, float Price, int Quantity, bool IsDiscount, float PriceAfterDiscount);
+        public record ProductDTO(string Id, string Name, float Price, int Quantity, bool IsDiscount, float PriceAfterDiscount,float Score);
         public record DataDTO(List<ProductDTO> Products, int MaxPage, int Total);
         public record Response(bool Success, DataDTO Data, string ErrorMessage);
 
@@ -21,6 +21,8 @@ namespace APIShopLaptop.Feature.User.Caterory {
                     .Where(i => i.CateroryId == Id)
                     .Include(i => i.ProductNavigation)
                     .ThenInclude(i=>i.Brand)
+                    .Include(i=>i.ProductNavigation)
+                    .ThenInclude(p=>p.Reviews)
                     .Where(i => i.ProductNavigation.Status == PRODUCTSTATUS.ACTIVE);
                 IQueryable<ProductDTO> Sort;
                 if (brand[0] !="") {
@@ -29,38 +31,38 @@ namespace APIShopLaptop.Feature.User.Caterory {
                 switch (sortMode) {
                     case SORTMODE.NAME_ASC:
                         Sort = Products.OrderBy(p => p.ProductNavigation.Name).Select(p => new ProductDTO(
-                                              p.ProductNavigation.Id, p.ProductNavigation.Name, p.ProductNavigation.Price, p.ProductNavigation.Quantity, p.ProductNavigation.IsDiscount, p.ProductNavigation.PriceAfterDiscount
+                                              p.ProductNavigation.Id, p.ProductNavigation.Name, p.ProductNavigation.Price, p.ProductNavigation.Quantity, p.ProductNavigation.IsDiscount, p.ProductNavigation.PriceAfterDiscount, p.ProductNavigation.Reviews.Count > 0 ? p.ProductNavigation.Reviews.Sum(r => r.Score) / p.ProductNavigation.Reviews.Count : 0
                                            ));
                         break;
                     
                     case SORTMODE.NAME_DES:
                         Sort = Products.OrderByDescending(p => p.ProductNavigation.Name).Select(p => new ProductDTO(
-                                              p.ProductNavigation.Id, p.ProductNavigation.Name, p.ProductNavigation.Price, p.ProductNavigation.Quantity, p.ProductNavigation.IsDiscount, p.ProductNavigation.PriceAfterDiscount
+                                              p.ProductNavigation.Id, p.ProductNavigation.Name, p.ProductNavigation.Price, p.ProductNavigation.Quantity, p.ProductNavigation.IsDiscount, p.ProductNavigation.PriceAfterDiscount, p.ProductNavigation.Reviews.Count > 0 ? p.ProductNavigation.Reviews.Sum(r => r.Score) / p.ProductNavigation.Reviews.Count : 0
                                            ));
                         break;
                     case SORTMODE.NEWEST:
                         Sort = Products.OrderBy(p => p.ProductNavigation.CreatedAt).Select(p => new ProductDTO(
-                                              p.ProductNavigation.Id, p.ProductNavigation.Name, p.ProductNavigation.Price, p.ProductNavigation.Quantity, p.ProductNavigation.IsDiscount, p.ProductNavigation.PriceAfterDiscount
+                                              p.ProductNavigation.Id, p.ProductNavigation.Name, p.ProductNavigation.Price, p.ProductNavigation.Quantity, p.ProductNavigation.IsDiscount, p.ProductNavigation.PriceAfterDiscount, p.ProductNavigation.Reviews.Count > 0 ? p.ProductNavigation.Reviews.Sum(r => r.Score) / p.ProductNavigation.Reviews.Count : 0
                                            ));
                         break;
                     case SORTMODE.OLDEST:
                         Sort = Products.OrderByDescending(p => p.ProductNavigation.CreatedAt).Select(p => new ProductDTO(
-                                              p.ProductNavigation.Id, p.ProductNavigation.Name, p.ProductNavigation.Price, p.ProductNavigation.Quantity, p.ProductNavigation.IsDiscount, p.ProductNavigation.PriceAfterDiscount
+                                              p.ProductNavigation.Id, p.ProductNavigation.Name, p.ProductNavigation.Price, p.ProductNavigation.Quantity, p.ProductNavigation.IsDiscount, p.ProductNavigation.PriceAfterDiscount, p.ProductNavigation.Reviews.Count > 0 ? p.ProductNavigation.Reviews.Sum(r => r.Score) / p.ProductNavigation.Reviews.Count : 0
                                            ));
                         break;
                     case SORTMODE.PRICE_ASC:
                         Sort = Products.OrderBy(p =>p.ProductNavigation.IsDiscount ?   p.ProductNavigation.PriceAfterDiscount:p.ProductNavigation.PriceAfterDiscount).Select(p => new ProductDTO(
-                                              p.ProductNavigation.Id, p.ProductNavigation.Name, p.ProductNavigation.Price, p.ProductNavigation.Quantity, p.ProductNavigation.IsDiscount, p.ProductNavigation.PriceAfterDiscount
+                                              p.ProductNavigation.Id, p.ProductNavigation.Name, p.ProductNavigation.Price, p.ProductNavigation.Quantity, p.ProductNavigation.IsDiscount, p.ProductNavigation.PriceAfterDiscount, p.ProductNavigation.Reviews.Count > 0 ? p.ProductNavigation.Reviews.Sum(r => r.Score) / p.ProductNavigation.Reviews.Count : 0
                                            ));
                         break;
                     case SORTMODE.PRICE_DES:
                         Sort = Products.OrderByDescending(p => p.ProductNavigation.IsDiscount ? p.ProductNavigation.PriceAfterDiscount : p.ProductNavigation.PriceAfterDiscount).Select(p => new ProductDTO(
-                                              p.ProductNavigation.Id, p.ProductNavigation.Name, p.ProductNavigation.Price, p.ProductNavigation.Quantity, p.ProductNavigation.IsDiscount, p.ProductNavigation.PriceAfterDiscount
+                                              p.ProductNavigation.Id, p.ProductNavigation.Name, p.ProductNavigation.Price, p.ProductNavigation.Quantity, p.ProductNavigation.IsDiscount, p.ProductNavigation.PriceAfterDiscount, p.ProductNavigation.Reviews.Count > 0 ? p.ProductNavigation.Reviews.Sum(r => r.Score) / p.ProductNavigation.Reviews.Count : 0
                                            ));
                         break;
                     default:
                         Sort = Products.OrderBy(p => p.ProductNavigation.Name).Select(p => new ProductDTO(
-                                              p.ProductNavigation.Id, p.ProductNavigation.Name, p.ProductNavigation.Price, p.ProductNavigation.Quantity, p.ProductNavigation.IsDiscount, p.ProductNavigation.PriceAfterDiscount
+                                              p.ProductNavigation.Id, p.ProductNavigation.Name, p.ProductNavigation.Price, p.ProductNavigation.Quantity, p.ProductNavigation.IsDiscount, p.ProductNavigation.PriceAfterDiscount, p.ProductNavigation.Reviews.Count > 0 ? p.ProductNavigation.Reviews.Sum(r => r.Score) / p.ProductNavigation.Reviews.Count : 0
                                            ));
                         break;
 

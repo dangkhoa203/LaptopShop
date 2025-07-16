@@ -100,6 +100,7 @@ export default function UpdateProductInfo(props:{id:string}){
         if(info.data){
             setSuccess(info.data.success)
             setOldInfo(info.data.data)
+            document.title=info.data.data.name
         }
     }, [info.data]);
     useEffect(()=>{
@@ -186,6 +187,7 @@ export default function UpdateProductInfo(props:{id:string}){
             }
         }
     })
+
     // @ts-ignore
     return(
         <>

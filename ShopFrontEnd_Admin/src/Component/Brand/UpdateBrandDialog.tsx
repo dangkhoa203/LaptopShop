@@ -89,6 +89,11 @@ export default function UpdateBrandDialog(props:{id:string,name:string,tag:strin
             }
         }
     })
+    const handleKeyDown = (event:any) => {
+        if (event.key === 'Enter') {
+            mutate()
+        }
+    }
     return(
         <Dialog
             open={props.open}
@@ -142,12 +147,14 @@ export default function UpdateBrandDialog(props:{id:string,name:string,tag:strin
                         <Grid size={6}>
                             <TextField value={brandInfo.name} onChange={handleNameChange} fullWidth
                                        error={validateError.name.length>0}  helperText={validateError.name}
+                                       onKeyDown={handleKeyDown}
                                        color="warning"
                                        size={"medium"} label="Tên" variant="filled" />
                         </Grid>
                         <Grid size={6}>
                             <TextField value={brandInfo.tag} onChange={handleTagChange} fullWidth
                                        error={validateError.tag.length>0}  helperText={validateError.tag}
+                                       onKeyDown={handleKeyDown}
                                        color="warning"
                                        size={"medium"} label="Tag" variant="filled" />
                         </Grid>

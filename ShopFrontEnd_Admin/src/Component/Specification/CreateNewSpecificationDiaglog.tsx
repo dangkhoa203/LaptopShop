@@ -54,6 +54,11 @@ export default function CreateNewSpecificationDiaglog(props:{open:boolean,handle
             }
         }
     })
+    const handleKeyDown = (event:any) => {
+        if (event.key === 'Enter') {
+            mutate()
+        }
+    }
     return(
         <Dialog
             open={props.open}
@@ -96,6 +101,7 @@ export default function CreateNewSpecificationDiaglog(props:{open:boolean,handle
                             <TextField value={name} onChange={handleNameChange} fullWidth
                                        error={validationError.length>0}  helperText={validationError}
                                        color="primary"
+                                       onKeyDown={handleKeyDown}
                                        size={"medium"} label="Tên" variant="filled" />
                         </Grid>
                         <Grid size={12}>

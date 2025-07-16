@@ -83,6 +83,11 @@ export default function CreateNewBrandDialog(props:{open:boolean,handleClose:()=
             }
         }
     })
+    const handleKeyDown = (event:any) => {
+        if (event.key === 'Enter') {
+            mutate()
+        }
+    }
     return(
         <Dialog
             open={props.open}
@@ -135,6 +140,7 @@ export default function CreateNewBrandDialog(props:{open:boolean,handleClose:()=
                     <Grid container spacing={2}>
                         <Grid size={6}>
                             <TextField value={brandInfo.name} onChange={handleNameChange} fullWidth
+                                       onKeyDown={handleKeyDown}
                                        error={validateError.name.length>0}  helperText={validateError.name}
                                        color="primary"
                                        size={"medium"} label="Tên" variant="filled" />
@@ -142,6 +148,7 @@ export default function CreateNewBrandDialog(props:{open:boolean,handleClose:()=
                         <Grid size={6}>
                             <TextField value={brandInfo.tag} onChange={handleTagChange} fullWidth
                                        error={validateError.tag.length>0}  helperText={validateError.tag}
+                                       onKeyDown={handleKeyDown}
                                        color="primary"
                                        size={"medium"} label="Tag" variant="filled" />
                         </Grid>

@@ -15,7 +15,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import {Menu, MenuItem, Tooltip} from "@mui/material";
+import {Alert, Menu, MenuItem, Snackbar, Tooltip} from "@mui/material";
 import {useState} from "react";
 import { AccountCircle } from '@mui/icons-material';
 import {matchPath, Navigate, Outlet, useLocation, useNavigate} from 'react-router'
@@ -29,6 +29,7 @@ import DisplaySettingsIcon from '@mui/icons-material/DisplaySettings';
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import PaidIcon from '@mui/icons-material/Paid';
 import StackedBarChartIcon from '@mui/icons-material/StackedBarChart';
+import {useAppNotify} from "../State/AppGlobalNotifyState.ts";
 const drawerWidth = 240;
 
 const openedMixin = (theme: Theme): CSSObject => ({
@@ -149,10 +150,12 @@ export default function AdminPage() {
         }});
 
     const userInfo=useUserInfo((state)=> state.user);
+    const globalNotify=useAppNotify()
 
     if(!userInfo.isLogged && userInfo.userName!=="default"){
         return <Navigate to="/Login" />
     }
+
     return (
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />
@@ -175,7 +178,7 @@ export default function AdminPage() {
                     <Box   sx={{width:"100%",justifyContent: 'end',marginRight:0,padding:0,display: 'flex'}} >
                         <div>
                             <span style={{color:"white"}}>{userInfo.userName}</span>
-                            <Tooltip title="Cài đặt">
+                            <Tooltip title="Tài khoản">
                                 <IconButton
                                     size="large"
                                     aria-controls="menu-appbar"
@@ -189,10 +192,9 @@ export default function AdminPage() {
                             </Tooltip>
                             <Menu
                                 disableScrollLock={true}
-                                id="menu-appbar"
                                 anchorEl={anchorEl}
                                 anchorOrigin={{
-                                    vertical: 'top',
+                                    vertical: 'bottom',
                                     horizontal: 'right',
                                 }}
                                 keepMounted
@@ -206,7 +208,7 @@ export default function AdminPage() {
                                 <MenuItem disabled={isPending} onClick={async ()=>{
                                     handleClose();
                                     mutate();
-                                }}>Log Out</MenuItem>
+                                }}>Đăng xuất</MenuItem>
                             </Menu>
                         </div>
                     </Box>
@@ -221,412 +223,440 @@ export default function AdminPage() {
                 <Divider />
                 <List>
                     <ListItem  disablePadding sx={{ backgroundColor:matchPath("TaiKhoan/*", path.pathname)?"rgba(0,0,0,0.10)":"rgba(0,0,0,0)", display: 'block' }}>
-                        <ListItemButton
-                            color="primary"
-                            onClick={()=>navigate("/TaiKhoan")}
-                            sx={[
-                                {
-                                    minHeight: 48,
-                                    px: 2.5,
-                                },
-                                open
-                                    ? {
-                                        justifyContent: 'initial',
-                                    }
-                                    : {
-                                        justifyContent: 'center',
-                                    },
-                            ]}
-                        >
-                            <ListItemIcon
+                        <Tooltip placement="right-end" title={"Tài khoản"}>
+                            <ListItemButton
                                 color="primary"
+                                onClick={()=>navigate("/TaiKhoan")}
                                 sx={[
                                     {
-                                        minWidth: 0,
-                                        justifyContent: 'center',
+                                        minHeight: 48,
+                                        px: 2.5,
                                     },
                                     open
                                         ? {
-                                            mr: 3,
+                                            justifyContent: 'initial',
                                         }
                                         : {
-                                            mr: 'auto',
+                                            justifyContent: 'center',
                                         },
                                 ]}
                             >
-                                <ManageAccountsIcon color={matchPath("TaiKhoan/*", path.pathname) ? "primary":"inherit"} />
-                            </ListItemIcon>
-                            <ListItemText
-                                primary={"Tài khoản"}
-                                sx={[
-                                    open
-                                        ? {
-                                            opacity: 1,
-                                        }
-                                        : {
-                                            opacity: 0,
+                                <ListItemIcon
+                                    color="primary"
+                                    sx={[
+                                        {
+                                            minWidth: 0,
+                                            justifyContent: 'center',
                                         },
-                                ]}
-                            />
-                        </ListItemButton>
+                                        open
+                                            ? {
+                                                mr: 3,
+                                            }
+                                            : {
+                                                mr: 'auto',
+                                            },
+                                    ]}
+                                >
+                                    <ManageAccountsIcon color={matchPath("TaiKhoan/*", path.pathname) ? "primary":"inherit"} />
+                                </ListItemIcon>
+                                <ListItemText
+                                    primary={"Tài khoản"}
+                                    sx={[
+                                        open
+                                            ? {
+                                                opacity: 1,
+                                            }
+                                            : {
+                                                opacity: 0,
+                                            },
+                                    ]}
+                                />
+                            </ListItemButton>
+                        </Tooltip>
                     </ListItem>
                     <ListItem  disablePadding sx={{ backgroundColor:matchPath("MaGiamGia/*", path.pathname)?"rgba(0,0,0,0.10)":"rgba(0,0,0,0)", display: 'block' }}>
-                        <ListItemButton
-                            color="primary"
-                            onClick={()=>navigate("/MaGiamGia")}
-                            sx={[
-                                {
-                                    minHeight: 48,
-                                    px: 2.5,
-                                },
-                                open
-                                    ? {
-                                        justifyContent: 'initial',
-                                    }
-                                    : {
-                                        justifyContent: 'center',
-                                    },
-                            ]}
-                        >
-                            <ListItemIcon
+                        <Tooltip placement="right-end" title={"Mã giảm giá"}>
+                            <ListItemButton
                                 color="primary"
+                                onClick={()=>navigate("/MaGiamGia")}
                                 sx={[
                                     {
-                                        minWidth: 0,
-                                        justifyContent: 'center',
+                                        minHeight: 48,
+                                        px: 2.5,
                                     },
                                     open
                                         ? {
-                                            mr: 3,
+                                            justifyContent: 'initial',
                                         }
                                         : {
-                                            mr: 'auto',
+                                            justifyContent: 'center',
                                         },
                                 ]}
                             >
-                                <DiscountIcon color={matchPath("MaGiamGia/*", path.pathname) ? "primary":"inherit"} />
-                            </ListItemIcon>
-                            <ListItemText
-                                primary={"Mã giảm giá"}
-                                sx={[
-                                    open
-                                        ? {
-                                            opacity: 1,
-                                        }
-                                        : {
-                                            opacity: 0,
+                                <ListItemIcon
+                                    color="primary"
+                                    sx={[
+                                        {
+                                            minWidth: 0,
+                                            justifyContent: 'center',
                                         },
-                                ]}
-                            />
-                        </ListItemButton>
+                                        open
+                                            ? {
+                                                mr: 3,
+                                            }
+                                            : {
+                                                mr: 'auto',
+                                            },
+                                    ]}
+                                >
+                                    <DiscountIcon color={matchPath("MaGiamGia/*", path.pathname) ? "primary":"inherit"} />
+                                </ListItemIcon>
+                                <ListItemText
+                                    primary={"Mã giảm giá"}
+                                    sx={[
+                                        open
+                                            ? {
+                                                opacity: 1,
+                                            }
+                                            : {
+                                                opacity: 0,
+                                            },
+                                    ]}
+                                />
+                            </ListItemButton>
+                        </Tooltip>
                     </ListItem>
                     <ListItem  disablePadding sx={{ backgroundColor:matchPath("SanPham/*", path.pathname)?"rgba(0,0,0,0.10)":"rgba(0,0,0,0)", display: 'block' }}>
-                        <ListItemButton
-                            color="primary"
-                            onClick={()=>navigate("/SanPham")}
-                            sx={[
-                                {
-                                    minHeight: 48,
-                                    px: 2.5,
-                                },
-                                open
-                                    ? {
-                                        justifyContent: 'initial',
-                                    }
-                                    : {
-                                        justifyContent: 'center',
-                                    },
-                            ]}
-                        >
-                            <ListItemIcon
+                        <Tooltip placement="right-end" title={"Sản phẩm"}>
+                            <ListItemButton
                                 color="primary"
+                                onClick={()=>navigate("/SanPham")}
                                 sx={[
                                     {
-                                        minWidth: 0,
-                                        justifyContent: 'center',
+                                        minHeight: 48,
+                                        px: 2.5,
                                     },
                                     open
                                         ? {
-                                            mr: 3,
+                                            justifyContent: 'initial',
                                         }
                                         : {
-                                            mr: 'auto',
+                                            justifyContent: 'center',
                                         },
                                 ]}
                             >
-                                <ComputerIcon color={matchPath("SanPham/*", path.pathname) ? "primary":"inherit"} />
-                            </ListItemIcon>
-                            <ListItemText
-                                primary={"Sản phẩm"}
-                                sx={[
-                                    open
-                                        ? {
-                                            opacity: 1,
-                                        }
-                                        : {
-                                            opacity: 0,
+                                <ListItemIcon
+                                    color="primary"
+                                    sx={[
+                                        {
+                                            minWidth: 0,
+                                            justifyContent: 'center',
                                         },
-                                ]}
-                            />
-                        </ListItemButton>
+                                        open
+                                            ? {
+                                                mr: 3,
+                                            }
+                                            : {
+                                                mr: 'auto',
+                                            },
+                                    ]}
+                                >
+                                    <ComputerIcon color={matchPath("SanPham/*", path.pathname) ? "primary":"inherit"} />
+                                </ListItemIcon>
+                                <ListItemText
+                                    primary={"Sản phẩm"}
+                                    sx={[
+                                        open
+                                            ? {
+                                                opacity: 1,
+                                            }
+                                            : {
+                                                opacity: 0,
+                                            },
+                                    ]}
+                                />
+                            </ListItemButton>
+                        </Tooltip>
+
                     </ListItem>
                     <ListItem  disablePadding sx={{ backgroundColor:matchPath("HangSanXuat/*", path.pathname)?"rgba(0,0,0,0.10)":"rgba(0,0,0,0)", display: 'block' }}>
-                        <ListItemButton
-                            color="primary"
-                            onClick={()=>navigate("/HangSanXuat")}
-                            sx={[
-                                {
-                                    minHeight: 48,
-                                    px: 2.5,
-                                },
-                                open
-                                    ? {
-                                        justifyContent: 'initial',
-                                    }
-                                    : {
-                                        justifyContent: 'center',
-                                    },
-                            ]}
-                        >
-                            <ListItemIcon
+                        <Tooltip placement="right-end" title={"Hãng sản xuất"}>
+                            <ListItemButton
                                 color="primary"
+                                onClick={()=>navigate("/HangSanXuat")}
                                 sx={[
                                     {
-                                        minWidth: 0,
-                                        justifyContent: 'center',
+                                        minHeight: 48,
+                                        px: 2.5,
                                     },
                                     open
                                         ? {
-                                            mr: 3,
+                                            justifyContent: 'initial',
                                         }
                                         : {
-                                            mr: 'auto',
+                                            justifyContent: 'center',
                                         },
                                 ]}
                             >
-                                <PrecisionManufacturingIcon color={matchPath("HangSanXuat/*", path.pathname) ? "primary":"inherit"} />
-                            </ListItemIcon>
-                            <ListItemText
-                                primary={"Tài khoản"}
-                                sx={[
-                                    open
-                                        ? {
-                                            opacity: 1,
-                                        }
-                                        : {
-                                            opacity: 0,
+                                <ListItemIcon
+                                    color="primary"
+                                    sx={[
+                                        {
+                                            minWidth: 0,
+                                            justifyContent: 'center',
                                         },
-                                ]}
-                            />
-                        </ListItemButton>
+                                        open
+                                            ? {
+                                                mr: 3,
+                                            }
+                                            : {
+                                                mr: 'auto',
+                                            },
+                                    ]}
+                                >
+                                    <PrecisionManufacturingIcon color={matchPath("HangSanXuat/*", path.pathname) ? "primary":"inherit"} />
+                                </ListItemIcon>
+                                <ListItemText
+                                    primary={"Tài khoản"}
+                                    sx={[
+                                        open
+                                            ? {
+                                                opacity: 1,
+                                            }
+                                            : {
+                                                opacity: 0,
+                                            },
+                                    ]}
+                                />
+                            </ListItemButton>
+                        </Tooltip>
                     </ListItem>
                     <ListItem  disablePadding sx={{ backgroundColor:matchPath("ThongSo/*", path.pathname)?"rgba(0,0,0,0.10)":"rgba(0,0,0,0)", display: 'block' }}>
-                        <ListItemButton
-                            color="primary"
-                            onClick={()=>navigate("/ThongSo")}
-                            sx={[
-                                {
-                                    minHeight: 48,
-                                    px: 2.5,
-                                },
-                                open
-                                    ? {
-                                        justifyContent: 'initial',
-                                    }
-                                    : {
-                                        justifyContent: 'center',
-                                    },
-                            ]}
-                        >
-                            <ListItemIcon
+                        <Tooltip placement="right-end" title={"Thông số"}>
+                            <ListItemButton
                                 color="primary"
+                                onClick={()=>navigate("/ThongSo")}
                                 sx={[
                                     {
-                                        minWidth: 0,
-                                        justifyContent: 'center',
+                                        minHeight: 48,
+                                        px: 2.5,
                                     },
                                     open
                                         ? {
-                                            mr: 3,
+                                            justifyContent: 'initial',
                                         }
                                         : {
-                                            mr: 'auto',
+                                            justifyContent: 'center',
                                         },
                                 ]}
                             >
-                                <DisplaySettingsIcon color={matchPath("ThongSo/*", path.pathname) ? "primary":"inherit"} />
-                            </ListItemIcon>
-                            <ListItemText
-                                primary={"Thông số"}
-                                sx={[
-                                    open
-                                        ? {
-                                            opacity: 1,
-                                        }
-                                        : {
-                                            opacity: 0,
+                                <ListItemIcon
+                                    color="primary"
+                                    sx={[
+                                        {
+                                            minWidth: 0,
+                                            justifyContent: 'center',
                                         },
-                                ]}
-                            />
-                        </ListItemButton>
+                                        open
+                                            ? {
+                                                mr: 3,
+                                            }
+                                            : {
+                                                mr: 'auto',
+                                            },
+                                    ]}
+                                >
+                                    <DisplaySettingsIcon color={matchPath("ThongSo/*", path.pathname) ? "primary":"inherit"} />
+                                </ListItemIcon>
+                                <ListItemText
+                                    primary={"Thông số"}
+                                    sx={[
+                                        open
+                                            ? {
+                                                opacity: 1,
+                                            }
+                                            : {
+                                                opacity: 0,
+                                            },
+                                    ]}
+                                />
+                            </ListItemButton>
+                        </Tooltip>
                     </ListItem>
                     <ListItem  disablePadding sx={{ backgroundColor:matchPath("DonHang/*", path.pathname)?"rgba(0,0,0,0.10)":"rgba(0,0,0,0)", display: 'block' }}>
-                        <ListItemButton
-                            color="primary"
-                            onClick={()=>navigate("/DonHang")}
-                            sx={[
-                                {
-                                    minHeight: 48,
-                                    px: 2.5,
-                                },
-                                open
-                                    ? {
-                                        justifyContent: 'initial',
-                                    }
-                                    : {
-                                        justifyContent: 'center',
-                                    },
-                            ]}
-                        >
-                            <ListItemIcon
+                        <Tooltip placement="right-end" title={"Đơn hàng"}>
+                            <ListItemButton
                                 color="primary"
+                                onClick={()=>navigate("/DonHang")}
                                 sx={[
                                     {
-                                        minWidth: 0,
-                                        justifyContent: 'center',
+                                        minHeight: 48,
+                                        px: 2.5,
                                     },
                                     open
                                         ? {
-                                            mr: 3,
+                                            justifyContent: 'initial',
                                         }
                                         : {
-                                            mr: 'auto',
+                                            justifyContent: 'center',
                                         },
                                 ]}
                             >
-                                <ReceiptIcon color={matchPath("DonHang/*", path.pathname) ? "primary":"inherit"} />
-                            </ListItemIcon>
-                            <ListItemText
-                                primary={"Đơn hàng"}
-                                sx={[
-                                    open
-                                        ? {
-                                            opacity: 1,
-                                        }
-                                        : {
-                                            opacity: 0,
+                                <ListItemIcon
+                                    color="primary"
+                                    sx={[
+                                        {
+                                            minWidth: 0,
+                                            justifyContent: 'center',
                                         },
-                                ]}
-                            />
-                        </ListItemButton>
+                                        open
+                                            ? {
+                                                mr: 3,
+                                            }
+                                            : {
+                                                mr: 'auto',
+                                            },
+                                    ]}
+                                >
+                                    <ReceiptIcon color={matchPath("DonHang/*", path.pathname) ? "primary":"inherit"} />
+                                </ListItemIcon>
+                                <ListItemText
+                                    primary={"Đơn hàng"}
+                                    sx={[
+                                        open
+                                            ? {
+                                                opacity: 1,
+                                            }
+                                            : {
+                                                opacity: 0,
+                                            },
+                                    ]}
+                                />
+                            </ListItemButton>
+                        </Tooltip>
                     </ListItem>
                 </List>
                 <Divider />
                 <List>
                     <ListItem  disablePadding sx={{ backgroundColor:matchPath("ThanhToan/*", path.pathname)?"rgba(0,0,0,0.10)":"rgba(0,0,0,0)", display: 'block' }}>
-                        <ListItemButton
-                            color="primary"
-                            onClick={()=>navigate("/ThanhToan")}
-                            sx={[
-                                {
-                                    minHeight: 48,
-                                    px: 2.5,
-                                },
-                                open
-                                    ? {
-                                        justifyContent: 'initial',
-                                    }
-                                    : {
-                                        justifyContent: 'center',
-                                    },
-                            ]}
-                        >
-                            <ListItemIcon
+                        <Tooltip placement="right-end" title={"Thanh toán"}>
+                            <ListItemButton
                                 color="primary"
+                                onClick={()=>navigate("/ThanhToan")}
                                 sx={[
                                     {
-                                        minWidth: 0,
-                                        justifyContent: 'center',
+                                        minHeight: 48,
+                                        px: 2.5,
                                     },
                                     open
                                         ? {
-                                            mr: 3,
+                                            justifyContent: 'initial',
                                         }
                                         : {
-                                            mr: 'auto',
+                                            justifyContent: 'center',
                                         },
                                 ]}
                             >
-                                <PaidIcon color={matchPath("ThanhToan/*", path.pathname) ? "primary":"inherit"} />
-                            </ListItemIcon>
-                            <ListItemText
-                                primary={"Thanh toán"}
-                                sx={[
-                                    open
-                                        ? {
-                                            opacity: 1,
-                                        }
-                                        : {
-                                            opacity: 0,
+                                <ListItemIcon
+                                    color="primary"
+                                    sx={[
+                                        {
+                                            minWidth: 0,
+                                            justifyContent: 'center',
                                         },
-                                ]}
-                            />
-                        </ListItemButton>
+                                        open
+                                            ? {
+                                                mr: 3,
+                                            }
+                                            : {
+                                                mr: 'auto',
+                                            },
+                                    ]}
+                                >
+                                    <PaidIcon color={matchPath("ThanhToan/*", path.pathname) ? "primary":"inherit"} />
+                                </ListItemIcon>
+                                <ListItemText
+                                    primary={"Thanh toán"}
+                                    sx={[
+                                        open
+                                            ? {
+                                                opacity: 1,
+                                            }
+                                            : {
+                                                opacity: 0,
+                                            },
+                                    ]}
+                                />
+                            </ListItemButton>
+                        </Tooltip>
                     </ListItem>
                     <ListItem  disablePadding sx={{ backgroundColor:matchPath("/", path.pathname)?"rgba(0,0,0,0.10)":"rgba(0,0,0,0)", display: 'block' }}>
-                        <ListItemButton
-                            color="primary"
-                            onClick={()=>navigate("/")}
-                            sx={[
-                                {
-                                    minHeight: 48,
-                                    px: 2.5,
-                                },
-                                open
-                                    ? {
-                                        justifyContent: 'initial',
-                                    }
-                                    : {
-                                        justifyContent: 'center',
-                                    },
-                            ]}
-                        >
-                            <ListItemIcon
+                        <Tooltip placement="right-end" title={"Thống kê"}>
+                            <ListItemButton
                                 color="primary"
+                                onClick={()=>navigate("/")}
                                 sx={[
                                     {
-                                        minWidth: 0,
-                                        justifyContent: 'center',
+                                        minHeight: 48,
+                                        px: 2.5,
                                     },
                                     open
                                         ? {
-                                            mr: 3,
+                                            justifyContent: 'initial',
                                         }
                                         : {
-                                            mr: 'auto',
+                                            justifyContent: 'center',
                                         },
                                 ]}
                             >
-                                <StackedBarChartIcon color={matchPath("/", path.pathname) ? "primary":"inherit"} />
-                            </ListItemIcon>
-                            <ListItemText
-                                primary={"Thống kê"}
-                                sx={[
-                                    open
-                                        ? {
-                                            opacity: 1,
-                                        }
-                                        : {
-                                            opacity: 0,
+                                <ListItemIcon
+                                    color="primary"
+                                    sx={[
+                                        {
+                                            minWidth: 0,
+                                            justifyContent: 'center',
                                         },
-                                ]}
-                            />
-                        </ListItemButton>
+                                        open
+                                            ? {
+                                                mr: 3,
+                                            }
+                                            : {
+                                                mr: 'auto',
+                                            },
+                                    ]}
+                                >
+                                    <StackedBarChartIcon color={matchPath("/", path.pathname) ? "primary":"inherit"} />
+                                </ListItemIcon>
+                                <ListItemText
+                                    primary={"Thống kê"}
+                                    sx={[
+                                        open
+                                            ? {
+                                                opacity: 1,
+                                            }
+                                            : {
+                                                opacity: 0,
+                                            },
+                                    ]}
+                                />
+                            </ListItemButton>
+                        </Tooltip>
+
                     </ListItem>
                 </List>
             </Drawer>
             <Box component="main" style={{minHeight:"100vh",padding:"0",paddingTop:"70px"}} sx={{ flexGrow: 1, p: 3 }}>
                 <Outlet/>
+                <Snackbar open={globalNotify.message.length!==0} autoHideDuration={4000} onClose={()=>globalNotify.setNotify("")}>
+                    <Alert
+                        onClose={()=>globalNotify.setNotify("")}
+                        severity="success"
+                        variant="filled"
+                        sx={{ width: '100%' }}
+                    >
+                        {globalNotify.message}
+                    </Alert>
+                </Snackbar>
             </Box>
         </Box>
     );

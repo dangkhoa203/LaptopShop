@@ -1,6 +1,7 @@
 ﻿using APIShopLaptop.Data;
 using APIShopLaptop.Endpoint;
 using APIShopLaptop.Model.Entity.Account;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
@@ -12,6 +13,7 @@ namespace APIShopLaptop.Feature.User.Cart {
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapGet("/api/Cart", Handler).WithTags("Cart");
         }
+        [Authorize(Roles = "User")]
         private static async Task<IResult> Handler(ApplicationDBContext context, ClaimsPrincipal User) {
             try {
 

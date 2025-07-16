@@ -162,13 +162,13 @@ export default function BuildItemChooseCard(props:{componentName:string,category
                                                 alt="Live from space album cover"
                                             />
                                             <Container sx={{ borderLeft:"1px solid black",display: 'flex', justifyContent:"space-between" }}>
-                                                <CardContent sx={{minWidth:"100%",paddingX:"5px"}}>
+                                                <CardContent sx={{minWidth:"80%",paddingX:"5px"}}>
                                                     <Typography className="ProductName"  component="p" >
                                                         {data.name}
                                                     </Typography>
                                                 </CardContent>
                                             </Container>
-                                            <div style={{display:"flex",flexDirection:"column",justifyContent:"center",minWidth:"100px"}}>
+                                            <div style={{display:"flex",flexDirection:"column",justifyContent:"center",minWidth:"120px"}}>
                                                 <div style={{display:"flex",justifyContent:"center"}}>
                                                     <Typography variant="subtitle2" component={"p"} sx={{margin:"auto",textDecoration:"line-through"}}>
                                                         {data.isDiscount ? data.price.toLocaleString(undefined, {minimumFractionDigits: 0}) + " VNĐ":" "}

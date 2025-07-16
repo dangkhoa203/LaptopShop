@@ -1,7 +1,7 @@
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import TextEditor from "../../TextEditor.tsx";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import NewThumbnail from "./MiniComponent/NewThumbnail.tsx";
 import {productInfo} from "../../../Type/productInfo.ts";
 import NewProductInfoField from "./MiniComponent/NewProductInfoField.tsx";
@@ -72,6 +72,7 @@ export default function CreateProductPage(){
         setThumbnailError(false)
         if(thumbnail===null){
             setThumbnailError(true);
+            window.scrollTo(0,0);
             return false
         }
         return true;
@@ -87,6 +88,7 @@ export default function CreateProductPage(){
                 })
                 return await response.json();
             }
+
         },
         onSuccess:(data:Response)=>{
             if(data.success){
@@ -94,6 +96,7 @@ export default function CreateProductPage(){
             }
             else {
                 setGlobalError(data.errorMessage)
+                console.log(data.validationError)
                 if(!data.validationError.isValid){
                     const list:any[]=data.validationError.errors
                     const error={
@@ -106,7 +109,7 @@ export default function CreateProductPage(){
                     list.forEach(element=>{
                         if(element.propertyName==="Price")
                             error.price=element.errorMessage
-                        if(element.propertyName==="priceAfterDiscount")
+                        if(element.propertyName==="PriceAfterDiscount")
                             error.priceAfterDiscount=element.errorMessage
                         if(element.propertyName==="Quantity")
                             error.quantity=element.errorMessage
@@ -116,11 +119,19 @@ export default function CreateProductPage(){
                             error.brandId=element.errorMessage
                     })
                     setValidationError(error)
+                    window.scrollTo({
+                        top: 0,
+                        left: 0,
+                        behavior: 'smooth'
+                    });
                 }
             }
         }
     })
     // @ts-ignore
+    useEffect(()=>{
+        document.title="Tạo sản phẩm mới"
+    },[])
     return(
         <Container sx={{display:"flex", flexDirection:"column", justifyContent:"center",gap:2}}>
             <p style={{textAlign:"center",fontSize:"2.5em",margin:"0"}}>Tạo sản phẩm</p>

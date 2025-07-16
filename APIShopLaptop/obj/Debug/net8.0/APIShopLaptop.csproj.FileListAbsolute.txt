@@ -61,7 +61,6 @@ C:\Workspace\CSharp\Fullstack\APIShopLaptop\APIShopLaptop\bin\Debug\net8.0\Syste
 C:\Workspace\CSharp\Fullstack\APIShopLaptop\APIShopLaptop\bin\Debug\net8.0\System.Composition.TypedParts.dll
 C:\Workspace\CSharp\Fullstack\APIShopLaptop\APIShopLaptop\bin\Debug\net8.0\System.Configuration.ConfigurationManager.dll
 C:\Workspace\CSharp\Fullstack\APIShopLaptop\APIShopLaptop\bin\Debug\net8.0\System.Drawing.Common.dll
-C:\Workspace\CSharp\Fullstack\APIShopLaptop\APIShopLaptop\bin\Debug\net8.0\System.Formats.Asn1.dll
 C:\Workspace\CSharp\Fullstack\APIShopLaptop\APIShopLaptop\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Workspace\CSharp\Fullstack\APIShopLaptop\APIShopLaptop\bin\Debug\net8.0\System.Memory.Data.dll
 C:\Workspace\CSharp\Fullstack\APIShopLaptop\APIShopLaptop\bin\Debug\net8.0\System.Runtime.Caching.dll
@@ -143,12 +142,6 @@ C:\Workspace\CSharp\Fullstack\APIShopLaptop\APIShopLaptop\obj\Debug\net8.0\scope
 C:\Workspace\CSharp\Fullstack\APIShopLaptop\APIShopLaptop\obj\Debug\net8.0\staticwebassets.build.json
 C:\Workspace\CSharp\Fullstack\APIShopLaptop\APIShopLaptop\obj\Debug\net8.0\staticwebassets.development.json
 C:\Workspace\CSharp\Fullstack\APIShopLaptop\APIShopLaptop\obj\Debug\net8.0\staticwebassets.build.endpoints.json
-C:\Workspace\CSharp\Fullstack\APIShopLaptop\APIShopLaptop\obj\Debug\net8.0\staticwebassets\msbuild.APIShopLaptop.Microsoft.AspNetCore.StaticWebAssets.props
-C:\Workspace\CSharp\Fullstack\APIShopLaptop\APIShopLaptop\obj\Debug\net8.0\staticwebassets\msbuild.APIShopLaptop.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
-C:\Workspace\CSharp\Fullstack\APIShopLaptop\APIShopLaptop\obj\Debug\net8.0\staticwebassets\msbuild.build.APIShopLaptop.props
-C:\Workspace\CSharp\Fullstack\APIShopLaptop\APIShopLaptop\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.APIShopLaptop.props
-C:\Workspace\CSharp\Fullstack\APIShopLaptop\APIShopLaptop\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.APIShopLaptop.props
-C:\Workspace\CSharp\Fullstack\APIShopLaptop\APIShopLaptop\obj\Debug\net8.0\staticwebassets.pack.json
 C:\Workspace\CSharp\Fullstack\APIShopLaptop\APIShopLaptop\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Workspace\CSharp\Fullstack\APIShopLaptop\APIShopLaptop\obj\Debug\net8.0\APIShopL.3AAE4801.Up2Date
 C:\Workspace\CSharp\Fullstack\APIShopLaptop\APIShopLaptop\obj\Debug\net8.0\APIShopLaptop.dll
@@ -162,3 +155,8 @@ C:\Workspace\CSharp\Fullstack\APIShopLaptop\APIShopLaptop\obj\Debug\net8.0\APISh
 C:\Workspace\CSharp\Fullstack\APIShopLaptop\APIShopLaptop\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Workspace\CSharp\Fullstack\APIShopLaptop\APIShopLaptop\bin\Debug\net8.0\RestSharp.dll
 C:\Workspace\CSharp\Fullstack\APIShopLaptop\APIShopLaptop\bin\Debug\net8.0\libman.json
+C:\Workspace\CSharp\Fullstack\APIShopLaptop\APIShopLaptop\obj\Debug\net8.0\rpswa.dswa.cache.json
+C:\Workspace\CSharp\Fullstack\APIShopLaptop\APIShopLaptop\obj\Debug\net8.0\rjimswa.dswa.cache.json
+C:\Workspace\CSharp\Fullstack\APIShopLaptop\APIShopLaptop\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
+C:\Workspace\CSharp\Fullstack\APIShopLaptop\APIShopLaptop\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
+C:\Workspace\CSharp\Fullstack\APIShopLaptop\APIShopLaptop\obj\Debug\net8.0\staticwebassets.build.json.cache

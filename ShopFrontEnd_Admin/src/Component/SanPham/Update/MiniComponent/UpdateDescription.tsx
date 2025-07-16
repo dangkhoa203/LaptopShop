@@ -6,6 +6,7 @@ import Container from "@mui/material/Container";
 import {Response} from "../../../../Type/Respone.ts";
 import Button from "@mui/material/Button";
 import {LinearProgress} from "@mui/material";
+import {useAppNotify} from "../../../../State/AppGlobalNotifyState.ts";
 export default function UpdateDescription(props:{id:string}){
     const [success,setSuccess]=useState(false)
     const [oldDescription,setOldDescription] = useState("");
@@ -23,6 +24,7 @@ export default function UpdateDescription(props:{id:string}){
             return await response.json();
         },
     });
+    const globalNotify=useAppNotify()
     const UPDATE=useMutation({
         mutationFn:async ()=>{
             setGlobalError("")
@@ -37,6 +39,7 @@ export default function UpdateDescription(props:{id:string}){
         onSuccess:(data:Response)=>{
             if(data.success){
                 setGlobalError("")
+                globalNotify.setNotify("Lưu mô tả thành công!")
                 refetch()
             }
             else {

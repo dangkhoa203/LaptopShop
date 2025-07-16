@@ -13,6 +13,8 @@ import {useMutation} from "@tanstack/react-query";
 import {Response} from "../../Type/Respone.ts";
 import IconButton from "@mui/material/IconButton";
 import Button from "@mui/material/Button";
+import {useAppNotify} from "../../State/AppGlobalNotifyState.ts";
+import {useUserInfo} from "../../State/User.ts";
 
 type validationError={
     userName: string,
@@ -24,7 +26,7 @@ type loginInfo={
     password: string,
     remember: boolean,
 }
-export default function LoginDialog(props:{open:boolean,handleClose:()=>void,openRegister:()=>void,openReset:()=>void,reFetch:any,isLoggedIn:boolean}){
+export default function LoginDialog(props:{open:boolean,handleClose:()=>void,openRegister:()=>void,openReset:()=>void,isLoggedIn:boolean}){
     const [validateError, setValidateError] = useState<validationError>(
         {
             userName:"",
@@ -57,7 +59,8 @@ export default function LoginDialog(props:{open:boolean,handleClose:()=>void,ope
     const handleMouseUpPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
     };
-
+    const globalNotify=useAppNotify()
+    const reFetch=useUserInfo(state => state.reFetch);
     const {isPending,mutate}=useMutation({
         mutationFn:async ()=>{
             setValidateError({
@@ -75,8 +78,9 @@ export default function LoginDialog(props:{open:boolean,handleClose:()=>void,ope
         },
         onSuccess:(data:Response)=>{
             if(data.success){
+                globalNotify.setNotify("Đăng nhập thành công")
+                reFetch()
                 close()
-                props.reFetch()
             }
             else {
                 const error:validationError={
@@ -121,7 +125,7 @@ export default function LoginDialog(props:{open:boolean,handleClose:()=>void,ope
                 onClose={close}
                 fullWidth
                 maxWidth="sm"
-                hideBackdrop={true}
+                hideBackdrop={false}
             >
                 <DialogTitle sx={{border:"1px solid orange",borderBottom:0,textAlign:"center",fontSize:"2em"}}>
                     Đăng nhập

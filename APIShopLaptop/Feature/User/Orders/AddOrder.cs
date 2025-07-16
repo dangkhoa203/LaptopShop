@@ -14,9 +14,12 @@ using System.Security.Claims;
 namespace APIShopLaptop.Feature.User.Orders {
     public class AddOrder:IEndpoint {
         public record Request(string Receiver,string PhoneNumber,string Address,PAYMENTMETHOD PaymentMethod,string codeId);
-        public record Response(bool Success, string ErrorMessage, ValidationResult? ValidationError,string data);
+        public record DataDTO(string MomoUrl,string OrderId);
+        public record Response(bool Success, string ErrorMessage, ValidationResult? ValidationError, DataDTO data);
         public sealed class Validator : AbstractValidator<Request> {
             public Validator() {
+                RuleFor(r => r.Receiver).NotEmpty().WithMessage("Chưa nhập tên người nhận");
+                RuleFor(r => r.Address).NotEmpty().WithMessage("Chưa nhập địa chỉ");
                 RuleFor(r => r.PhoneNumber).Length(10).WithMessage("Số điện thoại không phù hợp");
                 RuleFor(r => r.PhoneNumber).Matches("^[0-9]*$").WithMessage("Số điện thoại không phù hợp");
             }
@@ -29,7 +32,7 @@ namespace APIShopLaptop.Feature.User.Orders {
             var Validator = new Validator();
             var ValidatedResult = Validator.Validate(request);
             if (!ValidatedResult.IsValid) {
-                return Results.BadRequest(new Response(false, "Lỗi xảy ra", ValidatedResult,""));
+                return Results.BadRequest(new Response(false, "Lỗi xảy ra", ValidatedResult,new DataDTO("","")));
             }
 
             var Cart = await context.Users
@@ -41,7 +44,7 @@ namespace APIShopLaptop.Feature.User.Orders {
                      .FirstOrDefaultAsync();
             var account = await context.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
             if (Cart.CartProducts.Any(p => p.Quantity > p.ProductNavigation.Quantity)) {
-                return Results.BadRequest(new Response(false,"Lỗi thực hiện!",ValidatedResult, ""));
+                return Results.BadRequest(new Response(false,"Lỗi thực hiện!",ValidatedResult, new DataDTO("", "")));
             }
             var Details = new List<OrderDetail>();
             var Order = new Order() {
@@ -67,10 +70,10 @@ namespace APIShopLaptop.Feature.User.Orders {
             }
             Order.Details = Details;
             if (Order.PaymentMethod == PAYMENTMETHOD.BANK) {
-                Order.NoteFromOrder =   "Chuyển khoản vào:\t" +
-                                        "VietComBank-1010101010\t" +
-                                        "AGBank-2020202020\t" +
-                                        $"Với nội dung: {Order.Id}-{Order.User.UserName}-TRA TIEN";
+                Order.NoteFromOrder =   $@"Chuyển khoản vào:
+                                           VietComBank-1010101010
+                                           AGBank-2020202020
+                                            Với nội dung: {Order.Id}-{Order.User.UserName}-TRA TIEN";
             }
             if (Order.PaymentMethod == PAYMENTMETHOD.MOMO) {
                 var requestId = Order.Id + Nanoid.Generate(Nanoid.Alphabets.UppercaseLettersAndDigits, 6);
@@ -93,12 +96,12 @@ namespace APIShopLaptop.Feature.User.Orders {
                 if (Order.PaymentMethod == PAYMENTMETHOD.MOMO) {
                     var response = await moMoService.CreatePaymentAsync(Order.MomoTransaction.RequestId, $"{Order.Receiver},{Order.Address},{Order.PhoneNumber}", Order.Value,Order.MomoTransaction.RequestId);
                     if (response.ErrorCode == 0) {
-                        return Results.Ok(new Response(true, "", ValidatedResult, response.PayUrl));
+                        return Results.Ok(new Response(true, "", ValidatedResult, new DataDTO(response.PayUrl, "")));
                     }
                 }
-                return Results.Ok(new Response(true, "", ValidatedResult, ""));
+                return Results.Ok(new Response(true, "", ValidatedResult, new DataDTO("", Order.Id)));
             }
-            return Results.BadRequest(new Response(false,"Lỗi thực hiện!",ValidatedResult, ""));
+            return Results.BadRequest(new Response(false,"Lỗi thực hiện!",ValidatedResult, new DataDTO("", "")));
         }
     }
 }

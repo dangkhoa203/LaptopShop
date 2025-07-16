@@ -13,32 +13,33 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LaptopIcon from '@mui/icons-material/Laptop';
 import { styled, alpha } from '@mui/material/styles';
 import {
-    Alert,
-    Badge, ButtonGroup, Divider, FormControl,
+    Alert, Backdrop,
+    ButtonGroup, CircularProgress, Divider, FormControl,
     InputBase,
     MenuItem, Select, Slide, Snackbar, ThemeProvider, useScrollTrigger
 } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
-import ShoppingBasketOutlinedIcon from '@mui/icons-material/ShoppingBasketOutlined';
 import {useUserInfo} from "../State/User.ts";
 import {useEffect, useState} from "react";
 import LoginDialog from "./Account/LoginDialog.tsx";
 import {Threedom} from "../Type/ThreedomPalette.ts";
 import RegisterDialog from "./Account/RegisterDialog.tsx";
 import ResetPasswordDialog from "./Account/ResetPasswordDialog.tsx";
-import {useMutation} from "@tanstack/react-query";
+import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 import {Outlet, useNavigate} from 'react-router';
-import {useCart} from "../State/Cart.ts";
 import {useAppError} from "../State/AppErrorState.ts";
 import CategoryList from "./CategoryList.tsx";
 import {UseSearch} from "../State/Search.ts";
 import {SearchMode} from "../Type/SearchMode.ts";
+import {useAppNotify} from "../State/AppGlobalNotifyState.ts";
+import CartButton from "./Component/CartButton.tsx";
+import {useCart} from "../State/Cart.ts";
+import {Response} from "../Type/Respone.ts";
 
 export default function UserPage() {
     const navigate = useNavigate();
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
-
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElNav(event.currentTarget);
     };
@@ -49,7 +50,6 @@ export default function UserPage() {
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
     };
-
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
@@ -64,8 +64,9 @@ export default function UserPage() {
     };
 
 
-    const userInfo=useUserInfo((state)=> state.user);
-    const refetch=useUserInfo((state)=> state.reFetch);
+
+
+
     const [openLogin, setOpenLogin] = useState(false);
     const handleClickOpenLogin =() => {
         setOpenLogin(true);
@@ -92,32 +93,106 @@ export default function UserPage() {
     const handleCloseResetPassword = () => {
         setOpenResetPassword(false);
     };
+    const setUserInfo=useUserInfo((state)=> state.setUserInfo);
+    const userInfo=useUserInfo((state)=> state.user);
+    const clearUserInfo=useUserInfo(state=>state.clearUserInfo)
+    const {data,isFetching,refetch}=useQuery({
+        queryKey: ["user"],
+        staleTime:0,
+        refetchOnWindowFocus:false,
+        queryFn:async ()=>{
+            try {
+                const response = await fetch('https://localhost:7075/api/Account', {
+                    headers: {'Content-Type': 'application/json'},
+                    credentials: 'include',
+                    method:"GET"
+                });
+                if (!response.ok) {
+                    return({
+                        userName: '',
+                        userEmail: '',
+                        userId: '',
+                        isLogged: false,
+                    })
+                }
+                const content = await response.json();
+                return(content);
+            } catch  {
+                return({
+                    userName: '',
+                    userEmail: '',
+                    userId: '',
+                    isLogged: false,
+                })
+            }
+        },
+    })
+
     const cart=useCart();
-    const LOGOUT=useMutation({mutationFn:async ()=>{
+    const CartData=useQuery({
+        queryKey: ["cart"],
+        refetchOnWindowFocus:false,
+        queryFn:async ()=>{
+            if(userInfo.isLogged){
+                const response = await fetch('https://localhost:7075/api/Cart', {
+                    headers: {'Content-Type': 'application/json'},
+                    credentials: 'include',
+                    method: "GET"
+                });
+                return response.json();
+            }else
+                return []
+        },
+    })
+    useEffect(() => {
+        if(CartData.data){
+            if(!userInfo.isLogged)
+                cart.setCartItem(CartData.data,CartData.refetch)
+            else
+                cart.setCartItem(CartData.data.data,CartData.refetch)
+        }
+    }, [CartData.data]);
+    useEffect(() => {
+        CartData.refetch()
+    }, [userInfo.isLogged]);
+    const queryClient=useQueryClient()
+    const LOGOUT=useMutation({
+        mutationFn:async ()=>{
             try{
-                await fetch('https://localhost:7075/api/Account/LogOut', {
+                const response = await fetch('https://localhost:7075/api/Account/LogOut', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     credentials: 'include',
                 });
-                cart.setCartItem([],cart.reFetch)
-                await refetch()
+                return await response.json()
             }catch{
-                console.log("Error")
+                return null
             }
-        }});
+        },
+        onSuccess:(data:Response)=>{
+            if(data?.success){
+                queryClient.resetQueries({ queryKey:["user"], exact: true })
+                setAnchorElUser(null);
+                clearUserInfo()
+            }
+        }
+        }
+    );
 
     const search=UseSearch()
     const handleGlobalSearchChange=(e:any) => {
         search.setQuery(e.currentTarget.value,search.mode)
     }
-    const [cartCount,setCartCount]=useState(0)
-    useEffect(() => {
-        setCartCount(userInfo.isLogged? cart.count():0)
-    }, [cart.cartItems]);
 
     const globalError=useAppError()
+    const globalNotify=useAppNotify()
 
+    useEffect(() => {
+        if(data){
+            setUserInfo(data,refetch)
+        }
+    }, [data]);
+    console.log(userInfo)
     return (
         <div style={{display:"flex",minHeight:"100vh",flexDirection:"column"}}>
         <ThemeProvider theme={Threedom}>
@@ -277,11 +352,7 @@ export default function UserPage() {
                                 <Box sx={{ flexGrow: 0,display:"flex",gap:2 }}>
                                     {userInfo.isLogged ?
                                         <>
-                                            <IconButton onClick={()=>navigate("/GioHang")} color="inherit" size="large">
-                                                <Badge badgeContent={cartCount} color="error">
-                                                    <ShoppingBasketOutlinedIcon color="inherit" />
-                                                </Badge>
-                                            </IconButton>
+                                            <CartButton/>
                                             <div style={{display:"flex"}}>
                                                 <Typography sx={{margin:"auto",textAlign:"center",verticalAlign:"center"}}>
                                                     {userInfo.userName}
@@ -337,7 +408,7 @@ export default function UserPage() {
                         </Container>
                         {!userInfo.isLogged &&
                             <>
-                                <LoginDialog open={openLogin} handleClose={handleCloseLogin} openRegister={handleClickOpenRegister} openReset={handleClickOpenResetPassword} reFetch={refetch} isLoggedIn={userInfo.isLogged}/>
+                                <LoginDialog open={openLogin} handleClose={handleCloseLogin} openRegister={handleClickOpenRegister} openReset={handleClickOpenResetPassword}  isLoggedIn={userInfo.isLogged}/>
                                 <RegisterDialog open={openRegister} handleClose={handleCloseRegister}  openLogin={handleClickOpenLogin} isLoggedIn={userInfo.isLogged}/>
                                 <ResetPasswordDialog open={openResetPassword} handleClose={handleCloseResetPassword} openLogin={handleClickOpenLogin} isLoggedIn={userInfo.isLogged}/>
                             </>
@@ -346,8 +417,16 @@ export default function UserPage() {
                 </AppBar>
             </HideOnScroll>
             <div style={{paddingTop:"74px",paddingBottom:"20px"}}>
+                {isFetching &&
+                    <Backdrop
+                        sx={(theme) => ({ color: '#fff', zIndex: theme.zIndex.drawer + 1 })}
+                        open={isFetching}
+                    >
+                        <CircularProgress color="inherit" />
+                    </Backdrop>
+                }
                 <Outlet/>
-                <Snackbar open={globalError.message.length!==0} autoHideDuration={6000} onClose={()=>globalError.setError("")}>
+                <Snackbar open={globalError.message.length!==0} autoHideDuration={3000} onClose={()=>globalError.setError("")}>
                     <Alert
                         onClose={()=>globalError.setError("")}
                         severity="error"
@@ -355,6 +434,16 @@ export default function UserPage() {
                         sx={{ width: '100%' }}
                     >
                         {globalError.message}
+                    </Alert>
+                </Snackbar>
+                <Snackbar open={globalNotify.message.length!==0} autoHideDuration={4000} onClose={()=>globalNotify.setNotify("")}>
+                    <Alert
+                        onClose={()=>globalNotify.setNotify("")}
+                        severity="success"
+                        variant="filled"
+                        sx={{ width: '100%' }}
+                    >
+                        {globalNotify.message}
                     </Alert>
                 </Snackbar>
             </div>

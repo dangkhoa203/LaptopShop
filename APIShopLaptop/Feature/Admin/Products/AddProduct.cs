@@ -20,6 +20,7 @@ namespace APIShopLaptop.Feature.Admin.Products {
         public sealed class Validator : AbstractValidator<Request> {
             public Validator() {
                 RuleFor(r => r.Price).GreaterThan(0).WithMessage("Giá không phù hợp");
+                RuleFor(r => r.PriceAfterDiscount).LessThan(r=>r.Price).WithMessage("Giá không phù hợp");
                 RuleFor(r => r.PriceAfterDiscount).GreaterThanOrEqualTo(0).WithMessage("Giá không phù hợp");
                 RuleFor(r => r.Quantity).GreaterThan(-1).WithMessage("Số lượng không phù hợp");
                 RuleFor(r => r.Name).NotEmpty().WithMessage("Chưa nhập tên!");

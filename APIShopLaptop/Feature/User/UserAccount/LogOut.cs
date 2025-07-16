@@ -6,7 +6,7 @@ namespace APIShopLaptop.Feature.User.UserAccount {
     public class LogOut : IEndpoint {
         public record Response(bool Success, string ErrorMessage);
         public static void MapEndpoint(IEndpointRouteBuilder app) {
-            app.MapPost("/api/Account/LogOut", Handler).RequireAuthorization().WithTags("Account");
+            app.MapPost("/api/Account/LogOut", Handler).WithTags("Account");
         }
         private static async Task<IResult> Handler(SignInManager<AppUser> signInManager) {
             try {

@@ -110,6 +110,11 @@ export default function CreateNewDiscountCodeDialog(props:{open:boolean,handleCl
             }
         }
     })
+    const handleKeyDown = (event:any) => {
+        if (event.key === 'Enter') {
+            mutate()
+        }
+    }
     return(
         <Dialog
             open={props.open}
@@ -171,17 +176,20 @@ export default function CreateNewDiscountCodeDialog(props:{open:boolean,handleCl
                         <Grid size={6}>
                             <TextField value={codeInfo.name} onChange={handleNameChange} fullWidth
                                        error={validationError.name.length>0}  helperText={validationError.name}
+                                       onKeyDown={handleKeyDown}
                                        color="primary"
                                        size={"medium"} label="Tên" variant="filled" />
                         </Grid>
                         <Grid size={6}>
                             <TextField value={codeInfo.endDate} onChange={handleEndDateChange} fullWidth
                                        color="primary" type="date"
+                                       onKeyDown={handleKeyDown}
                                        size={"medium"} label="Hạn dùng" variant="filled" />
                         </Grid>
                         <Grid size={12}>
                             <TextField value={codeInfo.code} onChange={handleCodeChange} fullWidth
                                        color="primary"
+                                       onKeyDown={handleKeyDown}
                                        size={"medium"} label="Code" variant="filled" />
                         </Grid>
                         <Grid size={6}>
@@ -191,11 +199,13 @@ export default function CreateNewDiscountCodeDialog(props:{open:boolean,handleCl
                             <TextField value={codeInfo.percent} onChange={handleDPercentChange} fullWidth
                                        type="number" error={validationError.percent.length>0} helperText={validationError.percent}
                                        color="primary"
+                                       onKeyDown={handleKeyDown}
                                        size={"medium"} label="Phần trăm" variant="filled" />
                         </Grid>
                         <Grid size={12}>
                             <TextField value={codeInfo.description} onChange={handleDescriptionChange} fullWidth
                                        color="primary"
+                                       onKeyDown={handleKeyDown}
                                        multiline  minRows={2} maxRows={4}
                                        size={"medium"} label="Mô tả" variant="filled" />
                         </Grid>

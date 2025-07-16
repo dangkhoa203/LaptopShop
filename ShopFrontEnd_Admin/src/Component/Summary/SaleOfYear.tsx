@@ -55,6 +55,11 @@ export default function SaleOfYear(props:{year:number}) {
                 </div>
                 :
                 <BarChart
+                    loading={isPending}
+                    localeText={{
+                        loading: 'Load dữ liệu.',
+                        noData: 'Không có dữ liệu để hiển thị.',
+                    }}
                     dataset={dataset}
                     yAxis={[{ scaleType: 'band', dataKey: 'month',label:"Tháng" }]}
                     series={[{ dataKey: 'number', label: 'VNĐ' }]}

@@ -196,7 +196,9 @@ export default function Order(){
         }
     })
     const openError=error.length>0
-
+    useEffect(()=>{
+        document.title="Đơn hàng"
+    },[])
     return(
         <Container sx={{display:"flex", flexDirection:"column", justifyContent:"center",gap:2}}>
             <p style={{textAlign:"center",fontSize:"2.5em",margin:"0"}}>Danh sách đơn hàng</p>

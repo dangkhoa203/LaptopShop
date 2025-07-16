@@ -40,6 +40,11 @@ export default function OrderStatusChart(){
                 </div>
                 :
                 <BarChart
+                    loading={isPending}
+                    localeText={{
+                        loading: 'Load dữ liệu.',
+                        noData: 'Không có dữ liệu để hiển thị.',
+                    }}
                     yAxis={[
                         {label: "Số lượng đơn hàng"}
                     ]}

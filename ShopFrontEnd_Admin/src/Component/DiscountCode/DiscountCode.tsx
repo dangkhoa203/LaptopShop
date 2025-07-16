@@ -78,7 +78,9 @@ export default function DiscountCode(){
     }, [data]);
 
     const [rowData, setRowData] = useState<Array<discountCodeData>>([]);
-
+    useEffect(()=>{
+        document.title="Mã giảm giá"
+    },[])
     // @ts-ignore
     const [colDefs, setColDefs] = useState<ColDef[]>([
 

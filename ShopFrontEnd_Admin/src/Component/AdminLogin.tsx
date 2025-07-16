@@ -109,7 +109,11 @@ export default function AdminLogin(){
                 }
             }
         }});
-
+    const handleKeyDown = (event:any) => {
+        if (event.key === 'Enter') {
+            mutate()
+        }
+    }
     useEffect(()=>{
         document.title="Đăng nhập"
     },[])
@@ -133,6 +137,7 @@ export default function AdminLogin(){
                 <Grid container spacing={2} paddingX="50px" paddingTop="20px" paddingBottom="20px" >
                     <Grid sx={{textAlign:'center'}} size={12}>
                         <TextField value={loginInfo.userName} onChange={handleUserNameChange}
+                                   onKeyDown={handleKeyDown}
                                    color="info" sx={{fontSize:"1.5em",width:"100%"}}
                                    label="UserName" variant="standard"
                                    error={validatationError.Username.length!==0}
@@ -143,6 +148,7 @@ export default function AdminLogin(){
                         <FormControl fullWidth variant="standard">
                             <InputLabel color={validatationError.Password.length!==0 ? "error":"info"} sx={{color:validatationError.Password.length!==0 ?"rgb(211, 47, 47)":""}} >Password</InputLabel>
                             <Input
+                                onKeyDown={handleKeyDown}
                                 color="info"
                                 value={loginInfo.password}
                                 error={validatationError.Password.length!==0}

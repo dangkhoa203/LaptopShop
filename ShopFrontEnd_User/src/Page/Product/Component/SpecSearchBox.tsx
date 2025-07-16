@@ -60,7 +60,6 @@ export default function SpecSearchBox(props:{specificationData:specificationData
     }, [data]);
     useEffect(() => {
         if(props.specificationData.length>0){
-            console.log("test")
             if(currentPage===1){
                 console.log("test")
                 refetch();
@@ -72,7 +71,6 @@ export default function SpecSearchBox(props:{specificationData:specificationData
             setStartSearch(false)
             setProducts([])
         }
-
     }, [props.specificationData]);
     useEffect(() => {
         refetch();

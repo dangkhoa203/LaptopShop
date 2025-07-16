@@ -46,7 +46,11 @@ export default function ChangePasswordDialog(props:{username:string,id:string,op
             }
         }
     })
-
+    const handleKeyDown = (event:any) => {
+        if (event.key === 'Enter') {
+            mutate()
+        }
+    }
     return(
         <Dialog
             open={props.open}
@@ -87,6 +91,7 @@ export default function ChangePasswordDialog(props:{username:string,id:string,op
             <DialogContent dividers>
                 <DialogContentText >
                     <TextField value={newPassword} onChange={handlePassword} fullWidth
+                               onKeyDown={handleKeyDown}
                                error={validateError.length>0}  helperText={validateError}
                                color="secondary" disabled={success}
                                size={"medium"} label="Mật khẩu mới" variant="filled" />

@@ -9,7 +9,7 @@ import {myTheme} from "../../Type/myTheme.ts";
 import {AG_GRID_LOCALE_VN} from "@ag-grid-community/locale";
 import Container from "@mui/material/Container";
 import CreateNewSpecificationDiaglog from "./CreateNewSpecificationDiaglog.tsx";
-import UpdateSpecificationDiaglig from "./UpdateSpecificationDiaglig.tsx";
+import UpdateSpecificationDialog from "./UpdateSpecificationDialog.tsx";
 import Typography from "@mui/material/Typography";
 type specificationData={
     id: string,
@@ -132,7 +132,9 @@ export default function Specification(){
     ]);
 
 
-
+    useEffect(()=>{
+        document.title="Thông số"
+    },[])
     return(
         <Container sx={{display:"flex", flexDirection:"column", justifyContent:"center",gap:2}}>
             <p style={{textAlign:"center",fontSize:"2.5em",margin:"0"}}>Danh sách thông số</p>
@@ -164,7 +166,7 @@ export default function Specification(){
                                 />
                             </div>
                             <CreateNewSpecificationDiaglog open={openCreate} handleClose={handleCloseCreate} reFetch={refetch}/>
-                            <UpdateSpecificationDiaglig searchAble={updateModel.searchAble} id={updateModel.id} name={updateModel.name} open={openUpdate} handleClose={handleCloseUpdate} reFetch={refetch}/>
+                            <UpdateSpecificationDialog searchAble={updateModel.searchAble} id={updateModel.id} name={updateModel.name} open={openUpdate} handleClose={handleCloseUpdate} reFetch={refetch}/>
                         </>
                     }
                 </>

@@ -134,6 +134,11 @@ export default function UpdateCompatibility(props:{id:string}) {
             }
         }
     })
+    const handleKeyDown = (event:any) => {
+        if (event.key === 'Enter') {
+            ADD.mutate()
+        }
+    }
     return (
         <div >
             <Divider/>
@@ -160,6 +165,7 @@ export default function UpdateCompatibility(props:{id:string}) {
                         </Grid>
                         <Grid size={{xs:7,sm:7,md:6,lg:6}}>
                             <TextField
+                                onKeyDown={handleKeyDown}
                                 fullWidth
                                 color="warning"
                                 label="Nội dung"

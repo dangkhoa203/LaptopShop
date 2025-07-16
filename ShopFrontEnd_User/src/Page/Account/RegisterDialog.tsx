@@ -14,6 +14,7 @@ import IconButton from "@mui/material/IconButton";
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import {useAppNotify} from "../../State/AppGlobalNotifyState.ts";
 
 type validationError={
     userName: string,
@@ -67,7 +68,7 @@ export default function RegisterDialog(props:{open:boolean,handleClose:()=>void,
     const handleMouseUpPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
     };
-
+    const globalNotify=useAppNotify()
     const {isPending,mutate}=useMutation({
         mutationFn:async ()=>{
             setValidateError({
@@ -87,6 +88,7 @@ export default function RegisterDialog(props:{open:boolean,handleClose:()=>void,
         },
         onSuccess:(data:Response)=>{
             if(data.success){
+                globalNotify.setNotify("Đăng ký thành công")
                 setSuccess(true)
             }
             else {
@@ -141,7 +143,7 @@ export default function RegisterDialog(props:{open:boolean,handleClose:()=>void,
             onClose={close}
             fullWidth
             maxWidth="sm"
-            hideBackdrop={true}
+            hideBackdrop={false}
         >
             <DialogTitle sx={{border:"1px solid orange",borderBottom:0,textAlign:"center",fontSize:"2em"}}>
                 Đăng ký

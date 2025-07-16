@@ -42,7 +42,7 @@ export default function CategoryList(){
                         </ListItemButton>
                         <ListItemButton onClick={()=>{
                             if(userInfo.isLogged)
-                                navigate("/Dung-PC")
+                                navigate("/Dung_PC")
                             else
                                 error.setError("Chưa đăng nhập")
                         }}>
@@ -97,9 +97,23 @@ const LaptopCategory=()=>{
                         </Tooltip>
                     </ListItem>
                     <ListItem>
+                        <Tooltip placement="bottom-start" title={"Laptop Lenovo"}>
+                            <ListItemButton onClick={()=>navigate("/Laptop/Lenovo")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
+                                Lenovo
+                            </ListItemButton>
+                        </Tooltip>
+                    </ListItem>
+                    <ListItem>
                         <Tooltip placement="bottom-start" title={"Laptop Dell"}>
                             <ListItemButton onClick={()=>navigate("/Laptop/Dell")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
                                 Dell
+                            </ListItemButton>
+                        </Tooltip>
+                    </ListItem>
+                    <ListItem>
+                        <Tooltip placement="bottom-start" title={"Laptop HP"}>
+                            <ListItemButton onClick={()=>navigate("/Laptop/HP")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
+                                HP
                             </ListItemButton>
                         </Tooltip>
                     </ListItem>
@@ -116,7 +130,7 @@ const LaptopCategory=()=>{
                     </ListItem>
                     <ListItem sx={{paddingTop:0}}>
                         <Tooltip placement="bottom-start" title={"Laptop Văn phòng"}>
-                            <ListItemButton onClick={()=>navigate("/Laptop/VanPhong")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
+                            <ListItemButton onClick={()=>navigate("/Laptop/Van_Phong")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
                                 Văn phòng
                             </ListItemButton>
                         </Tooltip>
@@ -382,16 +396,16 @@ const PCCategory=()=>{
                         </Tooltip>
                     </ListItem>
                     <ListItem>
-                        <Tooltip placement="bottom-start" title={"PC MSI"}>
-                            <ListItemButton onClick={()=>navigate("/PC/MSI")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
-                                MSI
+                        <Tooltip placement="bottom-start" title={"PC HP"}>
+                            <ListItemButton onClick={()=>navigate("/PC/HP")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
+                                HP
                             </ListItemButton>
                         </Tooltip>
                     </ListItem>
                     <ListItem>
-                        <Tooltip placement="bottom-start" title={"PC Acer"}>
-                            <ListItemButton onClick={()=>navigate("/PC/Acer")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
-                                Acer
+                        <Tooltip placement="bottom-start" title={"PC Lenovo"}>
+                            <ListItemButton onClick={()=>navigate("/PC/Lenovo")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
+                                Lenovo
                             </ListItemButton>
                         </Tooltip>
                     </ListItem>
@@ -415,7 +429,7 @@ const PCCategory=()=>{
                     </ListItem>
                     <ListItem sx={{paddingTop:0}}>
                         <Tooltip placement="bottom-start" title={"PC Văn phòng"}>
-                            <ListItemButton onClick={()=>navigate("/PC/VanPhong")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
+                            <ListItemButton onClick={()=>navigate("/PC/Van_Phong")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
                                 Văn phòng
                             </ListItemButton>
                         </Tooltip>
@@ -699,14 +713,14 @@ const PCComponentCategory=()=>{
                     </ListItem>
                     <ListItem sx={{paddingTop:0}}>
                         <Tooltip placement="bottom-start" title={"Quạt máy tính"}>
-                            <ListItemButton onClick={()=>navigate("/TanNhiet/Quat")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
+                            <ListItemButton onClick={()=>navigate("/Tan_Nhiet/Quat")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
                                 Quạt
                             </ListItemButton>
                         </Tooltip>
                     </ListItem>
                     <ListItem>
                         <Tooltip placement="bottom-start" title={"Kem tản nhiệt máy tính"}>
-                            <ListItemButton onClick={()=>navigate("/TanNhiet/Kem")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
+                            <ListItemButton onClick={()=>navigate("/Tan_Nhiet/Kem")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
                                 Kem tản nhiệt
                             </ListItemButton>
                         </Tooltip>
@@ -794,9 +808,9 @@ const CaseCategory=()=>{
                         </Tooltip>
                     </ListItem>
                     <ListItem sx={{paddingTop:0}}>
-                        <Tooltip placement="bottom-start" title={"Case Micro-ITX"}>
-                            <ListItemButton onClick={()=>navigate("/Case/Micro-ITX")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
-                                Micro-ITX
+                        <Tooltip placement="bottom-start" title={"Case Mini-ITX"}>
+                            <ListItemButton onClick={()=>navigate("/Case/Mini-ITX")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
+                                Mini-ITX
                             </ListItemButton>
                         </Tooltip>
                     </ListItem>
@@ -834,14 +848,14 @@ const PCAccessoryCategory=()=>{
                     </ListItem>
                     <ListItem sx={{paddingTop:0}}>
                         <Tooltip placement="bottom-start" title={"Chuột máy tính"}>
-                            <ListItemButton onClick={()=>navigate("/LinhKien/Chuot")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
+                            <ListItemButton onClick={()=>navigate("/PhuKien/Chuot")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
                                 Chuột
                             </ListItemButton>
                         </Tooltip>
                     </ListItem>
                     <ListItem sx={{paddingTop:0}}>
                         <Tooltip placement="bottom-start" title={"Lót chuột máy tính"}>
-                            <ListItemButton onClick={()=>navigate("/LinhKien/LotChuot")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
+                            <ListItemButton onClick={()=>navigate("/PhuKien/Lot_Chuot")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
                                 Lót chuột
                             </ListItemButton>
                         </Tooltip>
@@ -859,14 +873,14 @@ const PCAccessoryCategory=()=>{
                     </ListItem>
                     <ListItem sx={{paddingTop:0}}>
                         <Tooltip placement="bottom-start" title={"Bàn phím cơ"}>
-                            <ListItemButton onClick={()=>navigate("/LinhKien/BanPhimCo")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
+                            <ListItemButton onClick={()=>navigate("/PhuKien/Ban_Phim_Co")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
                                 Phím cơ
                             </ListItemButton>
                         </Tooltip>
                     </ListItem>
                     <ListItem sx={{paddingTop:0}}>
                         <Tooltip placement="bottom-start" title={"Bàn phím văn phòng"}>
-                            <ListItemButton onClick={()=>navigate("/LinhKien/BanPhimVanPhong")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
+                            <ListItemButton onClick={()=>navigate("/PhuKien/Ban_Phim_Van_Phong")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
                                 Phím văn phòng
                             </ListItemButton>
                         </Tooltip>
@@ -884,14 +898,14 @@ const PCAccessoryCategory=()=>{
                     </ListItem>
                     <ListItem sx={{paddingTop:0}}>
                         <Tooltip placement="bottom-start" title={"Hub chuyển đổi"}>
-                            <ListItemButton onClick={()=>navigate("/LinhKien/Hub")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
+                            <ListItemButton onClick={()=>navigate("/PhuKien/Hub")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
                                 Hub chuyển đổi
                             </ListItemButton>
                         </Tooltip>
                     </ListItem>
                     <ListItem sx={{paddingTop:0}}>
                         <Tooltip placement="bottom-start" title={"Cáp"}>
-                            <ListItemButton onClick={()=>navigate("/LinhKien/Cap")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
+                            <ListItemButton onClick={()=>navigate("/PhuKien/Cap")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
                                 Cáp
                             </ListItemButton>
                         </Tooltip>

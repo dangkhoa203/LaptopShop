@@ -1,11 +1,17 @@
 import Typography from "@mui/material/Typography";
 import {ProductData} from "../../../Type/ProductData.ts";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {useQuery} from "@tanstack/react-query";
 import "../../../CSS/ProductCard.css"
-import {Grid, Paper} from "@mui/material";
+import {Paper} from "@mui/material";
 import Button from "@mui/material/Button";
 import MainPageProductCard from "./MainPageProductCard.tsx";
+import {publicApiType, ScrollMenu, VisibilityContext} from 'react-horizontal-scrolling-menu';
+import Container from "@mui/material/Container";
+import ArrowBackIos from "@mui/icons-material/ArrowBackIos";
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+
+
 export default function MainPageMainCategoryProduct(props:{isMain:boolean,category:string,categoryId:string}) {
     const [products, setProducts] = useState<ProductData[]>([])
     const {data}=useQuery({
@@ -35,14 +41,22 @@ export default function MainPageMainCategoryProduct(props:{isMain:boolean,catego
                         <Typography variant="h3" textAlign="center" component="p">
                             {props.category}
                         </Typography>
-                        <Grid container spacing={1}>
-                            {products.map(product =>
-                                <MainPageProductCard product={product}/>
-                            )}
-                            <Grid sx={{display:"flex",flexDirection:"column",justifyContent:"center"}} size={products.length===6?{xs:12,sm:12,md:6,lg:6}:12}>
-                                <Button color={"secondary"} sx={{margin:"auto",maxWidth:"300px"}}  variant={"outlined"} fullWidth>Xem thêm</Button>
-                            </Grid>
-                        </Grid>
+                        <Container sx={{
+                            padding:"10px",
+
+                            '.react-horizontal-scrolling-menu--scroll-container': {
+                                display:"flex",gap:5,padding:"25px 20px"
+                            }
+                        }}>
+                            <ScrollMenu LeftArrow={<LeftArrow/> } RightArrow={<RightArrow/>}>
+                                {products.map((product,index) =>
+                                    <MainPageProductCard key={index} product={product}/>
+                                )}
+
+                            </ScrollMenu>
+                        </Container>
+                        <Button>Xem thêm</Button>
+
                     </Paper>
                 </>
             }
@@ -50,3 +64,35 @@ export default function MainPageMainCategoryProduct(props:{isMain:boolean,catego
         </div>
     )
 }
+const LeftArrow = () => {
+    const visibility = useContext<publicApiType>(VisibilityContext) ;
+    const isFirstItemVisible = visibility.useIsVisible('first', false);
+    const onClick = () =>
+        visibility.scrollToItem(visibility.getPrevElement(), 'smooth');
+    return (
+        <Button
+            disabled={isFirstItemVisible}
+            onClick={onClick}
+            className="left"
+        >
+            <ArrowBackIos/>
+        </Button>
+    );
+};
+
+const RightArrow = () => {
+    const visibility =  useContext<publicApiType>(VisibilityContext) ;
+    const isLastItemVisible = visibility.useIsVisible('last', false);
+    const onClick = () =>
+        visibility.scrollToItem(visibility.getNextElement(), 'smooth');
+
+    return (
+        <Button
+            disabled={isLastItemVisible}
+            onClick={onClick}
+            className="right"
+        >
+            <ArrowForwardIosIcon/>
+        </Button>
+    );
+};

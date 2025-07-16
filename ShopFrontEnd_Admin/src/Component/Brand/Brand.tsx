@@ -162,7 +162,9 @@ export default function Brand(){
     ]);
 
 
-
+    useEffect(()=>{
+        document.title="Hãng"
+    },[])
     return(
         <Container sx={{display:"flex", flexDirection:"column", justifyContent:"center",gap:2}}>
             <p style={{textAlign:"center",fontSize:"2.5em",margin:"0"}}>Danh sách hãng</p>

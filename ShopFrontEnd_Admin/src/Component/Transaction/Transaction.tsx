@@ -89,7 +89,9 @@ export default function Transaction(){
             floatingFilter: true },
     ]);
 
-
+    useEffect(()=>{
+        document.title="Thanh toán"
+    },[])
 
     return(
         <Container sx={{display:"flex", flexDirection:"column", justifyContent:"center",gap:2}}>
