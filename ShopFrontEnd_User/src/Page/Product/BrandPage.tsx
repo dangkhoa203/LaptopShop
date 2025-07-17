@@ -56,7 +56,9 @@ export default function BrandPage(props:{title:string,categoryId:string,isMain:b
         refetch();
         window.scrollTo(0, 0)
     }, [currentPage]);
-
+    useEffect(()=>{
+        document.title=props.title
+    },[])
     return (
         <Container>
             <Grid container spacing={0}>

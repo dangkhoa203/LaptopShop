@@ -45,7 +45,7 @@ namespace APIShopLaptop.Feature.User.UserAccount.ChangePassword {
                 var Token = await userManager.GeneratePasswordResetTokenAsync(UserDetail);
                 Token = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(Token));
                 string Password = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(request.NewPassword));
-                var ConfirmLink = $"https://dkwarehouse.vercel.app/ConfirmDoiMatKhau/{WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(UserDetail.Id))}/{Password}/{Token}";
+                var ConfirmLink = $"http://localhost:7088/XacNhanDoiMatKhau/{WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(UserDetail.Id))}/{Password}/{Token}";
 
                 bool EmailResponse = await emailSender.SendEmail(UserDetail.Email, "Xác nhận Email thay đổi mật khẩu", "Nhấn vào nút này để thay đổi mật khẩu tài khoản.", ConfirmLink, "Thay đổi");
                 if (!EmailResponse) {

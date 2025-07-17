@@ -16,6 +16,22 @@ import ReviewPage from "./Review/ReviewPage.tsx";
 import CategoryPage from "./Product/CategoryPage.tsx";
 import SearchBySpecification from "./Product/SearchBySpecification.tsx";
 import BrandPage from "./Product/BrandPage.tsx";
+import LaptopPage from "./CategoryPage/LaptopPage.tsx";
+import PCPage from "./CategoryPage/PCPage.tsx";
+import MotherBoardPage from "./CategoryPage/MotherBoardPage.tsx";
+import CPUPage from "./CategoryPage/CPUPage.tsx";
+import CardPage from "./CategoryPage/CardPage.tsx";
+import PSUPage from "./CategoryPage/PSUPage.tsx";
+import MoniterPage from "./CategoryPage/MoniterPage.tsx";
+import RAMPage from "./CategoryPage/RAMPage.tsx";
+import ThermalPage from "./CategoryPage/ThermalPage.tsx";
+import MemoryPage from "./CategoryPage/MemoryPage.tsx";
+import CasePage from "./CategoryPage/CasePage.tsx";
+import AccessoryPage from "./CategoryPage/AccessoryPage.tsx";
+import ConfirmAccount from "./Account/ConfirmAccount.tsx";
+import ConfirmEmailChange from "./Account/ConfirmEmailChange.tsx";
+import ConfirmPasswordChange from "./Account/ConfirmPasswordChange.tsx";
+import ResetMatKhau from "./Account/ResetMatKhau.tsx";
 function newBrand(name:string,tag:string){
     return{name:name,tag:tag};
 }
@@ -24,6 +40,10 @@ export default function RouteComponent(){
         <Routes location={location} key={location.pathname}>
             <Route path="/" element={ <UserPage></UserPage>}>
                 <Route path="" element={<HomePage/> }/>
+                <Route path="/XacNhan/:username/:code" element={<ConfirmAccount/>}></Route>
+                <Route path="/XacNhanDoiEmail/:id/:email/:code" element={<ConfirmEmailChange></ConfirmEmailChange>}></Route>
+                <Route path="/XacNhanDoiMatKhau/:id/:password/:code" element={<ConfirmPasswordChange></ConfirmPasswordChange>}></Route>
+                <Route path="/ResetMatKhau/:id/:code" element={<ResetMatKhau />}></Route>
                 <Route path="Tim">
                     <Route path="" element={<Navigate to={"/"}/> }></Route>
                     <Route path={"CauHinh"} element={<SearchBySpecification/> }></Route>
@@ -48,6 +68,7 @@ export default function RouteComponent(){
                     <Route path="DatHang" element={<BuildOrderPage/> }></Route>
                 </Route>
                 <Route path="Laptop" >
+                    <Route path="" element={<LaptopPage/> }></Route>
                     <Route path="Van_Phong" element={<CategoryPage  title={"Laptop văn phòng"} categoryId={"LAPTOP_VANPHONG"}
                                                               brands={[newBrand("Asus","ASUS"),newBrand("MSI","MSI"),newBrand("Lenovo","LENOVO"),newBrand("Dell","DELL"),newBrand("HP","HP")]} isMain={false}/> }/>
                     <Route path="Gaming" element={<CategoryPage title={"Laptop Gaming"} categoryId={"LAPTOP_GAMING"}
@@ -98,6 +119,7 @@ export default function RouteComponent(){
                                                              brands={[]} isMain={false}/> }/>
                 </Route>
                 <Route path="PC">
+                    <Route path="" element={<PCPage/> }></Route>
                     <Route path="Van_Phong" element={<CategoryPage  title={"PC văn phòng"} categoryId={"PC_VANPHONG"}
                                                                    brands={[newBrand("Asus","ASUS"),newBrand("Lenovo","LENOVO"),newBrand("Dell","DELL"),newBrand("HP","HP")]} isMain={false}/> }/>
                     <Route path="Gaming" element={<CategoryPage  title={"PC văn phòng"} categoryId={"PC_VANPHONG"}
@@ -107,23 +129,26 @@ export default function RouteComponent(){
                     <Route path="HP" element={<BrandPage brandTag={"HP"} title={"PC HP"} categoryId={"PC"} isMain={true}/> }/>
                     <Route path="Dell" element={<BrandPage brandTag={"DELL"} title={"PC Dell"} categoryId={"PC"} isMain={true}/> }/>
                 </Route>
-                <Route path="Motherboard" >
+                <Route path="Bo_Mach" >
+                    <Route path="" element={<MotherBoardPage/> }></Route>
                     <Route path="AMD" element={<CategoryPage  title={"Motherboard thích hợp với CPU AMD"} categoryId={"MOTHERBOARD_AMD"}
                                                    brands={[newBrand("Asus","ASUS"),newBrand("MSI","MSI"),newBrand("Asrock","ASROCK"),newBrand("Gigabyte","GIGABYTE")]} isMain={false}/> }/>
                     <Route path="Intel" element={<CategoryPage title={"Motherboard thích hợp với CPU Intel"} categoryId={"MOTHERBOARD_INTEL"}
                                                   brands={[newBrand("Asus","ASUS"),newBrand("MSI","MSI"),newBrand("Asrock","ASROCK"),newBrand("Gigabyte","GIGABYTE")]} isMain={false}/> }/>
                     <Route path="ATX" element={<CategoryPage title={"Motherboard thích hợp với case ATX"} categoryId={"MOTHERBOARD_ATX"}
                                                   brands={[newBrand("Asus","ASUS"),newBrand("MSI","MSI"),newBrand("Asrock","ASROCK"),newBrand("Gigabyte","GIGABYTE")]} isMain={false}/> }/>
-                    <Route path="Micro-ATX" element={<CategoryPage title={"Motherboard thích hợp với case Micro-ATX"} categoryId={"MOTHERBOARD_MicroATX"}
+                    <Route path="Micro-ATX" element={<CategoryPage title={"Motherboard thích hợp với case Micro-ATX"} categoryId={"MOTHERBOARD_MICROATX"}
                                                   brands={[newBrand("Asus","ASUS"),newBrand("MSI","MSI"),newBrand("Asrock","ASROCK"),newBrand("Gigabyte","GIGABYTE")]} isMain={false}/> }/>
-                    <Route path="Micro-ITX" element={<CategoryPage title={"Motherboard thích hợp với case Micro-ITX"} categoryId={"MOTHERBOARD_MicroITX"}
+                    <Route path="Mini-ITX" element={<CategoryPage title={"Motherboard thích hợp với case Mini-ITX"} categoryId={"MOTHERBOARD_MINIITX"}
                                                                    brands={[newBrand("Asus","ASUS"),newBrand("MSI","MSI"),newBrand("Asrock","ASROCK"),newBrand("Gigabyte","GIGABYTE")]} isMain={false}/> }/>
                 </Route>
                 <Route path="CPU" >
+                    <Route path="" element={<CPUPage/> }></Route>
                     <Route path="AMD" element={<CategoryPage title={"CPU AMD"} categoryId={"CPU_AMD"} isMain={false} brands={[]}/>  }/>
                     <Route path="Intel" element={<CategoryPage title={"CPU Intel"} categoryId={"CPU_INTEL"} isMain={false}  brands={[]}/> }/>
                 </Route>
                 <Route path="GPU" >
+                    <Route path="" element={<CardPage/> }></Route>
                     <Route path="Nvidia" element={<CategoryPage title={"GPU Nvidia"} categoryId={"CARD_NVIDIA"} isMain={false}
                                                                 brands={[newBrand("Asus","ASUS"),newBrand("MSI","MSI"),newBrand("Gigabyte","GIGABYTE"),newBrand("Zotac","ZOTAC")]}/> }/>
                     <Route path="AMD" element={<CategoryPage title={"GPU AMD"} categoryId={"CARD_AMD"} isMain={false}
@@ -131,6 +156,7 @@ export default function RouteComponent(){
                     <Route path="Intel" element={<CategoryPage title={"GPU Intel"} categoryId={"CARD_INTEL"} isMain={false}  brands={[]}/> }/>
                 </Route>
                 <Route path="RAM" >
+                    <Route path="" element={<RAMPage/> }></Route>
                     <Route path="DDR4" element={<CategoryPage title={"RAM DDR4"} categoryId={"RAM_DDR4"} isMain={false}
                                                               brands={[newBrand("Kingston","KINGSTON"),newBrand("Corsair","CORSAIR"),newBrand("Samsung","SAMSUNG")]}/> }/>
                     <Route path="DDR5" element={<CategoryPage title={"RAM DDR5"} categoryId={"RAM_DDR5"} isMain={false}
@@ -143,22 +169,26 @@ export default function RouteComponent(){
                                                               brands={[newBrand("Kingston","KINGSTON"),newBrand("Corsair","CORSAIR"),newBrand("Samsung","SAMSUNG")]}/> }/>
                 </Route>
                 <Route path="Memory" >
+                    <Route path="" element={<MemoryPage/> }></Route>
                     <Route path="SSD" element={<CategoryPage title={"Ổ cứng SSD"} categoryId={"OCUNG_SSD"} isMain={false} brands={[]}/> }/>
                     <Route path="HDD" element={<CategoryPage title={"Ổ cứng HDD"} categoryId={"OCUNG_HDD"} isMain={false} brands={[]}/> }/>
                 </Route>
-                <Route path="ManHinh" >
+                <Route path="Man_Hinh" >
+                    <Route path="" element={<MoniterPage/> }></Route>
                     <Route path="60hz" element={<CategoryPage title={"Màn hình 60Hz"} categoryId={"MANHINH_60HZ"} isMain={false} brands={[]}/> }/>
                     <Route path="120hz" element={<CategoryPage title={"Màn hình 120Hz"} categoryId={"MANHINH_60HZ"} isMain={false} brands={[]}/> }/>
                     <Route path="1080p" element={<CategoryPage title={"Màn hình độ phân giải 1080p"} categoryId={"MANHINH_1080P"} isMain={false} brands={[]}/> }/>
                     <Route path="2K" element={<CategoryPage title={"Màn hình độ phân giải 2K"} categoryId={"MANHINH_2K"} isMain={false} brands={[]}/> }/>
                 </Route>
                 <Route path="Case" >
+                    <Route path="" element={<CasePage/> }></Route>
                     <Route path="ATX" element={<CategoryPage title={"Case ATX"} categoryId={"CASE_ATX"} isMain={false} brands={[]}/> }/>
-                    <Route path="Mini-ITX" element={<CategoryPage title={"Case Mini-ITX"} categoryId={"CASE_MINI-ITX"} isMain={false} brands={[]}/> }/>
-                    <Route path="Micro-ATX" element={<CategoryPage title={"Case Micro-ATX"} categoryId={"CASE_MICRO-ATX"} isMain={false} brands={[]}/> }/>
+                    <Route path="Mini-ITX" element={<CategoryPage title={"Case Mini-ITX"} categoryId={"CASE_MINIITX"} isMain={false} brands={[]}/> }/>
+                    <Route path="Micro-ATX" element={<CategoryPage title={"Case Micro-ATX"} categoryId={"CASE_MICROATX"} isMain={false} brands={[]}/> }/>
                     <Route path="Tower" element={<CategoryPage title={"Case Tower"} categoryId={"CASE_TOWER"} isMain={false} brands={[]}/> }/>
                 </Route>
-                <Route path="PhuKien" >
+                <Route path="Phu_Kien" >
+                    <Route path="" element={<AccessoryPage/> }></Route>
                     <Route path="Chuot" element={<CategoryPage title={"Chuột"} categoryId={"PHUKIEN_CHUOT"} isMain={false} brands={[]}/> }/>
                     <Route path="Lot_Chuot" element={<CategoryPage title={"Lót chuột"} categoryId={"PHUKIEN_LOTCHUOT"} isMain={false} brands={[]}/> }/>
                     <Route path="Ban_Phim_Co" element={<CategoryPage title={"Bàn phím cơ"} categoryId={"PHUKIEN_PHIMCO"} isMain={false} brands={[]}/> }/>
@@ -167,6 +197,7 @@ export default function RouteComponent(){
                     <Route path="Cap" element={<CategoryPage title={"Cáp"} categoryId={"PHUKIEN_CAP"} isMain={false} brands={[]}/> }/>
                 </Route>
                 <Route path="PSU" >
+                    <Route path="" element={<PSUPage/> }></Route>
                     <Route path="100W" element={<CategoryPage title={"Nguồn từ 100W đến 300W"} categoryId={"PSU_100W"} isMain={false} brands={[]}/> }/>
                     <Route path="300W" element={<CategoryPage title={"Nguồn từ 300W đến 500W"} categoryId={"PSU_300W"} isMain={false} brands={[]}/> }/>
                     <Route path="500W" element={<CategoryPage title={"Nguồn từ 500W đến 600W"} categoryId={"PSU_500W"} isMain={false} brands={[]}/> }/>
@@ -174,6 +205,7 @@ export default function RouteComponent(){
                     <Route path="800W" element={<CategoryPage title={"Nguồn từ 800W trở lên"} categoryId={"PSU_800W"} isMain={false} brands={[]}/> }/>
                 </Route>
                 <Route path="Tan_Nhiet" >
+                    <Route path="" element={<ThermalPage/> }></Route>
                     <Route path="Quat" element={<CategoryPage title={"Quạt máy tính"} categoryId={"TANNHIET_QUAT"} isMain={false} brands={[]}/> }/>
                     <Route path="Kem" element={<CategoryPage title={"Kem tản nhiệt"} categoryId={"TANNHIET_KEM"} isMain={false} brands={[]}/> }/>
                 </Route>

@@ -29,7 +29,7 @@ namespace APIShopLaptop.Feature.User.UserAccount {
                     return Results.BadRequest(new Response(false, "Lỗi đã xảy ra"));
                 }
 
-                await userManager.AddToRoleAsync(User, "Admin");
+                await userManager.AddToRoleAsync(User, "User");
                 return Results.Ok(new Response(true, ""));
             }
             catch (Exception) {

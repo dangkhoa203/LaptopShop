@@ -72,7 +72,9 @@ export default function CategoryPage(props:{title:string,categoryId:string,isMai
         else
             setCurrentPage(1)
     }, [brands]);
-    {console.log(props.brands)}
+    useEffect(()=>{
+        document.title=props.title
+    },[])
     return (
         <Container>
             <Grid container spacing={0}>

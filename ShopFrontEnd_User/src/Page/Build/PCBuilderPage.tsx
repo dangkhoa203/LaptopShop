@@ -58,6 +58,9 @@ export default function PCBuilderPage(){
         })
     }
     const showCheck=checkOutCheck()
+    useEffect(()=>{
+        document.title="Xây dựng máy tính"
+    },[])
     return(
         <Container maxWidth="lg">
             <Grid container spacing={2}>

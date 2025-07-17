@@ -15,7 +15,7 @@ namespace APIShopLaptop.Feature.User.UserAccount.ResetPassword {
         public record Response(bool Success, string ErrorMessage);
         public sealed class Validator : AbstractValidator<Request> {
             public Validator() {
-                RuleFor(r => r.Email).EmailAddress();
+                RuleFor(r => r.Email).EmailAddress().WithMessage("Email chưa hợp lệ!");
             }
         }
         public static void MapEndpoint(IEndpointRouteBuilder app) {
@@ -36,7 +36,7 @@ namespace APIShopLaptop.Feature.User.UserAccount.ResetPassword {
 
                 var Token = await userManager.GeneratePasswordResetTokenAsync(User);
                 Token = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(Token));
-                var ConfirmLink = $"https://dkwarehouse.vercel.app/ResetMatKhau/{WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(User.Id))}/{Token}";
+                var ConfirmLink = $"http://localhost:7088/ResetMatKhau/{WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(User.Id))}/{Token}";
 
                 bool EmailResponse = await emailSender.SendEmail(request.Email, "Xác nhận reset mật khẩu", "Nhấn vào nút này để vào reset mật khẩu tài khoản.", ConfirmLink, "Thay đổi");
                 if (!EmailResponse) {

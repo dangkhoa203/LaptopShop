@@ -94,6 +94,9 @@ export default function OrderHistory(){
         }
     })
     const [momoLoading,setMomoLoading]=useState(false)
+    useEffect(()=>{
+        document.title="Đơn hàng"
+    },[])
     // @ts-ignore
     return(
         <Container>

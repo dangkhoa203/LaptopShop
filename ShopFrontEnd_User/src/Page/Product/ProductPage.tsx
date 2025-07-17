@@ -64,6 +64,7 @@ export default function ProductPage(){
         if(data){
             if(data?.success){
                 setProduct(data.data)
+                document.title=data.data.name
             }else {
                 navigate("/")
             }
@@ -215,7 +216,7 @@ export default function ProductPage(){
                 </Paper>
             </Grid>
 
-            <Grid size={{sm:12,md:9,lg:8}}>
+            <Grid size={product.specifications.length===0 ? 12 :{xs:12,sm:12,md:8,lg:7}}>
                 <Paper sx={{padding:"20px",maxHeight:"600px",overflowY:"auto",borderTop:"5px solid orange"}} className="containerNFT">
                     <Typography textAlign={"center"} variant={"h4"}>Mô tả sản phẩm</Typography>
                     {product.description.length===0 ?
@@ -238,28 +239,31 @@ export default function ProductPage(){
 
                 </Paper>
             </Grid>
-            <Grid size={{xs:12,sm:12,md:3,lg:4}}>
-                <Paper sx={{paddingX:"10px",paddingY:"10px",borderTop:"5px solid orange"}}>
-                    <Typography textAlign={"center"}  variant={"h4"}>Thông số</Typography>
-                    <TableContainer  sx={{marginTop:"10px"}} >
-                        <Table  aria-label="simple table">
-                            <TableBody>
-                                {product.specifications.map(s=>
-                                    <TableRow
-                                        key={s.name}
-                                        sx={{ ' td,  th': { border: 1 } }}
-                                    >
-                                        <TableCell sx={{fontSize:"1.1em"}} component="th" scope="row">
-                                            {s.name}
-                                        </TableCell>
-                                        <TableCell align="right">{s.value}</TableCell>
-                                    </TableRow>
-                                )}
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
-                </Paper>
-            </Grid>
+            {product.specifications.length>0 &&
+                <Grid size={{xs:12,sm:12,md:4,lg:5}}>
+                    <Paper sx={{paddingX:"10px",paddingY:"10px",borderTop:"5px solid orange"}}>
+                        <Typography textAlign={"center"}  variant={"h4"}>Thông số</Typography>
+                        <TableContainer  sx={{marginTop:"10px"}} >
+                            <Table  aria-label="simple table">
+                                <TableBody>
+                                    {product.specifications.map(s=>
+                                        <TableRow
+                                            key={s.name}
+                                            sx={{ ' td,  th': { border: 1 } }}
+                                        >
+                                            <TableCell sx={{fontSize:"1.1em"}} component="th" scope="row">
+                                                {s.name}
+                                            </TableCell>
+                                            <TableCell align="right">{s.value}</TableCell>
+                                        </TableRow>
+                                    )}
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
+                    </Paper>
+                </Grid>
+            }
+
             <Grid size={12}>
                <ProductReviewPreviewBox id={id}/>
             </Grid>

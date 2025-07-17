@@ -5,6 +5,7 @@ import {Grid, Paper} from "@mui/material";
 import CartProductCard from "./CartProductCard.tsx";
 import {Navigate, useNavigate} from "react-router";
 import {useUserInfo} from "../../State/User.ts";
+import {useEffect} from "react";
 export default function CartPage(){
     const navigate = useNavigate();
     const cartItems=useCart((state)=>state.cartItems);
@@ -23,6 +24,9 @@ export default function CartPage(){
     if(!userInfo.isLogged){
         return <Navigate to={"/"}></Navigate>
     }
+    useEffect(()=>{
+        document.title="Giỏ hàng"
+    },[])
     return(
         <Container maxWidth="lg">
             <Grid container sx={{padding:"10px"}} spacing={2} >

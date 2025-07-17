@@ -269,7 +269,7 @@
         }
       }
     },
-    "/api/AppUser/EmailChange/{userId}/{newEmail}/{code}": {
+    "/api/Account/EmailChange/{userId}/{newEmail}/{code}": {
       "put": {
         "tags": [
           "Account"

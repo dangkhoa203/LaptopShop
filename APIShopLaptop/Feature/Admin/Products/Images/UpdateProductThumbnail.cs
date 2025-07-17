@@ -34,7 +34,7 @@ namespace APIShopLaptop.Feature.Admin.Products.Images {
                     var stream = request.Thumbnail.OpenReadStream();
                     var newThumbnail = new ProductImage();
                     using (Image image = Image.Load(stream)) {
-                        image.Mutate(x => { x.Resize(300, 300); });
+                        image.Mutate(x => { x.Resize(600, 600); });
                         image.SaveAsJpeg(Path.Combine($"{ProductImagePath}/{NewThumbnail.Id}.jpg"));
                     }
                     File.Delete($"{ProductImagePath}/{productThumbnail.Id}.jpg");

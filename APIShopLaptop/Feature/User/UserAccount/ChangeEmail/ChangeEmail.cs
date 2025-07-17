@@ -8,7 +8,7 @@ namespace APIShopLaptop.Feature.User.UserAppUser.ChangeEmail {
     public class ChangeEmail : IEndpoint {
         public record Response(bool Success, string ErrorMessage);
         public static void MapEndpoint(IEndpointRouteBuilder app) {
-            app.MapPut("/api/AppUser/EmailChange/{userId}/{newEmail}/{code}", Handler).WithTags("Account");
+            app.MapPut("/api/Account/EmailChange/{userId}/{newEmail}/{code}", Handler).WithTags("Account");
         }
         private static async Task<IResult> Handler(string userId, string newEmail, string code, UserManager<AppUser> userManager) {
             try {
@@ -23,7 +23,6 @@ namespace APIShopLaptop.Feature.User.UserAppUser.ChangeEmail {
                 var Result = await userManager.ChangeEmailAsync(User, newEmail, code);
                 if (!Result.Succeeded)
                     return Results.BadRequest(new Response(false, "Lỗi đã xảy ra!"));
-
                 return Results.Ok(new Response(true, ""));
             }
             catch (Exception) {

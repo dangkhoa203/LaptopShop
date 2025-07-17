@@ -14,7 +14,7 @@ import {Response} from "../../../Type/Respone.ts";
 import Tooltip from "@mui/material/Tooltip";
 import {useNavigate} from "react-router";
 import {useAppNotify} from "../../../State/AppGlobalNotifyState.ts";
-export default function MainPageProductCard(props: {product:ProductData}){
+export default function ProductCard(props: {product:ProductData}){
     const reFetch=useCart((state)=>state.reFetch)
     const userInfo=useUserInfo(state => state.user)
     const globalError=useAppError()
@@ -42,14 +42,17 @@ export default function MainPageProductCard(props: {product:ProductData}){
     const navigate=useNavigate()
     return(
         <Card elevation={12} className="productCard" sx={{display:"flex",flexDirection:"column",justifyContent:"space-between",minHeight:"100%"}}>
-            <CardMedia
-                className={"cardImg"}
-                sx={{ objectFit: "contain",cursor:"pointer" }}
-                onClick={()=>navigate(`/SanPham/${props.product.id}`)}
-                image={`https://localhost:7075/api/Products/${props.product.id}/Thumbnail`}
-                title={props.product.name}
-                component="img"
-            />
+            <div style={{minHeight:"300px",overflow:"hidden"}}>
+                <CardMedia
+                    className={"cardImg"}
+                    sx={{ objectFit: "contain",cursor:"pointer" }}
+                    onClick={()=>navigate(`/SanPham/${props.product.id}`)}
+                    image={`https://localhost:7075/api/Products/${props.product.id}/Thumbnail`}
+                    title={props.product.name}
+                    component="img"
+                />
+            </div>
+
             <CardContent sx={{flexGrow:2}}>
                 <Tooltip title={props.product.name}>
                     <Typography className="ProductName" sx={{
@@ -76,21 +79,21 @@ export default function MainPageProductCard(props: {product:ProductData}){
                                 {(100-Math.floor((props.product.priceAfterDiscount/props.product.price)*100))+"%"}
                             </Typography>
                         }
-
                     </div>
-
-
                 </Stack>
-                {props.product.quantity<=0 ?
-                    <Button disabled fullWidth variant={"outlined"}>Hết hàng</Button>
-                    :
-                    <Button variant={"contained"} color="success" onClick={()=> {
-                        if(userInfo.isLogged)
-                            mutate(props.product.id)
-                        else
-                            globalError.setError("Chưa đăng nhập!")
-                    }} fullWidth>Thêm vào giỏ hàng</Button>
-                }
+                <div style={{margin:0}}>
+                    {props.product.quantity<=0 ?
+                        <Button  disabled fullWidth variant={"outlined"}>Hết hàng</Button>
+                        :
+                        <Button  variant={"contained"} color="success" onClick={()=> {
+                            if(userInfo.isLogged)
+                                mutate(props.product.id)
+                            else
+                                globalError.setError("Chưa đăng nhập!")
+                        }} fullWidth>Thêm vào giỏ hàng</Button>
+                    }
+                </div>
+
             </CardActions>
         </Card>
     )

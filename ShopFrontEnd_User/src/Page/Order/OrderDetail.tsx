@@ -76,9 +76,12 @@ export default function OrderDetail(){
         if(data){
             setSuccess(data.success)
             setOrderDetail(data.data);
+
         }
     }, [data]);
-
+    useEffect(()=>{
+        document.title=orderDetail.id==="" ? "Đơn hàng":orderDetail.id
+    },[orderDetail]);
     const [product, setProduct] = useState({
         id:"",
         name:"",

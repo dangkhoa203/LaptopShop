@@ -20,7 +20,6 @@ namespace APIShopLaptop.Feature.User.UserAccount.ChangePassword {
                 if (!Result.Succeeded) {
                     return Results.BadRequest(new Response(false, "Lỗi đã xảy ra!"));
                 }
-
                 return Results.Ok(new Response(true, ""));
             }
             catch (Exception) {

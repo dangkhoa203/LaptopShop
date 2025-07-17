@@ -10,9 +10,8 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 export default function ProductReviewPage(){
     const {id}=useParams()
     const [reviews,setReviews]=useState<ProductReviewData[]>([])
-    const [total,setTotal]=useState<number>(0)
     const [fail,setFail]=useState<boolean>(false)
-    const {data,refetch}=useQuery({
+    const {data}=useQuery({
         queryKey: [`product_${id}_reviews`],
         refetchOnWindowFocus:false,
         queryFn:async ()=>{// @ts-ignore
@@ -29,7 +28,6 @@ export default function ProductReviewPage(){
             if(data?.success){
                 setFail(false)
                 setReviews(data.data)
-                setTotal(data.total)
             }else {
                 setFail(true)
             }
@@ -37,6 +35,9 @@ export default function ProductReviewPage(){
         }
     }, [data]);
     const navigate = useNavigate();
+    useEffect(()=>{
+        document.title="Review sản phẩm"
+    },[])
     return(
         <Container maxWidth="lg" sx={{paddingY:"10px"}}>
             {fail ?

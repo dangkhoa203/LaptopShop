@@ -15,18 +15,20 @@ import fan_category from "../assets/category_fan.jpg";
 import drive_category from "../assets/category_drive.png";
 import case_category from "../assets/category_case.png";
 import cable_category from "../assets/category_cable.png";
+import {useNavigate} from "react-router";
 
 export default function MainPageCategory(){
+    const navigate=useNavigate();
     return(
         <Paper elevation={6} sx={{overflowX:"auto"}}>
             <Grid container>
                 <Grid size={{xs:3,sm:3,md:2,lg:2}}>
                     <Card>
-                        <CardActionArea sx={{padding:"5px"}}>
+                        <CardActionArea onClick={()=>navigate("/Laptop")} sx={{padding:"5px"}}>
                             <CardMedia
                                 sx={{ margin:"auto",height: 60,width:60}}
                                 image={laptop_category}
-                                title="green iguana"
+                                title="Laptop"
                             />
                             <CardContent>
                                 <Typography textAlign="center" component="p">
@@ -38,7 +40,7 @@ export default function MainPageCategory(){
                 </Grid>
                 <Grid size={{xs:3,sm:3,md:2,lg:2}}>
                     <Card >
-                        <CardActionArea sx={{padding:"5px"}}>
+                        <CardActionArea onClick={()=>navigate("/PC")} sx={{padding:"5px"}}>
                             <CardMedia
                                 sx={{ margin:"auto",height: 60,width:60}}
                                 image={pc_category}
@@ -54,7 +56,7 @@ export default function MainPageCategory(){
                 </Grid>
                 <Grid size={{xs:3,sm:3,md:2,lg:2}}>
                     <Card >
-                        <CardActionArea sx={{padding:"5px"}}>
+                        <CardActionArea onClick={()=>navigate("/CPU")} sx={{padding:"5px"}}>
                             <CardMedia
                                 sx={{ margin:"auto",height: 60,width:60}}
                                 image={cpu_category}
@@ -70,11 +72,11 @@ export default function MainPageCategory(){
                 </Grid>
                 <Grid size={{xs:3,sm:3,md:2,lg:2}}>
                     <Card >
-                        <CardActionArea sx={{padding:"5px"}}>
+                        <CardActionArea onClick={()=>navigate("/Bo_Mach")} sx={{padding:"5px"}}>
                             <CardMedia
                                 sx={{ margin:"auto",height: 60,width:60}}
                                 image={motherboard_category}
-                                title="green iguana"
+                                title="Bo mạch"
                             />
                             <CardContent>
                                 <Typography textAlign="center" component="p">
@@ -86,11 +88,11 @@ export default function MainPageCategory(){
                 </Grid>
                 <Grid size={{xs:3,sm:3,md:2,lg:2}}>
                     <Card >
-                        <CardActionArea sx={{padding:"5px"}}>
+                        <CardActionArea onClick={()=>navigate("/GPU")} sx={{padding:"5px"}}>
                             <CardMedia
                                 sx={{ margin:"auto",height: 60,width:60}}
                                 image={vga_category}
-                                title="green iguana"
+                                title="GPU"
                             />
                             <CardContent>
                                 <Typography textAlign="center" component="p">
@@ -102,11 +104,11 @@ export default function MainPageCategory(){
                 </Grid>
                 <Grid size={{xs:3,sm:3,md:2,lg:2}}>
                     <Card >
-                        <CardActionArea sx={{padding:"5px"}}>
+                        <CardActionArea onClick={()=>navigate("/PSU")} sx={{padding:"5px"}}>
                             <CardMedia
                                 sx={{ margin:"auto",height: 60,width:60}}
                                 image={psu_category}
-                                title="green iguana"
+                                title="PSU"
                             />
                             <CardContent>
                                 <Typography textAlign="center" component="p">
@@ -118,11 +120,11 @@ export default function MainPageCategory(){
                 </Grid>
                 <Grid size={{xs:3,sm:3,md:2,lg:2}}>
                     <Card >
-                        <CardActionArea sx={{padding:"5px"}}>
+                        <CardActionArea onClick={()=>navigate("/Man_Hinh")} sx={{padding:"5px"}}>
                             <CardMedia
                                 sx={{ margin:"auto",height: 60,width:60}}
                                 image={moniter_category}
-                                title="green iguana"
+                                title="Màn hình"
                             />
                             <CardContent>
                                 <Typography textAlign="center" component="p">
@@ -134,11 +136,11 @@ export default function MainPageCategory(){
                 </Grid>
                 <Grid size={{xs:3,sm:3,md:2,lg:2}}>
                     <Card >
-                        <CardActionArea sx={{padding:"5px"}}>
+                        <CardActionArea onClick={()=>navigate("/RAM")} sx={{padding:"5px"}}>
                             <CardMedia
                                 sx={{ margin:"auto",height: 60,width:60}}
                                 image={ram_category}
-                                title="green iguana"
+                                title="RAM"
                             />
                             <CardContent>
                                 <Typography textAlign="center" component="p">
@@ -150,11 +152,11 @@ export default function MainPageCategory(){
                 </Grid>
                 <Grid size={{xs:3,sm:3,md:2,lg:2}}>
                     <Card >
-                        <CardActionArea sx={{padding:"5px"}}>
+                        <CardActionArea onClick={()=>navigate("/Tan_Nhiet")} sx={{padding:"5px"}}>
                             <CardMedia
                                 sx={{ margin:"auto",height: 60,width:60}}
                                 image={fan_category}
-                                title="green iguana"
+                                title="Tản nhiệt"
                             />
                             <CardContent>
                                 <Typography textAlign="center" component="p">
@@ -166,11 +168,11 @@ export default function MainPageCategory(){
                 </Grid>
                 <Grid size={{xs:3,sm:3,md:2,lg:2}}>
                     <Card >
-                        <CardActionArea sx={{padding:"5px"}}>
+                        <CardActionArea onClick={()=>navigate("/Memory")} sx={{padding:"5px"}}>
                             <CardMedia
                                 sx={{ margin:"auto",height: 60,width:60}}
                                 image={drive_category}
-                                title="green iguana"
+                                title="Ổ cứng"
                             />
                             <CardContent>
                                 <Typography textAlign="center" component="p">
@@ -182,11 +184,11 @@ export default function MainPageCategory(){
                 </Grid>
                 <Grid size={{xs:3,sm:3,md:2,lg:2}}>
                     <Card >
-                        <CardActionArea sx={{padding:"5px"}}>
+                        <CardActionArea onClick={()=>navigate("/Case")} sx={{padding:"5px"}}>
                             <CardMedia
                                 sx={{ margin:"auto",height: 60,width:60}}
                                 image={case_category}
-                                title="green iguana"
+                                title="Case"
                             />
                             <CardContent>
                                 <Typography textAlign="center" component="p">
@@ -198,11 +200,11 @@ export default function MainPageCategory(){
                 </Grid>
                 <Grid size={{xs:3,sm:3,md:2,lg:2}}>
                     <Card >
-                        <CardActionArea sx={{padding:"5px"}}>
+                        <CardActionArea onClick={()=>navigate("/Phu_Kien")} sx={{padding:"5px"}}>
                             <CardMedia
                                 sx={{ margin:"auto",height: 60,width:60}}
                                 image={cable_category}
-                                title="green iguana"
+                                title="Phụ kiện"
                             />
                             <CardContent>
                                 <Typography textAlign="center" component="p">

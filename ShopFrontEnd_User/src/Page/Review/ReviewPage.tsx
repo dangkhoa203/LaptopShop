@@ -1,5 +1,5 @@
 import {Divider, Tab, Tabs} from "@mui/material";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import Container from "@mui/material/Container";
 import ReviewAbleTab from "./Component/ReviewAbleTab.tsx";
 import AllReviewTab from "./Component/AllReviewTab.tsx";
@@ -11,6 +11,9 @@ export default function ReviewPage(){
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
     };
+    useEffect(()=>{
+        document.title="Các review"
+    },[])
     return(
         <Container maxWidth="lg">
             <Tabs

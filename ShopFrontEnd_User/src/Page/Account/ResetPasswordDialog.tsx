@@ -42,7 +42,7 @@ export default function ResetPasswordDialog(props:{open:boolean,handleClose:()=>
                 email:"",
                 globalError:"",
             })
-            const response = await fetch(`https://localhost:7075/api/Account/Register`, {
+            const response = await fetch(`https://localhost:7075/api/Account/PasswordReset`, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 credentials: 'include',

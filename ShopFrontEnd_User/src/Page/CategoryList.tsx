@@ -461,14 +461,14 @@ const PCComponentCategory=()=>{
                     </ListItem>
                     <ListItem sx={{paddingTop:0}}>
                         <Tooltip placement="bottom-start" title={"Motherboard tương thích CPU Intel"}>
-                            <ListItemButton onClick={()=>navigate("/Motherboard/Intel")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
+                            <ListItemButton onClick={()=>navigate("/Bo_Mach/Intel")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
                                 Intel
                             </ListItemButton>
                         </Tooltip>
                     </ListItem>
                     <ListItem>
                         <Tooltip placement="bottom-start" title={"Motherboard tương thích CPU AMD"}>
-                            <ListItemButton onClick={()=>navigate("/Motherboard/AMD")} sx={{cursor:"pointer",paddingLeft:"5px"}}  >
+                            <ListItemButton onClick={()=>navigate("/Bo_Mach/AMD")} sx={{cursor:"pointer",paddingLeft:"5px"}}  >
                                 AMD
                             </ListItemButton>
                         </Tooltip>
@@ -487,22 +487,22 @@ const PCComponentCategory=()=>{
                     </ListItem>
                     <ListItem sx={{paddingTop:0}}>
                         <Tooltip placement="bottom-start" title={"Motherboard tương thích case ATX"}>
-                            <ListItemButton onClick={()=>navigate("/Motherboard/ATX")} sx={{cursor:"pointer",paddingLeft:"5px"}}  >
+                            <ListItemButton onClick={()=>navigate("/Bo_Mach/ATX")} sx={{cursor:"pointer",paddingLeft:"5px"}}  >
                                 ATX
                             </ListItemButton>
                         </Tooltip>
                     </ListItem>
                     <ListItem>
                         <Tooltip placement="bottom-start" title={"Motherboard tương thích case Micro-ATX"}>
-                            <ListItemButton onClick={()=>navigate("/Motherboard/Micro-ATX")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
+                            <ListItemButton onClick={()=>navigate("/Bo_Mach/Micro-ATX")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
                                 Micro-ATX
                             </ListItemButton>
                         </Tooltip>
                     </ListItem>
                     <ListItem>
                         <Tooltip placement="bottom-start" title={"Motherboard tương thích case Micro-ITX"}>
-                            <ListItemButton onClick={()=>navigate("/Motherboard/Micro-ITX")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
-                                Micro-ITX
+                            <ListItemButton onClick={()=>navigate("/Bo_Mach/Mini-ITX")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
+                                Mini-ITX
                             </ListItemButton>
                         </Tooltip>
                     </ListItem>
@@ -546,9 +546,9 @@ const PCComponentCategory=()=>{
                         </Typography>
                     </ListItem>
                     <ListItem sx={{paddingTop:0}}>
-                        <Tooltip placement="bottom-start" title={"GPU Nvidea"}>
-                            <ListItemButton onClick={()=>navigate("/GPU/Nvidea")} sx={{cursor:"pointer",paddingLeft:"5px"}}>
-                                Nvidea
+                        <Tooltip placement="bottom-start" title={"GPU Nvidia"}>
+                            <ListItemButton onClick={()=>navigate("/GPU/Nvidia")} sx={{cursor:"pointer",paddingLeft:"5px"}}>
+                                Nvidia
                             </ListItemButton>
                         </Tooltip>
                     </ListItem>
@@ -745,14 +745,14 @@ const MonitorCategory=()=>{
                     </ListItem>
                     <ListItem sx={{paddingTop:0}}>
                         <Tooltip placement="bottom-start" title={"Màn hình 60hz"}>
-                            <ListItemButton onClick={()=>navigate("/ManHinh/60hz")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
+                            <ListItemButton onClick={()=>navigate("/Man_Hinh/60hz")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
                                 60hz
                             </ListItemButton>
                         </Tooltip>
                     </ListItem>
                     <ListItem>
                         <Tooltip placement="bottom-start" title={"Màn hình 120hz"}>
-                            <ListItemButton onClick={()=>navigate("/ManHinh/120hz")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
+                            <ListItemButton onClick={()=>navigate("/Man_Hinh/120hz")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
                                 120hz
                             </ListItemButton>
                         </Tooltip>
@@ -770,14 +770,14 @@ const MonitorCategory=()=>{
                     </ListItem>
                     <ListItem sx={{paddingTop:0}}>
                         <Tooltip placement="bottom-start" title={"Màn hình 1080p"}>
-                            <ListItemButton onClick={()=>navigate("/ManHinh/1080p")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
+                            <ListItemButton onClick={()=>navigate("/Man_Hinh/1080p")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
                                 1080p
                             </ListItemButton>
                         </Tooltip>
                     </ListItem>
                     <ListItem>
                         <Tooltip placement="bottom-start" title={"Màn hình 2K"}>
-                            <ListItemButton onClick={()=>navigate("/ManHinh/2K")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
+                            <ListItemButton onClick={()=>navigate("/Man_Hinh/2K")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
                                 2K
                             </ListItemButton>
                         </Tooltip>
@@ -848,14 +848,14 @@ const PCAccessoryCategory=()=>{
                     </ListItem>
                     <ListItem sx={{paddingTop:0}}>
                         <Tooltip placement="bottom-start" title={"Chuột máy tính"}>
-                            <ListItemButton onClick={()=>navigate("/PhuKien/Chuot")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
+                            <ListItemButton onClick={()=>navigate("/Phu_Kien/Chuot")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
                                 Chuột
                             </ListItemButton>
                         </Tooltip>
                     </ListItem>
                     <ListItem sx={{paddingTop:0}}>
                         <Tooltip placement="bottom-start" title={"Lót chuột máy tính"}>
-                            <ListItemButton onClick={()=>navigate("/PhuKien/Lot_Chuot")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
+                            <ListItemButton onClick={()=>navigate("/Phu_Kien/Lot_Chuot")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
                                 Lót chuột
                             </ListItemButton>
                         </Tooltip>
@@ -873,14 +873,14 @@ const PCAccessoryCategory=()=>{
                     </ListItem>
                     <ListItem sx={{paddingTop:0}}>
                         <Tooltip placement="bottom-start" title={"Bàn phím cơ"}>
-                            <ListItemButton onClick={()=>navigate("/PhuKien/Ban_Phim_Co")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
+                            <ListItemButton onClick={()=>navigate("/Phu_Kien/Ban_Phim_Co")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
                                 Phím cơ
                             </ListItemButton>
                         </Tooltip>
                     </ListItem>
                     <ListItem sx={{paddingTop:0}}>
                         <Tooltip placement="bottom-start" title={"Bàn phím văn phòng"}>
-                            <ListItemButton onClick={()=>navigate("/PhuKien/Ban_Phim_Van_Phong")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
+                            <ListItemButton onClick={()=>navigate("/Phu_Kien/Ban_Phim_Van_Phong")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
                                 Phím văn phòng
                             </ListItemButton>
                         </Tooltip>
@@ -898,14 +898,14 @@ const PCAccessoryCategory=()=>{
                     </ListItem>
                     <ListItem sx={{paddingTop:0}}>
                         <Tooltip placement="bottom-start" title={"Hub chuyển đổi"}>
-                            <ListItemButton onClick={()=>navigate("/PhuKien/Hub")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
+                            <ListItemButton onClick={()=>navigate("/Phu_Kien/Hub")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
                                 Hub chuyển đổi
                             </ListItemButton>
                         </Tooltip>
                     </ListItem>
                     <ListItem sx={{paddingTop:0}}>
                         <Tooltip placement="bottom-start" title={"Cáp"}>
-                            <ListItemButton onClick={()=>navigate("/PhuKien/Cap")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
+                            <ListItemButton onClick={()=>navigate("/Phu_Kien/Cap")} sx={{cursor:"pointer",paddingLeft:"5px"}} >
                                 Cáp
                             </ListItemButton>
                         </Tooltip>

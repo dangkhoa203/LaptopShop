@@ -183,6 +183,9 @@ export default function BuildOrderPage(){
         if(success)
             refetch()
     }, [success]);
+    useEffect(()=>{
+        document.title="Thanh toán"
+    },[])
     if((!userInfo.isLogged )&& userInfo.userName!=='default' ){
         return <Navigate to={"/"}/>
     }

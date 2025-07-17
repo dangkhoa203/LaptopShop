@@ -5,7 +5,7 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import {Threedom} from "../../Type/ThreedomPalette.ts";
 import ChangePasswordDialog from "./ChangePasswordDialog.tsx";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import ChangeEmailDialog from "./ChangeEmailDialog.tsx";
 
 export default function AccountPage(){
@@ -26,6 +26,9 @@ export default function AccountPage(){
     const handleClosePassword = () => {
         setOpenPassword(false);
     }
+    useEffect(()=>{
+        document.title="Tài khoản"
+    },[])
     return(
         <ThemeProvider theme={Threedom}>
             <Grid container spacing={2} sx={{paddingX:"50px"}} alignItems="center">

@@ -12,11 +12,14 @@ import banner7 from "../assets/banner7.gif"
 import {CardActionArea, Grid, Paper} from "@mui/material";
 import MainPageMainCategoryProduct from "./Product/Component/MainPageMainCategoryProduct.tsx";
 import MainPageCategory from "./MainPageCategory.tsx";
+import {useEffect} from "react";
 
 
 
 export default function HomePage() {
-
+    useEffect(()=>{
+        document.title="DKShop"
+    },[])
     return (
         <Container sx={{display: "flex", justifyContent: "center",flexDirection:"column", alignItems:"center",gap:3}}>
             <div>
@@ -82,7 +85,7 @@ export default function HomePage() {
                     </Grid>
                 </Grid>
             </div>
-            <MainPageMainCategoryProduct isMain={true} category={"MAINBOARD"} categoryId={"MOTHERBOARD"}/>
+
             <Paper elevation={6}>
                 <Card sx={{ maxWidth: "100%" }}>
                     <CardActionArea>
@@ -95,8 +98,8 @@ export default function HomePage() {
                     </CardActionArea>
                 </Card>
             </Paper>
-            <MainPageMainCategoryProduct isMain={true} category={"CPU"} categoryId={"DM-18"}/>
-            <MainPageMainCategoryProduct isMain={true} category={"PC"} categoryId={"DM-26"}/>
+            <MainPageMainCategoryProduct isMain={true} category={"Máy tính"} categoryId={"PC"} redirectLink={"/PC"}/>
+            <MainPageMainCategoryProduct isMain={true} category={"Máy laptop"} categoryId={"LAPTOP"} redirectLink={"/Laptop"}/>
         </Container>
 
     );

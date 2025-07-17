@@ -10,9 +10,10 @@ import {publicApiType, ScrollMenu, VisibilityContext} from 'react-horizontal-scr
 import Container from "@mui/material/Container";
 import ArrowBackIos from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import {useNavigate} from "react-router";
 
 
-export default function MainPageMainCategoryProduct(props:{isMain:boolean,category:string,categoryId:string}) {
+export default function MainPageMainCategoryProduct(props:{isMain:boolean,category:string,categoryId:string,redirectLink:string}) {
     const [products, setProducts] = useState<ProductData[]>([])
     const {data}=useQuery({
         queryKey: [`category_${props.categoryId}`],
@@ -26,6 +27,7 @@ export default function MainPageMainCategoryProduct(props:{isMain:boolean,catego
                 return await response.json()
         },
     })
+    const navigate=useNavigate();
     useEffect(() => {
         if(data){
             if(data?.success)
@@ -55,7 +57,7 @@ export default function MainPageMainCategoryProduct(props:{isMain:boolean,catego
 
                             </ScrollMenu>
                         </Container>
-                        <Button>Xem thêm</Button>
+                        <Button onClick={()=>navigate(props.redirectLink)}>Xem thêm</Button>
 
                     </Paper>
                 </>

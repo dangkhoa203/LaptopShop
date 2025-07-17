@@ -164,6 +164,9 @@ export default function CreateOrderPage(){
     }, [success]);
     const userInfo=useUserInfo(state=>state.user)
     const navigate = useNavigate();
+    useEffect(()=>{
+        document.title="Thanh toán"
+    },[])
     if(cartItems.length===0 && (!success) ){
         return <Navigate to={"/GioHang"}/>
     }

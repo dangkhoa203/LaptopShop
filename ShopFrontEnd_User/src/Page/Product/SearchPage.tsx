@@ -53,7 +53,9 @@ export default function SearchPage(){
         window.scrollTo(0, 0)
     }, [currentPage]);
 
-
+    useEffect(()=>{
+        document.title="Tìm kiếm sản phẩm"
+    },[])
     return(
         <Container sx={{display:"flex",flexDirection:"column",justifyContent:"center",gap:2}} maxWidth="lg">
             <div >

@@ -67,6 +67,9 @@ export default function SearchBySpecification(){
 
        setSpecificationData(reducedArr);
     }
+    useEffect(()=>{
+        document.title="Tìm theo cấu hình"
+    },[])
     return(
         <Container maxWidth="lg" >
             <Typography textAlign={"center"} variant="h3" color="textPrimary">Tìm theo cấu hình</Typography>

@@ -110,7 +110,7 @@ namespace APIShopLaptop.Middleware.Email {
                                           <tbody>
                                             <tr>
                                               <td align=""center"" style=""font-size:0px;padding:10px 25px;word-break:break-word;"">
-                                                <div style=""font-family:Arial, sans-serif;font-size:40px;line-height:1;text-align:center;text-transform:uppercase;color:white;"">Dịch vụ quản lý kho</div>
+                                                <div style=""font-family:Arial, sans-serif;font-size:40px;line-height:1;text-align:center;text-transform:uppercase;color:white;"">DKShop</div>
                                               </td>
                                             </tr>
                                           </tbody>

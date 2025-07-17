@@ -30,7 +30,7 @@ namespace APIShopLaptop.Feature.User.Category {
                             i.ProductNavigation.PriceAfterDiscount,
                             i.ProductNavigation.Reviews.Count > 0 ? i.ProductNavigation.Reviews.Sum(r => r.Score) / i.ProductNavigation.Reviews.Count : 0
                         ))
-                    .Take(15)
+                    .Take(6)
                     .ToListAsync();
 
                 return Results.Ok(new Response(true, Products, ""));

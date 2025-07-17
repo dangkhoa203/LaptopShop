@@ -7,7 +7,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import {useNavigate} from "react-router";
 
-export default function ProductReviewPreviewBox(props:{id:string}){
+export default function ProductReviewPreviewBox(props:{id:string|undefined}){
     const [reviews,setReviews]=useState<ProductReviewData[]>([])
     const [total,setTotal]=useState<number>(0)
     const [fail,setFail]=useState<boolean>(false)

@@ -93,6 +93,41 @@
     ]
   },
   {
+    "ContainingType": "APIShopLaptop.Feature.User.UserAppUser.ChangeEmail.ChangeEmail",
+    "Method": "Handler",
+    "RelativePath": "api/Account/EmailChange/{userId}/{newEmail}/{code}",
+    "HttpMethod": "PUT",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "newEmail",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "code",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Tags": [
+      "Account"
+    ]
+  },
+  {
     "ContainingType": "APIShopLaptop.Feature.User.UserAccount.Login",
     "Method": "Handler",
     "RelativePath": "api/Account/Login",
@@ -1676,41 +1711,6 @@
     ],
     "Tags": [
       "Admin_Transactions"
-    ]
-  },
-  {
-    "ContainingType": "APIShopLaptop.Feature.User.UserAppUser.ChangeEmail.ChangeEmail",
-    "Method": "Handler",
-    "RelativePath": "api/AppUser/EmailChange/{userId}/{newEmail}/{code}",
-    "HttpMethod": "PUT",
-    "IsController": false,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "userId",
-        "Type": "System.String",
-        "IsRequired": true
-      },
-      {
-        "Name": "newEmail",
-        "Type": "System.String",
-        "IsRequired": true
-      },
-      {
-        "Name": "code",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 200
-      }
-    ],
-    "Tags": [
-      "Account"
     ]
   },
   {

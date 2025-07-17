@@ -42,14 +42,17 @@ export default function MainPageProductCard(props: {product:ProductData}){
 
     return(
             <Card elevation={9} sx={{display:"flex",flexDirection:"column",justifyContent:"space-between",minHeight:"100%",minWidth:"250px"}}>
-                <CardMedia
-                    className={"cardImg"}
-                    sx={{ objectFit: "contain",cursor:"pointer" }}
-                    onClick={()=>navigate(`/SanPham/${props.product.id}`)}
-                    image={`https://localhost:7075/api/Products/${props.product.id}/Thumbnail`}
-                    title={props.product.name}
-                    component="img"
-                />
+                <div style={{maxHeight:"300px",overflow:"hidden"}}>
+                    <CardMedia
+                        className={"cardImg"}
+                        sx={{ objectFit: "contain",cursor:"pointer",maxHeight:"300px" }}
+                        onClick={()=>navigate(`/SanPham/${props.product.id}`)}
+                        image={`https://localhost:7075/api/Products/${props.product.id}/Thumbnail`}
+                        title={props.product.name}
+                        component="img"
+                    />
+                </div>
+
                 <CardContent sx={{flexGrow:2}}>
                     <Tooltip title={props.product.name}>
                         <Typography className="ProductName" sx={{
@@ -81,16 +84,18 @@ export default function MainPageProductCard(props: {product:ProductData}){
 
 
                     </Stack>
-                    {props.product.quantity<=0 ?
-                        <Button disabled fullWidth variant={"outlined"}>Hết hàng</Button>
-                        :
-                        <Button variant={"contained"} color="success" onClick={()=> {
-                            if(userInfo.isLogged)
-                                mutate(props.product.id)
-                            else
-                                globalError.setError("Chưa đăng nhập!")
-                        }} fullWidth>Thêm vào giỏ hàng</Button>
-                    }
+                    <div style={{margin:0,width:"100%"}}>
+                        {props.product.quantity<=0 ?
+                            <Button  disabled fullWidth variant={"outlined"}>Hết hàng</Button>
+                            :
+                            <Button  variant={"contained"} color="success" onClick={()=> {
+                                if(userInfo.isLogged)
+                                    mutate(props.product.id)
+                                else
+                                    globalError.setError("Chưa đăng nhập!")
+                            }} fullWidth>Thêm vào giỏ hàng</Button>
+                        }
+                    </div>
                 </CardActions>
             </Card>
 
