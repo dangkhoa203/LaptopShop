@@ -14,7 +14,7 @@ import {buildProduct} from "../PCBuilderPage.tsx";
 import {Response} from "../../../Type/Respone.ts";
 import {useAppError} from "../../../State/AppErrorState.ts";
 
-export default function BuildItemChooseCard(props:{componentName:string,categoryId:string,product:buildProduct|undefined,reFetchBuild:()=>void}) {
+export default function BuildItemChooseCard(props:{componentName:string,categoryId:string,product:buildProduct|undefined,reFetchBuild:()=>void,required:boolean}) {
     const userInfo = useUserInfo(state=>state.user);
     const [open, setOpen] = useState(false);
     const handleClickOpen = () => {
@@ -105,6 +105,12 @@ export default function BuildItemChooseCard(props:{componentName:string,category
                     <Typography textAlign="center" component={"div"} sx={{width:"100%",fontSize:"2.6em"}}  variant="h6">
                         {props.componentName}
                     </Typography>
+                    {!props.required &&
+                        <Typography textAlign="center" component={"div"} sx={{width:"100%",fontSize:"1.3em"}} color={"textSecondary"}  variant="h6">
+                            (Không cần thiết)
+                        </Typography>
+                    }
+
                     <div style={{width:"100%",display:"flex",justifyContent:"center"}}>
                         <Button onClick={handleClickOpen} variant={"contained"} color={"success"} sx={{width:"130px"}}>Chọn</Button>
                     </div>

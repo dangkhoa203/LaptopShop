@@ -377,16 +377,16 @@ namespace APIShopLaptop.Data {
                         Description="Case máy tính",
                         SubCaterories= [
                             new SubCaterory {
+                                Id=$"CASE_ATX",
+                                Name="ATX",
+                            },
+                            new SubCaterory {
                                 Id=$"CASE_MINIITX",
                                 Name="Mini-ITX",
                             },
                             new SubCaterory {
                                 Id=$"CASE_MICROATX",
                                Name="Micro-ATX",
-                            },
-                            new SubCaterory {
-                                Id=$"CASE_TOWER",
-                               Name="Tower",
                             },
                         ]
                     },

@@ -16,6 +16,7 @@ import {Navigate} from "react-router";
 import {useUserInfo} from "../State/User.ts";
 import * as React from "react";
 import {useMutation} from "@tanstack/react-query";
+import {Response} from "../Type/Respone.ts";
 
 
 interface loginInfo{
@@ -71,44 +72,49 @@ export default function AdminLogin(){
     }
     const userInfo=useUserInfo((state)=> state.user);
     const reFetch=useUserInfo((state)=> state.reFetch);
-    const { isPending, mutate }=useMutation({mutationFn:async ()=>{
+    const { isPending, mutate }=useMutation({
+        mutationFn:async ()=>{
             if (checkLoginInfo()) {
-                try {
                     const response = await fetch('https://localhost:7075/api/Admin/Account/Login', {
                         method: 'POST',
                         headers: {'Content-Type': 'application/json'},
                         credentials: 'include',
                         body: JSON.stringify(loginInfo)
                     })
-                    if (!response.ok) {
-                        const content = await response.json();
-                        const errormessage:loginError={
-                            Username:"",
-                            Password:"",
-                            Global:""
-                        }
-                        if( content.validateError!==null && !content.validateError.isValid) {
-                            const list = content.validateError.errors
-                            list.forEach((element: any) => {
-
-                                if (element.propertyName === "UserName")
-                                    errormessage.Username=element.errorMessage
-
-                                if (element.propertyName === "Password"){
-                                    errormessage.Password=element.errorMessage
-                                }
-                            })
-                        }
-                        errormessage.Global=content.errorMessage
-                        setValidatationError(errormessage)
-                    }else{
-                        await reFetch()
+                    return await response.json()
+            }else
+                return null
+        },
+        onSuccess:(data:Response)=>{
+            if(data!==null){
+                if(data.success){
+                    reFetch()
+                }
+                else {
+                    const errormessage:loginError={
+                        Username:"",
+                        Password:"",
+                        Global:""
                     }
-                } catch  {
-                    console.log("validatationError")
+                    if(  !data.validationError.isValid) {
+                        const list = data.validationError.errors
+                        list.forEach((element: any) => {
+
+                            if (element.propertyName === "UserName")
+                                errormessage.Username=element.errorMessage
+
+                            if (element.propertyName === "Password"){
+                                errormessage.Password=element.errorMessage
+                            }
+                        })
+                    }
+                    errormessage.Global=data.errorMessage
+                    setValidatationError(errormessage)
                 }
             }
-        }});
+
+        }
+    });
     const handleKeyDown = (event:any) => {
         if (event.key === 'Enter') {
             mutate()

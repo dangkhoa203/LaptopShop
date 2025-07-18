@@ -104,7 +104,7 @@ export default function Specification(){
             ,
             wrapHeaderText:true,
             wrapText:true,
-            headerName:"Hoạt động",filter:false,
+            headerName:"Tìm kiếm",filter:false,
             resizable:false,
             unSortIcon: true,flex: 1,
             minWidth:150,

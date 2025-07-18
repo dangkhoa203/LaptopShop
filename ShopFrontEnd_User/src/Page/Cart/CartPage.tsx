@@ -21,12 +21,13 @@ export default function CartPage(){
         return total;
     }
     const userInfo=useUserInfo(state=>state.user);
-    if(!userInfo.isLogged){
-        return <Navigate to={"/"}></Navigate>
-    }
     useEffect(()=>{
         document.title="Giỏ hàng"
     },[])
+    if((!userInfo.isLogged) && userInfo.userName!=='default'){
+        return <Navigate to={"/"}></Navigate>
+    }
+
     return(
         <Container maxWidth="lg">
             <Grid container sx={{padding:"10px"}} spacing={2} >

@@ -1,13 +1,14 @@
 ﻿using APIShopLaptop.Data;
 using APIShopLaptop.Endpoint;
-using static APIShopLaptop.Feature.User.Builds.GetBuild;
-using System.Security.Claims;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SixLabors.ImageSharp.Metadata.Profiles.Exif;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
 using System.Text.Encodings.Web;
 using System.Web;
-using System.Collections.Generic;
+using static APIShopLaptop.Feature.User.Builds.GetBuild;
 
 namespace APIShopLaptop.Feature.User.Builds {
     public class GetProductForBuild : IEndpoint {
@@ -56,7 +57,7 @@ namespace APIShopLaptop.Feature.User.Builds {
                                             Products.Where(
                                                 p=>p.Compatibilitys.Count==0||
                                                 p.Compatibilitys.All(c=>!compatibilities.Any(r=>r.Id==c.SpecificationId))||
-                                                p.Compatibilitys.Any(c=> compatibilities.Any(r=>r.Id==c.SpecificationId && r.Value==c.Value))
+                                                compatibilities.Where(c=>p.Compatibilitys.Any(r => r.SpecificationId == c.Id)).All(c=> p.Compatibilitys.Any(r => r.SpecificationId == c.Id && r.Value == c.Value))
                                             );
                 var test= Filter.ToList();
                 var data= Filter.GroupBy(i => i.Id)
@@ -69,7 +70,7 @@ namespace APIShopLaptop.Feature.User.Builds {
                            i.First().PriceAfterDiscount
                        ));
                 var Total= data.Count();
-                var TotalPage = (data.Count() / 10) + 1;
+                var TotalPage = (int)Math.Ceiling((double)data.Count() / 10);
                 var list = data.Skip(10 * (page - 1)).Take(10).ToList();
                 
                 return Results.Ok(new Response(true,new DataDTO(list,TotalPage,Total), ""));

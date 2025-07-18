@@ -14,6 +14,7 @@ import {Response} from "../../../Type/Respone.ts";
 import Tooltip from "@mui/material/Tooltip";
 import {useNavigate} from "react-router";
 import {useAppNotify} from "../../../State/AppGlobalNotifyState.ts";
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 export default function ProductCard(props: {product:ProductData}){
     const reFetch=useCart((state)=>state.reFetch)
     const userInfo=useUserInfo(state => state.user)
@@ -42,7 +43,7 @@ export default function ProductCard(props: {product:ProductData}){
     const navigate=useNavigate()
     return(
         <Card elevation={12} className="productCard" sx={{display:"flex",flexDirection:"column",justifyContent:"space-between",minHeight:"100%"}}>
-            <div style={{minHeight:"300px",overflow:"hidden"}}>
+            <div style={{maxHeight:"300px",overflow:"hidden"}}>
                 <CardMedia
                     className={"cardImg"}
                     sx={{ objectFit: "contain",cursor:"pointer" }}
@@ -81,11 +82,11 @@ export default function ProductCard(props: {product:ProductData}){
                         }
                     </div>
                 </Stack>
-                <div style={{margin:0}}>
+                <div style={{margin:0,width:"100%"}}>
                     {props.product.quantity<=0 ?
                         <Button  disabled fullWidth variant={"outlined"}>Hết hàng</Button>
                         :
-                        <Button  variant={"contained"} color="success" onClick={()=> {
+                        <Button endIcon={<AddShoppingCartIcon/>}  variant={"contained"} color="success" onClick={()=> {
                             if(userInfo.isLogged)
                                 mutate(props.product.id)
                             else

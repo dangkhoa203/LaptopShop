@@ -62,6 +62,7 @@ namespace APIShopLaptop.Feature.Admin.Products {
                     var ThumbnailStream = request.ProductPicture[0].OpenReadStream();
                     using (Image image = Image.Load(ThumbnailStream)) {
                         image.Mutate(x => { x.Resize(600, 600); });
+                        image.Mutate(x => x.BackgroundColor(Color.White));
                         image.SaveAsJpeg(Path.Combine(ProductImagePath, $"{ThumbnailImage.Id}.jpg"));
                     }
                     ThumbnailImage.Product = Product;

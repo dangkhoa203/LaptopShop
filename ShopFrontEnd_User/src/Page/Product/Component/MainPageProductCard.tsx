@@ -13,7 +13,7 @@ import {useUserInfo} from "../../../State/User.ts";
 import {useAppError} from "../../../State/AppErrorState.ts";
 import {useNavigate} from "react-router";
 import Tooltip from "@mui/material/Tooltip";
-
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
 export default function MainPageProductCard(props: {product:ProductData}){
     const reFetch=useCart((state)=>state.reFetch)
@@ -88,7 +88,7 @@ export default function MainPageProductCard(props: {product:ProductData}){
                         {props.product.quantity<=0 ?
                             <Button  disabled fullWidth variant={"outlined"}>Hết hàng</Button>
                             :
-                            <Button  variant={"contained"} color="success" onClick={()=> {
+                            <Button endIcon={<AddShoppingCartIcon/>} variant={"contained"} color="success" onClick={()=> {
                                 if(userInfo.isLogged)
                                     mutate(props.product.id)
                                 else

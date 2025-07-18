@@ -17,6 +17,9 @@ namespace APIShopLaptop.Feature.User.UserAccount {
                     return Results.Ok(new Response("", "", "", false));
 
                 AppUser Info = await userManager.FindByNameAsync(User.Identity.Name);
+                if (await userManager.IsInRoleAsync(Info, "Admin")) {
+                    return Results.Ok(new Response("", "", "", false));
+                }
                 await signInManager.RefreshSignInAsync(Info);
 
                 return Results.Ok(new Response(Info.UserName, Info.Email, Info.Id, true));

@@ -161,7 +161,7 @@ export default function BuildOrderPage(){
     const [orderId, setOrderId]=useState("")
 
     const navigate = useNavigate();
-    const itemCheck=["MOTHERBOARD","CPU","CARD","PSU","RAM","OCUNG","CASE","MANHINH"]
+    const itemCheck=["MOTHERBOARD","CPU","PSU","RAM","OCUNG","CASE"]
     const checkOutCheck:(buildItems:buildProduct[])=>boolean=(buildItems)=>{
         if(buildItems.length===0)
             return false;

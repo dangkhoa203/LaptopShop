@@ -5,7 +5,7 @@ import {Grid, Paper, Skeleton} from "@mui/material";
 import BuildItemCard from "./Component/BuildItemCard.tsx";
 import {useUserInfo} from "../../State/User.ts";
 import Button from "@mui/material/Button";
-import {useNavigate} from "react-router";
+import {Navigate, useNavigate} from "react-router";
 export type buildProduct={
     productId: string;
     productName: string;
@@ -48,7 +48,7 @@ export default function PCBuilderPage(){
         })
         return total;
     }
-    const itemCheck=["MOTHERBOARD","CPU","CARD","PSU","RAM","OCUNG","CASE","MANHINH"]
+    const itemCheck=["MOTHERBOARD","CPU","PSU","RAM","OCUNG","CASE"]
     const checkOutCheck:()=>boolean=()=>{
         if(build.length===0)
             return false;
@@ -61,6 +61,9 @@ export default function PCBuilderPage(){
     useEffect(()=>{
         document.title="Xây dựng máy tính"
     },[])
+    if((!userInfo.isLogged) && userInfo.userName!=='default'){
+        return <Navigate to={"/"}></Navigate>
+    }
     return(
         <Container maxWidth="lg">
             <Grid container spacing={2}>
@@ -78,14 +81,14 @@ export default function PCBuilderPage(){
                         </div>
                         :
                         <>
-                            <BuildItemCard categoryId={"MOTHERBOARD"} products={build} componentName={"Motherboard"} reFetch={refetch} updateAble={false}/>
-                            <BuildItemCard categoryId={"CPU"} products={build} componentName={"CPU"} reFetch={refetch} updateAble={false}/>
-                            <BuildItemCard categoryId={"CARD"} products={build} componentName={"Card đồ họa"} reFetch={refetch} updateAble={false}/>
-                            <BuildItemCard categoryId={"PSU"} products={build} componentName={"Nguồn"} reFetch={refetch} updateAble={false}/>
-                            <BuildItemCard categoryId={"RAM"} products={build} componentName={"RAM"} reFetch={refetch} updateAble={true}/>
-                            <BuildItemCard categoryId={"OCUNG"} products={build} componentName={"Ổ cứng"} reFetch={refetch} updateAble={true}/>
-                            <BuildItemCard categoryId={"CASE"} products={build} componentName={"Vỏ Case"} reFetch={refetch} updateAble={false}/>
-                            <BuildItemCard categoryId={"MANHINH"} products={build} componentName={"Màn hình"} reFetch={refetch} updateAble={false}/>
+                            <BuildItemCard categoryId={"MOTHERBOARD"} required={true} products={build} componentName={"Motherboard"} reFetch={refetch} updateAble={false}/>
+                            <BuildItemCard categoryId={"CPU"} required={true} products={build} componentName={"CPU"} reFetch={refetch} updateAble={false}/>
+                            <BuildItemCard categoryId={"CARD"} required={false} products={build} componentName={"Card đồ họa"} reFetch={refetch} updateAble={false}/>
+                            <BuildItemCard categoryId={"PSU"} required={true} products={build} componentName={"Nguồn"} reFetch={refetch} updateAble={false}/>
+                            <BuildItemCard categoryId={"RAM"} required={true} products={build} componentName={"RAM"} reFetch={refetch} updateAble={true}/>
+                            <BuildItemCard categoryId={"OCUNG"} required={true} products={build} componentName={"Ổ cứng"} reFetch={refetch} updateAble={true}/>
+                            <BuildItemCard categoryId={"CASE"} required={true} products={build} componentName={"Vỏ Case"} reFetch={refetch} updateAble={false}/>
+                            <BuildItemCard categoryId={"MANHINH"} required={false} products={build} componentName={"Màn hình"} reFetch={refetch} updateAble={false}/>
                         </>
                     }
 

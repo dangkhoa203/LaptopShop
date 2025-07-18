@@ -9,10 +9,13 @@ import banner3 from "../assets/banner3.jpg"
 import banner4 from "../assets/banner4.jpg"
 import banner5 from "../assets/banner5.jpg"
 import banner7 from "../assets/banner7.gif"
+import banner8 from "../assets/thang_04_pc_tang_man_banner_191b3b.jpg"
+import banner9 from "../assets/home_tabs_6_banner.jpg"
 import {CardActionArea, Grid, Paper} from "@mui/material";
 import MainPageMainCategoryProduct from "./Product/Component/MainPageMainCategoryProduct.tsx";
 import MainPageCategory from "./MainPageCategory.tsx";
 import {useEffect} from "react";
+import MainPageMainCategoryProductStyle2 from "./Product/Component/MainPageMainCategoryProductStyle2.tsx";
 
 
 
@@ -85,7 +88,7 @@ export default function HomePage() {
                     </Grid>
                 </Grid>
             </div>
-
+            <MainPageMainCategoryProduct isMain={true} category={"Máy tính"} categoryId={"PC"} redirectLink={"/PC"}/>
             <Paper elevation={6}>
                 <Card sx={{ maxWidth: "100%" }}>
                     <CardActionArea>
@@ -98,8 +101,43 @@ export default function HomePage() {
                     </CardActionArea>
                 </Card>
             </Paper>
-            <MainPageMainCategoryProduct isMain={true} category={"Máy tính"} categoryId={"PC"} redirectLink={"/PC"}/>
+
+
             <MainPageMainCategoryProduct isMain={true} category={"Máy laptop"} categoryId={"LAPTOP"} redirectLink={"/Laptop"}/>
+            <Paper elevation={6}>
+                <Card sx={{ maxWidth: "100%" }}>
+                    <CardActionArea>
+                        <CardMedia
+                            component="img"
+                            image={banner8}
+                            height={"auto"}
+                            alt="green iguana"
+                        />
+                    </CardActionArea>
+                </Card>
+            </Paper>
+            <MainPageMainCategoryProduct isMain={true} category={"Bo mạch"} categoryId={"MOTHERBOARD"} redirectLink={"/Bo_Mach"}/>
+
+            <Grid container spacing={2}>
+                <Grid sx={{display:{xs:"none",sm:"none",md:"block",lg:"block"}}} size={4}>
+                    <Paper elevation={6}>
+                        <Card sx={{ maxWidth: "100%" }}>
+                            <CardActionArea>
+                                <CardMedia
+                                    component="img"
+                                    image={banner9}
+                                    height={"auto"}
+                                    alt="green iguana"
+                                />
+                            </CardActionArea>
+                        </Card>
+                    </Paper>
+                </Grid>
+                <Grid size={{xs:12,sm:12,md:8,lg:8}}>
+                    <MainPageMainCategoryProductStyle2 isMain={true} category={"Case máy tính"} categoryId={"CASE"} redirectLink={"/Case"}/>
+                </Grid>
+            </Grid>
+            <MainPageMainCategoryProduct isMain={true} category={"RAM"} categoryId={"RAM"} redirectLink={"/RAM"}/>
         </Container>
 
     );
