@@ -6,6 +6,7 @@ using APIShopLaptop.Model.Entity.Product_Related;
 using APIShopLaptop.Model.Enum;
 using FluentValidation;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NanoidDotNet;
@@ -27,7 +28,7 @@ namespace APIShopLaptop.Feature.User.Orders {
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapPost("/api/Orders", Handler).WithTags("Orders");
         }
-
+        [Authorize(Roles = "User")]
         private static async Task<IResult> Handler([FromBody] Request request, ApplicationDBContext context, MoMoService moMoService, ClaimsPrincipal User) {
             var Validator = new Validator();
             var ValidatedResult = Validator.Validate(request);

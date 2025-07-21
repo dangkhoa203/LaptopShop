@@ -1,6 +1,7 @@
 ﻿using APIShopLaptop.Data;
 using APIShopLaptop.Endpoint;
 using APIShopLaptop.Model.Enum;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 
 namespace APIShopLaptop.Feature.User.Orders {
@@ -14,14 +15,15 @@ namespace APIShopLaptop.Feature.User.Orders {
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapGet("/api/Orders/{id}", Handler).WithTags("Orders");
         }
+        [Authorize(Roles = "User")]
         private static async Task<IResult> Handler(string id, ApplicationDBContext context) {
             try {
                 var Order = await context.Orders
-                     .Where(o => o.Id == id)
-                     .Include(o => o.Details)
-                        .ThenInclude(d => d.ProductNavigation)
-                     .Include(o=>o.DiscountCode)
-                     .FirstOrDefaultAsync();
+                                         .Where(o => o.Id == id)
+                                         .Include(o => o.Details)
+                                            .ThenInclude(d => d.ProductNavigation)
+                                         .Include(o=>o.DiscountCode)
+                                         .FirstOrDefaultAsync();
 
                 if (Order == null)
                     return Results.NotFound(new Response(false, null, "Không tìm thấy đơn hàng!"));
@@ -37,10 +39,10 @@ namespace APIShopLaptop.Feature.User.Orders {
                          Order.Details.Select(d => new DetailDTO(d.ProductId, d.ProductNavigation.Name, d.Price, d.Quantity,
                             Order.Status == ORDERSTATUS.FINISHED &&
                             context.Reviews
-                                .Include(r => r.Product)
-                                .Include(r => r.Order)
-                                .FirstOrDefault(r => r.Product.Id == d.ProductId && r.Order.Id == Order.Id) == null)
-                         ).ToList(),
+                                    .Include(r => r.Product)
+                                    .Include(r => r.Order)
+                                    .FirstOrDefault(r => r.Product.Id == d.ProductId && r.Order.Id == Order.Id) == null)
+                             ).ToList(),
                          Order.DiscountCode==null ? new DiscountCodeDTO("","",0) : new DiscountCodeDTO(Order.DiscountCode.Id,Order.DiscountCode.Name,Order.DiscountCode.Percent)
                 );
                 return Results.Ok(new Response(true, Data, ""));

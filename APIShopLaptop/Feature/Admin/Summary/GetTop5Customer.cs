@@ -17,8 +17,13 @@ namespace APIShopLaptop.Feature.Admin.Summary {
         [Authorize(Roles = "Admin")]
         private static async Task<IResult> Handler(ApplicationDBContext context, UserManager<AppUser> userManager) {
             try {
-                var Users = await context.Users.Include(u => u.Orders).Select(u => new SaleDTO(u.UserName, u.Orders.Count())).ToListAsync();
+                var Users = await context.Users
+                                         .Include(u => u.Orders)
+                                         .Select(u => new SaleDTO(u.UserName, u.Orders.Count()))
+                                         .ToListAsync();
+
                 var Data = Users.Where(o=>o.count>0).Take(5).ToList();
+
                 return Results.Ok(new Response(true,Data,""));
             }
             catch (Exception) {

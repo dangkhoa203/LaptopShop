@@ -15,9 +15,12 @@ namespace APIShopLaptop.Feature.Admin.Account {
         private static async Task<IResult> Handler(ApplicationDBContext applicationDBContext, UserManager<AppUser> userManager) {
             try {
                 var Users = await userManager.GetUsersInRoleAsync("User");
+
                 var Data = Users
                     .Select(u => new UserDTO(u.Id, u.UserName, u.Email,u.EmailConfirmed, u.DateCreated))
+                    .OrderByDescending(u=>u.RegisterDate)
                     .ToList();
+
                 return Results.Ok(new Response(true, Data, ""));
             }
             catch (Exception e) {

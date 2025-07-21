@@ -2995,10 +2995,6 @@
       "APIShopLaptop.Feature.User.UserAccount.ChangeEmail.SendChangeEmailRequest.Request": {
         "type": "object",
         "properties": {
-          "oldEmail": {
-            "type": "string",
-            "nullable": true
-          },
           "newEmail": {
             "type": "string",
             "nullable": true

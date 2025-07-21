@@ -12,7 +12,6 @@ import {
     ToggleButtonGroup
 } from "@mui/material";
 import Button from "@mui/material/Button";
-import {districts} from "../../Type/Districts.ts";
 import Container from "@mui/material/Container";
 import OrderDetailCard from "./OrderDetailCard.tsx";
 import {useEffect, useState} from "react";
@@ -46,12 +45,81 @@ export default function CreateOrderPage(){
         code:"",
     });
     const cartItems=useCart((state)=>state.cartItems);
+    const fetchCart=useCart(state => state.reFetch)
+    const globalError=useAppError()
+    const userInfo=useUserInfo(state=>state.user)
+    const navigate = useNavigate();
+
+    const [districtList,setDistrictList] = useState<any[]>([]);
+    const GETDISTRICT=useMutation({
+        mutationFn:async ()=>{
+            const response = await fetch(`https://online-gateway.ghn.vn/shiip/public-api/master-data/district`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json','token':import.meta.env.VITE_GIAOHANGNHANH_KEY},
+                body: JSON.stringify({
+                    province_id:202
+                })
+            })
+            return await response.json();
+        },
+        onSuccess:(data:any)=>{
+            if(data){
+                if(data.code===200){
+                    const list:any[]=[]
+                    const bannedList:string[]=["quận thủ đức","quận 2","quận 9"]
+                    data.data.forEach((item:any)=>{
+                        if((!bannedList.includes(item.DistrictName.toLowerCase())) &&(item.DistrictName.toLowerCase().includes("quận")||item.DistrictName.toLowerCase().includes("thành phố")))
+                            list.push({id:item.DistrictID,district:item.DistrictName})
+                    })
+                    setDistrictList(list.sort((a, b) => a.id - b.id))
+                }
+            }
+        }
+    })
+    const [wardList,setWardList] = useState<string[]>([]);
+    const GETWARD=useMutation({
+        mutationFn:async (districtId:number)=>{
+            setValidateError({
+                phoneNumber:"",
+                receiver:"",
+                address:"",
+            })
+            const response = await fetch(`https://online-gateway.ghn.vn/shiip/public-api/master-data/ward?district_id`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json','token':import.meta.env.VITE_GIAOHANGNHANH_KEY},
+                body: JSON.stringify({
+                    district_id:districtId
+                })
+            })
+            return await response.json();
+        },
+        onSuccess:(data:any)=>{
+            if(data){
+                if(data.code===200){
+                    const list:string[]=[]
+                    data.data.sort((a:any, b:any) => a.WardCode - b.WardCode).forEach((item:any)=>{
+                        list.push(item.WardName)
+                    })
+                    setWardList(list)
+                }
+            }
+        }
+    })
     const [districtInfo, setDistrictInfo] = useState({
         id:-1,
         district:"",
     });
     const [wardInfo, setwardInfo] = useState("")
-    const getTotal=()=>{
+    const handleDistrictChange=(e:any)=>{
+        const district = districtList.find(item => item.id === e.target.value);
+        setDistrictInfo({id:e.target.value,district: district.district})
+        setwardInfo("")
+    }
+    const handleWardChange=(e:any)=>{
+        setwardInfo(e.target.value)
+    }
+    
+    const getTotalValue=()=>{
         let total=0;
         cartItems.forEach((item)=>{
             console.log(item);
@@ -62,13 +130,7 @@ export default function CreateOrderPage(){
         })
         return total;
     }
-    const handleDistrictChange=(e:any)=>{
-        setDistrictInfo({id:e.target.value,district: districts[e.target.value].name})
-        setwardInfo("")
-    }
-    const handleWardChange=(e:any)=>{
-        setwardInfo(e.target.value)
-    }
+    
     const [orderInfo,setOrderInfo]=useState<orderInfo>({
         address:"",
         paymentMethod:0,
@@ -90,10 +152,11 @@ export default function CreateOrderPage(){
     };
 
 
-    const reFetch=useCart(state => state.reFetch)
+    
 
     const [momoLoading,setMomoLoading]=useState(false)
-    const globalError=useAppError()
+    const [success,setSuccess]=useState(false)
+    const [orderId, setOrderId]=useState("")
     const [validateError,setValidateError]=useState({
         phoneNumber:"",
         receiver:"",
@@ -156,17 +219,20 @@ export default function CreateOrderPage(){
             }
         }
     })
-    const [success,setSuccess]=useState(false)
-    const [orderId, setOrderId]=useState("")
+
+
+
     useEffect(() => {
         if(success)
-            reFetch()
+            fetchCart()
     }, [success]);
-    const userInfo=useUserInfo(state=>state.user)
-    const navigate = useNavigate();
     useEffect(()=>{
         document.title="Thanh toán"
+        GETDISTRICT.mutate()
     },[])
+    useEffect(()=>{
+        GETWARD.mutate(districtInfo.id)
+    },[districtInfo])
     if(cartItems.length===0 && (!success) ){
         return <Navigate to={"/GioHang"}/>
     }
@@ -215,8 +281,8 @@ export default function CreateOrderPage(){
                                                     onChange={handleDistrictChange}
                                                 >
                                                     <MenuItem value={-1} disabled>Chọn quận</MenuItem>
-                                                    {districts.map((item)=>
-                                                        <MenuItem value={item.id}>{item.name}</MenuItem>
+                                                    {districtList.map((item)=>
+                                                        <MenuItem value={item.id}>{item.district}</MenuItem>
                                                     )}
                                                 </Select>
                                             </FormControl>
@@ -231,9 +297,10 @@ export default function CreateOrderPage(){
                                                     label="Phường"
                                                     onChange={handleWardChange}
                                                 >
-                                                    {districts[districtInfo.id ===-1 ? 0:districtInfo.id].ward.map((item)=>
+                                                    {wardList.map((item)=>
                                                         <MenuItem value={item}>{item}</MenuItem>
                                                     )}
+
 
                                                 </Select>
                                             </FormControl>
@@ -275,18 +342,18 @@ export default function CreateOrderPage(){
                                 <Paper elevation={12} sx={{padding:"10px",marginBottom:"10px",display:"flex",flexDirection:"column",textAlign:"center"}}>
                                     {validCode.id==="" ?
                                         <>
-                                            Giá trị : {getTotal().toLocaleString(undefined, {minimumFractionDigits: 0}) + " VNĐ"}
+                                            Giá trị : {getTotalValue().toLocaleString(undefined, {minimumFractionDigits: 0}) + " VNĐ"}
                                         </>
                                         :
                                         <>
                                             <div>
-                                                {getTotal().toLocaleString(undefined, {minimumFractionDigits: 0}) + " VNĐ"}
+                                                {getTotalValue().toLocaleString(undefined, {minimumFractionDigits: 0}) + " VNĐ"}
                                             </div>
                                             <div>
-                                                -{(getTotal()*(validCode.percent/100)).toLocaleString(undefined, {minimumFractionDigits: 0}) + " VNĐ"}
+                                                -{(getTotalValue()*(validCode.percent/100)).toLocaleString(undefined, {minimumFractionDigits: 0}) + " VNĐ"}
                                             </div>
                                             <div>
-                                                Giá trị : {(getTotal()*((100-validCode.percent)/100)).toLocaleString(undefined, {minimumFractionDigits: 0}) + " VNĐ"}
+                                                Giá trị : {(getTotalValue()*((100-validCode.percent)/100)).toLocaleString(undefined, {minimumFractionDigits: 0}) + " VNĐ"}
                                             </div>
                                         </>
                                     }

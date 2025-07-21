@@ -1,5 +1,6 @@
 ﻿using APIShopLaptop.Data;
 using APIShopLaptop.Endpoint;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SixLabors.ImageSharp.Metadata.Profiles.Exif;
@@ -19,16 +20,18 @@ namespace APIShopLaptop.Feature.User.Builds {
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapGet("/api/Build/Product/{CategoryId}", Handler).WithTags("Build");
         }
+        [Authorize(Roles = "User")]
         private static async Task<IResult> Handler([FromRoute] string CategoryId, [FromQuery]string search, [FromQuery]int page, ApplicationDBContext context, ClaimsPrincipal User) {
             try {
                 var BuildItem = await context.Users
-                .Include(u => u.Build)
-                    .ThenInclude(u => u.BuildItems)
-                        .ThenInclude(p => p.ProductNavigation)
-                            .ThenInclude(p => p.Compatibilitys)
-                .Where(u => u.UserName == User.Identity.Name)
-                .Select(u => u.Build.BuildItems)
-                .FirstOrDefaultAsync();
+                                            .Include(u => u.Build)
+                                                .ThenInclude(u => u.BuildItems)
+                                                    .ThenInclude(p => p.ProductNavigation)
+                                                        .ThenInclude(p => p.Compatibilitys)
+                                            .Where(u => u.UserName == User.Identity.Name)
+                                            .Select(u => u.Build.BuildItems)
+                                            .FirstOrDefaultAsync();
+
                 var compatibilities=new List<CompatibilityDTO>();
                 foreach(var item in BuildItem) {
                     foreach(var productCompatibility in item.ProductNavigation.Compatibilitys) {
@@ -39,18 +42,19 @@ namespace APIShopLaptop.Feature.User.Builds {
                 }
 
                 var subCategory = await context.SubCaterories
-                       .Include(c => c.MainCaterory)
-                       .Where(c => c.MainCaterory.Id == CategoryId)
-                       .Select(c => c.Id)
-                       .ToListAsync();
+                                               .Include(c => c.MainCaterory)
+                                               .Where(c => c.MainCaterory.Id == CategoryId)
+                                               .Select(c => c.Id)
+                                               .ToListAsync();
 
                 var Products = await context.CateroryItems
-                   .Include(i => i.ProductNavigation)
-                   .ThenInclude(p => p.Compatibilitys)
-                   .Where(i => i.ProductNavigation.Status==Model.Enum.PRODUCTSTATUS.ACTIVE)
-                   .Where(i => subCategory.Any(c => c == i.CateroryId))
-                   .Where(i=>i.ProductNavigation.Name.Contains(search))
-                   .Select(p=>p.ProductNavigation).ToListAsync();
+                                           .Include(i => i.ProductNavigation)
+                                           .ThenInclude(p => p.Compatibilitys)
+                                           .Where(i => i.ProductNavigation.Status==Model.Enum.PRODUCTSTATUS.ACTIVE)
+                                           .Where(i => subCategory.Any(c => c == i.CateroryId))
+                                           .Where(i=>i.ProductNavigation.Name.Contains(search))
+                                           .Select(p=>p.ProductNavigation).ToListAsync();
+
                 var Filter = compatibilities.Count<=0 ? 
                                             Products
                                             :
@@ -69,6 +73,7 @@ namespace APIShopLaptop.Feature.User.Builds {
                            i.First().IsDiscount,
                            i.First().PriceAfterDiscount
                        ));
+
                 var Total= data.Count();
                 var TotalPage = (int)Math.Ceiling((double)data.Count() / 10);
                 var list = data.Skip(10 * (page - 1)).Take(10).ToList();

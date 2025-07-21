@@ -15,18 +15,19 @@ namespace APIShopLaptop.Feature.User.Caterory {
         }
         private static async Task<IResult> Handler([FromRoute]string Id,[FromQuery]int page, [FromQuery]SORTMODE sortMode, [FromQuery] string brands, ApplicationDBContext context) {
             try {
-                List<string> brand = brands.Split(",").ToList();
+                List<string> BrandFilter = brands.Split(",").ToList();
                 int perPage = 12;
                 var Products = context.CateroryItems
-                    .Where(i => i.CateroryId == Id)
-                    .Include(i => i.ProductNavigation)
-                    .ThenInclude(i=>i.Brand)
-                    .Include(i=>i.ProductNavigation)
-                    .ThenInclude(p=>p.Reviews)
-                    .Where(i => i.ProductNavigation.Status == PRODUCTSTATUS.ACTIVE);
+                                        .Where(i => i.CateroryId == Id)
+                                        .Include(i => i.ProductNavigation)
+                                        .ThenInclude(i=>i.Brand)
+                                        .Include(i=>i.ProductNavigation)
+                                        .ThenInclude(p=>p.Reviews)
+                                        .Where(i => i.ProductNavigation.Status == PRODUCTSTATUS.ACTIVE);
+
                 IQueryable<ProductDTO> Sort;
-                if (brand[0] !="") {
-                    Products = Products.Where(i=>brand.Any(b=>b==i.ProductNavigation.Brand.Tag));
+                if (BrandFilter[0] !="") {
+                    Products = Products.Where(i=>BrandFilter.Any(b=>b==i.ProductNavigation.Brand.Tag));
                 }
                 switch (sortMode) {
                     case SORTMODE.NAME_ASC:

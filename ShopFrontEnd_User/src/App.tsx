@@ -5,7 +5,6 @@ import "./CSS/CardAnimation.css"
 import "./CSS/ProductDescription.css"
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 function App() {
-
     return (
         <div style={{minHeight:"100vh"}}>
             <RouteComponent  />

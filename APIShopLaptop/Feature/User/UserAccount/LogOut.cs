@@ -1,5 +1,6 @@
 ﻿using APIShopLaptop.Endpoint;
 using APIShopLaptop.Model.Entity.Account;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 
 namespace APIShopLaptop.Feature.User.UserAccount {
@@ -8,6 +9,7 @@ namespace APIShopLaptop.Feature.User.UserAccount {
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapPost("/api/Account/LogOut", Handler).WithTags("Account");
         }
+        [Authorize(Roles = "User")]
         private static async Task<IResult> Handler(SignInManager<AppUser> signInManager) {
             try {
                 await signInManager.SignOutAsync();

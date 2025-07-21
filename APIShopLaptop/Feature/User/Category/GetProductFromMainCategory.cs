@@ -19,19 +19,19 @@ namespace APIShopLaptop.Feature.User.Category {
                 List<string> brand = brands.Split(",").ToList();
                 int perPage = 12;
                 var subCategory = await context.SubCaterories
-                    .Include(c => c.MainCaterory)
-                    .Where(c => c.MainCaterory.Id == Id)
-                    .Select(c => c.Id)
-                    .ToListAsync();
+                                                .Include(c => c.MainCaterory)
+                                                .Where(c => c.MainCaterory.Id == Id)
+                                                .Select(c => c.Id)
+                                                .ToListAsync();
 
                 var Data = context.CateroryItems
-                   .Include(i => i.ProductNavigation)
-                       .ThenInclude(p => p.Brand)
-                   .Include(i => i.ProductNavigation)
-                       .ThenInclude(p => p.Reviews)
-                   .Include(i => i.ProductNavigation)
-                       .ThenInclude(p => p.Brand)
-                   .Where(i => subCategory.Any(c => c == i.CateroryId) && i.ProductNavigation.Status == PRODUCTSTATUS.ACTIVE);
+                                   .Include(i => i.ProductNavigation)
+                                       .ThenInclude(p => p.Brand)
+                                   .Include(i => i.ProductNavigation)
+                                       .ThenInclude(p => p.Reviews)
+                                   .Include(i => i.ProductNavigation)
+                                       .ThenInclude(p => p.Brand)
+                                   .Where(i => subCategory.Any(c => c == i.CateroryId) && i.ProductNavigation.Status == PRODUCTSTATUS.ACTIVE);
 
                 if (brand[0] != "") {
                     Data = Data.Where(i => brand.Any(b => b == i.ProductNavigation.Brand.Tag));

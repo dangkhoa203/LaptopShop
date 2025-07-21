@@ -8,7 +8,10 @@ export default function ReviewCard(props:{review:ProductReviewData}){
     return(
         <>
             <Card sx={{borderTop:"5px solid blue",marginBottom:"10px"}} elevation={6}>
-                <CardHeader title={props.review.userName} subheader="September 14, 2016">
+                <CardHeader title={props.review.userName} subheader={new Date(Date.parse(props.review.reviewDate)).toLocaleString('En-GB', {
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit' })}>
 
                 </CardHeader>
                 <CardContent sx={{paddingTop:"0px"}}>

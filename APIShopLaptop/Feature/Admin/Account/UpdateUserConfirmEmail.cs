@@ -13,11 +13,18 @@ namespace APIShopLaptop.Feature.Admin.Account {
         private static async Task<IResult> Handler(string id, ApplicationDBContext applicationDBContext) {
             try {
                 var User = applicationDBContext.Users.FirstOrDefault(x => x.Id == id);
+
                 if (User == null)
-                    return Results.NotFound(new Response(false, "Không tìm thấy user!"));
+                    return Results.NotFound(new Response(false, "Không tìm thấy người dùng!"));
+
                 User.EmailConfirmed = true;
-                await applicationDBContext.SaveChangesAsync();
-                return Results.Ok(new Response(true, ""));
+
+                if (await applicationDBContext.SaveChangesAsync() > 0) {
+                    return Results.Ok(new Response(true, ""));
+                }
+
+                return Results.BadRequest(new Response(false, "Lỗi xảy ra khi đang thực hiện!"));
+
             }
             catch (Exception e) {
                 return Results.BadRequest(new Response(false, "Lỗi Server"));

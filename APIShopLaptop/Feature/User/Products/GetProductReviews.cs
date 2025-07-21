@@ -6,7 +6,7 @@ using System.Security.Claims;
 
 namespace APIShopLaptop.Feature.User.Products {
     public class GetProductReviews : IEndpoint {
-        public record ReviewDTO(string Content, float Score, string UserName);
+        public record ReviewDTO(string Content, float Score, string UserName,DateTime ReviewDate);
         public record Response(bool Success, List<ReviewDTO> Data,int Total, string ErrorMessage);
 
         public static void MapEndpoint(IEndpointRouteBuilder app) {
@@ -24,10 +24,10 @@ namespace APIShopLaptop.Feature.User.Products {
                 int Total=Product.Reviews.Count;
                 List<ReviewDTO> Reviews;
                 if (preview == 0) {
-                    Reviews = Product.Reviews.Select(r => new ReviewDTO(r.Content, r.Score, r.User.UserName)).ToList();
+                    Reviews = Product.Reviews.Select(r => new ReviewDTO(r.Content, r.Score, r.User.UserName,r.DateOfReview)).ToList();
                 }
                 else {
-                    Reviews = Product.Reviews.Select(r => new ReviewDTO(r.Content, r.Score, r.User.UserName)).Take(3).ToList();
+                    Reviews = Product.Reviews.Select(r => new ReviewDTO(r.Content, r.Score, r.User.UserName,r.DateOfReview)).Take(3).ToList();
                 }
                 return Results.Ok(new Response(true, Reviews,0, ""));
             }

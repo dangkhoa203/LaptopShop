@@ -1,5 +1,6 @@
 ﻿using APIShopLaptop.Data;
 using APIShopLaptop.Endpoint;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 
@@ -10,16 +11,17 @@ namespace APIShopLaptop.Feature.User.Builds {
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapGet("/api/Build", Handler).WithTags("Build");
         }
+        [Authorize(Roles = "User")]
         private static async Task<IResult> Handler(ApplicationDBContext context, ClaimsPrincipal User) {
             try {
 
                 var Build = await context.Users
-                    .Include(u => u.Build)
-                        .ThenInclude(u => u.BuildItems)
-                            .ThenInclude(p => p.ProductNavigation)
-                    .Where(u => u.UserName == User.Identity.Name)
-                    .Select(u => u.Build)
-                    .FirstOrDefaultAsync();
+                                            .Include(u => u.Build)
+                                                .ThenInclude(u => u.BuildItems)
+                                                    .ThenInclude(p => p.ProductNavigation)
+                                            .Where(u => u.UserName == User.Identity.Name)
+                                            .Select(u => u.Build)
+                                            .FirstOrDefaultAsync();
 
                 bool changedFlag = false;
                 var Data = new List<BuildProductDTO>();

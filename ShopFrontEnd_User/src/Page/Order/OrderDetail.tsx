@@ -99,7 +99,7 @@ export default function OrderDetail(){
     };
 
     const navigate=useNavigate();
-    const orginalPrice=orderDetail.discountCode.id!=="" ? (orderDetail.value/(100-orderDetail.discountCode.percent))*100 :0
+    const originalPrice=orderDetail.discountCode.id!=="" ? (orderDetail.value/(100-orderDetail.discountCode.percent))*100 :0
     // @ts-ignore
     return(
         <Container maxWidth="lg" sx={{paddingTop:"5px",display:"flex",flexDirection:"column"}}>
@@ -248,8 +248,8 @@ export default function OrderDetail(){
                                 <Grid size={12}>
                                     {orderDetail.discountCode.id !="" ?
                                         <>
-                                            <Typography textAlign={"end"} variant={"h5"}>Giá trị gốc : {orginalPrice.toLocaleString(undefined, { minimumFractionDigits: 0 })} VNĐ</Typography>
-                                            <Typography textAlign={"end"} color="error" variant={"h5"}>- {(orginalPrice-orderDetail.value).toLocaleString(undefined, { minimumFractionDigits: 0 })} VNĐ</Typography>
+                                            <Typography textAlign={"end"} variant={"h5"}>Giá trị gốc : {originalPrice.toLocaleString(undefined, { minimumFractionDigits: 0 })} VNĐ</Typography>
+                                            <Typography textAlign={"end"} color="error" variant={"h5"}>- {(originalPrice-orderDetail.value).toLocaleString(undefined, { minimumFractionDigits: 0 })} VNĐ</Typography>
                                             <Typography textAlign={"end"} variant={"h4"}>Giá trị đơn hàng : {orderDetail.value.toLocaleString(undefined, { minimumFractionDigits: 0 })} VNĐ</Typography>
                                         </>
                                         :

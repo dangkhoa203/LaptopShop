@@ -17,14 +17,14 @@ namespace APIShopLaptop.Feature.Admin.Products.Description {
         }
         [Authorize(Roles = "Admin")]
         private static async Task<IResult> Handler([FromRoute] string id, Request request, IWebHostEnvironment env, ApplicationDBContext context) {
-            Product? product = await context.Products.FirstOrDefaultAsync(p => p.Id == id);
-            if (product == null) {
+            Product? Product = await context.Products.FirstOrDefaultAsync(p => p.Id == id);
+            if (Product == null) {
                 return Results.NotFound(new Response(false, "Không tìm thấy sản phẩm!"));
             }
 
-            if (product.Description != request.Description) {
-                product.Description = request.Description;
-                product.UpdateAt = DateTime.Now;
+            if (Product.Description != request.Description) {
+                Product.Description = request.Description;
+                Product.UpdateAt = DateTime.Now;
                 if (await context.SaveChangesAsync() < 1) {
                     return Results.BadRequest(new Response(false, "Lỗi xảy ra khi đang thực hiện!"));
                 }

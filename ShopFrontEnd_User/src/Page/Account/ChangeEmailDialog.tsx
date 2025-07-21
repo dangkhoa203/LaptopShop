@@ -11,27 +11,21 @@ import {Response} from "../../Type/Respone.ts";
 import Typography from "@mui/material/Typography";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 type emailChangeInfo={
-    oldEmail:string,
     newEmail:string,
 }
 
 export default function ChangeEmailDialog(props:{open:boolean,handleClose:()=>void}) {
     const [emailChangeInfo, setEmailChangeInfo] = useState<emailChangeInfo>({
         newEmail:"",
-        oldEmail:""
     });
-    const handleOldEmailChange=(e:any)=>{
-        setEmailChangeInfo({...emailChangeInfo,oldEmail:e.target.value});
-    }
     const handleNewEmailChange=(e:any)=>{
-        setEmailChangeInfo({...emailChangeInfo,newEmail:e.target.value});
+        setEmailChangeInfo({newEmail:e.target.value});
     }
     const [globalError, setGlobalError] = useState("");
     const close=()=>{
         props.handleClose();
         setEmailChangeInfo({
             newEmail:"",
-            oldEmail:""
         })
         setGlobalError("")
         setSuccess(false)
@@ -59,6 +53,7 @@ export default function ChangeEmailDialog(props:{open:boolean,handleClose:()=>vo
     })
     return (
         <Dialog
+            fullWidth
             open={props.open}
             onClose={close}
             maxWidth="sm"
@@ -81,23 +76,6 @@ export default function ChangeEmailDialog(props:{open:boolean,handleClose:()=>vo
                         <DialogContentText>
                             Thay đổi email của tài khoản
                         </DialogContentText>
-                        <TextField
-                            value={emailChangeInfo.oldEmail} onChange={handleOldEmailChange} fullWidth
-                            margin="dense"
-                            color="primary"
-                            type="email"
-                            label="Email cũ"
-                            slotProps={{
-                                input: {
-                                    endAdornment: (
-                                        <InputAdornment position="end">
-                                            <AlternateEmailIcon />
-                                        </InputAdornment>
-                                    ),
-                                },
-                            }}
-                            variant="standard"
-                        />
                         <TextField
                             value={emailChangeInfo.newEmail} onChange={handleNewEmailChange} fullWidth
                             margin="dense"

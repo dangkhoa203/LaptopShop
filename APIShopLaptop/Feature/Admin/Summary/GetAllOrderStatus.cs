@@ -17,7 +17,12 @@ namespace APIShopLaptop.Feature.Admin.Summary {
         private static async Task<IResult> Handler(ApplicationDBContext context, UserManager<AppUser> userManager) {
             try {
                 List<string> StatusChart = ["Hủy","Chờ xác nhận", "Chở đợi", "Chuẩn bị", "Giao hàng", "Hoàn thành"];
-                var Order=await context.Orders.GroupBy(o=>o.Status).Select(o=>new SaleDTO(StatusChart[(int)o.Key], o.Count())).ToListAsync();
+
+                var Order=await context.Orders
+                                       .GroupBy(o=>o.Status)
+                                       .Select(o=>new SaleDTO(StatusChart[(int)o.Key], o.Count()))
+                                       .ToListAsync();
+
                 return Results.Ok(new Response(true, Order, ""));
             }
             catch (Exception) {

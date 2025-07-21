@@ -5,6 +5,7 @@ using APIShopLaptop.Model.Entity.Order_Related;
 using APIShopLaptop.Model.Enum;
 using FluentValidation;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NanoidDotNet;
@@ -26,7 +27,7 @@ namespace APIShopLaptop.Feature.User.Orders.Build {
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapPost("/api/Orders/Build", Handler).WithTags("Orders");
         }
-
+        [Authorize(Roles = "User")]
         private static async Task<IResult> Handler([FromBody] Request request, ApplicationDBContext context, MoMoService moMoService, ClaimsPrincipal User) {
             var Validator = new Validator();
             var ValidatedResult = Validator.Validate(request);
@@ -35,19 +36,21 @@ namespace APIShopLaptop.Feature.User.Orders.Build {
             }
 
             var Build = await context.Users
-                     .Include(u => u.Build)
-                         .ThenInclude(u => u.BuildItems)
-                             .ThenInclude(p => p.ProductNavigation)
-                     .Where(u => u.UserName == User.Identity.Name)
-                     .Select(u => u.Build)
-                     .FirstOrDefaultAsync();
-            var account = await context.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+                                     .Include(u => u.Build)
+                                         .ThenInclude(u => u.BuildItems)
+                                             .ThenInclude(p => p.ProductNavigation)
+                                     .Where(u => u.UserName == User.Identity.Name)
+                                     .Select(u => u.Build)
+                                     .FirstOrDefaultAsync();
+
+            var AccountInfo = await context.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+
             if (Build.BuildItems.Any(p => p.Quantity > p.ProductNavigation.Quantity)) {
                 return Results.BadRequest(new Response(false, "Lỗi thực hiện", ValidatedResult, new DataDTO("", "")));
             }
             var Details = new List<OrderDetail>();
             var Order = new Order() {
-                User = account,
+                User = AccountInfo,
                 Address = request.Address,
                 DateOfOrder = DateTime.Now,
                 Receiver = request.Receiver,

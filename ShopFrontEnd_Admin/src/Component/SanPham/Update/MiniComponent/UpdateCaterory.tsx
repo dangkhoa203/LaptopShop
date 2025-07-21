@@ -64,7 +64,6 @@ export default function UpdateCaterory(props:{id:string}) {
         setNewCategories(productCategories);
     }, [productCategories]);
     const handleCheckChange=(id:string)=>{
-
         if(!newCategories.includes(id)){
             setNewCategories([...newCategories,id]);
         }else

@@ -17,11 +17,13 @@ namespace APIShopLaptop.Feature.Admin.Account {
                 if (User.Identity.Name == null)
                     return Results.Ok(new Response("", "", "", false));
 
-                AppUser Info = await userManager.FindByNameAsync(User.Identity.Name);
-                if (!await userManager.IsInRoleAsync(Info, "Admin")) {
+                AppUser AdminInfo = await userManager.FindByNameAsync(User.Identity.Name);
+
+                if (!await userManager.IsInRoleAsync(AdminInfo, "Admin")) {
                     return Results.Ok(new Response("", "", "", false));
                 }
-                return Results.Ok(new Response(Info.UserName, Info.Email, Info.Id, true));
+
+                return Results.Ok(new Response(AdminInfo.UserName, AdminInfo.Email, AdminInfo.Id, true));
             }
             catch (Exception ex) {
                 return Results.Ok(new Response("", "", "", false));

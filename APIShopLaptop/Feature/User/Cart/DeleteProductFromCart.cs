@@ -1,6 +1,7 @@
 ﻿using APIShopLaptop.Data;
 using APIShopLaptop.Endpoint;
 using APIShopLaptop.Model.Entity.Account;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -13,14 +14,15 @@ namespace APIShopLaptop.Feature.User.Cart {
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapDelete("/api/Cart", Handler).WithTags("Cart");
         }
+        [Authorize(Roles = "User")]
         private static async Task<IResult> Handler([FromBody]Request request, UserManager<AppUser> userManager, ApplicationDBContext context, ClaimsPrincipal User) {
             try {
                 var Cart = await context.Users
-                    .Include(u => u.Cart)
-                    .ThenInclude(u => u.CartProducts)
-                    .Where(u => u.UserName == User.Identity.Name)
-                    .Select(u => u.Cart)
-                    .FirstOrDefaultAsync();
+                                        .Include(u => u.Cart)
+                                        .ThenInclude(u => u.CartProducts)
+                                        .Where(u => u.UserName == User.Identity.Name)
+                                        .Select(u => u.Cart)
+                                        .FirstOrDefaultAsync();
 
                 var Product = Cart.CartProducts.FirstOrDefault(p=>p.ProductId==request.ProductId);
                 if (Product == null) {

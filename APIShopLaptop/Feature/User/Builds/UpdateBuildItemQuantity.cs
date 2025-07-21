@@ -1,5 +1,6 @@
 ﻿using APIShopLaptop.Data;
 using APIShopLaptop.Endpoint;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
@@ -11,18 +12,19 @@ namespace APIShopLaptop.Feature.User.Builds {
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapPut("/api/Build", Handler).WithTags("Build");
         }
+        [Authorize(Roles = "User")]
         private static async Task<IResult> Handler([FromBody] Request request, ApplicationDBContext context, ClaimsPrincipal User) {
             try {
                 if (request.Quantity < 1) {
                     return Results.BadRequest(new Response(false));
                 }
                 var Build = await context.Users
-                   .Include(u => u.Build)
-                   .ThenInclude(u => u.BuildItems)
-                    .ThenInclude(i=>i.ProductNavigation)
-                   .Where(u => u.UserName == User.Identity.Name)
-                   .Select(u => u.Build)
-                   .FirstOrDefaultAsync();
+                                           .Include(u => u.Build)
+                                                .ThenInclude(u => u.BuildItems)
+                                                    .ThenInclude(i=>i.ProductNavigation)
+                                           .Where(u => u.UserName == User.Identity.Name)
+                                           .Select(u => u.Build)
+                                           .FirstOrDefaultAsync();
 
                 var CartProduct = Build.BuildItems.FirstOrDefault(p => p.ProductId == request.ProductId);
                 if (CartProduct == null) {

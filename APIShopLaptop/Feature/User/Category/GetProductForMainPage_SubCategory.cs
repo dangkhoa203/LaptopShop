@@ -16,22 +16,22 @@ namespace APIShopLaptop.Feature.User.Category {
         private static async Task<IResult> Handler([FromRoute] string Id, ApplicationDBContext context) {
             try {
                 var Products = await context.CateroryItems
-                    .Where(i => i.CateroryId == Id)
-                    .Include(i => i.ProductNavigation)
-                    .ThenInclude(p => p.Reviews)
-                    .OrderByDescending(i => i.ProductNavigation.CreatedAt)
-                    .Where(i => i.ProductNavigation.Status == PRODUCTSTATUS.ACTIVE)
-                    .Select(i => new ProductDTO(
-                            i.ProductNavigation.Id,
-                            i.ProductNavigation.Name,
-                            i.ProductNavigation.Price,
-                            i.ProductNavigation.Quantity,
-                            i.ProductNavigation.IsDiscount,
-                            i.ProductNavigation.PriceAfterDiscount,
-                            i.ProductNavigation.Reviews.Count > 0 ? i.ProductNavigation.Reviews.Sum(r => r.Score) / i.ProductNavigation.Reviews.Count : 0
-                        ))
-                    .Take(6)
-                    .ToListAsync();
+                                            .Where(i => i.CateroryId == Id)
+                                            .Include(i => i.ProductNavigation)
+                                            .ThenInclude(p => p.Reviews)
+                                            .OrderByDescending(i => i.ProductNavigation.CreatedAt)
+                                            .Where(i => i.ProductNavigation.Status == PRODUCTSTATUS.ACTIVE)
+                                            .Select(i => new ProductDTO(
+                                                    i.ProductNavigation.Id,
+                                                    i.ProductNavigation.Name,
+                                                    i.ProductNavigation.Price,
+                                                    i.ProductNavigation.Quantity,
+                                                    i.ProductNavigation.IsDiscount,
+                                                    i.ProductNavigation.PriceAfterDiscount,
+                                                    i.ProductNavigation.Reviews.Count > 0 ? i.ProductNavigation.Reviews.Sum(r => r.Score) / i.ProductNavigation.Reviews.Count : 0
+                                                ))
+                                            .Take(6)
+                                            .ToListAsync();
 
                 return Results.Ok(new Response(true, Products, ""));
             }

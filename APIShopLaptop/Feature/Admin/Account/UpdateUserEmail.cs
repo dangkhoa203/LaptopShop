@@ -28,8 +28,8 @@ namespace APIShopLaptop.Feature.Admin.Account {
                     return Results.BadRequest(new Response(false, "Lỗi xảy ra", ValidationResult));
                 }
 
-                var EmailInUse=await userManager.FindByEmailAsync(request.Email);
-                if (EmailInUse != null) {
+                var IsEmailUsed=await userManager.FindByEmailAsync(request.Email);
+                if (IsEmailUsed != null) {
                     return Results.BadRequest(new Response(false, "Email đang có người sử dụng!", ValidationResult));
                 }
 

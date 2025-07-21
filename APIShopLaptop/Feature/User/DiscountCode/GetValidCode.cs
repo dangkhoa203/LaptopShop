@@ -13,15 +13,16 @@ namespace APIShopLaptop.Feature.User.DiscountCode {
         }
         private static async Task<IResult> Handler(ApplicationDBContext context) {
             try {
-                var DiscountCodes = await context.DiscountCodes.Where(d=>d.IsActive && DateTime.Compare(d.EndDate,DateTime.Now)>0)
-                    .Select(c => new DiscountCodeDTO(
-                        c.Id,
-                        c.Name,
-                        c.Description,
-                        c.Percent,
-                        c.Code
-                        ))
-                    .ToListAsync();
+                var DiscountCodes = await context.DiscountCodes
+                                                .Where(d=>d.IsActive && DateTime.Compare(d.EndDate,DateTime.Now)>0)
+                                                .Select(c => new DiscountCodeDTO(
+                                                    c.Id,
+                                                    c.Name,
+                                                    c.Description,
+                                                    c.Percent,
+                                                    c.Code
+                                                    ))
+                                                .ToListAsync();
 
                 return Results.Ok(new Response(true, DiscountCodes, ""));
             }

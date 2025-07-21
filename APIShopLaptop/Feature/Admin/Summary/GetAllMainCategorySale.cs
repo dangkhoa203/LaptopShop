@@ -15,9 +15,16 @@ namespace APIShopLaptop.Feature.Admin.Summary {
         [Authorize(Roles = "Admin")]
         private static async Task<IResult> Handler(ApplicationDBContext context) {
             try {
-                var Category = context.MainCaterories.Include(m => m.SubCaterories).ThenInclude(m => m.CateroryItems).ThenInclude(i => i.ProductNavigation).ThenInclude(p => p.OrderDetails).ThenInclude(d => d.OrderNavigation).ToList();
+                var Category = context.MainCaterories
+                                       .Include(m => m.SubCaterories)
+                                           .ThenInclude(m => m.CateroryItems)
+                                               .ThenInclude(i => i.ProductNavigation)
+                                                   .ThenInclude(p => p.OrderDetails)
+                                                       .ThenInclude(d => d.OrderNavigation)
+                                        .ToList();
+
                 Dictionary<string, Product> UniqueProduct = [];
-                List<SaleDTO> test = [];
+                List<SaleDTO> Sales = [];
                 foreach (var main in Category) {
                     foreach (var sub in main.SubCaterories) {
                         foreach (var item in sub.CateroryItems) {
@@ -26,10 +33,12 @@ namespace APIShopLaptop.Feature.Admin.Summary {
                             }
                         }
                     }
-                    test.Add(new SaleDTO(main.Name, UniqueProduct.Sum(p => p.Value.OrderDetails.Where(d => d.OrderNavigation.Status == ORDERSTATUS.FINISHED).Sum(d => d.Quantity))));
+                    Sales.Add(new SaleDTO(main.Name, UniqueProduct.Sum(p => p.Value.OrderDetails
+                                                                              .Where(d => d.OrderNavigation.Status == ORDERSTATUS.FINISHED)
+                                                                              .Sum(d => d.Quantity))));
                     UniqueProduct.Clear();
                 }
-                var Data = test.OrderByDescending(d => d.count).ToList();
+                var Data = Sales.OrderByDescending(d => d.count).ToList();
                 return Results.Ok(new Response(true, Data, ""));
             }
             catch (Exception) {

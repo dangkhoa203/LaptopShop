@@ -17,7 +17,6 @@ import {useUserInfo} from "../../State/User.ts";
 import Button from "@mui/material/Button";
 import {Navigate, useNavigate} from "react-router";
 import {buildProduct} from "./PCBuilderPage.tsx";
-import {districts} from "../../Type/Districts.ts";
 import {Response} from "../../Type/Respone.ts";
 import BuildItemOrderCard from "./Component/BuildItemOrderCard.tsx";
 import Typography from "@mui/material/Typography";
@@ -56,11 +55,74 @@ export default function BuildOrderPage(){
     })
 
 
+    const [districtList,setDistrictList] = useState<any[]>([]);
+    const GETDISTRICT=useMutation({
+        mutationFn:async ()=>{
+            const response = await fetch(`https://online-gateway.ghn.vn/shiip/public-api/master-data/district`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json','token':import.meta.env.VITE_GIAOHANGNHANH_KEY},
+                body: JSON.stringify({
+                    province_id:202
+                })
+            })
+            return await response.json();
+        },
+        onSuccess:(data:any)=>{
+            if(data){
+                if(data.code===200){
+                    const list:any[]=[]
+                    const bannedList:string[]=["quận thủ đức","quận 2","quận 9"]
+                    data.data.forEach((item:any)=>{
+                        if((!bannedList.includes(item.DistrictName.toLowerCase())) &&(item.DistrictName.toLowerCase().includes("quận")||item.DistrictName.toLowerCase().includes("thành phố")))
+                            list.push({id:item.DistrictID,district:item.DistrictName})
+                    })
+                    setDistrictList(list.sort((a, b) => a.id - b.id))
+                }
+            }
+        }
+    })
+    const [wardList,setWardList] = useState<string[]>([]);
+    const GETWARD=useMutation({
+        mutationFn:async (districtId:number)=>{
+            setValidateError({
+                phoneNumber:"",
+                receiver:"",
+                address:"",
+            })
+            const response = await fetch(`https://online-gateway.ghn.vn/shiip/public-api/master-data/ward?district_id`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json','token':import.meta.env.VITE_GIAOHANGNHANH_KEY},
+                body: JSON.stringify({
+                    district_id:districtId
+                })
+            })
+            return await response.json();
+        },
+        onSuccess:(data:any)=>{
+            if(data){
+                if(data.code===200){
+                    const list:string[]=[]
+                    data.data.sort((a:any, b:any) => a.WardCode - b.WardCode).forEach((item:any)=>{
+                        list.push(item.WardName)
+                    })
+                    setWardList(list)
+                }
+            }
+        }
+    })
     const [districtInfo, setDistrictInfo] = useState({
         id:-1,
         district:"",
     });
     const [wardInfo, setwardInfo] = useState("")
+    const handleDistrictChange=(e:any)=>{
+        const district = districtList.find(item => item.id === e.target.value);
+        setDistrictInfo({id:e.target.value,district: district.district})
+        setwardInfo("")
+    }
+    const handleWardChange=(e:any)=>{
+        setwardInfo(e.target.value)
+    }
     const getTotal=()=>{
         let total=0;
         build.forEach((item)=>{
@@ -71,13 +133,7 @@ export default function BuildOrderPage(){
         })
         return total;
     }
-    const handleDistrictChange=(e:any)=>{
-        setDistrictInfo({id:e.target.value,district: districts[e.target.value].name})
-        setwardInfo("")
-    }
-    const handleWardChange=(e:any)=>{
-        setwardInfo(e.target.value)
-    }
+
     const [orderInfo,setOrderInfo]=useState<orderInfo>({
         address:"",
         paymentMethod:0,
@@ -185,7 +241,12 @@ export default function BuildOrderPage(){
     }, [success]);
     useEffect(()=>{
         document.title="Thanh toán"
+        GETDISTRICT.mutate()
     },[])
+    useEffect(()=>{
+        setwardInfo("")
+        GETWARD.mutate(districtInfo.id)
+    },[districtInfo])
     if((!userInfo.isLogged )&& userInfo.userName!=='default' ){
         return <Navigate to={"/"}/>
     }
@@ -219,7 +280,7 @@ export default function BuildOrderPage(){
                                     <Grid container spacing={2}>
                                         <Grid size={6}>
                                             <FormControl fullWidth>
-                                                <InputLabel id="demo-simple-select-label">Quận</InputLabel>
+                                                <InputLabel >Quận</InputLabel>
                                                 <Select
                                                     error={validateError.address.length>0}
                                                     value={districtInfo.id}
@@ -227,8 +288,8 @@ export default function BuildOrderPage(){
                                                     onChange={handleDistrictChange}
                                                 >
                                                     <MenuItem value={-1} disabled>Chọn quận</MenuItem>
-                                                    {districts.map((item)=>
-                                                        <MenuItem value={item.id}>{item.name}</MenuItem>
+                                                    {districtList.map((item)=>
+                                                        <MenuItem value={item.id}>{item.district}</MenuItem>
                                                     )}
                                                 </Select>
                                             </FormControl>
@@ -243,9 +304,10 @@ export default function BuildOrderPage(){
                                                     label="Phường"
                                                     onChange={handleWardChange}
                                                 >
-                                                    {districts[districtInfo.id ===-1 ? 0:districtInfo.id].ward.map((item)=>
+                                                    {wardList.map((item)=>
                                                         <MenuItem value={item}>{item}</MenuItem>
                                                     )}
+
 
                                                 </Select>
                                             </FormControl>

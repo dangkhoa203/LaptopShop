@@ -16,6 +16,7 @@ namespace APIShopLaptop.Feature.Admin.DiscountCodes {
         private static async Task<IResult> Handler(ApplicationDBContext context) {
             try {
                 var DiscountCodes = await context.DiscountCodes
+                    .OrderByDescending(x => x.CreatedAt)
                     .Select(c=>new DiscountCodeDTO(
                         c.Id,
                         c.Name,

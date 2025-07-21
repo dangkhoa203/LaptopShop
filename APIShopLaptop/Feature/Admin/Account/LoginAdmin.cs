@@ -35,10 +35,10 @@ namespace APIShopLaptop.Feature.Admin.Account {
                     return Results.BadRequest(new Response(false, "Lỗi xảy ra", ValidateResult));
                 }
 
-                var LoginUser = await userManager.FindByNameAsync(request.UserName);
-                if (LoginUser != null && await userManager.IsInRoleAsync(LoginUser, "Admin")) {
-                    var result = await signInManager.PasswordSignInAsync(LoginUser, request.Password, false, false);
-                    if (result.Succeeded) {
+                var LoggedInUser = await userManager.FindByNameAsync(request.UserName);
+                if (LoggedInUser != null && await userManager.IsInRoleAsync(LoggedInUser, "Admin")) {
+                    var Result = await signInManager.PasswordSignInAsync(LoggedInUser, request.Password, false, false);
+                    if (Result.Succeeded) {
                         return Results.Ok(new Response(true, "", null));
                     }
                 }

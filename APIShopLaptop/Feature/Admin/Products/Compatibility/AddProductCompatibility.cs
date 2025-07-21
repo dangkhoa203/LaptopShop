@@ -23,12 +23,12 @@ namespace APIShopLaptop.Feature.Admin.Products.Compatibility {
                 var Specification = await context.Specifications.FirstOrDefaultAsync(s => s.Id == request.Id);
                 if (Specification == null)
                     return Results.NotFound(new Response(false, "Không tìm thấy thông số!"));
-                var Data = new CompatibilityData() {
+                var CompatibilityData = new CompatibilityData() {
                     ProductNavigation = Product,
                     SpecificationNavigation = Specification,
                     Value = request.Value,
                 };
-                await context.CompatibilityData.AddAsync(Data);
+                await context.CompatibilityData.AddAsync(CompatibilityData);
                 if (await context.SaveChangesAsync() > 0) {
                     return Results.Ok(new Response(true, ""));
                 }

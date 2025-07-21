@@ -14,13 +14,14 @@ namespace APIShopLaptop.Feature.Admin.Products.Description {
         [Authorize(Roles = "Admin")]
         private static async Task<IResult> Handler([FromRoute] string id, ApplicationDBContext context) {
             try {
-                var Product = await context.Products
+                var Description = await context.Products
                     .Where(p => p.Id == id)
                     .Select(p => p.Description)
                     .FirstOrDefaultAsync();
-                if (Product == null)
+
+                if (Description == null)
                     return Results.NotFound(new Response(false, null, "Không tìm thấy sản phẩm!"));
-                return Results.Ok(new Response(true, Product, ""));
+                return Results.Ok(new Response(true, Description, ""));
             }
             catch (Exception ex) {
                 return Results.BadRequest(new Response(false, null, "Lỗi đã xảy ra!"));

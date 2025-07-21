@@ -1,6 +1,7 @@
 ﻿using APIShopLaptop.Data;
 using APIShopLaptop.Endpoint;
 using APIShopLaptop.Model.Enum;
+using Microsoft.AspNetCore.Authorization;
 
 namespace APIShopLaptop.Feature.User.Orders {
     public class CancelOrder : IEndpoint {
@@ -10,9 +11,10 @@ namespace APIShopLaptop.Feature.User.Orders {
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapPut("/api/Orders/Cancel", Handler).WithTags("Orders");
         }
+        [Authorize(Roles = "User")]
         public static async Task<IResult> Handler(Request request, ApplicationDBContext context) {
             try {
-                var Order = context.Orders.FirstOrDefault(d => d.Id == request.Id);
+                var Order = context.Orders.FirstOrDefault(d => d.Id == request.Id && d.Status!=ORDERSTATUS.FINISHED);
                 if (Order == null)
                     return Results.NotFound(new Response(false, "Không tìm thấy đơn!"));
 

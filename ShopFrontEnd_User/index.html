@@ -4,10 +4,83 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/laptop.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React + TS</title>
+    <title>DKShop</title>
   </head>
   <body>
-    <div id="root"></div>
+
+      <script>
+        // Configs
+        let liveChatBaseUrl   = document.location.protocol + '//' + 'livechat.fpt.ai/v36/src'
+        let LiveChatSocketUrl = 'livechat.fpt.ai:443'
+        let FptAppCode        = '8fd366b2911127575b2ea7fca6f223a9'
+        let FptAppName        = 'Hỗ trợ tư vấn'
+        // Define custom styles
+        let CustomStyles = {
+                  // header
+                  headerBackground: 'linear-gradient(86.7deg, #E08F19FF 0.85%, #ECB55CFF 98.94%)',
+                  headerTextColor: '#FFFFFFFF',
+                  headerLogoEnable: false,
+                  headerLogoLink: 'https://chatbot-tools.fpt.ai/livechat-builder/img/Icon-fpt-ai.png',
+                  headerText: 'Hỗ trợ tư vấn',
+                  // main
+                  primaryColor: '#E08F19FF',
+                  secondaryColor: '#ECECECFF',
+                  primaryTextColor: '#ffffffff',
+                  secondaryTextColor: '#000000DE',
+                  buttonColor: '#b4b4b4ff',
+                  buttonTextColor: '#ffffffff',
+                  bodyBackgroundEnable: false,
+                bodyBackgroundLink: ',',
+                avatarBot: 'https://chatbot-tools.fpt.ai/livechat-builder/img/bot.png',
+                sendMessagePlaceholder: 'Nhập lời nhắn',
+                // float button
+                floatButtonLogo: 'https://chatbot-tools.fpt.ai/livechat-builder/img/Icon-fpt-ai.png',
+                floatButtonTooltip: 'FPT.AI xin chào',
+                floatButtonTooltipEnable: false,
+                // start screen
+                customerLogo: 'https://chatbot-tools.fpt.ai/livechat-builder/img/bot.png',
+                customerWelcomeText: 'Vui lòng nhập tên của bạn',
+                customerButtonText: '',
+                prefixEnable: false,
+                prefixType: 'radio',
+                prefixOptions: ["Anh","Chị"],
+                prefixPlaceholder: 'Danh xưng',
+                // custom css
+                css: ''
+        }
+        // Get bot code from url if FptAppCode is empty
+        if (!FptAppCode) {
+          let appCodeFromHash = window.location.hash.substr(1)
+          if (appCodeFromHash.length === 32) {
+            FptAppCode = appCodeFromHash
+          }
+        }
+        // Set Configs
+        let FptLiveChatConfigs = {
+          appName: FptAppName,
+          appCode: FptAppCode,
+          themes : '',
+          styles : CustomStyles
+        }
+        // Append Script
+        let FptLiveChatScript  = document.createElement('script')
+        FptLiveChatScript.id   = 'fpt_ai_livechat_script'
+        FptLiveChatScript.src  = liveChatBaseUrl + '/static/fptai-livechat.js'
+        document.body.appendChild(FptLiveChatScript)
+        // Append Stylesheet
+        let FptLiveChatStyles  = document.createElement('link')
+        FptLiveChatStyles.id   = 'fpt_ai_livechat_script'
+        FptLiveChatStyles.rel  = 'stylesheet'
+        FptLiveChatStyles.href = liveChatBaseUrl + '/static/fptai-livechat.css'
+        document.body.appendChild(FptLiveChatStyles)
+        // Init
+        FptLiveChatScript.onload = function () {
+          fpt_ai_render_chatbox(FptLiveChatConfigs, liveChatBaseUrl, LiveChatSocketUrl)
+        }
+      </script>
+
+
+  <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

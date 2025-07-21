@@ -15,10 +15,16 @@ namespace APIShopLaptop.Feature.Admin.Summary {
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapGet("/api/Admin/Summary/Sale/{year}", Handler).WithTags("Admin_Summary");
         }
-
+        [Authorize(Roles = "Admin")]
         private static async Task<IResult> Handler([FromRoute]int year,ApplicationDBContext context, UserManager<AppUser> userManager) {
             try {
-                var Sale = await context.Orders.Where(o=>o.Status==ORDERSTATUS.FINISHED).Where(o=>o.DateOfOrder.Year==year).GroupBy(o => o.DateOfOrder.Month).Select(s=>new SaleDTO(s.Key+"",s.Sum(s=>s.Value))).ToListAsync();
+                var Sale = await context.Orders
+                                        .Where(o=>o.Status==ORDERSTATUS.FINISHED)
+                                        .Where(o=>o.DateOfOrder.Year==year)
+                                        .GroupBy(o => o.DateOfOrder.Month)
+                                        .Select(s=>new SaleDTO(s.Key+"",s.Sum(s=>s.Value)))
+                                        .ToListAsync();
+
                 return Results.Ok(new Response(true, Sale, ""));
             }
             catch (Exception) {

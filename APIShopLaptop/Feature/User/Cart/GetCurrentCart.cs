@@ -18,12 +18,12 @@ namespace APIShopLaptop.Feature.User.Cart {
             try {
 
                 var Cart = await context.Users
-                    .Include(u => u.Cart)
-                        .ThenInclude(u => u.CartProducts)
-                            .ThenInclude(p => p.ProductNavigation)
-                    .Where(u => u.UserName == User.Identity.Name)
-                    .Select(u => u.Cart)
-                    .FirstOrDefaultAsync();
+                                        .Include(u => u.Cart)
+                                            .ThenInclude(u => u.CartProducts)
+                                                .ThenInclude(p => p.ProductNavigation)
+                                        .Where(u => u.UserName == User.Identity.Name)
+                                        .Select(u => u.Cart)
+                                        .FirstOrDefaultAsync();
 
                 bool changedFlag = false;
                 var Data=new List<CartProductDTO>();

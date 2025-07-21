@@ -1,5 +1,6 @@
 ﻿using APIShopLaptop.Data;
 using APIShopLaptop.Endpoint;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 
@@ -10,6 +11,7 @@ namespace APIShopLaptop.Feature.User.Reviews {
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapGet("/api/Reviews", Handler).WithTags("Reviews");
         }
+        [Authorize(Roles = "User")]
         private static async Task<IResult> Handler(ApplicationDBContext context, ClaimsPrincipal User) {
             try {
                 var Account = await context.Users.Include(u => u.Reviews).ThenInclude(r=>r.Product).FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);

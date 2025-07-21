@@ -19,17 +19,19 @@ namespace APIShopLaptop.Feature.User.Orders.MoMo {
         private static async Task<IResult> Handler([FromBody] Request request, MoMoService moMoService, ApplicationDBContext context, ClaimsPrincipal User) {
             try {
                 var Id = request.orderId.Substring(0,9);
-                var Order = await context.Orders.Include(o => o.MomoTransaction)
-                    .Where(o =>
-                    !o.MomoTransaction.IsPaid &&
-                    o.PaymentMethod == PAYMENTMETHOD.MOMO)
-                    .FirstOrDefaultAsync(o => o.Id == Id);
+                var Order = await context.Orders
+                                                .Include(o => o.MomoTransaction)
+                                                .Where(o =>
+                                                            !o.MomoTransaction.IsPaid &&
+                                                            o.PaymentMethod == PAYMENTMETHOD.MOMO)
+                                                .FirstOrDefaultAsync(o => o.Id == Id);
                 if (Order == null) {
                     return Results.BadRequest(new Response(false, "Lỗi"));
                 }
                 if (Order.MomoTransaction.RequestId != request.requestId) {
                     return Results.BadRequest(new Response(false, "Lỗi"));
                 }
+
                 Order.MomoTransaction.IsPaid = true;
                 Order.MomoTransaction.TransactionDate = DateTime.Now;
                 Order.MomoTransaction.TransactionId = request.transactionId;

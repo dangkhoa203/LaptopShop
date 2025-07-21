@@ -14,8 +14,17 @@ namespace APIShopLaptop.Feature.Admin.Summary {
         [Authorize(Roles = "Admin")]
         private static async Task<IResult> Handler(ApplicationDBContext context) {
             try {
-                var Detail = await context.OrderDetails.Include(d => d.ProductNavigation).Include(d=>d.OrderNavigation).ToListAsync();
-                var Product= Detail.Where(d=>d.OrderNavigation.Status==Model.Enum.ORDERSTATUS.FINISHED).GroupBy(o => o.ProductNavigation.Id).OrderByDescending(d => d.Sum(d => d.Quantity)).Select(d=>new SaleDTO(d.First().ProductNavigation.Name,d.Sum(d=>d.Quantity))).ToList();
+                var Detail = await context.OrderDetails
+                                          .Include(d => d.ProductNavigation)
+                                          .Include(d=>d.OrderNavigation)
+                                          .ToListAsync();
+
+                var Product= Detail
+                             .Where(d=>d.OrderNavigation.Status==Model.Enum.ORDERSTATUS.FINISHED)
+                             .GroupBy(o => o.ProductNavigation.Id).OrderByDescending(d => d.Sum(d => d.Quantity))
+                             .Select(d=>new SaleDTO(d.First().ProductNavigation.Name,d.Sum(d=>d.Quantity)))
+                             .ToList();
+
                 return Results.Ok(new Response(true, Product, ""));
             }
             catch (Exception) {

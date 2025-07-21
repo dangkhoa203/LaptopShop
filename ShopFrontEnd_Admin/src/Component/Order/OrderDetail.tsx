@@ -16,6 +16,7 @@ type orderDetail={
     paymentMethod:number,
     status:number,
     noteFromOrder:string,
+    value:number,
     user:{
         id:string,
         email:string,
@@ -32,6 +33,11 @@ type orderDetail={
         price:number,
         quantity:number,
     }[]
+    discountCode:{
+        id:string,
+        name:string,
+        percent:number,
+    }
 }
 export default function OrderDetail(){
     const {id} = useParams() as {id:string};
@@ -43,6 +49,7 @@ export default function OrderDetail(){
             paymentMethod:0,
             status:0,
             noteFromOrder:"",
+            value:0,
             user:{
                 id:"",
                 email:"",
@@ -53,7 +60,12 @@ export default function OrderDetail(){
                 phoneNumber:"",
                 receiver:""
             },
-            details:[]
+            details:[],
+            discountCode:{
+                id:"",
+                name:"",
+                percent:0
+            }
         }
     );
     const {data,isPending,refetch}=useQuery({
@@ -85,6 +97,7 @@ export default function OrderDetail(){
         setOpenUpdate(false);
     };
     const navigate=useNavigate();
+    const originalPrice=orderDetail.discountCode.id!=="" ? (orderDetail.value/(100-orderDetail.discountCode.percent))*100 :0
     // @ts-ignore
     return(
         <Container maxWidth="lg" sx={{paddingTop:"5px",display:"flex",flexDirection:"column"}}>
@@ -200,7 +213,7 @@ export default function OrderDetail(){
                                 </Grid>
                             </Grid>
                             <Divider/>
-                            <div style={{margin:"10px 0px"}}>
+                            <Grid size={12} style={{margin:"10px 0px"}}>
                                 <Typography  textAlign="center" variant="h5" color="textPrimary">
                                     Chi tiết
                                 </Typography>
@@ -242,7 +255,19 @@ export default function OrderDetail(){
                                         </Card>
                                     )}
                                 </Paper>
-                            </div>
+                            </Grid>
+                            <Grid size={12}>
+                                {orderDetail.discountCode.id !="" ?
+                                    <>
+                                        <Typography textAlign={"end"} variant={"h5"}>Giá trị gốc : {originalPrice.toLocaleString(undefined, { minimumFractionDigits: 0 })} VNĐ</Typography>
+                                        <Typography textAlign={"end"} color="error" variant={"h5"}>- {(originalPrice-orderDetail.value).toLocaleString(undefined, { minimumFractionDigits: 0 })} VNĐ</Typography>
+                                        <Typography textAlign={"end"} variant={"h4"}>Giá trị đơn hàng : {orderDetail.value.toLocaleString(undefined, { minimumFractionDigits: 0 })} VNĐ</Typography>
+                                    </>
+                                    :
+                                    <Typography textAlign={"end"} variant={"h5"}>Giá trị đơn hàng : {orderDetail.value.toLocaleString(undefined, { minimumFractionDigits: 0 })} VNĐ</Typography>
+                                }
+
+                            </Grid>
                             <UpdateStatusDialog id={id} status={orderDetail.status} open={openUpdate} handleClose={handleCloseUpdate} reFetch={refetch}/>
                         </>
                         :

@@ -13,6 +13,7 @@ namespace APIShopLaptop.Feature.Admin.Account {
         private static async Task<IResult> Handler(SignInManager<AppUser> signInManager) {
             try {
                 await signInManager.SignOutAsync();
+
                 return Results.Ok(new Response(true, ""));
             }
             catch (Exception ex) {

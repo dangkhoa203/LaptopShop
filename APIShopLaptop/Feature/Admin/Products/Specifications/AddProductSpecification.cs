@@ -24,12 +24,12 @@ namespace APIShopLaptop.Feature.Admin.Products.Specifications {
                 var Specification=await context.Specifications.FirstOrDefaultAsync(s => s.Id == request.Id);
                 if (Specification == null)
                     return Results.NotFound(new Response(false, "Không tìm thấy thông số!"));
-                var Data = new SpecificationData() {
+                var SpecificationsData = new SpecificationData() {
                     ProductNavigation = Product,
                     SpecificationNavigation = Specification,
                     Value=request.Value,
                 };
-                await context.SpecificationsData.AddAsync(Data);
+                await context.SpecificationsData.AddAsync(SpecificationsData);
                 if (await context.SaveChangesAsync() > 0) {
                     return Results.Ok(new Response(true, ""));
                 }

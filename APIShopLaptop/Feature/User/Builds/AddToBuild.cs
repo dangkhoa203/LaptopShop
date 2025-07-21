@@ -2,6 +2,7 @@
 using APIShopLaptop.Endpoint;
 using APIShopLaptop.Model.Entity.Account;
 using APIShopLaptop.Model.Entity.PC_Build_Related;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,14 +15,15 @@ namespace APIShopLaptop.Feature.User.Builds {
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapPost("/api/Build", Handler).WithTags("Build");
         }
+        [Authorize(Roles = "User")]
         private static async Task<IResult> Handler([FromBody] Request request, UserManager<AppUser> userManager, ApplicationDBContext context, ClaimsPrincipal User) {
             try {
                 var Build = await context.Users
-                    .Include(u => u.Build)
-                    .ThenInclude(u => u.BuildItems)
-                    .Where(u => u.UserName == User.Identity.Name)
-                    .Select(u => u.Build)
-                    .FirstOrDefaultAsync();
+                                        .Include(u => u.Build)
+                                        .ThenInclude(u => u.BuildItems)
+                                        .Where(u => u.UserName == User.Identity.Name)
+                                        .Select(u => u.Build)
+                                        .FirstOrDefaultAsync();
 
                 var BuildItem = Build.BuildItems.FirstOrDefault(p => p.ProductId == request.ProductId || p.ComponentName==request.ComponentName);
                 if (BuildItem != null) {

@@ -12,11 +12,11 @@ using APIShopLaptop.Middleware.Email;
 
 namespace APIShopLaptop.Feature.User.UserAccount.ChangeEmail {
     public class SendChangeEmailRequest : IEndpoint {
-        public record Request(string OldEmail, string NewEmail);
+        public record Request(string NewEmail);
         public record Response(bool Success, string ErrorMessage);
         public sealed class Validator : AbstractValidator<Request> {
             public Validator() {
-                RuleFor(r => r.NewEmail).EmailAddress();
+                RuleFor(r => r.NewEmail).EmailAddress().WithMessage("Email chưa hợp lệ!");
             }
             public async Task<IResult> CheckValid(Request request, UserManager<AppUser> userManager, AppUser userDetail) {
                 var ValidateResult = await ValidateAsync(request);
@@ -26,8 +26,6 @@ namespace APIShopLaptop.Feature.User.UserAccount.ChangeEmail {
                 if (request.NewEmail == userDetail.Email)
                     return Results.BadRequest(new Response(false, "Email mới giống email cũ!"));
 
-                if (request.OldEmail != userDetail.Email)
-                    return Results.BadRequest(new Response(false, "Xác nhận email chưa phù hợp!"));
 
                 if (await userManager.FindByEmailAsync(request.NewEmail) != null)
                     return Results.BadRequest(new Response(false, "email mới đang được sử dụng!"));
@@ -38,14 +36,12 @@ namespace APIShopLaptop.Feature.User.UserAccount.ChangeEmail {
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapPost("/api/Account/EmailChange/", Handler).WithTags("Account");
         }
-        [Authorize()]
+        [Authorize(Roles = "User")]
         private static async Task<IResult> Handler(Request request, UserManager<AppUser> userManager, ClaimsPrincipal User, EmailSender emailSender) {
             try {
                 var Validator = new Validator();
                 AppUser userDetail = await userManager.FindByNameAsync(User.Identity.Name);
-                if (userDetail.Email != request.OldEmail) {
-                    return Results.BadRequest(new Response(false, "Email cũ chưa hợp lệ"));
-                }
+               
                 var ValidateResult = await Validator.CheckValid(request, userManager, userDetail);
                 if (ValidateResult != null)
                     return ValidateResult;

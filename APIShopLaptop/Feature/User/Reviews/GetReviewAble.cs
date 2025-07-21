@@ -2,6 +2,7 @@
 using APIShopLaptop.Endpoint;
 using APIShopLaptop.Model.Entity.Order_Related;
 using APIShopLaptop.Model.Enum;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 
@@ -12,15 +13,16 @@ namespace APIShopLaptop.Feature.User.Reviews {
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapGet("/api/Reviews/ReviewAble", Handler).WithTags("Reviews");
         }
+        [Authorize(Roles = "User")]
         private static async Task<IResult> Handler(ApplicationDBContext context, ClaimsPrincipal User) {
             try {
                 var Orders = await context.Users
-                    .Include(u => u.Orders)
-                        .ThenInclude(u => u.Details)
-                            .ThenInclude(d=>d.ProductNavigation)
-                    .Where(u => u.UserName == User.Identity.Name)
-                    .Select(u => u.Orders.Where(o=>o.Status == ORDERSTATUS.FINISHED).ToList())
-                    .FirstOrDefaultAsync();
+                                            .Include(u => u.Orders)
+                                                .ThenInclude(u => u.Details)
+                                                    .ThenInclude(d=>d.ProductNavigation)
+                                            .Where(u => u.UserName == User.Identity.Name)
+                                            .Select(u => u.Orders.Where(o=>o.Status == ORDERSTATUS.FINISHED).ToList())
+                                            .FirstOrDefaultAsync();
                 List<DetailDTO> ReviewAble=[];
                 foreach(var order in Orders) {
                     foreach(var detail in order.Details) {

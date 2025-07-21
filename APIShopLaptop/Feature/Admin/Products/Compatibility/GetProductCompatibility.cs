@@ -18,8 +18,10 @@ namespace APIShopLaptop.Feature.Admin.Products.Compatibility {
                     .Include(p => p.Compatibilitys)
                     .ThenInclude(s => s.SpecificationNavigation)
                     .FirstOrDefaultAsync(p => p.Id == id);
+
                 if (Product == null)
                     return Results.NotFound(new Response(false, null, "Không tìm thấy sản phẩm!"));
+
                 return Results.Ok(new Response(true, Product.Compatibilitys.Select(s => new SpecificationDTO(s.SpecificationId, s.SpecificationNavigation.Name, s.Value)).ToList(), ""));
             }
             catch (Exception) {

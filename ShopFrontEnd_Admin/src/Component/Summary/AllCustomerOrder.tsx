@@ -3,7 +3,7 @@ import {useQuery} from "@tanstack/react-query";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import TableContainer from "@mui/material/TableContainer";
-import {Paper, Skeleton} from "@mui/material";
+import {Checkbox, Paper, Skeleton} from "@mui/material";
 import Table from "@mui/material/Table";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
@@ -37,15 +37,27 @@ export default function AllCustomerOrder(){
                 setSaleData(data.data);
         }
     }, [data]);
+    const [selectedData, setSelectedData] = useState<number[]>([]);
+    const handleSelectedChange=(index:number)=>{
+        if(!selectedData.includes(index)){
+            setSelectedData([...selectedData,index])
+        }else
+            setSelectedData(selectedData.filter(item => item !== index));
+    }
+    const [isAll, setIsAll] = useState<boolean>(false);
+    const handleIsAllChange=(e:any)=>{
+        setIsAll(e.target.checked);
+    }
     const downloadExcel = () => {
-        if(saleData.length>0){
+        if(selectedData.length>0){
             const list:data[] = []
-            saleData.map(n =>
+            selectedData.forEach(item=>{
                 list.push({
-                    name: n.name,
-                    count: n.count,
+                    name: saleData[item].name,
+                    count: saleData[item].count,
                 })
-            )
+            })
+
             const worksheet = XLSX.utils.json_to_sheet(list);
             worksheet.A1.v = "Tên";
             worksheet.B1.v = "Đơn hàng";
@@ -54,6 +66,18 @@ export default function AllCustomerOrder(){
             XLSX.writeFile(workbook, "KhachHang.xlsx");
         }
     };
+
+    useEffect(() => {
+        if(isAll){
+            const index:number[]=[]
+            for(let i=0;i<saleData.length;i++){
+                index.push(i);
+            }
+            setSelectedData(index);
+        }else {
+            setSelectedData([]);
+        }
+    }, [isAll]);
     return(
         <Container sx={{paddingBottom:"20px"}}>
             <Typography textAlign="center" variant="h4" color="textSecondary">
@@ -68,21 +92,34 @@ export default function AllCustomerOrder(){
                         </div>
                         :
                         <>
-                            <Button fullWidth color="success" onClick={downloadExcel}>Excel</Button>
+                            <Button disabled={selectedData.length===0} fullWidth color="success" onClick={downloadExcel}>Excel</Button>
                             <TableContainer elevation={12} sx={{maxHeight:"400px",overflowY:"auto"}} component={Paper}>
                                 <Table aria-label="simple table">
                                     <TableHead>
                                         <TableRow>
+                                            <TableCell padding="checkbox">
+                                                <Checkbox
+                                                    checked={isAll}
+                                                    onChange={handleIsAllChange}
+                                                />
+                                            </TableCell>
                                             <TableCell>Tên</TableCell>
                                             <TableCell align="right">Số lượng đơn hàng</TableCell>
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
-                                        {saleData.map((row) => (
+
+                                        {saleData.map((row,index) => (
                                             <TableRow
                                                 key={row.name}
                                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                             >
+                                                <TableCell padding="checkbox">
+                                                    <Checkbox
+                                                        checked={selectedData.includes(index)}
+                                                        onClick={()=>handleSelectedChange(index)}
+                                                    />
+                                                </TableCell>
                                                 <TableCell component="th" scope="row">
                                                     {row.name}
                                                 </TableCell>

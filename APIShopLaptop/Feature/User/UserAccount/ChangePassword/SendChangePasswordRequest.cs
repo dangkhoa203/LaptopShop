@@ -27,7 +27,7 @@ namespace APIShopLaptop.Feature.User.UserAccount.ChangePassword {
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapPost("/api/Account/PasswordChange", Handler).WithTags("Account");
         }
-        [Authorize()]
+        [Authorize(Roles = "User")]
         private static async Task<IResult> Handler(Request request, UserManager<AppUser> userManager, ClaimsPrincipal User, EmailSender emailSender) {
             try {
                 var Validator = new Validator();

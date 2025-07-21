@@ -4,6 +4,7 @@ using APIShopLaptop.Model.Entity.Product_Related;
 using APIShopLaptop.Model.Entity.Review_Related;
 using FluentValidation;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 
@@ -22,6 +23,7 @@ namespace APIShopLaptop.Feature.User.Reviews {
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapPut("/api/Reviews", Handler).WithTags("Reviews");
         }
+        [Authorize(Roles = "User")]
         private static async Task<IResult> Handler(Request request, ApplicationDBContext context, ClaimsPrincipal User) {
             try {
                 var Validator = new Validator();

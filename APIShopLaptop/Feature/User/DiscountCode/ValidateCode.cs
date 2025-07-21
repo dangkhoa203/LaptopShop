@@ -13,16 +13,17 @@ namespace APIShopLaptop.Feature.User.DiscountCode {
         }
         private static async Task<IResult> Handler(Request request,ApplicationDBContext context) {
             try {
-                var DiscountCode = await context.DiscountCodes.Where(d => d.IsActive && DateTime.Compare(d.EndDate, DateTime.Now) > 0)
-                    .Where(d=>d.Code==request.Code)
-                    .Select(c => new DiscountCodeDTO(
-                        c.Id,
-                        c.Name,
-                        c.Description,
-                        c.Percent,
-                        c.Code
-                        ))
-                    .FirstOrDefaultAsync();
+                var DiscountCode = await context.DiscountCodes
+                                                .Where(d => d.IsActive && DateTime.Compare(d.EndDate, DateTime.Now) > 0)
+                                                .Where(d=>d.Code==request.Code)
+                                                .Select(c => new DiscountCodeDTO(
+                                                    c.Id,
+                                                    c.Name,
+                                                    c.Description,
+                                                    c.Percent,
+                                                    c.Code
+                                                    ))
+                                                .FirstOrDefaultAsync();
                 if (DiscountCode == null) {
                     return Results.BadRequest(new Response(false, null, "Mã không tìm thấy!"));
                 }
