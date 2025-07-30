@@ -131,7 +131,7 @@ export default function Account(){
             resizable:false,
             unSortIcon: true,
             flex: 1,
-            minWidth:140,
+            minWidth:180,
             floatingFilter: true },
 
         { valueGetter:c=>new Date(c.data.registerDate).toLocaleString('En-GB', { hour12: false }),headerName:"Ngày tạo",
@@ -167,7 +167,7 @@ export default function Account(){
 
     return(
         <Container sx={{display:"flex", flexDirection:"column", justifyContent:"center",gap:2}}>
-            <p style={{textAlign:"center",fontSize:"2.5em",margin:"0"}}>Danh sách tài khoản</p>
+            <p className="quicksand-header" style={{textAlign:"center",fontSize:"2.5em",margin:"0"}}>Danh sách tài khoản</p>
             {isPending?
                 <div style={{textAlign:"center"}}>
                     <CircularProgress  size="3rem" />

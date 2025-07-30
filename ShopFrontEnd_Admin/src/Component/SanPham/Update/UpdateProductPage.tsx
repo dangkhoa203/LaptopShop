@@ -9,20 +9,26 @@ import UpdateCaterory from "./MiniComponent/UpdateCaterory.tsx";
 import UpdateProductSpecification from "./MiniComponent/UpdateProductSpecification.tsx";
 import UpdateCompatibility from "./MiniComponent/UpdateCompatibility.tsx";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import {useState} from "react";
+import NotFoundPage from "../../CommonPage/NotFoundPage.tsx";
 
 export default function UpdateProductPage(){
     const navigate = useNavigate();
     const {id} = useParams() as {id:string};
+    const [notFound, setNotFounded]=useState(false);
+    if(notFound){
+        return <NotFoundPage/>
+    }
     return(
         <Container sx={{display:"flex", flexDirection:"column", justifyContent:"center",gap:2}}>
-            <p style={{textAlign:"center",fontSize:"2.5em",margin:"0"}}>Sửa sản phẩm</p>
+            <p className="quicksand-header" style={{textAlign:"center",fontSize:"2.5em",margin:"0"}}>Sửa sản phẩm</p>
             <Button startIcon={<ArrowBackIcon/>} sx={{width:"150px"}} onClick={()=>navigate(-1)}>Quay về</Button>
             <Container sx={{display:"flex", flexDirection: {xs:"column",sm:"column",md:"column",lg:"row"}, justifyContent:"center",gap:2}}>
                 <Container sx={{flex:1}}>
                     <UpdateThumbnail id={id}/>
                 </Container>
                 <Container sx={{flex:2}}>
-                    <UpdateProductInfo id={id}/>
+                    <UpdateProductInfo id={id} notFound={notFound} setNotFound={setNotFounded} />
                 </Container>
             </Container>
             <UpdateImage id={id}/>

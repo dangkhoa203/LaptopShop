@@ -38,7 +38,7 @@ export default function BrandItem(props:{title:string,brandTag:string,categoryId
             {products.length!==0 &&
                 <>
                     <Paper elevation={9} sx={{display:{xs:"none",sm:"flex",md:"flex",lg:"flex"} ,justifyContent:"center",flexDirection:"column", gap:2,padding:"10px"}}  >
-                        <Typography variant="h3" textAlign="center" component="p">
+                        <Typography sx={{fontFamily:"Manrope",textTransform:"uppercase",fontWeight:300,letterSpacing:"5px"}} variant="h3" textAlign="center" component="p">
                             {props.title}
                         </Typography>
                         <Box  sx={{

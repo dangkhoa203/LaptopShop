@@ -6,14 +6,14 @@ export const myTheme_Product=themeQuartz
         backgroundColor: "#FFFFFF",
         borderColor: "#0D56F985",
         columnBorder: true,
-        fontFamily: {
-            googleFont: "IBM Plex Mono"
-        },
+            fontFamily: {
+                    googleFont: "Ubuntu"
+            },
         fontSize: 17,
         foregroundColor: "#414756",
-        headerFontFamily: {
-            googleFont: "Roboto"
-        },
+            headerFontFamily: {
+                    googleFont: "Arimo"
+            },
         headerFontSize: 17,
         headerFontWeight: 600,
         headerRowBorder: true,

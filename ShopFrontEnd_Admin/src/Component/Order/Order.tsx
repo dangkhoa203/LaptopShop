@@ -201,7 +201,7 @@ export default function Order(){
     },[])
     return(
         <Container sx={{display:"flex", flexDirection:"column", justifyContent:"center",gap:2}}>
-            <p style={{textAlign:"center",fontSize:"2.5em",margin:"0"}}>Danh sách đơn hàng</p>
+            <p className="quicksand-header" style={{textAlign:"center",fontSize:"2.5em",margin:"0"}}>Danh sách đơn hàng</p>
             {isPending?
                 <div style={{textAlign:"center"}}>
                     <CircularProgress  size="3rem" />

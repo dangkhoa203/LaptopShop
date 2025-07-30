@@ -24,7 +24,7 @@ export default function UpdateImage(props:{id:string}) {
     const [oldImages,setImages]=useState<string[]>([]);
     const [success,setSuccess]=useState<boolean>(false);
     const {data,isPending,refetch}=useQuery({
-        queryKey:["product_images"],
+        queryKey:[`product_images_${props.id}`],
         refetchOnWindowFocus:false,
         queryFn:async ()=>{
             const response = await fetch(`https://localhost:7075/api/Admin/Products/${props.id}/Images`, {
@@ -37,8 +37,10 @@ export default function UpdateImage(props:{id:string}) {
     });
     useEffect(() => {
         if(data){
-            setSuccess(data.success)
-            setImages(data.data)
+            if(data.success) {
+                setSuccess(data.success)
+                setImages(data.data)
+            }
         }
     }, [data]);
     const [newImages,setNewImages]=useState<any[]>([]);

@@ -69,9 +69,11 @@ export default function ChangeEmailDialog(props:{username:string,email:string,id
         >
             <DialogTitle
                 sx={{
+                    fontFamily:"Open sans",
+                    letterSpacing:1,
                     borderTop:"10px solid rgb(230, 81, 0)",
                 }}>
-                Thay đổi email người dùng {props.username}
+                Thay đổi email người dùng <span style={{fontWeight:700}}>{props.username}</span>
             </DialogTitle>
             <IconButton
                 color="warning"
@@ -92,7 +94,7 @@ export default function ChangeEmailDialog(props:{username:string,email:string,id
             </IconButton>
             <DialogContent dividers>
                 <DialogContentText >
-                    <Typography sx={{marginBottom:"5px"}}>
+                    <Typography className="ubuntu" sx={{marginBottom:"5px"}}>
                         Email cũ: {props.email}
                     </Typography>
                     <TextField type="email" value={newEmail} onChange={handleEmailPassword} fullWidth

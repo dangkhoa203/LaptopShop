@@ -66,9 +66,11 @@ export default function ChangePasswordDialog(props:{username:string,id:string,op
         >
             <DialogTitle
                 sx={{
-                    borderTop:"10px solid rgb(138, 5, 161)",
+                    fontFamily:"Open sans",
+                    letterSpacing:1,
+                    borderTop:"10px solid rgb(230, 81, 0)",
                 }}>
-                Thay đổi mật khẩu người dùng {props.username}
+                Thay đổi mật khẩu người dùng <span style={{fontWeight:700}}>{props.username}</span>
             </DialogTitle>
             <IconButton
                 color="secondary"

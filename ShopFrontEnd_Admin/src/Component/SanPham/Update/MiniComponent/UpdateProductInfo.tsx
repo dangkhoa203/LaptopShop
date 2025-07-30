@@ -34,7 +34,7 @@ type brandData={
     id:string,
     name:string,
 }
-export default function UpdateProductInfo(props:{id:string}){
+export default function UpdateProductInfo(props:{id:string,notFound:boolean,setNotFound:(value:any)=>void}){
     const [oldInfo,setOldInfo]=useState<productInfo>({
         name:"",
         brandId:"",
@@ -85,7 +85,7 @@ export default function UpdateProductInfo(props:{id:string}){
     }, [brand.data]);
 
     const info=useQuery({
-        queryKey:["product_info"],
+        queryKey:[`product_info_${props.id}`],
         queryFn:async ()=>{
             const response = await fetch(`https://localhost:7075/api/Admin/Products/${props.id}/Info`, {
                 headers: {'Content-Type': 'application/json'},
@@ -98,9 +98,15 @@ export default function UpdateProductInfo(props:{id:string}){
 
     useEffect(() => {
         if(info.data){
-            setSuccess(info.data.success)
-            setOldInfo(info.data.data)
-            document.title=info.data.data.name
+            if (info.data?.success) {
+                setSuccess(info.data.success)
+                setOldInfo(info.data.data)
+                document.title=info.data.data.name
+            } else {
+                if (info.data.notFound) {
+                    props.setNotFound(true);
+                } else { /* empty */ }
+            }
         }
     }, [info.data]);
     useEffect(()=>{

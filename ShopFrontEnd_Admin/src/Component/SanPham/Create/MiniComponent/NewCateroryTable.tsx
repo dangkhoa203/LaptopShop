@@ -10,6 +10,7 @@ import {useEffect, useState} from "react";
 import {useQuery} from "@tanstack/react-query";
 import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
+import Typography from "@mui/material/Typography";
 type categoryData={
     id:string,
     name: string,
@@ -55,13 +56,16 @@ export default function NewCateroryTable(props:{categories:string[],setCategorie
             {isPending && <LinearProgress />}
         {success?
                 <>
-                    <TextField value={search} onChange={handleSearchChange} fullWidth label="search" variant="outlined"/>
+                    <TextField value={search} onChange={handleSearchChange} fullWidth label="Search" variant="outlined"/>
                     <TableContainer sx={{height:400,marginTop:"10px",overflowY:"scroll",border:"2px solid rgb(25, 118, 210)"}} component={Paper}>
                         <Table stickyHeader aria-label="simple table">
                             <TableHead>
                                 <TableRow>
-                                    <TableCell>Chọn: {props.categories.length}</TableCell>
-                                    <TableCell>Tên danh mục</TableCell>
+                                    <TableCell>
+                                        <Typography>Chọn</Typography>
+                                        <Typography textAlign={"center"}> {props.categories.length}</Typography>
+                                    </TableCell>
+                                    <TableCell ><Typography sx={{letterSpacing:"2px",fontSize:"1.3em"}}>Tên danh mục</Typography> </TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -78,7 +82,7 @@ export default function NewCateroryTable(props:{categories:string[],setCategorie
                                             />
                                         </TableCell>
                                         <TableCell >
-                                            <Button onClick={()=>handleCheckChange(row.id)}> {row.name}</Button>
+                                            <Button  onClick={()=>handleCheckChange(row.id)}> {row.name}</Button>
                                         </TableCell>
                                     </TableRow>
                                 ))}

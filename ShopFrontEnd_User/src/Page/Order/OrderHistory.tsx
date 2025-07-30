@@ -22,8 +22,9 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogActions from "@mui/material/DialogActions";
-import {useNavigate} from "react-router";
+import {Navigate, useNavigate} from "react-router";
 import {useAppError} from "../../State/AppErrorState.ts";
+import {useUserInfo} from "../../State/User.ts";
 type orderData={
     id:string,
     orderDate:string,
@@ -97,6 +98,10 @@ export default function OrderHistory(){
     useEffect(()=>{
         document.title="Đơn hàng"
     },[])
+    const userInfo=useUserInfo(state=>state.user);
+    if((!userInfo.isLogged) && userInfo.userName!=='default'){
+        return <Navigate to={"/"}></Navigate>
+    }
     // @ts-ignore
     return(
         <Container>
@@ -253,7 +258,7 @@ function ListRender(props:{orders:orderData[],openCancel:(id:string)=>void,isFet
                     <CardActionArea onClick={()=>navigate(order.id)}>
                         <CardContent>
                             <div style={{display:"flex",gap:2,justifyContent:"space-between"}}>
-                                <Typography variant="h4" color="textPrimary">
+                                <Typography fontFamily="Quicksand" fontWeight={400} variant="h4" color="textPrimary">
                                     Đơn {order.id}
                                 </Typography>
                                 <div style={{display:"flex",gap:1}}>
@@ -289,8 +294,8 @@ function ListRender(props:{orders:orderData[],openCancel:(id:string)=>void,isFet
 
                                 )}
                             </div>
-                            <Typography sx={{marginTop:"10px"}} variant="h5" component="div">
-                                Giá trị: {order.value.toLocaleString(undefined, { minimumFractionDigits: 0 })} VNĐ
+                            <Typography fontWeight={300} sx={{marginTop:"10px"}} variant="h5" component="div">
+                                Giá trị: <span style={{fontFamily:"Roboto",fontWeight:"bolder",fontSize:"1.1em",color:"rgb(237, 108, 2)"}}>{order.value.toLocaleString(undefined, { minimumFractionDigits: 0 })} VNĐ</span>
                             </Typography>
                         </CardContent>
                     </CardActionArea>

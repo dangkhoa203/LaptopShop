@@ -45,7 +45,7 @@ export default function MainPageProductCard(props: {product:ProductData}){
                 <div style={{maxHeight:"300px",overflow:"hidden"}}>
                     <CardMedia
                         className={"cardImg"}
-                        sx={{ objectFit: "contain",cursor:"pointer",maxHeight:"300px" }}
+                        sx={{ objectFit: "contain",cursor:"pointer",height:"300px" }}
                         onClick={()=>navigate(`/SanPham/${props.product.id}`)}
                         image={`https://localhost:7075/api/Products/${props.product.id}/Thumbnail`}
                         title={props.product.name}
@@ -53,12 +53,12 @@ export default function MainPageProductCard(props: {product:ProductData}){
                     />
                 </div>
 
-                <CardContent sx={{flexGrow:2}}>
+                <CardContent sx={{flexGrow:2,paddingTop:"0px",paddingBottom:"5px"}}>
                     <Tooltip title={props.product.name}>
-                        <Typography className="ProductName" sx={{
-                            fontSize:"1em",cursor:"pointer"}} onClick={()=>navigate(`/SanPham/${props.product.id}`)} component="p" >
+                        <p className="ProductName" style={{
+                            fontSize:"1.1em",cursor:"pointer"}} onClick={()=>navigate(`/SanPham/${props.product.id}`)}  >
                             {props.product.name}
-                        </Typography>
+                        </p>
                     </Tooltip>
 
                 </CardContent>

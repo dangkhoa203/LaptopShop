@@ -11,7 +11,20 @@
     padding-top: 0;
 }
 
+.content{
+    font-family: "Manrope", sans-serif;
+    h2, h3{
+        span{
+            font-family: "Manrope";
+        }
 
+    }
+    p ul{
+        span{
+            font-family: "Roboto";
+        }
+    }
+}
 
 
 

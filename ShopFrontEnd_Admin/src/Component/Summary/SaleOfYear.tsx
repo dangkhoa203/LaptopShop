@@ -46,7 +46,7 @@ export default function SaleOfYear(props:{year:number}) {
     console.log(setSaleData);
     return(
         <Container>
-            <Typography textAlign="center" variant="h4" color="textSecondary">
+            <Typography className="ubuntu" textAlign="center" variant="h4" color="textSecondary">
                 Doanh thu năm {props.year}
             </Typography>
             {isPending?

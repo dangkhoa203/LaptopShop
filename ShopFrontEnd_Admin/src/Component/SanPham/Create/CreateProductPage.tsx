@@ -134,7 +134,7 @@ export default function CreateProductPage(){
     },[])
     return(
         <Container sx={{display:"flex", flexDirection:"column", justifyContent:"center",gap:2}}>
-            <p style={{textAlign:"center",fontSize:"2.5em",margin:"0"}}>Tạo sản phẩm</p>
+            <p className="quicksand-header" style={{textAlign:"center",fontSize:"2.5em",margin:"0"}}>Tạo sản phẩm</p>
             <Button startIcon={<ArrowBackIcon/>} sx={{width:"150px"}} onClick={()=>navigate(-1)}>Quay về</Button>
             <Container sx={{display:"flex", flexDirection: {xs:"column",sm:"column",md:"column",lg:"row"}, justifyContent:"center",gap:2}}>
                 <Container sx={{flex:1}}>

@@ -31,7 +31,7 @@ export default function TopCategoryChart(){
     }, [data]);
     return(
         <Container>
-            <Typography textAlign="center" variant="h4" color="textSecondary">
+            <Typography className="ubuntu" textAlign="center" variant="h4" color="textSecondary">
                 Top danh mục chính bán chạy
             </Typography>
             {isPending?

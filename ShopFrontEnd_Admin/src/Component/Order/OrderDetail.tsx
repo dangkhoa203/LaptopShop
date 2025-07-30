@@ -10,6 +10,7 @@ import {OrderStatus} from "../../Type/OrderStatus.ts";
 import UpdateStatusDialog from "./UpdateStatusDialog.tsx";
 import Button from "@mui/material/Button";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import NotFoundPage from "../CommonPage/NotFoundPage.tsx";
 type orderDetail={
     id:string,
     dateOfOrder:string,
@@ -68,6 +69,7 @@ export default function OrderDetail(){
             }
         }
     );
+    const [notFound, setNotFounded]=useState(false);
     const {data,isPending,refetch}=useQuery({
         queryKey:[`Order_${id}`],
         refetchOnWindowFocus:false,
@@ -81,9 +83,15 @@ export default function OrderDetail(){
         },
     });
     useEffect(() => {
-        if(data){
-            setSuccess(data.success)
-            setOrderDetail(data.data);
+        if(data) {
+            if (data?.success) {
+                setSuccess(data.success)
+                setOrderDetail(data.data);
+            } else {
+                if (data.notFound) {
+                    setNotFounded(true);
+                } else { /* empty */ }
+            }
         }
     }, [data]);
 
@@ -98,6 +106,9 @@ export default function OrderDetail(){
     };
     const navigate=useNavigate();
     const originalPrice=orderDetail.discountCode.id!=="" ? (orderDetail.value/(100-orderDetail.discountCode.percent))*100 :0
+    if(notFound){
+        return <NotFoundPage/>
+    }
     // @ts-ignore
     return(
         <Container maxWidth="lg" sx={{paddingTop:"5px",display:"flex",flexDirection:"column"}}>
@@ -111,9 +122,9 @@ export default function OrderDetail(){
                     {success ?
                         <>
                             <Button startIcon={<ArrowBackIcon/>} sx={{width:"150px"}} onClick={()=>navigate(-1)}>Quay về</Button>
-                            <Typography variant="h3" color="textPrimary" textAlign="center">
+                            <p style={{textAlign:"center",fontSize:"3em",margin:"0"}} className="quicksand-header" >
                                 Chi tiết hóa đơn
-                            </Typography>
+                            </p>
                             <Grid sx={{marginY:"10px",display:"flex",justifyContent:"center"}} container spacing={2}>
                                 <Grid size={3}>
                                     <Typography textAlign="center" variant="h5" color="textPrimary">
@@ -155,7 +166,7 @@ export default function OrderDetail(){
                                         <Typography textAlign="center" variant="h5" color="textPrimary">
                                             Ghi Chú
                                         </Typography>
-                                        <Typography textAlign="center" variant="body1" color="textSecondary">
+                                        <Typography component="pre" textAlign="center" variant="body1" color="textSecondary">
                                             {orderDetail.noteFromOrder}
                                         </Typography>
                                     </Grid>
@@ -256,15 +267,15 @@ export default function OrderDetail(){
                                     )}
                                 </Paper>
                             </Grid>
-                            <Grid size={12}>
+                            <Grid sx={{marginTop:"10px"}} size={12}>
                                 {orderDetail.discountCode.id !="" ?
                                     <>
                                         <Typography textAlign={"end"} variant={"h5"}>Giá trị gốc : {originalPrice.toLocaleString(undefined, { minimumFractionDigits: 0 })} VNĐ</Typography>
                                         <Typography textAlign={"end"} color="error" variant={"h5"}>- {(originalPrice-orderDetail.value).toLocaleString(undefined, { minimumFractionDigits: 0 })} VNĐ</Typography>
-                                        <Typography textAlign={"end"} variant={"h4"}>Giá trị đơn hàng : {orderDetail.value.toLocaleString(undefined, { minimumFractionDigits: 0 })} VNĐ</Typography>
+                                        <Typography sx={{marginBottom:"20px"}} textAlign={"end"} variant={"h4"}>Giá trị đơn hàng : {orderDetail.value.toLocaleString(undefined, { minimumFractionDigits: 0 })} VNĐ</Typography>
                                     </>
                                     :
-                                    <Typography textAlign={"end"} variant={"h5"}>Giá trị đơn hàng : {orderDetail.value.toLocaleString(undefined, { minimumFractionDigits: 0 })} VNĐ</Typography>
+                                    <Typography sx={{marginBottom:"20px"}} textAlign={"end"} variant={"h5"}>Giá trị đơn hàng : {orderDetail.value.toLocaleString(undefined, { minimumFractionDigits: 0 })} VNĐ</Typography>
                                 }
 
                             </Grid>

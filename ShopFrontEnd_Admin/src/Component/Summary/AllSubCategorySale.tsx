@@ -78,7 +78,7 @@ export default function AllSubCategorySale(){
     }, [isAll]);
     return(
         <Container>
-            <Typography textAlign="center" variant="h4" color="textSecondary">
+            <Typography className="ubuntu" textAlign="center" variant="h4" color="textSecondary">
                 Danh sách bán hàng của danh mục phụ
 
             </Typography>
@@ -101,8 +101,8 @@ export default function AllSubCategorySale(){
                                                     onChange={handleIsAllChange}
                                                 />
                                             </TableCell>
-                                            <TableCell>Tên</TableCell>
-                                            <TableCell align="right">Số lượng sản phẩm</TableCell>
+                                            <TableCell sx={{fontSize:"1.2em"}}>Tên</TableCell>
+                                            <TableCell sx={{fontSize:"1.2em"}} align="right">Số lượng sản phẩm</TableCell>
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
@@ -117,10 +117,10 @@ export default function AllSubCategorySale(){
                                                         onClick={()=>handleSelectedChange(index)}
                                                     />
                                                 </TableCell>
-                                                <TableCell component="th" scope="row">
+                                                <TableCell sx={{fontSize:"1.1em"}} component="th" scope="row">
                                                     {row.name}
                                                 </TableCell>
-                                                <TableCell align="right">{row.count}</TableCell>
+                                                <TableCell sx={{fontSize:"1.1em"}} align="right">{row.count}</TableCell>
                                             </TableRow>
                                         ))}
                                     </TableBody>

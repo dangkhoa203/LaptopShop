@@ -7,13 +7,14 @@ export const myTheme=themeQuartz
         borderColor: "#0D56F985",
         columnBorder: true,
         fontFamily: {
-            googleFont: "IBM Plex Mono"
+            googleFont: "Arimo",
         },
         fontSize: 17,
         foregroundColor: "#414756",
         headerFontFamily: {
-            googleFont: "Roboto"
+            googleFont: "Open Sans",
         },
+            headerVerticalPaddingScale: 1.5,
         headerFontSize: 20,
         headerFontWeight: 600,
         headerRowBorder: true,

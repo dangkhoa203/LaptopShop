@@ -87,7 +87,7 @@ export default function ResetPasswordDialog(props:{open:boolean,handleClose:()=>
             onClose={close}
             fullWidth
             maxWidth="sm"
-            hideBackdrop={true}
+            hideBackdrop={false}
         >
             <DialogTitle sx={{border:"1px solid orange",borderBottom:0,textAlign:"center",fontSize:"2em"}}>
                 Quên mật khẩu

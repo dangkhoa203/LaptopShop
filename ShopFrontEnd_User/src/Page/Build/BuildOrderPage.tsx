@@ -255,7 +255,7 @@ export default function BuildOrderPage(){
             {success ?
                 <Container sx={{minHeight:"70vh",display:"flex",flexDirection:"column"}}>
                     <div style={{margin:"auto"}}>
-                        <Typography variant="h4" sx={{marginBottom:"10px"}} textAlign={"center"}>Đặt đơn hàng thành công</Typography>
+                        <Typography variant="h3" sx={{marginBottom:"10px",fontFamily:"Quicksand"}} textAlign={"center"}>Đặt đơn hàng thành công</Typography>
                         <div style={{display:"flex",gap:10,justifyContent:"center"}}>
                             <Button color="success" sx={{minWidth:"185px"}} onClick={()=>navigate(`/`)} variant="outlined">Tiếp tục mua hàng</Button>
                             <Button sx={{minWidth:"185px"}} onClick={()=>navigate(`/DonHang/${orderId}`)} variant="outlined">Xem đơn hàng</Button>
@@ -352,19 +352,21 @@ export default function BuildOrderPage(){
                             <Grid size={{xs:12,sm:12,md:6,lg:5}}>
                                 <Paper elevation={12} sx={{padding:"10px",marginBottom:"10px",display:"flex",flexDirection:"column",textAlign:"center"}}>
                                     {validCode.id==="" ?
-                                        <>
-                                            Giá trị : {getTotal().toLocaleString(undefined, {minimumFractionDigits: 0}) + " VNĐ"}
-                                        </>
+                                        <p className="manrope">
+                                            Giá trị : <span style={{fontWeight:"bolder",fontSize:"1.1em",color:"rgb(237, 108, 2)"}}>{getTotal().toLocaleString(undefined, {minimumFractionDigits: 0}) + " VNĐ"}</span>
+                                        </p>
                                         :
                                         <>
                                             <div>
                                                 {getTotal().toLocaleString(undefined, {minimumFractionDigits: 0}) + " VNĐ"}
                                             </div>
-                                            <div>
+                                            <div style={{color:"red"}}>
                                                 -{(getTotal()*(validCode.percent/100)).toLocaleString(undefined, {minimumFractionDigits: 0}) + " VNĐ"}
                                             </div>
                                             <div>
-                                                Giá trị : {(getTotal()*((100-validCode.percent)/100)).toLocaleString(undefined, {minimumFractionDigits: 0}) + " VNĐ"}
+                                                <p className="manrope">
+                                                    Giá trị : <span style={{fontWeight:"bolder",fontSize:"1.1em",color:"rgb(237, 108, 2)"}}>{(getTotal()*((100-validCode.percent)/100)).toLocaleString(undefined, {minimumFractionDigits: 0}) + " VNĐ"}</span>
+                                                </p>
                                             </div>
                                         </>
                                     }

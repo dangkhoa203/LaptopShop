@@ -47,6 +47,7 @@ export default function ConfirmEmailChange() {
             onSuccess:(data:Response)=>{
                 if(data?.success){
                     refetchUserInfo()
+                    navigate("/")
                 }
             }
         }

@@ -72,10 +72,7 @@ namespace APIShopLaptop.Feature.User.Orders.Build {
             }
             Order.Details = Details;
             if (Order.PaymentMethod == PAYMENTMETHOD.BANK) {
-                Order.NoteFromOrder = $@"Chuyển khoản vào:
-                                           VietComBank-1010101010
-                                           AGBank-2020202020
-                                            Với nội dung: {Order.Id}-{Order.User.UserName}-TRA TIEN";
+                Order.NoteFromOrder = $"Chuyển khoản vào: \n VietComBank-1010101010 \n AGBank-2020202020 \n Với nội dung: {Order.Id}-{Order.User.UserName}-TRA TIEN";
             }
             if (Order.PaymentMethod == PAYMENTMETHOD.MOMO) {
                 var requestId = Order.Id + Nanoid.Generate(Nanoid.Alphabets.UppercaseLettersAndDigits, 6);

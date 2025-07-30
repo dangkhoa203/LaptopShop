@@ -108,6 +108,8 @@ export default function CreateNewBrandDialog(props:{open:boolean,handleClose:()=
         >
             <DialogTitle
                 sx={{
+                    fontFamily:"Open sans",
+                    letterSpacing:1,
                     borderTop:"10px solid rgb(25, 118, 210)",
                 }}>
                 Tạo hãng mới

@@ -1,9 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
 .ProductName{
+    font-family: "Oswald", sans-serif;
+    letter-spacing: 2px;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
+    font-weight: 300;
     overflow: hidden;
     text-overflow: ellipsis;
+    margin: 0;
 }
 .ProductDescription{
     b{

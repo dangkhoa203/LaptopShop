@@ -108,7 +108,7 @@ export default function ProductList(){
             resizable:false,
             unSortIcon: false,flex: 1,
             wrapText: true,
-            minWidth:100,
+            minWidth:170,
             floatingFilter: false },
 
         { valueGetter:c=>c.data.priceAfterDiscount,
@@ -161,7 +161,7 @@ export default function ProductList(){
     },[])
     return(
         <Container sx={{display:"flex", flexDirection:"column", justifyContent:"center",gap:2}}>
-            <p style={{textAlign:"center",fontSize:"2.5em",margin:"0"}}>Danh sách sản phẩm</p>
+            <p className="quicksand-header" style={{textAlign:"center",fontSize:"2.5em",margin:"0"}}>Danh sách sản phẩm</p>
             <Button variant={"contained"} onClick={()=>navigate("Tao")}>Tạo sản phẩm mới</Button>
             {isPending?
                 <div style={{textAlign:"center"}}>

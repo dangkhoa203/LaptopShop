@@ -7,7 +7,7 @@ using System.Security.Claims;
 namespace APIShopLaptop.Feature.User.Products {
     public class GetProductReviews : IEndpoint {
         public record ReviewDTO(string Content, float Score, string UserName,DateTime ReviewDate);
-        public record Response(bool Success, List<ReviewDTO> Data,int Total, string ErrorMessage);
+        public record Response(bool Success, List<ReviewDTO> Data,int Total,bool NotFound, string ErrorMessage);
 
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapGet("/api/Products/{id}/Reviews", Handler).WithTags("Products");
@@ -19,7 +19,7 @@ namespace APIShopLaptop.Feature.User.Products {
                         .ThenInclude(r => r.User)
                     .FirstOrDefaultAsync(p => p.Id == id);
                 if (Product == null) {
-                    return Results.BadRequest(new Response(false, [],0, "Lỗi đã xảy ra!"));
+                    return Results.BadRequest(new Response(false, [],0,true, "Lỗi đã xảy ra!"));
                 }
                 int Total=Product.Reviews.Count;
                 List<ReviewDTO> Reviews;
@@ -29,10 +29,10 @@ namespace APIShopLaptop.Feature.User.Products {
                 else {
                     Reviews = Product.Reviews.Select(r => new ReviewDTO(r.Content, r.Score, r.User.UserName,r.DateOfReview)).Take(3).ToList();
                 }
-                return Results.Ok(new Response(true, Reviews,0, ""));
+                return Results.Ok(new Response(true, Reviews,0,false, ""));
             }
             catch (Exception ex) {
-                return Results.BadRequest(new Response(false, [],0, "Lỗi đã xảy ra!"));
+                return Results.BadRequest(new Response(false, [],0, false, "Lỗi đã xảy ra!"));
             }
         }
     }

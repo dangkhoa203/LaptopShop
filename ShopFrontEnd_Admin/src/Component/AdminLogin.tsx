@@ -137,15 +137,15 @@ export default function AdminLogin(){
                        maxWidth:"500px",
                        paddingY:"10px",
                        display:"flex",flexDirection:"column"}}  >
-                <Typography fontSize={"3em"} textAlign={"center"}>
+                <Typography className="roboto-header" fontSize={"3em"} textAlign={"center"}>
                     Đăng nhập Admin
                 </Typography>
                 <Grid container spacing={2} paddingX="50px" paddingTop="20px" paddingBottom="20px" >
                     <Grid sx={{textAlign:'center'}} size={12}>
-                        <TextField value={loginInfo.userName} onChange={handleUserNameChange}
+                        <TextField className="ubuntu" value={loginInfo.userName} onChange={handleUserNameChange}
                                    onKeyDown={handleKeyDown}
                                    color="info" sx={{fontSize:"1.5em",width:"100%"}}
-                                   label="UserName" variant="standard"
+                                   label="Tên đăng nhập" variant="standard"
                                    error={validatationError.Username.length!==0}
                                    helperText={validatationError.Username}
                         />
@@ -154,6 +154,7 @@ export default function AdminLogin(){
                         <FormControl fullWidth variant="standard">
                             <InputLabel color={validatationError.Password.length!==0 ? "error":"info"} sx={{color:validatationError.Password.length!==0 ?"rgb(211, 47, 47)":""}} >Password</InputLabel>
                             <Input
+                                className="ubuntu"
                                 onKeyDown={handleKeyDown}
                                 color="info"
                                 value={loginInfo.password}
@@ -187,7 +188,7 @@ export default function AdminLogin(){
                 {isPending ?
                     <LinearProgress sx={{marginX:"20px",minHeight:"10px"}} color="success" />
                     :
-                    <Button sx={{marginX:"100px"}} color={"info"}  onClick={()=>mutate()} variant="outlined">Đăng nhập</Button>
+                    <Button className="ubuntu" sx={{marginX:"100px"}} color={"info"}  onClick={()=>mutate()} variant="outlined">Đăng nhập</Button>
                 }
 
             </Paper>

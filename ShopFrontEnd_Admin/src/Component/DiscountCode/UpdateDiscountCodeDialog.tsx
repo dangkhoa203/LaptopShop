@@ -174,9 +174,11 @@ export default function UpdateDiscountCodeDialog(props:{old:oldCodeInfo,open:boo
         >
             <DialogTitle
                 sx={{
+                    fontFamily:"Open sans",
+                    letterSpacing:1,
                     borderTop:"10px solid rgb(230, 81, 0)",
                 }}>
-                Sửa mã giảm giá {props.old.id}
+                Sửa mã giảm giá <span style={{fontWeight:700}}>{props.old.id}</span>
             </DialogTitle>
             <IconButton
                 color="warning"
@@ -223,7 +225,7 @@ export default function UpdateDiscountCodeDialog(props:{old:oldCodeInfo,open:boo
                         </Grid>
                         <Grid size={12}>
                             <TextField value={newCodeInfo.code} onChange={handleCodeChange} fullWidth
-                                       color="primary"
+                                       color="warning"
                                        onKeyDown={handleKeyDown}
                                        size={"medium"} label="Code" variant="filled" />
                         </Grid>

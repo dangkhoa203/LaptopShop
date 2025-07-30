@@ -16,6 +16,7 @@ import Button from "@mui/material/Button";
 import {useAppNotify} from "../../State/AppGlobalNotifyState.ts";
 import {useUserInfo} from "../../State/User.ts";
 
+
 type validationError={
     userName: string,
     password: string,
@@ -127,7 +128,7 @@ export default function LoginDialog(props:{open:boolean,handleClose:()=>void,ope
                 maxWidth="sm"
                 hideBackdrop={false}
             >
-                <DialogTitle sx={{border:"1px solid orange",borderBottom:0,textAlign:"center",fontSize:"2em"}}>
+                <DialogTitle sx={{border:"1px solid orange",borderBottom:0,textAlign:"center",fontSize:"2.5em",fontWeight:"bold",fontFamily: "Quicksand"}}>
                     Đăng nhập
                 </DialogTitle>
                 <DialogContent sx={{border:"1px solid orange",borderTop:0,minHeight:"300px",padding:"50px"}} >
@@ -138,6 +139,11 @@ export default function LoginDialog(props:{open:boolean,handleClose:()=>void,ope
                                 error={validateError.userName.length>0}  helperText={validateError.userName}
                                 color="primary"
                                 label="Tên đăng nhập"
+                                onKeyDown={(event)=>{
+                                    if(event.key === 'Enter'){
+                                        mutate()
+                                    }
+                                }}
                                 slotProps={{
                                     input: {
                                         endAdornment: (
@@ -152,12 +158,16 @@ export default function LoginDialog(props:{open:boolean,handleClose:()=>void,ope
                         </Grid>
                         <Grid size={12}>
                             <FormControl   error={validateError.password.length!==0}  fullWidth variant="outlined">
-                                <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+                                <InputLabel htmlFor="outlined-adornment-password">Mật khẩu</InputLabel>
                                 <OutlinedInput
                                     fullWidth
                                     color="primary"
                                     value={loginInfo.password}
-
+                                    onKeyDown={(event)=>{
+                                        if(event.key === 'Enter'){
+                                            mutate()
+                                        }
+                                    }}
                                     onChange={handlePasswordChange}
                                     type={showPassword ? 'text' : 'password'}
                                     endAdornment={
@@ -180,10 +190,10 @@ export default function LoginDialog(props:{open:boolean,handleClose:()=>void,ope
                                 <FormHelperText >{validateError.password}</FormHelperText>
                             </FormControl>
                         </Grid>
-                        <Grid sx={{textAlign:'start'}} size={12}>
+                        <Grid sx={{textAlign:'start',display:"flex"}} size={12}>
                             <Checkbox value={loginInfo.remember} onChange={handleRememberChange} color={"primary"} sx={{marginLeft:0}}/>
                             <span
-                                style={{fontSize:"14px",transition:"0.3s all"}}>Nhớ đăng nhập</span>
+                                style={{fontFamily:"Roboto",fontSize:"16px",transition:"0.3s all",margin:"auto",marginLeft:"0px"}} >Nhớ đăng nhập</span>
                         </Grid>
                         {validateError.globalError.length>0 &&
                             <Grid sx={{textAlign:'center',minHeight:"19px",color:"red"}} size={12}>
@@ -192,6 +202,7 @@ export default function LoginDialog(props:{open:boolean,handleClose:()=>void,ope
                         }
                         <Grid size={12}>
                             <Link
+                                sx={{fontFamily:"Mandrop",fontSize:"1.1em"}}
                                 color="secondary"
                                 underline="hover"
                                 component="button"
@@ -206,6 +217,7 @@ export default function LoginDialog(props:{open:boolean,handleClose:()=>void,ope
                         </Grid>
                         <Grid size={12}>
                             <Link
+                                sx={{fontFamily:"Mandrop",fontSize:"1.1em"}}
                                 color="secondary"
                                 underline="hover"
                                 component="button"

@@ -10,6 +10,7 @@ import {Visibility, VisibilityOff} from "@mui/icons-material";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import ErrorPage from "../CommonPage/ErrorPage.tsx";
 
 
 export default function ResetMatKhau() {
@@ -104,10 +105,10 @@ export default function ResetMatKhau() {
         checkId.mutate()
     }, [])
     if (userInfo.isLogged) {
-        return <Navigate to="/Loi"></Navigate>
+        return <Navigate to="/"></Navigate>
     }
     if(validId===0){
-        return <Navigate to="/Loi"></Navigate>
+        return <ErrorPage/>
     }
     return (
         <Container>
@@ -132,6 +133,9 @@ export default function ResetMatKhau() {
                         </Box>
                         :
                         <Grid container spacing={2}>
+                            <Grid size={12}>
+                                <p style={{textAlign:"center",fontFamily:"Manrope",fontSize:"3em",textTransform:"uppercase",margin:0}}>Đặt lại mật khẩu</p>
+                            </Grid>
                             <Grid size={6}>
                                 <FormControl error={validationError.newPassword.length>0} sx={{marginTop:"5px"}} fullWidth   variant="standard">
                                     <InputLabel >Mật khẩu mới</InputLabel>

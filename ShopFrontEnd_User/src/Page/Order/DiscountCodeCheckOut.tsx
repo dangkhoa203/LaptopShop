@@ -64,6 +64,12 @@ export default function DiscountCodeCheckOut(props:{validCode:validCode,setValid
                         <>
                             <Grid size={9}>
                                 <TextField
+
+                                    onKeyDown={(event)=>{
+                                        if(event.key === 'Enter'){
+                                            VALIDATE.mutate(codeInput)
+                                        }
+                                    }}
                                     label="Mã giảm giá"
                                     fullWidth
                                     variant="filled"
@@ -79,8 +85,9 @@ export default function DiscountCodeCheckOut(props:{validCode:validCode,setValid
                         :
                         <>
                             <Grid sx={{display:"flex",flexDirection:"column"}} size={11}>
-                                <Typography sx={{marginY:"auto"}}>Áp dụng mã giảm giá {props.validCode.name}</Typography>
-                                <Typography sx={{marginY:"auto"}}>Giảm giá {props.validCode.percent}%</Typography>
+                                <p className="manrope" style={{margin:"0"}}>Áp dụng mã giảm giá {props.validCode.name}</p>
+                                <p className="manrope" style={{marginTop:"5px"}}>
+                                    Giảm giá <span style={{fontWeight:"bolder",fontSize:"1.2em",color:"rgb(237, 108, 2)"}}>{props.validCode.percent}%</span></p>
                             </Grid>
                             <Grid size={1}>
                                 <IconButton onClick={()=>props.setValidCode({

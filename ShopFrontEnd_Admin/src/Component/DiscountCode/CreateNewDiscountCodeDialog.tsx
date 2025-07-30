@@ -30,7 +30,8 @@ export default function CreateNewDiscountCodeDialog(props:{open:boolean,handleCl
     const [validationError, setValidationError] = useState(
         {
             name:"",
-            percent:""
+            percent:"",
+            endDate:""
         }
     );
     const [codeInfo, setCodeInfo] = useState<codeInfo>(
@@ -86,7 +87,8 @@ export default function CreateNewDiscountCodeDialog(props:{open:boolean,handleCl
                 setGlobalError("")
                 setValidationError({
                     name:"",
-                    percent:""
+                    percent:"",
+                    endDate: ""
                 })
                 props.reFetch()
             }
@@ -97,13 +99,16 @@ export default function CreateNewDiscountCodeDialog(props:{open:boolean,handleCl
                     const list:any[]=data.validationError.errors
                     const error={
                         name:"",
-                        percent:""
+                        percent:"",
+                        endDate:""
                     }
                     list.forEach(element=>{
                         if(element.propertyName==="Percent")
                             error.percent=element.errorMessage
                         if(element.propertyName==="Name")
                             error.name=element.errorMessage
+                        if(element.propertyName==="EndDate")
+                            error.endDate=element.errorMessage
                     })
                     setValidationError(error)
                 }
@@ -131,7 +136,8 @@ export default function CreateNewDiscountCodeDialog(props:{open:boolean,handleCl
                 setGlobalError("")
                 setValidationError({
                     name:"",
-                    percent:""
+                    percent:"",
+                    endDate: ""
                 })
             }}
             fullWidth
@@ -139,6 +145,8 @@ export default function CreateNewDiscountCodeDialog(props:{open:boolean,handleCl
         >
             <DialogTitle
                 sx={{
+                    fontFamily:"Open sans",
+                    letterSpacing:1,
                     borderTop:"10px solid rgb(25, 118, 210)",
                 }}>
                 Tạo mã giảm giá mới
@@ -158,7 +166,8 @@ export default function CreateNewDiscountCodeDialog(props:{open:boolean,handleCl
                     setGlobalError("")
                     setValidationError({
                         name:"",
-                        percent:""
+                        percent:"",
+                        endDate: ""
                     })
                 }}
                 sx={(theme) => ({
@@ -182,6 +191,7 @@ export default function CreateNewDiscountCodeDialog(props:{open:boolean,handleCl
                         </Grid>
                         <Grid size={6}>
                             <TextField value={codeInfo.endDate} onChange={handleEndDateChange} fullWidth
+                                       error={validationError.endDate.length>0}  helperText={validationError.endDate}
                                        color="primary" type="date"
                                        onKeyDown={handleKeyDown}
                                        size={"medium"} label="Hạn dùng" variant="filled" />
@@ -236,7 +246,8 @@ export default function CreateNewDiscountCodeDialog(props:{open:boolean,handleCl
                             setGlobalError("")
                             setValidationError({
                                 name:"",
-                                percent:""
+                                percent:"",
+                                endDate: ""
                             })
                         }}>Hủy</Button>
                         <Button variant="contained" color="primary" onClick={()=> {

@@ -4,6 +4,7 @@ import {useEffect} from "react";
 import {useUserInfo} from "./State/User.ts";
 import {useQuery} from "@tanstack/react-query";
 import {Backdrop, CircularProgress} from "@mui/material";
+import './CSS/Font.css'
 function App() {
     const setUserInfo=useUserInfo((state)=> state.setUserInfo);
     const {data,isFetching,refetch}=useQuery({

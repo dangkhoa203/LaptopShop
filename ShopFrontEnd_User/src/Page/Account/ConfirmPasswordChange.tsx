@@ -47,6 +47,7 @@ export default function ConfirmPasswordChange() {
             onSuccess:(data:Response)=>{
                 if(data?.success){
                     refetchUserInfo()
+                    navigate("/")
                 }
             }
         }

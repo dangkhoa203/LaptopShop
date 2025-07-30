@@ -13,6 +13,8 @@ import {useUserInfo} from "../../../State/User.ts";
 import {buildProduct} from "../PCBuilderPage.tsx";
 import {Response} from "../../../Type/Respone.ts";
 import {useAppError} from "../../../State/AppErrorState.ts";
+import {useNavigate} from "react-router";
+import Tooltip from "@mui/material/Tooltip";
 
 export default function BuildItemChooseCard(props:{componentName:string,categoryId:string,product:buildProduct|undefined,reFetchBuild:()=>void,required:boolean}) {
     const userInfo = useUserInfo(state=>state.user);
@@ -98,6 +100,7 @@ export default function BuildItemChooseCard(props:{componentName:string,category
 
         }
     }, [data]);
+    const navigate=useNavigate()
     return(
         <>
             <Card  sx={{ display: 'flex',justifyContent:"center",marginBottom:"10px",minHeight:"193px" }} elevation={3}>
@@ -123,7 +126,7 @@ export default function BuildItemChooseCard(props:{componentName:string,category
                 fullWidth
             >
                 <Container sx={{marginTop:"10px"}}>
-                    <Typography textAlign="center" variant="h4">
+                    <Typography sx={{fontFamily:"Roboto",fontWeight:200,textTransform:"uppercase",marginBottom:"5px"}} textAlign="center" variant="h4">
                         {props.componentName}
                     </Typography>
                     <div style={{display:"flex",gap:5}}>
@@ -163,15 +166,20 @@ export default function BuildItemChooseCard(props:{componentName:string,category
                                         <Card key={data.id} sx={{ display: 'flex',justifyContent:"center",marginBottom:"10px",gap:1 }} elevation={3}>
                                             <CardMedia
                                                 component="img"
-                                                sx={{ margin:"auto",width: 60,height:60 }}
+                                                sx={{ margin:"auto",width: 60,height:60,cursor:"pointer" }}
                                                 image={`https://localhost:7075/api/Products/${data.id}/Thumbnail`}
-                                                alt="Live from space album cover"
+                                                alt={data.name}
+                                                onClick={()=>navigate(`/SanPham/${data.id}`)}
+                                                title={data.name}
                                             />
                                             <Container sx={{ borderLeft:"1px solid black",display: 'flex', justifyContent:"space-between" }}>
                                                 <CardContent sx={{minWidth:"80%",paddingX:"5px"}}>
-                                                    <Typography className="ProductName"  component="p" >
-                                                        {data.name}
-                                                    </Typography>
+                                                    <Tooltip title={data.name}>
+                                                        <Typography sx={{cursor:"pointer"}} onClick={()=>navigate(`/SanPham/${data.id}`)} className="ProductName"  component="p" >
+                                                            {data.name}
+                                                        </Typography>
+                                                    </Tooltip>
+
                                                 </CardContent>
                                             </Container>
                                             <div style={{display:"flex",flexDirection:"column",justifyContent:"center",minWidth:"120px"}}>

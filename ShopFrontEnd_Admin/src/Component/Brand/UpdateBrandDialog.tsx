@@ -114,9 +114,11 @@ export default function UpdateBrandDialog(props:{id:string,name:string,tag:strin
         >
             <DialogTitle
                 sx={{
+                    fontFamily:"Open sans",
+                    letterSpacing:1,
                     borderTop:"10px solid rgb(230, 81, 0)",
                 }}>
-                Sửa hãng {props.id}
+                Sửa hãng <span style={{fontWeight:700}}>{props.id}</span>
             </DialogTitle>
             <IconButton
                 color="warning"

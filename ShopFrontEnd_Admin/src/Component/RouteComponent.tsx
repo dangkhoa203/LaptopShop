@@ -13,6 +13,7 @@ import UpdateProductPage from "./SanPham/Update/UpdateProductPage.tsx";
 import Order from "./Order/Order.tsx";
 import OrderDetail from "./Order/OrderDetail.tsx";
 import Transaction from "./Transaction/Transaction.tsx";
+import NotFoundPage from "./CommonPage/NotFoundPage.tsx";
 
 export default function RouteComponent(){
     return (
@@ -35,6 +36,7 @@ export default function RouteComponent(){
                 <Route path="ThanhToan" element={<Transaction/> }></Route>
             </Route>
             <Route path="Login" element={<AdminLogin/>}></Route>
+            <Route path={"*"} element={<NotFoundPage/>}/>
         </Routes>
     )
 }

@@ -20,7 +20,7 @@ namespace APIShopLaptop.Feature.User.Specification {
             try {
                 int perPage = 12;
                 var Products = await context.Products.Include(p => p.Specifications).Where(p => p.Status == PRODUCTSTATUS.ACTIVE).ToListAsync();
-                var Filter=Products.Where(p =>  request.Specifications.All(s => p.Specifications.Any(rs => rs.SpecificationId == s.Id &&  s.Value.Contains(rs.Value)))).ToList();
+                var Filter=Products.Where(p =>  request.Specifications.All(s => p.Specifications.Any(rs => rs.SpecificationId == s.Id &&  rs.Value.Contains(s.Value)))).ToList();
                 IEnumerable<ProductDTO> Sort;
                 switch (sortMode) {
                     case SORTMODE.NAME_ASC:

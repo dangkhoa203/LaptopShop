@@ -40,7 +40,7 @@ export default function MainPageMainCategoryProduct(props:{isMain:boolean,catego
             {products.length!==0 &&
                 <>
                     <Paper elevation={9} sx={{display: "flex",justifyContent:"center",flexDirection:"column", gap:2,padding:"10px"}}  >
-                        <Typography variant="h3" textAlign="center" component="p">
+                        <Typography sx={{fontFamily:"Manrope",textTransform:"uppercase",fontWeight:300,letterSpacing:"5px"}} variant="h3" textAlign="center" component="p">
                             {props.category}
                         </Typography>
                         <Container sx={{

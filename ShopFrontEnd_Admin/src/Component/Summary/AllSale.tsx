@@ -78,7 +78,7 @@ export default function AllSale(){
     }, [isAll]);
     return(
         <Container sx={{paddingBottom:"20px"}}>
-            <Typography textAlign="center" variant="h4" color="textSecondary">
+            <Typography className="ubuntu" textAlign="center" variant="h4" color="textSecondary">
                 Danh sách doanh thu tháng
 
             </Typography>

@@ -11,7 +11,7 @@ namespace APIShopLaptop.Feature.User.Orders {
         public record UserDTO(string Id, string UserName, string Email);
         public record DeliveryInfo(string Receiver, string PhoneNumber, string Address);
         public record DetailDTO(string Id, string Name, float Price, int Quantity,bool ReviewAble);
-        public record Response(bool Success, OrderDTO? data, string ErrorMessage);
+        public record Response(bool Success, OrderDTO? data,bool NotFound, string ErrorMessage);
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapGet("/api/Orders/{id}", Handler).WithTags("Orders");
         }
@@ -26,7 +26,7 @@ namespace APIShopLaptop.Feature.User.Orders {
                                          .FirstOrDefaultAsync();
 
                 if (Order == null)
-                    return Results.NotFound(new Response(false, null, "Không tìm thấy đơn hàng!"));
+                    return Results.NotFound(new Response(false, null,true, "Không tìm thấy đơn hàng!"));
               
                 var Data = new OrderDTO(
                          Order.Id,
@@ -45,10 +45,10 @@ namespace APIShopLaptop.Feature.User.Orders {
                              ).ToList(),
                          Order.DiscountCode==null ? new DiscountCodeDTO("","",0) : new DiscountCodeDTO(Order.DiscountCode.Id,Order.DiscountCode.Name,Order.DiscountCode.Percent)
                 );
-                return Results.Ok(new Response(true, Data, ""));
+                return Results.Ok(new Response(true, Data,false, ""));
             }
             catch (Exception) {
-                return Results.BadRequest(new Response(false, null, "Lỗi server đã xảy ra!"));
+                return Results.BadRequest(new Response(false, null,false, "Lỗi server đã xảy ra!"));
             }
 
         }

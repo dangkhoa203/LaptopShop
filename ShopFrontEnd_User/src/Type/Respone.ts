@@ -2,5 +2,6 @@ export type Response={
     success: boolean,
     data:any,
     validationError?:any,
-    errorMessage:string
+    errorMessage:string,
+    notFound?:boolean,
 }

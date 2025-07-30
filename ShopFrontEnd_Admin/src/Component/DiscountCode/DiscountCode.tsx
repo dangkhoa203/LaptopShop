@@ -132,7 +132,7 @@ export default function DiscountCode(){
             cellDataType:"number",
             resizable:false,
             unSortIcon: true,flex: 1,
-            minWidth:140,
+            minWidth:170,
             floatingFilter: true },
 
         { valueGetter:c=>new Date(c.data.endDate).toLocaleString('En-GB', {
@@ -155,7 +155,7 @@ export default function DiscountCode(){
             headerName:"Hoạt động",filter:false,
             resizable:false,
             unSortIcon: true,flex: 1,
-            minWidth:150,
+            minWidth:170,
             floatingFilter: true },
 
         { valueGetter:c=> c.data,
@@ -177,7 +177,7 @@ export default function DiscountCode(){
 
     return(
         <Container sx={{display:"flex", flexDirection:"column", justifyContent:"center",gap:2}}>
-            <p style={{textAlign:"center",fontSize:"2.5em",margin:"0"}}>Danh sách mã giảm giá</p>
+            <p className="quicksand-header" style={{textAlign:"center",fontSize:"2.5em",margin:"0"}}>Danh sách mã giảm giá</p>
             <Button variant={"contained"} onClick={handleClickOpenCreate}>Tạo mã giảm giá mới</Button>
             {isPending?
                 <div style={{textAlign:"center"}}>

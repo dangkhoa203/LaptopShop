@@ -174,6 +174,7 @@ export default function UserPage() {
                 queryClient.resetQueries({ queryKey:["user"], exact: true })
                 setAnchorElUser(null);
                 clearUserInfo()
+                navigate("/")
             }
         }
         }

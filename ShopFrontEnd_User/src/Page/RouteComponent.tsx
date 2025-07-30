@@ -32,6 +32,7 @@ import ConfirmAccount from "./Account/ConfirmAccount.tsx";
 import ConfirmEmailChange from "./Account/ConfirmEmailChange.tsx";
 import ConfirmPasswordChange from "./Account/ConfirmPasswordChange.tsx";
 import ResetMatKhau from "./Account/ResetMatKhau.tsx";
+import NotFoundPage from "./CommonPage/NotFoundPage.tsx";
 function newBrand(name:string,tag:string){
     return{name:name,tag:tag};
 }
@@ -209,6 +210,7 @@ export default function RouteComponent(){
                     <Route path="Quat" element={<CategoryPage title={"Quạt máy tính"} categoryId={"TANNHIET_QUAT"} isMain={false} brands={[]}/> }/>
                     <Route path="Kem" element={<CategoryPage title={"Kem tản nhiệt"} categoryId={"TANNHIET_KEM"} isMain={false} brands={[]}/> }/>
                 </Route>
+                <Route path={"*"} element={<NotFoundPage/>}/>
             </Route>
         </Routes>
     )

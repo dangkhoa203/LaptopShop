@@ -45,7 +45,9 @@ export default function CartPage(){
                 </Grid>
                 <Grid size={{xs:12,sm:12,md:12,lg:3}}>
                     <Paper elevation={12} sx={{padding:"10px",display:"flex",gap:2,flexDirection:"column",justifyContent:"center"}}>
-                        Tổng giá trị: {getTotal().toLocaleString(undefined, { minimumFractionDigits: 0 })} VND
+                        <p className="manrope" style={{textAlign:"end"}}>
+                            Giá trị : <span style={{fontWeight:"bolder",fontSize:"1.1em",color:"rgb(237, 108, 2)"}}>{getTotal().toLocaleString(undefined, {minimumFractionDigits: 0}) + " VNĐ"}</span>
+                        </p>
                         <Button disabled={cartItems.length===0} onClick={()=>navigate("/DatHang")} fullWidth variant="contained">Thanh toán</Button>
                     </Paper>
                 </Grid>

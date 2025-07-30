@@ -3,6 +3,8 @@ import {useEffect, useState} from "react";
 import Container from "@mui/material/Container";
 import ReviewAbleTab from "./Component/ReviewAbleTab.tsx";
 import AllReviewTab from "./Component/AllReviewTab.tsx";
+import {useUserInfo} from "../../State/User.ts";
+import {Navigate} from "react-router";
 
 export default function ReviewPage(){
     const [value, setValue] = useState(0);
@@ -14,6 +16,10 @@ export default function ReviewPage(){
     useEffect(()=>{
         document.title="Các review"
     },[])
+    const userInfo=useUserInfo(state=>state.user);
+    if((!userInfo.isLogged) && userInfo.userName!=='default'){
+        return <Navigate to={"/"}></Navigate>
+    }
     return(
         <Container maxWidth="lg">
             <Tabs

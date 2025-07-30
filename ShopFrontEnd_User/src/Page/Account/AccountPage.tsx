@@ -7,6 +7,7 @@ import {Threedom} from "../../Type/ThreedomPalette.ts";
 import ChangePasswordDialog from "./ChangePasswordDialog.tsx";
 import {useEffect, useState} from "react";
 import ChangeEmailDialog from "./ChangeEmailDialog.tsx";
+import {Navigate} from "react-router";
 
 export default function AccountPage(){
     const userInfo=useUserInfo((state)=>state.user)
@@ -29,6 +30,9 @@ export default function AccountPage(){
     useEffect(()=>{
         document.title="Tài khoản"
     },[])
+    if((!userInfo.isLogged) && userInfo.userName!=='default'){
+        return <Navigate to={"/"}></Navigate>
+    }
     return(
         <ThemeProvider theme={Threedom}>
             <Grid container spacing={2} sx={{paddingX:"50px"}} alignItems="center">

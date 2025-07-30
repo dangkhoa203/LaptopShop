@@ -35,7 +35,7 @@ export default function SubCategoryItem(props:{title:string,categoryId:string,re
                     <Grid style={{display:"flex",justifyContent:"center"}} container spacing={3}>
                         {!isFetching &&
                             <Grid size={12}>
-                                <Typography textAlign="center" variant="h4" color="textPrimary">{props.title}</Typography>
+                                <Typography sx={{fontFamily:"Manrope",textTransform:"uppercase",fontWeight:300,letterSpacing:"5px"}} variant="h3" textAlign="center" component="p">{props.title}</Typography>
                             </Grid>
                         }
                         {isFetching?

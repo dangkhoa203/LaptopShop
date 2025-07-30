@@ -73,6 +73,8 @@ export default function CreateNewSpecificationDiaglog(props:{open:boolean,handle
         >
             <DialogTitle
                 sx={{
+                    fontFamily:"Open sans",
+                    letterSpacing:1,
                     borderTop:"10px solid rgb(25, 118, 210)",
                 }}>
                 Tạo thông số mới

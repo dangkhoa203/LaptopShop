@@ -98,7 +98,9 @@ export default function PCBuilderPage(){
                         <Skeleton sx={{minHeight:"92px"}}/>
                         :
                         <Paper elevation={12} sx={{padding:"10px",display:"flex",gap:2,flexDirection:"column",justifyContent:"center"}}>
-                            Tổng giá trị: {getTotal().toLocaleString(undefined, { minimumFractionDigits: 0 })} VND
+                            <p className="manrope" style={{textAlign:"end"}}>
+                                Giá trị: <span style={{fontWeight:"bolder",fontSize:"1.1em",color:"rgb(237, 108, 2)"}}>{getTotal().toLocaleString(undefined, {minimumFractionDigits: 0}) + " VNĐ"}</span>
+                            </p>
                             <Button disabled={!showCheck}  onClick={()=>navigate("DatHang")} fullWidth variant="contained">Thanh toán</Button>
                         </Paper>
                     }

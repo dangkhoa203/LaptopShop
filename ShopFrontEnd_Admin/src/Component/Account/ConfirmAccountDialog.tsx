@@ -51,9 +51,11 @@ export default function ConfirmAccountDialog(props:{username:string,id:string,op
         >
             <DialogTitle
                 sx={{
-                    borderTop:"10px solid rgb(25, 118, 210)",
+                    fontFamily:"Open sans",
+                    letterSpacing:1,
+                    borderTop:"10px solid rgb(230, 81, 0)",
                 }}>
-                Xác nhận email người dùng {props.username}
+                Xác nhận email người dùng <span style={{fontWeight:700}}>{props.username}</span>
             </DialogTitle>
             <IconButton
                 color="primary"

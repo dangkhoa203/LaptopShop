@@ -7,11 +7,15 @@ import ReviewCard from "./Component/ReviewCard.tsx";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import {useAppError} from "../../State/AppErrorState.ts";
+import {Skeleton} from "@mui/material";
+import NotFoundPage_Product from "../CommonPage/NotFoundPage_Product.tsx";
 export default function ProductReviewPage(){
     const {id}=useParams()
     const [reviews,setReviews]=useState<ProductReviewData[]>([])
     const [fail,setFail]=useState<boolean>(false)
-    const {data}=useQuery({
+    const [notFound, setNotFounded]=useState(false);
+    const {data,isFetching}=useQuery({
         queryKey: [`product_${id}_reviews`],
         refetchOnWindowFocus:false,
         queryFn:async ()=>{// @ts-ignore
@@ -23,13 +27,20 @@ export default function ProductReviewPage(){
             return await response.json()
         },
     })
+    const globalError=useAppError();
     useEffect(() => {
         if(data){
             if(data?.success){
                 setFail(false)
                 setReviews(data.data)
             }else {
-                setFail(true)
+                if(data.notFound){
+                    setNotFounded(true);
+                }else {
+                    setFail(true)
+                    globalError.setError(data.errorMessage)
+                }
+
             }
 
         }
@@ -38,27 +49,41 @@ export default function ProductReviewPage(){
     useEffect(()=>{
         document.title="Review sản phẩm"
     },[])
+    if(notFound){
+        return <NotFoundPage_Product/>
+    }
     return(
         <Container maxWidth="lg" sx={{paddingY:"10px"}}>
             {fail ?
                 <>
-                    <Typography textAlign={"center"} variant={"h4"}>Lỗi xảy ra</Typography>
-                    <div style={{display:"flex",justifyContent:"center"}}>
-                        <Button startIcon={<ArrowBackIcon/>} onClick={()=>navigate(`/SanPham`)} variant={"contained"}>Quay về</Button>
-                    </div>
+                    <Container sx={{minHeight:"70vh",display:"flex",flexDirection:"column"}}>
+                        <div style={{margin:"auto"}}>
+                            <Typography textAlign={"center"} variant={"h4"}>Lỗi xảy ra</Typography>
+                            <div style={{display:"flex",justifyContent:"center"}}>
+                                <Button startIcon={<ArrowBackIcon/>} onClick={()=>navigate(`/SanPham`)} variant={"contained"}>Quay về</Button>
+                            </div>
+                        </div>
+                    </Container>
                 </>
                 :
                 <>
+
                     <Button startIcon={<ArrowBackIcon/>} onClick={()=>navigate(`/SanPham/${id}`)}>Quay về</Button>
                     <Typography textAlign={"center"} variant={"h4"}>Review sản phẩm</Typography>
-                    {reviews?.length===0 &&
-                        <Typography textAlign={"center"} variant={"h6"}>Chưa có review</Typography>
-                    }
-                    {reviews.map(review=>
+                    {isFetching ?
+                        <Skeleton variant="rectangular" height={210}  />
+                        :
                         <>
-                            <ReviewCard review={review}/>
+                            {reviews?.length===0 &&
+                                <Typography textAlign={"center"} variant={"h6"}>Chưa có review</Typography>
+                            }
+                            {reviews.map(review=>
+                                <>
+                                    <ReviewCard review={review}/>
+                                </>
+                            )}
                         </>
-                    )}
+                    }
                 </>
             }
         </Container>

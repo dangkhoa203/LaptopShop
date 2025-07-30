@@ -13,6 +13,7 @@ import Divider from "@mui/material/Divider";
 import ClearIcon from "@mui/icons-material/Clear";
 import SaveIcon from "@mui/icons-material/Save";
 import {Response} from "../../../../Type/Respone.ts";
+import Typography from "@mui/material/Typography";
 type categoryData={
     id:string,
     name: string,
@@ -25,7 +26,7 @@ export default function UpdateCaterory(props:{id:string}) {
     const [newCategories, setNewCategories] = useState<string[]>([]);
     const [search,setSearch] = useState("");
     const {data,isPending,refetch}=useQuery({
-        queryKey:["categories_list"],
+        queryKey:[`categories_list`],
         refetchOnWindowFocus:false,
         queryFn:async ()=>{
             const response = await fetch('https://localhost:7075/api/Admin/Category', {
@@ -38,12 +39,14 @@ export default function UpdateCaterory(props:{id:string}) {
     });
     useEffect(() => {
         if(data){
-            setSuccess(data.success)
-            setRowData(data.data)
+            if(data.success){
+                setSuccess(data.success)
+                setRowData(data.data)
+            }
         }
     }, [data]);
     const PRODUCTCATEGORY=useQuery({
-        queryKey:["product_categories"],
+        queryKey:[`product_categories_${props.id}`],
         refetchOnWindowFocus:false,
         queryFn:async ()=>{
             const response = await fetch(`https://localhost:7075/api/Admin/Products/${props.id}/Category`, {
@@ -56,8 +59,10 @@ export default function UpdateCaterory(props:{id:string}) {
     });
     useEffect(() => {
         if(PRODUCTCATEGORY.data){
-            setSuccess(true)
-            setProductCategories(PRODUCTCATEGORY.data.data)
+            if(data.success) {
+                setSuccess(true)
+                setProductCategories(PRODUCTCATEGORY.data.data)
+            }
         }
     }, [PRODUCTCATEGORY.data]);
     useEffect(() => {
@@ -122,13 +127,16 @@ export default function UpdateCaterory(props:{id:string}) {
                 <>
                     {success?
                         <>
-                            <TextField color="warning" value={search} onChange={handleSearchChange} fullWidth label="search" variant="outlined"/>
+                            <TextField color="warning" value={search} onChange={handleSearchChange} fullWidth label="Search" variant="outlined"/>
                             <TableContainer sx={{height:400,marginTop:"10px",overflowY:"scroll",border:"2px solid rgb(237, 108, 2)"}} component={Paper}>
                                 <Table stickyHeader aria-label="simple table">
                                     <TableHead>
                                         <TableRow>
-                                            <TableCell>Chọn: {newCategories.length}</TableCell>
-                                            <TableCell>Tên danh mục</TableCell>
+                                            <TableCell>
+                                                <Typography>Chọn</Typography>
+                                                <Typography textAlign={"center"}> {newCategories.length}</Typography>
+                                            </TableCell>
+                                            <TableCell ><Typography sx={{letterSpacing:"2px",fontSize:"1.3em"}}>Tên danh mục</Typography> </TableCell>
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>

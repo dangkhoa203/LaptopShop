@@ -34,7 +34,6 @@ export default function HomePage() {
                                 <CardMedia
                                     component="img"
                                     image={banner1}
-
                                     alt="green iguana"
                                 />
                             </CardActionArea>

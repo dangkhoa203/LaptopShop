@@ -12,11 +12,10 @@ export default function ReviewCard(props:{review:ProductReviewData}){
                     year: 'numeric',
                     month: '2-digit',
                     day: '2-digit' })}>
-
                 </CardHeader>
                 <CardContent sx={{paddingTop:"0px"}}>
                     <Rating readOnly defaultValue={props.review.score} precision={0.5} />
-                    <Typography>
+                    <Typography sx={{marginTop:"5px",paddingLeft:"5px",fontSize:18}}>
                         {props.review.content}
                     </Typography>
                 </CardContent>

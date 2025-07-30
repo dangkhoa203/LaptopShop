@@ -23,7 +23,7 @@ export default function UpdateCompatibility(props:{id:string}) {
     const [specificationData, setSpecificationData] = useState<specificationData[]>([])
 
     const {data,isPending}=useQuery({
-        queryKey:["specification_list"],
+        queryKey:[`specification_list`],
         refetchOnWindowFocus:false,
         queryFn:async ()=>{
             const response = await fetch('https://localhost:7075/api/Admin/Specifications', {
@@ -37,14 +37,16 @@ export default function UpdateCompatibility(props:{id:string}) {
     });
     useEffect(() => {
         if(data){
-            setSuccess(data.success)
-            setSpecificationData(data.data)
+            if(data.success) {
+                setSuccess(data.success)
+                setSpecificationData(data.data)
+            }
         }
     }, [data]);
 
     const [productCompatibilityData, setProductCompatibilityData] = useState<productCompatibility[]>([])
     const PRODUCTCOMPATIBILITY=useQuery({
-        queryKey:["product_compatibility"],
+        queryKey:[`product_compatibility_${props.id}`],
         refetchOnWindowFocus:false,
         queryFn:async ()=>{
             const response = await fetch(`https://localhost:7075/api/Admin/Products/${props.id}/Compatibility`, {
@@ -57,7 +59,9 @@ export default function UpdateCompatibility(props:{id:string}) {
     });
     useEffect(() => {
         if(PRODUCTCOMPATIBILITY.data)
-            setProductCompatibilityData(PRODUCTCOMPATIBILITY.data.data)
+            if(data.success) {
+                setProductCompatibilityData(PRODUCTCOMPATIBILITY.data.data)
+            }
     }, [PRODUCTCOMPATIBILITY.data]);
 
 

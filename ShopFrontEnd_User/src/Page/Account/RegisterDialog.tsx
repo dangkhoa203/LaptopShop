@@ -145,7 +145,7 @@ export default function RegisterDialog(props:{open:boolean,handleClose:()=>void,
             maxWidth="sm"
             hideBackdrop={false}
         >
-            <DialogTitle sx={{border:"1px solid orange",borderBottom:0,textAlign:"center",fontSize:"2em"}}>
+            <DialogTitle sx={{border:"1px solid orange",borderBottom:0,textAlign:"center",fontSize:"2.5em",fontWeight:"bold",fontFamily: "Quicksand"}}>
                 Đăng ký
             </DialogTitle>
             <DialogContent sx={{border:"1px solid orange",borderTop:0,minHeight:"300px",padding:"50px"}} >
@@ -168,6 +168,11 @@ export default function RegisterDialog(props:{open:boolean,handleClose:()=>void,
                                 error={validateError.userName.length>0}  helperText={validateError.userName}
                                 color="warning"
                                 label="Tên đăng nhập"
+                                onKeyDown={(event)=>{
+                                    if(event.key === 'Enter'){
+                                        mutate()
+                                    }
+                                }}
                                 slotProps={{
                                     input: {
                                         endAdornment: (
@@ -187,6 +192,11 @@ export default function RegisterDialog(props:{open:boolean,handleClose:()=>void,
                                 color="primary"
                                 type="email"
                                 label="Email"
+                                onKeyDown={(event)=>{
+                                    if(event.key === 'Enter'){
+                                        mutate()
+                                    }
+                                }}
                                 slotProps={{
                                     input: {
                                         endAdornment: (
@@ -208,6 +218,11 @@ export default function RegisterDialog(props:{open:boolean,handleClose:()=>void,
                                     value={registerInfo.password}
                                     onChange={handlePasswordChange}
                                     type={showPassword ? 'text' : 'password'}
+                                    onKeyDown={(event)=>{
+                                        if(event.key === 'Enter'){
+                                            mutate()
+                                        }
+                                    }}
                                     endAdornment={
                                         <InputAdornment position="end">
                                             <IconButton
@@ -236,6 +251,11 @@ export default function RegisterDialog(props:{open:boolean,handleClose:()=>void,
                                     color="primary"
                                     value={registerInfo.confirmPassword}
                                     onChange={handleConfirmPasswordChange}
+                                    onKeyDown={(event)=>{
+                                        if(event.key === 'Enter'){
+                                            mutate()
+                                        }
+                                    }}
                                     type={showPassword ? 'text' : 'password'}
                                     endAdornment={
                                         <InputAdornment position="end">
@@ -264,6 +284,7 @@ export default function RegisterDialog(props:{open:boolean,handleClose:()=>void,
                         }
                         <Grid size={12}>
                             <Link
+                                sx={{fontFamily:"Mandrop",fontSize:"1.1em"}}
                                 color="secondary"
                                 underline="hover"
                                 component="button"

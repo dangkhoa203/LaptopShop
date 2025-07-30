@@ -95,7 +95,7 @@ export default function Transaction(){
 
     return(
         <Container sx={{display:"flex", flexDirection:"column", justifyContent:"center",gap:2}}>
-            <p style={{textAlign:"center",fontSize:"2.5em",margin:"0"}}>Danh sách thanh toán</p>
+            <p className="quicksand-header" style={{textAlign:"center",fontSize:"2.5em",margin:"0"}}>Danh sách thanh toán</p>
             {isPending?
                 <div style={{textAlign:"center"}}>
                     <CircularProgress  size="3rem" />

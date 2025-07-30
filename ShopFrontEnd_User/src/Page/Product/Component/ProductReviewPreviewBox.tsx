@@ -1,13 +1,13 @@
 import {useEffect, useState} from "react";
 import {useQuery} from "@tanstack/react-query";
 import {ProductReviewData} from "../../../Type/ProductReviewData.ts";
-import {Paper} from "@mui/material";
+import {Paper, Rating} from "@mui/material";
 import ReviewCard from "./ReviewCard.tsx";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import {useNavigate} from "react-router";
 
-export default function ProductReviewPreviewBox(props:{id:string|undefined}){
+export default function ProductReviewPreviewBox(props:{id:string|undefined,score:number,count:number}){
     const [reviews,setReviews]=useState<ProductReviewData[]>([])
     const [total,setTotal]=useState<number>(0)
     const [fail,setFail]=useState<boolean>(false)
@@ -45,8 +45,12 @@ export default function ProductReviewPreviewBox(props:{id:string|undefined}){
                     </div>
                 }
                 <Typography textAlign={"center"} variant={"h4"}>Review sản phẩm</Typography>
+                <div style={{display:"flex",marginBottom:"10px"}}>
+                    <Rating size={"large"} readOnly value={props.score} precision={0.25} /> <Typography fontSize={20}> ({props.count})</Typography>
+                </div>
+
                 {reviews?.length===0 &&
-                    <Typography textAlign={"center"} variant={"h6"}>Chưa có review</Typography>
+                    <Typography textAlign={"center"} sx={{fontFamily: "Roboto",letterSpacing:"2px",fontWeight:500}} variant={"h6"}>Chưa có review</Typography>
                 }
                 {reviews.map(review=>
                     <>

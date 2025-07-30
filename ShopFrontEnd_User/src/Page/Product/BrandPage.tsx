@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import MainPageProductCard from "./Component/ProductCard.tsx";
+import ProductCard from "./Component/ProductCard.tsx";
 
 export default function BrandPage(props:{title:string,categoryId:string,isMain:boolean,brandTag:string}) {
     const [maxPage, setMaxPage] = useState(0);
@@ -63,7 +64,7 @@ export default function BrandPage(props:{title:string,categoryId:string,isMain:b
         <Container>
             <Grid container spacing={0}>
                 <Grid size={8}>
-                    <Typography variant="h5" color="textSecondary">{props.title}</Typography>
+                    <Typography sx={{fontFamily:"Quicksand",fontWeight:500,letterSpacing:"2px",textTransform:"uppercase"}} variant="h4" color="textPrimary">{props.title}</Typography>
                 </Grid>
                 <Grid sx={{display:"flex",justifyContent:"end"}} size={4}>
                     <FormControl size={"small"} sx={{width:'auto'}}>
@@ -84,7 +85,7 @@ export default function BrandPage(props:{title:string,categoryId:string,isMain:b
                     </FormControl>
                 </Grid>
                 <Grid size={12}>
-                    <Typography variant="h6" color="textSecondary">Có <span style={{fontWeight:"bolder"}}>{total}</span> sản phẩm</Typography>
+                    <Typography variant="h6" color="textSecondary">Có <span style={{fontWeight:"bolder",color:"rgb(237, 108, 2)"}}>{total}</span> sản phẩm</Typography>
                 </Grid>
                 <Grid sx={{marginY:"20px"}} size={12}>
                     <Divider />
@@ -102,7 +103,7 @@ export default function BrandPage(props:{title:string,categoryId:string,isMain:b
                                 }
                                 {products.map(product=>
                                     <Grid size={{xs:6,sm:6,md:4,lg:3}}>
-                                        <MainPageProductCard product={product}/>
+                                        <ProductCard product={product}/>
                                     </Grid>
 
                                 )}

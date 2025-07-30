@@ -76,9 +76,11 @@ export default function UpdateSpecificationDialog(props:{id:string,name:string,s
         >
             <DialogTitle
                 sx={{
+                    fontFamily:"Open sans",
+                    letterSpacing:1,
                     borderTop:"10px solid rgb(230, 81, 0)",
                 }}>
-                Sửa thông số {props.id}
+                Sửa thông số <span style={{fontWeight:700}}>{props.id}</span>
             </DialogTitle>
             <IconButton
                 color="warning"

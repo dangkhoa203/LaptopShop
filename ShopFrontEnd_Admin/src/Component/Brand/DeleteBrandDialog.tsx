@@ -51,9 +51,12 @@ export default function DeleteBrandDialog(props:{name:string,id:string,open:bool
         >
             <DialogTitle
                 sx={{
-                    borderTop:"10px solid rgb(211, 47, 47)",
+                    fontFamily:"Open sans",
+                    letterSpacing:1,
+                    borderTop:"10px solid rgb(230, 81, 0)",
                 }}>
-                Xóa hãng {props.name}
+                Xóa hãng <span style={{fontWeight:700}}>{props.name}</span>
+
             </DialogTitle>
             <IconButton
                 color="error"

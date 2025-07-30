@@ -12,6 +12,8 @@ import Card from "@mui/material/Card";
 import {useMutation} from "@tanstack/react-query";
 import {Response} from "../../../Type/Respone.ts";
 import {buildProduct} from "../PCBuilderPage.tsx";
+import {useNavigate} from "react-router";
+import Tooltip from "@mui/material/Tooltip";
 
 export default function BuildItemProductCard(props:{product:buildProduct,categoryId:string,componentName:string,reFetchBuild:()=>void,updateAble:boolean}) {
     const DELETE=useMutation({
@@ -57,30 +59,36 @@ export default function BuildItemProductCard(props:{product:buildProduct,categor
             }
         }
     })
+    const navigate=useNavigate()
     return(
         <>
             <Card key={props.product.productId} sx={{ display: 'flex',justifyContent:"center",marginBottom:"10px",minHeight:"193px" }} elevation={3}>
                 <CardMedia
                     component="img"
-                    sx={{ margin:"auto",width: 150,height:150 }}
+                    sx={{ margin:"auto",width: 150,height:150,cursor:"pointer" }}
                     image={`https://localhost:7075/api/Products/${props.product.productId}/Thumbnail`}
-                    alt="Live from space album cover"
+                    alt={props.product.productName}
+                    title={props.product.productName}
+                    onClick={()=>navigate(`/SanPham/${props.product.productId}`)}
                 />
                 <Container sx={{ borderLeft:"1px solid black",display: 'flex', flexDirection: 'column' }}>
-                    <Typography textAlign={"center"} sx={{marginTop:"5px"}} variant={"h5"}>{props.componentName} </Typography>
+                    <Typography textAlign={"center"} sx={{ fontFamily:"Roboto",fontWeight:200,fontSize:"1.8em",textTransform:"uppercase",marginBottom:"5px",marginTop:"5px"}} variant={"h5"}>{props.componentName} </Typography>
                     <CardContent sx={{minWidth:"100%",paddingX:"5px"}}>
-                        <Typography  variant="h6">
-                            {props.product.productName}
-                        </Typography>
+                        <Tooltip title={props.product.productName}>
+                            <p className="ProductName" style={{
+                                fontSize:"1.3em",cursor:"pointer",fontWeight:"200"}} onClick={()=>navigate(`/SanPham/${props.product.productId}`)}  >
+                                {props.product.productName}
+                            </p>
+                        </Tooltip>
                         <div style={{width:"100%"}}>
                             <Container style={{width:"100%",justifyContent:"end",display:"flex",gap:2}}>
                                 {props.product.isDiscount?
                                     <div style={{display:"flex",flexDirection:"column",justifyContent:"center"}}>
-                                        <Typography component="div" textAlign={"center"} variant="subtitle2" sx={{textDecoration:"line-through"}}>{props.product.price.toLocaleString(undefined, { minimumFractionDigits: 0 })} VND</Typography>
-                                        <Typography component="div" textAlign={"center"} variant="subtitle1">{props.product.priceAfterDiscount.toLocaleString(undefined, { minimumFractionDigits: 0 })} VND</Typography>
+                                        <Typography component="div" textAlign={"center"} variant="subtitle2" sx={{textDecoration:"line-through"}}>{props.product.price.toLocaleString(undefined, { minimumFractionDigits: 0 })} VNĐ</Typography>
+                                        <Typography color="primary" sx={{fontSize:"1.2em",fontWeight:600}} component="div" textAlign={"center"} variant="subtitle1">{props.product.priceAfterDiscount.toLocaleString(undefined, { minimumFractionDigits: 0 })} VNĐ</Typography>
                                     </div>
                                     :
-                                    <Typography>{props.product.price.toLocaleString(undefined, { minimumFractionDigits: 0 })} VNĐ</Typography>
+                                    <Typography color="primary" textAlign="start" sx={{fontSize:"1.2em",fontWeight:600}}>{props.product.price.toLocaleString(undefined, { minimumFractionDigits: 0 })} VNĐ</Typography>
                                 }
                             </Container>
                         </div>

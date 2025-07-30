@@ -10,8 +10,8 @@ namespace APIShopLaptop.Feature.User.Products {
     public class GetProduct : IEndpoint {
         public record ReviewDTO(string Content,float Score,string Username);
         public record SpecificationDTO(string Name,string Value);
-        public record ProductDTO(string Id, string Name, float Price, int Quantity, bool IsDiscount, float PriceAfterDiscount,string Description,List<SpecificationDTO> Specifications,List<string> ProductImage,float AverageScore,int ReviewCount);
-        public record Response(bool Success, ProductDTO Data, string ErrorMessage);
+        public record ProductDTO(string Id, string Name, float Price, int Quantity, bool IsDiscount, float PriceAfterDiscount,string Description,List<SpecificationDTO> Specifications,List<string> ProductImage,float AverageScore,int ReviewCount,bool SaleAble);
+        public record Response(bool Success, ProductDTO Data,bool NotFound, string ErrorMessage);
 
         public static void MapEndpoint(IEndpointRouteBuilder app) {
             app.MapGet("/api/Products/{id}", Handler).WithTags("Products");
@@ -20,7 +20,7 @@ namespace APIShopLaptop.Feature.User.Products {
             try {
                 var Product=await context.Products.Include(p=>p.Images).Include(p=>p.Reviews).ThenInclude(r=>r.User).Include(p=>p.Specifications).ThenInclude(s=>s.SpecificationNavigation).FirstOrDefaultAsync(p=>p.Id==id);
                 if (Product == null) {
-                    return Results.BadRequest(new Response(false, null, "Không tìm thấy!"));
+                    return Results.BadRequest(new Response(false, null,true, "Không tìm thấy!"));
                 }
                 
                 var Data = new ProductDTO(
@@ -34,12 +34,13 @@ namespace APIShopLaptop.Feature.User.Products {
                     Product.Specifications.Select(s => new SpecificationDTO(s.SpecificationNavigation.Name, s.Value)).ToList(),
                     Product.Images.Where(i => !i.IsThumbnail).Select(i => i.Id).ToList(),
                     Product.Reviews.Count>0 ? Product.Reviews.Sum(r=>r.Score)/ Product.Reviews.Count :0,
-                    Product.Reviews.Count
+                    Product.Reviews.Count,
+                    Product.Status==PRODUCTSTATUS.ACTIVE
                     );
-                return Results.Ok(new Response(true, Data, ""));
+                return Results.Ok(new Response(true, Data,false, ""));
             }
             catch (Exception ex) {
-                return Results.BadRequest(new Response(false, null, "Lỗi đã xảy ra!"));
+                return Results.BadRequest(new Response(false, null, false, "Không tìm thấy!"));
             }
         }
     }

@@ -167,7 +167,7 @@ export default function Brand(){
     },[])
     return(
         <Container sx={{display:"flex", flexDirection:"column", justifyContent:"center",gap:2}}>
-            <p style={{textAlign:"center",fontSize:"2.5em",margin:"0"}}>Danh sách hãng</p>
+            <p className="quicksand-header" style={{textAlign:"center",fontSize:"2.5em",margin:"0"}}>Danh sách hãng</p>
             <Button variant={"contained"} onClick={handleClickOpenCreate}>Tạo hãng mới</Button>
             {isPending?
                 <div style={{textAlign:"center"}}>

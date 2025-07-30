@@ -13,6 +13,8 @@ import {cartItem} from "../../Type/CartItem.ts";
 import {useMutation} from "@tanstack/react-query";
 import {Response} from "../../Type/Respone.ts";
 import {useCart} from "../../State/Cart.ts";
+import Tooltip from "@mui/material/Tooltip";
+import {useNavigate} from "react-router";
 
 export default function OrderDetailCard(props:{product:cartItem}){
     const reFetch=useCart(state => state.reFetch)
@@ -54,31 +56,36 @@ export default function OrderDetailCard(props:{product:cartItem}){
             }
         }
     })
+    const navigate=useNavigate();
     // @ts-ignore
     return(
         <Card key={props.product.productId} sx={{ display: 'flex',justifyContent:"center",marginBottom:"10px" }} elevation={3}>
             <CardMedia
                 component="img"
-                sx={{ margin:"auto",width: 150,height:150 }}
+                sx={{ margin:"auto",width: 150,height:150,cursor:"pointer" }}
                 image={`https://localhost:7075/api/Products/${props.product.productId}/Thumbnail`}
-                alt="Live from space album cover"
+                title={props.product.productName}
+                onClick={()=>navigate(`/SanPham/${props.product.productId}`)}
             />
             <Container sx={{ borderLeft:"1px solid black",display: 'flex', flexDirection: 'column' }}>
                 <CardContent sx={{minWidth:"100%",paddingX:"5px"}}>
-                    <Typography  variant="subtitle1">
-                        {props.product.productName}
-                    </Typography>
+                    <Tooltip title={props.product.productName}>
+                        <p className="ProductName" style={{
+                            fontSize:"0.9em",cursor:"pointer",marginBottom:"5px"}} onClick={()=>navigate(`/SanPham/${props.product.productId}`)}  >
+                            {props.product.productName}
+                        </p>
+                    </Tooltip>
                     <div style={{width:"100%"}}>
-                        <Container style={{width:"100%",justifyContent:"end",display:"flex",gap:2}}>
+                        <div style={{width:"100%",justifyContent:"end",display:"flex",gap:2}}>
                             {props.product.priceAfterDiscount===0?
-                                <Typography>{props.product.price.toLocaleString(undefined, {minimumFractionDigits: 0}) + " VNĐ"}</Typography>
+                                <Typography fontWeight="bold" color="primary" variant="subtitle1">{props.product.price.toLocaleString(undefined, {minimumFractionDigits: 0}) + " VNĐ"}</Typography>
                                 :
-                                <>
-                                    <Typography variant="subtitle2">{props.product.priceAfterDiscount.toLocaleString(undefined, {minimumFractionDigits: 0}) + " VNĐ"}</Typography>
-                                    <Typography variant="caption" sx={{textDecoration:"line-through"}}>{props.product.price} VND</Typography>
-                                </>
+                                <div style={{display:"flex",flexDirection:"column"}}>
+                                    <Typography variant="caption" textAlign={"end"} sx={{textDecoration:"line-through"}}>{props.product.price.toLocaleString(undefined, {minimumFractionDigits: 0})} VND</Typography>
+                                    <Typography fontWeight="bold" textAlign={"end"} color="primary" variant="subtitle1">{props.product.priceAfterDiscount.toLocaleString(undefined, {minimumFractionDigits: 0}) + " VNĐ"}</Typography>
+                                </div>
                             }
-                        </Container>
+                        </div>
                     </div>
 
                     <Divider/>

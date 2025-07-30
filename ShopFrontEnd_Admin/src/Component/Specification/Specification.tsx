@@ -137,7 +137,7 @@ export default function Specification(){
     },[])
     return(
         <Container sx={{display:"flex", flexDirection:"column", justifyContent:"center",gap:2}}>
-            <p style={{textAlign:"center",fontSize:"2.5em",margin:"0"}}>Danh sách thông số</p>
+            <p className="quicksand-header" style={{textAlign:"center",fontSize:"2.5em",margin:"0"}}>Danh sách thông số</p>
             <Button variant={"contained"} onClick={handleClickOpenCreate}>Tạo thông số mới</Button>
             {isPending?
                 <div style={{textAlign:"center"}}>

@@ -31,7 +31,7 @@ export default function OrderStatusChart(){
     }, [data]);
     return(
         <Container>
-            <Typography textAlign="center" variant="h4" color="textSecondary">
+            <Typography className="ubuntu" textAlign="center" variant="h4" color="textSecondary">
                 Trạng thái đơn hàng
             </Typography>
             {isPending?

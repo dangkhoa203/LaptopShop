@@ -13,7 +13,7 @@ export default function UpdateDescription(props:{id:string}){
     const [newDescription,setNewDescription] = useState("");
     const [globalError,setGlobalError]=useState("")
     const {data,isPending,refetch}=useQuery({
-        queryKey:["product_description"],
+        queryKey:[`product_description_${props.id}`],
         refetchOnWindowFocus:false,
         queryFn:async ()=>{
             const response = await fetch(`https://localhost:7075/api/Admin/Products/${props.id}/Description`, {
@@ -49,8 +49,10 @@ export default function UpdateDescription(props:{id:string}){
     })
     useEffect(() => {
         if(data){
-            setSuccess(data.success)
-            setOldDescription(data.data)
+            if(data.success) {
+                setSuccess(data.success)
+                setOldDescription(data.data)
+            }
         }
     }, [data]);
     useEffect(()=>{

@@ -22,7 +22,7 @@ export default function UpdateProductSpecification(props:{id:string}) {
     const [success, setSuccess] = useState(false);
     const [specificationData, setSpecificationData] = useState<specificationData[]>([])
     const {data,isPending}=useQuery({
-        queryKey:["specification_list"],
+        queryKey:[`specification_list`],
         refetchOnWindowFocus:false,
         queryFn:async ()=>{
             const response = await fetch('https://localhost:7075/api/Admin/Specifications', {
@@ -36,14 +36,16 @@ export default function UpdateProductSpecification(props:{id:string}) {
     });
     useEffect(() => {
         if(data){
-            setSuccess(data.success)
-            setSpecificationData(data.data)
+            if(data.success) {
+                setSuccess(data.success)
+                setSpecificationData(data.data)
+            }
         }
     }, [data]);
 
     const [productSpecificationData, setProductSpecificationData] = useState<productSpecification[]>([])
     const PRODUCTSPECIFICATION=useQuery({
-        queryKey:["product_specification"],
+        queryKey:[`product_specification_${props.id}`],
         refetchOnWindowFocus:false,
         queryFn:async ()=>{
             setSuccess(false)
@@ -57,7 +59,9 @@ export default function UpdateProductSpecification(props:{id:string}) {
     });
     useEffect(() => {
         if(PRODUCTSPECIFICATION.data)
-            setProductSpecificationData(PRODUCTSPECIFICATION.data.data)
+            if(data.success) {
+                setProductSpecificationData(PRODUCTSPECIFICATION.data.data)
+            }
     }, [PRODUCTSPECIFICATION.data]);
 
 
