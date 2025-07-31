@@ -14,9 +14,9 @@ import LaptopIcon from '@mui/icons-material/Laptop';
 import { styled, alpha } from '@mui/material/styles';
 import {
     Alert, Backdrop,
-    ButtonGroup, CircularProgress, Divider, FormControl,
+    ButtonGroup, CircularProgress, Divider, Drawer, FormControl, Grid, InputAdornment,
     InputBase,
-    MenuItem, Select, Slide, Snackbar, ThemeProvider, useScrollTrigger
+    MenuItem, Select, Slide, Snackbar, TextField, ThemeProvider, useScrollTrigger
 } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
 import {useUserInfo} from "../State/User.ts";
@@ -35,23 +35,24 @@ import {useAppNotify} from "../State/AppGlobalNotifyState.ts";
 import CartButton from "./Component/CartButton.tsx";
 import {useCart} from "../State/Cart.ts";
 import {Response} from "../Type/Respone.ts";
-
+import CloseIcon from "@mui/icons-material/Close";
+import MobileCategoryList from "./MobileCategoryList.tsx";
 export default function UserPage() {
     const navigate = useNavigate();
-    const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
-    const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorElNav(event.currentTarget);
-    };
+
     const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElUser(event.currentTarget);
     };
 
-    const handleCloseNavMenu = () => {
-        setAnchorElNav(null);
-    };
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
+    };
+
+    const [openDrawer, setOpenDrawer] = useState(false);
+
+    const toggleDrawer = (newOpen: boolean) => () => {
+        setOpenDrawer(newOpen);
     };
 
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -187,13 +188,15 @@ export default function UserPage() {
 
     const globalError=useAppError()
     const globalNotify=useAppNotify()
-
+    const toSearch=()=>{
+        navigate(`/Tim/${SearchMode[search.mode]}/${encodeURIComponent(search.query)}`)
+        setOpenDrawer(false)
+    }
     useEffect(() => {
         if(data){
             setUserInfo(data,refetch)
         }
     }, [data]);
-    console.log(userInfo)
     return (
         <div style={{display:"flex",minHeight:"100vh",flexDirection:"column"}}>
         <ThemeProvider theme={Threedom}>
@@ -227,29 +230,12 @@ export default function UserPage() {
                                         aria-label="account of current user"
                                         aria-controls="menu-appbar"
                                         aria-haspopup="true"
-                                        onClick={handleOpenNavMenu}
+                                        onClick={toggleDrawer(true)}
                                         color="inherit"
                                     >
                                         <MenuIcon />
                                     </IconButton>
-                                    <Menu
-                                        id="menu-appbar"
-                                        anchorEl={anchorElNav}
-                                        anchorOrigin={{
-                                            vertical: 'bottom',
-                                            horizontal: 'left',
-                                        }}
-                                        keepMounted
-                                        transformOrigin={{
-                                            vertical: 'top',
-                                            horizontal: 'left',
-                                        }}
-                                        open={Boolean(anchorElNav)}
-                                        onClose={handleCloseNavMenu}
-                                        sx={{ display: { xs: 'block', md: 'none' } }}
-                                    >
 
-                                    </Menu>
                                 </Box>
                                 <LaptopIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
                                 <Typography
@@ -289,7 +275,7 @@ export default function UserPage() {
                                             anchorEl={anchorEl}
                                             open={open}
                                             onClose={handleClose}
-                                            sx={{maxHeight:"700px",overflowX:"auto"}}
+                                            sx={{maxHeight:"700px",overflowX:"auto",display: { xs: 'none', md: 'flex' }}}
                                             slotProps={{
                                                 list: {
                                                     'aria-labelledby': 'basic-button',
@@ -414,7 +400,85 @@ export default function UserPage() {
                                 <ResetPasswordDialog open={openResetPassword} handleClose={handleCloseResetPassword} openLogin={handleClickOpenLogin} isLoggedIn={userInfo.isLogged}/>
                             </>
                         }
+                    <Drawer sx={{display: { xs: 'flex', md: 'none' }}} open={openDrawer} onClose={toggleDrawer(false)}>
+                        <Grid container style={{minWidth:"100vw",padding:"10px",paddingRight:"20px"}}>
+                            <Grid sx={{display:"flex",paddingX:"10px",marginBottom:"10px",justifyContent:"end"}} size={12}>
+                                <IconButton
+                                    color="primary"
+                                    onClick={toggleDrawer(false)}
+                                    sx={(theme) => ({
+                                        color: theme.palette.grey[500],
+                                    })}
+                                >
+                                    <CloseIcon color="primary" />
+                                </IconButton>
+                            </Grid>
+                            <Grid sx={{paddingX:"10px"}} size={6}>
+                                <TextField
+                                    onChange={handleGlobalSearchChange}
+                                    value={search.query}
+                                    slotProps={{
+                                        input: {
+                                            endAdornment: (
+                                                <InputAdornment position="end">
+                                                    <SearchIcon />
+                                                </InputAdornment>
+                                            ),
+                                        },
+                                    }}
+                                    onKeyDown={(event)=>{
 
+                                        if(event.key === 'Enter'){
+                                            if(search.query.length!==0){
+                                                toSearch()
+                                            }
+                                        }
+                                    }}
+                                     label="Tìm kiếm" variant="outlined" />
+                            </Grid>
+                            <Grid sx={{display:"flex",paddingX:"10px"}} size={6}>
+                                <FormControl fullWidth size="small">
+                                    <Select
+                                        value={search.mode}
+                                        onChange={(e)=>{
+                                            if(e.target.value===1) {
+                                                navigate("/Tim/CauHinh")
+                                                setOpenDrawer(false)
+                                            }else {
+                                                search.setQuery(search.query, e.target.value)
+                                            }
+                                        }}
+                                        fullWidth
+                                        sx={{
+                                            height:"56px"
+                                        }}
+                                    >
+                                        <MenuItem color="white" value={0}>Tên</MenuItem>
+                                        <MenuItem color="white" value={2}>Hãng</MenuItem>
+                                        <MenuItem color="white" onClick={toggleDrawer(false)} value={1}>Cấu hinh</MenuItem>
+                                    </Select>
+                                </FormControl>
+                            </Grid>
+                            <Grid sx={{padding:"10px"}} size={12}>
+                                <Button variant={"contained"}  disabled={search.query.length===0} color="primary" fullWidth onClick={toSearch}
+                                >Tìm</Button>
+                            </Grid>
+                            <Grid size={12}>
+                                <Divider/>
+                            </Grid>
+                            <Grid sx={{padding:"10px"}} size={12}>
+                                <MobileCategoryList setOpenDrawer={setOpenDrawer}/>
+                            </Grid>
+                            <Grid padding={"10px"} size={12}>
+                                <Button fullWidth variant="outlined" onClick={()=>{
+                                    if(userInfo.isLogged)
+                                        navigate("/Dung_PC")
+                                    else
+                                        globalError.setError("Chưa đăng nhập")
+                                }}>Xây dựng PC</Button>
+                            </Grid>
+                        </Grid>
+                    </Drawer>
                 </AppBar>
             </HideOnScroll>
             <div style={{paddingTop:"74px",paddingBottom:"20px"}}>

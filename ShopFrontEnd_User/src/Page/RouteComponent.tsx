@@ -80,54 +80,77 @@ export default function RouteComponent(){
                     <Route path="Lenovo" element={<BrandPage brandTag={"LENOVO"} title={"Laptop Lenovo"} categoryId={"LAPTOP"} isMain={true}/> }/>
                     <Route path="Dell" element={<BrandPage brandTag={"DELL"} title={"Laptop Dell"} categoryId={"LAPTOP"} isMain={true}/> }/>
                     <Route path="HP" element={<BrandPage brandTag={"HP"} title={"Laptop HP"} categoryId={"LAPTOP"} isMain={true}/> }/>
-                    <Route path="Zenbook" element={<CategoryPage title={"Asus Zenbook"} categoryId={"LAPTOP_ZENBOOK"}
+                    <Route path="Zenbook" element={<CategoryPage title={"Asus Zenbook"} categoryId={"LAPTOP_ASUS_ZENBOOK"}
                                                              brands={[]} isMain={false}/> }/>
-                    <Route path="Vivobook" element={<CategoryPage title={"Asus Vivobook"} categoryId={"LAPTOP_VIVOBOOK"}
+                    <Route path="Vivobook" element={<CategoryPage title={"Asus Vivobook"} categoryId={"LAPTOP_ASUS_VIVOBOOK"}
                                                              brands={[]} isMain={false}/> }/>
-                    <Route path="Modern" element={<CategoryPage title={"MSI Modern"} categoryId={"LAPTOP_MODERN"}
+                    <Route path="Modern" element={<CategoryPage title={"MSI Modern"} categoryId={"LAPTOP_MSI_MODERN"}
                                                              brands={[]} isMain={false}/> }/>
-                    <Route path="Prestige" element={<CategoryPage title={"MSI Prestige"} categoryId={"LAPTOP_PRESTIGE"}
+                    <Route path="Prestige" element={<CategoryPage title={"MSI Prestige"} categoryId={"LAPTOP_MSI_PRESTIGE"}
                                                                 brands={[]} isMain={false}/> }/>
-                    <Route path="Swift" element={<CategoryPage title={"Acer Swift"} categoryId={"LAPTOP_SWIFT"}
+                    <Route path="Swift" element={<CategoryPage title={"Acer Swift"} categoryId={"LAPTOP_ACER_SWIFT"}
                                                                 brands={[]} isMain={false}/> }/>
-                    <Route path="Aspire" element={<CategoryPage title={"Acer Aspire"} categoryId={"LAPTOP_ASPIRE"}
+                    <Route path="Aspire" element={<CategoryPage title={"Acer Aspire"} categoryId={"LAPTOP_ACER_ASPIRE"}
                                                                   brands={[]} isMain={false}/> }/>
-                    <Route path="Thinkpad" element={<CategoryPage title={"Lenovo Thinkpad"} categoryId={"LAPTOP_THINKPAD"}
+                    <Route path="Thinkpad" element={<CategoryPage title={"Lenovo Thinkpad"} categoryId={"LAPTOP_LENOVO_THINKPAD"}
                                                                 brands={[]} isMain={false}/> }/>
-                    <Route path="Thinkbook" element={<CategoryPage title={"Lenovo Thinkbook"} categoryId={"LAPTOP_THINKBOOK"}
+                    <Route path="Thinkbook" element={<CategoryPage title={"Lenovo Thinkbook"} categoryId={"LAPTOP_LENOVO_THINKBOOK"}
                                                                 brands={[]} isMain={false}/> }/>
-                    <Route path="Ideapad" element={<CategoryPage title={"Lenovo Ideapad"} categoryId={"LAPTOP_IDEAPAD"}
+                    <Route path="Ideapad" element={<CategoryPage title={"Lenovo Ideapad"} categoryId={"LAPTOP_LENOVO_IDEAPAD"}
                                                                 brands={[]} isMain={false}/> }/>
-                    <Route path="ROG" element={<CategoryPage title={"Asus ROG Series"} categoryId={"LAPTOP_ROG"}
-                                                                 brands={[]} isMain={false}/> }/>
-                    <Route path="TUF" element={<CategoryPage title={"Asus TUF Series"} categoryId={"LAPTOP_TUF"}
-                                                             brands={[]} isMain={false}/> }/>
-                    <Route path="Zephyrus" element={<CategoryPage title={"Asus Zephyrus"} categoryId={"LAPTOP_TUF"}
-                                                             brands={[]} isMain={false}/> }/>
-                    <Route path="Thin" element={<CategoryPage title={"MSI Thin"} categoryId={"LAPTOP_THIN"}
+                    <Route path="Inspriron" element={<CategoryPage title={"Dell Inspriron"} categoryId={"LAPTOP_DELL_INSPRIRON"}
+                                                                   brands={[]} isMain={false}/> }/>
+                    <Route path="Vostro" element={<CategoryPage title={"Dell Vostro"} categoryId={"LAPTOP_DELL_VOSTRO"}
+                                                                brands={[]} isMain={false}/> }/>
+                    <Route path="Latitude" element={<CategoryPage title={"Dell Latitude"} categoryId={"LAPTOP_DELL_LATITUDE"}
                                                                   brands={[]} isMain={false}/> }/>
-                    <Route path="Raider" element={<CategoryPage title={"MSI Raider"} categoryId={"LAPTOP_RAIDER"}
+                    <Route path="XPS" element={<CategoryPage title={"Dell XPS"} categoryId={"LAPTOP_DELL_XPS"}
+                                                             brands={[]} isMain={false}/> }/>
+                    <Route path="Elitebook" element={<CategoryPage title={"HP Elitebook"} categoryId={"LAPTOP_HP_ELITEBOOK"}
+                                                                   brands={[]} isMain={false}/> }/>
+                    <Route path="Envy" element={<CategoryPage title={"HP Envy"} categoryId={"LAPTOP_HP_ENVY"}
                                                               brands={[]} isMain={false}/> }/>
-                    <Route path="Katana" element={<CategoryPage title={"MSI Katana"} categoryId={"LAPTOP_KATANA"}
-                                                                brands={[]} isMain={false}/> }/>
-                    <Route path="Legion" element={<CategoryPage title={"Lenovo Legion"} categoryId={"LAPTOP_LEGION"}
-                                                                brands={[]} isMain={false}/> }/>
-                    <Route path="LOQ" element={<CategoryPage title={"Lenovo LOQ"} categoryId={"LAPTOP_LOQ"}
-                                                                brands={[]} isMain={false}/> }/>
-                    <Route path="Nitro" element={<CategoryPage title={"Acer Nitro"} categoryId={"LAPTOP_NITRO"}
+                    <Route path="Pavilion" element={<CategoryPage title={"HP Pavilion"} categoryId={"LAPTOP_HP_PAVILION"}
+                                                                  brands={[]} isMain={false}/> }/>
+                    <Route path="ROG" element={<CategoryPage title={"Asus ROG Series"} categoryId={"GAMING_ASUS_ROG"}
+                                                                 brands={[]} isMain={false}/> }/>
+                    <Route path="TUF" element={<CategoryPage title={"Asus TUF Series"} categoryId={"GAMING_ASUS_TUF"}
                                                              brands={[]} isMain={false}/> }/>
-                    <Route path="Predator" element={<CategoryPage title={"Acer Predator"} categoryId={"LAPTOP_PREDATOR"}
+                    <Route path="Zephyrus" element={<CategoryPage title={"Asus Zephyrus"} categoryId={"GAMING_ASUS_TUF"}
                                                              brands={[]} isMain={false}/> }/>
+                    <Route path="Thin" element={<CategoryPage title={"MSI Thin"} categoryId={"GAMING_MSI_THIN"}
+                                                                  brands={[]} isMain={false}/> }/>
+                    <Route path="Raider" element={<CategoryPage title={"MSI Raider"} categoryId={"GAMING_MSI_RAIDER"}
+                                                              brands={[]} isMain={false}/> }/>
+                    <Route path="Katana" element={<CategoryPage title={"MSI Katana"} categoryId={"GAMING_MSI_KATANA"}
+                                                                brands={[]} isMain={false}/> }/>
+                    <Route path="Legion" element={<CategoryPage title={"Lenovo Legion"} categoryId={"GAMING_LENOVO_LEGION"}
+                                                                brands={[]} isMain={false}/> }/>
+                    <Route path="LOQ" element={<CategoryPage title={"Lenovo LOQ"} categoryId={"GAMING_LENOVO_LOQ"}
+                                                                brands={[]} isMain={false}/> }/>
+                    <Route path="Nitro" element={<CategoryPage title={"Acer Nitro"} categoryId={"GAMING_ACER_NITRO"}
+                                                             brands={[]} isMain={false}/> }/>
+                    <Route path="Predator" element={<CategoryPage title={"Acer Predator"} categoryId={"GAMING_ACER_PREDATOR"}
+                                                             brands={[]} isMain={false}/> }/>
+                    <Route path="G_Series" element={<CategoryPage title={"Dell G Series"} categoryId={"GAMING_DELL_GSERIES"}
+                                                                  brands={[]} isMain={false}/> }/>
+                    <Route path="Alienware" element={<CategoryPage title={"Dell Alienware"} categoryId={"GAMING_DELL_Alienware"}
+                                                                  brands={[]} isMain={false}/> }/>
+                    <Route path="Victus" element={<CategoryPage title={"HP Victus"} categoryId={"GAMING_HP_VICTUS"}
+                                                                  brands={[]} isMain={false}/> }/>
+                    <Route path="Omen" element={<CategoryPage title={"HP Omen"} categoryId={"GAMING_HP_OMEN"}
+                                                                   brands={[]} isMain={false}/> }/>
+
                 </Route>
                 <Route path="PC">
                     <Route path="" element={<PCPage/> }></Route>
                     <Route path="Van_Phong" element={<CategoryPage  title={"PC văn phòng"} categoryId={"PC_VANPHONG"}
                                                                    brands={[newBrand("Asus","ASUS"),newBrand("Lenovo","LENOVO"),newBrand("Dell","DELL"),newBrand("HP","HP")]} isMain={false}/> }/>
-                    <Route path="Gaming" element={<CategoryPage  title={"PC văn phòng"} categoryId={"PC_VANPHONG"}
+                    <Route path="Gaming" element={<CategoryPage  title={"PC văn phòng"} categoryId={"PC_GAMING"}
                                                                    brands={[newBrand("Asus","ASUS"),newBrand("Lenovo","LENOVO"),newBrand("MSI","MSI")]} isMain={false}/> }/>
                     <Route path="Asus" element={<BrandPage brandTag={"ASUS"} title={"PC Asus"} categoryId={"PC"} isMain={true}/> }/>
                     <Route path="Lenovo" element={<BrandPage brandTag={"LENOVO"} title={"PC Lenovo"} categoryId={"PC"} isMain={true}/> }/>
-                    <Route path="HP" element={<BrandPage brandTag={"HP"} title={"PC HP"} categoryId={"PC"} isMain={true}/> }/>
+                    <Route path="MSI" element={<BrandPage brandTag={"MSI"} title={"PC MSI"} categoryId={"PC"} isMain={true}/> }/>
                     <Route path="Dell" element={<BrandPage brandTag={"DELL"} title={"PC Dell"} categoryId={"PC"} isMain={true}/> }/>
                 </Route>
                 <Route path="Bo_Mach" >
@@ -177,9 +200,11 @@ export default function RouteComponent(){
                 <Route path="Man_Hinh" >
                     <Route path="" element={<MoniterPage/> }></Route>
                     <Route path="60hz" element={<CategoryPage title={"Màn hình 60Hz"} categoryId={"MANHINH_60HZ"} isMain={false} brands={[]}/> }/>
-                    <Route path="120hz" element={<CategoryPage title={"Màn hình 120Hz"} categoryId={"MANHINH_60HZ"} isMain={false} brands={[]}/> }/>
+                    <Route path="144hz" element={<CategoryPage title={"Màn hình 144Hz"} categoryId={"MANHINH_120HZ"} isMain={false} brands={[]}/> }/>
+                    <Route path="240hz" element={<CategoryPage title={"Màn hình 240Hz"} categoryId={"MANHINH_240HZ"} isMain={false} brands={[]}/> }/>
                     <Route path="1080p" element={<CategoryPage title={"Màn hình độ phân giải 1080p"} categoryId={"MANHINH_1080P"} isMain={false} brands={[]}/> }/>
                     <Route path="2K" element={<CategoryPage title={"Màn hình độ phân giải 2K"} categoryId={"MANHINH_2K"} isMain={false} brands={[]}/> }/>
+                    <Route path="4K" element={<CategoryPage title={"Màn hình độ phân giải 4K"} categoryId={"MANHINH_4K"} isMain={false} brands={[]}/> }/>
                 </Route>
                 <Route path="Case" >
                     <Route path="" element={<CasePage/> }></Route>
@@ -201,8 +226,7 @@ export default function RouteComponent(){
                     <Route path="" element={<PSUPage/> }></Route>
                     <Route path="100W" element={<CategoryPage title={"Nguồn từ 100W đến 300W"} categoryId={"PSU_100W"} isMain={false} brands={[]}/> }/>
                     <Route path="300W" element={<CategoryPage title={"Nguồn từ 300W đến 500W"} categoryId={"PSU_300W"} isMain={false} brands={[]}/> }/>
-                    <Route path="500W" element={<CategoryPage title={"Nguồn từ 500W đến 600W"} categoryId={"PSU_500W"} isMain={false} brands={[]}/> }/>
-                    <Route path="600W" element={<CategoryPage title={"Nguồn từ 600W đến 800W"} categoryId={"PSU_600W"} isMain={false} brands={[]}/> }/>
+                    <Route path="500W" element={<CategoryPage title={"Nguồn từ 500W đến 800W"} categoryId={"PSU_500W"} isMain={false} brands={[]}/> }/>
                     <Route path="800W" element={<CategoryPage title={"Nguồn từ 800W trở lên"} categoryId={"PSU_800W"} isMain={false} brands={[]}/> }/>
                 </Route>
                 <Route path="Tan_Nhiet" >

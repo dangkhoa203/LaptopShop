@@ -17,6 +17,7 @@ namespace APIShopLaptop.Feature.Admin.Brands {
             try {
                 BrandDTO? Brand = await context.Brands
                      .Include(b => b.Products)
+                     
                      .Select(b => new BrandDTO(
                          b.Id,
                          b.Name,

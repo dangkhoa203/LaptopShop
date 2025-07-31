@@ -95,7 +95,7 @@ export default function UpdateCaterory(props:{id:string}) {
         onSuccess:(data:Response)=>{
             if(data.success){
                 setGlobalError("")
-                refetch()
+                PRODUCTCATEGORY.refetch()
             }
             else {
                 setGlobalError(data.errorMessage)
@@ -108,11 +108,12 @@ export default function UpdateCaterory(props:{id:string}) {
     const showData=rowData.filter((item)=>{
         return item.name.toLowerCase().includes(search.toLowerCase());
     })
+    const checkHasChanged=!checkChange()
     return (<div style={{marginBottom:'10px'}}>
             <Divider/>
             <h2 style={{textAlign:"center",marginBottom:0}}>Danh mục</h2>
             <div style={{display:"flex",justifyContent:"center",gap:5,marginBottom:10,minHeight:37}}>
-                {!checkChange() &&
+                {checkHasChanged &&
                     <>
                         <Button  loading={UPDATE.isPending} loadingPosition="end" endIcon={<ClearIcon/>} variant="contained" onClick={()=>setNewCategories(productCategories)} color="error">Clear</Button>
                         <Button loading={UPDATE.isPending} loadingPosition="end" endIcon={<SaveIcon/>} variant="contained" color="success" onClick={()=> UPDATE.mutate()}>Lưu</Button>

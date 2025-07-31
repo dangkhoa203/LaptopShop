@@ -79,7 +79,7 @@ export default function CategoryPage(props:{title:string,categoryId:string,isMai
         <Container>
             <Grid container spacing={0}>
                 <Grid size={8}>
-                    <Typography variant="h5" color="textSecondary">{props.title}</Typography>
+                    <Typography sx={{fontFamily:"Quicksand",fontWeight:500,letterSpacing:"2px",textTransform:"uppercase"}} variant="h4" color="textPrimary">{props.title}</Typography>
                 </Grid>
                 <Grid sx={{display:"flex",justifyContent:"end"}} size={4}>
                     <FormControl size={"small"} sx={{width:'auto'}}>

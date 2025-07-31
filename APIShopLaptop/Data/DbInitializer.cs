@@ -108,11 +108,11 @@ namespace APIShopLaptop.Data {
                         Description="Asus laptop",
                         SubCaterories= [
                             new SubCaterory {
-                                Id=$"LAPTOP_ACER_ZENBOOK",
+                                Id=$"LAPTOP_ASUS_ZENBOOK",
                                 Name="Zenbook",
                             },
                             new SubCaterory {
-                                Id=$"LAPTOP_ACER_VIVOBOOK",
+                                Id=$"LAPTOP_ASUS_VIVOBOOK",
                                Name="Vivobook",
                             },
                         ]
@@ -500,11 +500,11 @@ namespace APIShopLaptop.Data {
                                Name="1080p",
                             },
                             new SubCaterory {
-                                Id=$"MONITOR_2K",
+                                Id=$"MANHINH_2K",
                                Name="2K",
                             },
                             new SubCaterory {
-                                Id=$"MONITOR_4K",
+                                Id=$"MANHINH_4K",
                                Name="4K",
                             },
                         ]

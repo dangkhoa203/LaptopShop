@@ -12,7 +12,6 @@ import {
     Select,
 } from "@mui/material";
 import Typography from "@mui/material/Typography";
-import MainPageProductCard from "./Component/ProductCard.tsx";
 import ProductCard from "./Component/ProductCard.tsx";
 
 export default function BrandPage(props:{title:string,categoryId:string,isMain:boolean,brandTag:string}) {

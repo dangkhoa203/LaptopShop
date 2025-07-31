@@ -15,7 +15,7 @@ namespace APIShopLaptop.Feature.Admin.Brands {
             try {
                 var Brands = await context.Brands
                      .Include(b => b.Products)
-                     .OrderByDescending(b=>b.CreatedAt)
+                     .OrderBy(b => b.Name)
                      .Select(b => new BrandDTO(
                          b.Id,
                          b.Name,

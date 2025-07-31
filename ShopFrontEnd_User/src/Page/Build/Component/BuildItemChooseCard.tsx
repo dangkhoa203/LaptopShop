@@ -189,7 +189,7 @@ export default function BuildItemChooseCard(props:{componentName:string,category
                                                     </Typography>
                                                 </div>
                                                 <div style={{display:"flex",justifyContent:"center"}}>
-                                                    <Typography variant="subtitle1" component={"p"} sx={{margin:"auto"}}>
+                                                    <Typography color="primary" fontWeight={500} variant="subtitle1" component={"p"} sx={{margin:"auto"}}>
                                                         {data.isDiscount ? data.priceAfterDiscount.toLocaleString(undefined, {minimumFractionDigits: 0}) + " VNĐ":data.price.toLocaleString(undefined, {minimumFractionDigits: 0}) + " VNĐ"}
                                                     </Typography>
                                                 </div>

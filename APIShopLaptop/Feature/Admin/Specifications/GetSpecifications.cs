@@ -14,6 +14,7 @@ namespace APIShopLaptop.Feature.Admin.Specifications {
         private static async Task<IResult> Handler(ApplicationDBContext context) {
             try {
                 var Specifications = await context.Specifications
+                    .OrderBy(b=>b.Name)
                      .Select(b => new SpecificationDTO(
                          b.Id,
                          b.Name,
