@@ -39,7 +39,7 @@ export default function CartPage(){
                         </>
                         }
                         {cartItems.map((item)=>
-                            <CartProductCard product={item}/>
+                            <CartProductCard key={item.productId} product={item}/>
                         )}
                     </Paper>
                 </Grid>

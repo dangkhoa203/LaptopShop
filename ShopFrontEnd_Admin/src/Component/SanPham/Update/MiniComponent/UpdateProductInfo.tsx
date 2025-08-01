@@ -14,6 +14,7 @@ import {
 import {NumericFormat} from "react-number-format";
 import Button from "@mui/material/Button";
 import {Response} from "../../../../Type/Respone.ts";
+import {useAppNotify} from "../../../../State/AppGlobalNotifyState.ts";
 type productInfo={
     name:string,
     price:number,
@@ -142,6 +143,7 @@ export default function UpdateProductInfo(props:{id:string,notFound:boolean,setN
         // @ts-ignore
         return brand.name;
     }
+    const globalNotify=useAppNotify()
     const {isPending,mutate}=useMutation({
         mutationFn:async ()=>{
             setGlobalError("")
@@ -154,41 +156,44 @@ export default function UpdateProductInfo(props:{id:string,notFound:boolean,setN
             return await response.json();
         },
         onSuccess:(data:Response)=>{
-            if(data.success){
-                setGlobalError("")
-                setValidateError({
-                    price:"",
-                    priceAfterDiscount:"",
-                    quantity:"",
-                    name:"",
-                    brandId:"",})
-                setIsEdits(false)
-                info.refetch()
-            }
-            else {
-                setGlobalError(data.errorMessage)
-                if(!data.validationError.isValid){
-                    const list:any[]=data.validationError.errors
-                    const error={
-                        price:"",
-                        priceAfterDiscount:"",
-                        quantity:"",
-                        name:"",
-                        brandId:"",
-                    }
-                    list.forEach(element=>{
-                        if(element.propertyName==="Price")
-                            error.price=element.errorMessage
-                        if(element.propertyName==="priceAfterDiscount")
-                            error.priceAfterDiscount=element.errorMessage
-                        if(element.propertyName==="Quantity")
-                            error.quantity=element.errorMessage
-                        if(element.propertyName==="Name")
-                            error.name=element.errorMessage
-                        if(element.propertyName==="BrandId")
-                            error.brandId=element.errorMessage
+            if(data) {
+                if (data.success) {
+                    setGlobalError("")
+                    setValidateError({
+                        price: "",
+                        priceAfterDiscount: "",
+                        quantity: "",
+                        name: "",
+                        brandId: "",
                     })
-                    setValidateError(error)
+                    setIsEdits(false)
+                    globalNotify.setNotify("Cập nhật thành công")
+                    info.refetch()
+                } else {
+                    setGlobalError(data.errorMessage)
+                    if (!data.validationError.isValid) {
+                        const list: any[] = data.validationError.errors
+                        const error = {
+                            price: "",
+                            priceAfterDiscount: "",
+                            quantity: "",
+                            name: "",
+                            brandId: "",
+                        }
+                        list.forEach(element => {
+                            if (element.propertyName === "Price")
+                                error.price = element.errorMessage
+                            if (element.propertyName === "priceAfterDiscount")
+                                error.priceAfterDiscount = element.errorMessage
+                            if (element.propertyName === "Quantity")
+                                error.quantity = element.errorMessage
+                            if (element.propertyName === "Name")
+                                error.name = element.errorMessage
+                            if (element.propertyName === "BrandId")
+                                error.brandId = element.errorMessage
+                        })
+                        setValidateError(error)
+                    }
                 }
             }
         }
@@ -259,7 +264,7 @@ export default function UpdateProductInfo(props:{id:string,notFound:boolean,setN
                                 >
                                     <MenuItem value="0" disabled>Chọn hãng</MenuItem>
                                     {brands.map((item) => (
-                                        <MenuItem color="warning" value={item.id}>{item.name}</MenuItem>
+                                        <MenuItem key={item.id} color="warning" value={item.id}>{item.name}</MenuItem>
                                     ))}
                                 </Select>
                                 <FormHelperText>

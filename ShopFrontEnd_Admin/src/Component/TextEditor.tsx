@@ -18,7 +18,7 @@ export default function TextEditor(props:{description:string,setDescription:(val
     }
 
     return (
-        <Editor value={props.description} style={{minHeight:"300px",border:`2px solid ${props.color}`}} onChange={onChange} >
+        <Editor  value={props.description} style={{fontWeight:400,minHeight:"300px",border:`2px solid ${props.color}`}} onChange={onChange} >
             <Toolbar>
                 <BtnBold />
                 <BtnItalic />

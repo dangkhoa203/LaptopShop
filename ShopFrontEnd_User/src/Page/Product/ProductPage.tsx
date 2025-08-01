@@ -188,7 +188,7 @@ export default function ProductPage(){
                                 </Box>
 
                                 {product.productImage.map((i,index)=>
-                                    <Box onClick={()=>openImageViewer(index+1)} sx={{width: {xs:"300px",sm:"350px",md:"450px",lg:"500px"},cursor:"pointer", height:{xs:"300px",sm:"350px",md:"450px",lg:"500px"},justifyContent:"center",margin:"auto"}}>
+                                    <Box key={index} onClick={()=>openImageViewer(index+1)} sx={{width: {xs:"300px",sm:"350px",md:"450px",lg:"500px"},cursor:"pointer", height:{xs:"300px",sm:"350px",md:"450px",lg:"500px"},justifyContent:"center",margin:"auto"}}>
                                         <img  src={`https://localhost:7075/api/Products/${id}/Images/${i}`} />
                                     </Box>
                                 )}

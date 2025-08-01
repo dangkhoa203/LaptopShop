@@ -114,7 +114,7 @@ export default function DiscountCodeCheckOut(props:{validCode:validCode,setValid
                         </AccordionSummary>
                         <AccordionDetails sx={{maxHeight:200,overflowY:"auto"}}>
                             {validCode.map(code=>
-                                <Paper elevation={4} sx={{padding:"10px",marginBottom:"20px",bgcolor:"rgba(212,255,203,0.15)"}}>
+                                <Paper key={code.id} elevation={4} sx={{padding:"10px",marginBottom:"20px",bgcolor:"rgba(212,255,203,0.15)"}}>
                                     <Grid container spacing={1}>
                                         <Grid size={10}><Typography variant="body1">{code.name}</Typography></Grid>
                                         <Grid size={2} sx={{border:"1px solid rgba(211,223,130,1)",bgcolor:"rgba(235,248,146,0.5)",borderRadius:"30%",textAlign:"center"}}><Typography variant="body1">{code.percent}%</Typography></Grid>

@@ -14,6 +14,7 @@ import Button from "@mui/material/Button";
 import {useState} from "react";
 import {useMutation} from "@tanstack/react-query";
 import {Response} from "../../Type/Respone.ts";
+import {useAppNotify} from "../../State/AppGlobalNotifyState.ts";
 
 export default function CreateNewSpecificationDiaglog(props:{open:boolean,handleClose:()=>void,reFetch:any}){
     const [globalError, setGlobalError] = useState("");
@@ -27,6 +28,7 @@ export default function CreateNewSpecificationDiaglog(props:{open:boolean,handle
     const handleSearchableChange = (e:any) => {
         setSearchable(e.target.checked);
     }
+    const globalNotify=useAppNotify()
     const {isPending,mutate}=useMutation({
         mutationFn:async ()=>{
             setGlobalError("")
@@ -39,17 +41,19 @@ export default function CreateNewSpecificationDiaglog(props:{open:boolean,handle
             return await response.json();
         },
         onSuccess:(data:Response)=>{
-            if(data.success){
-                props.handleClose()
-                setName("")
-                setGlobalError("")
-                setValidationError("")
-                props.reFetch()
-            }
-            else {
-                setGlobalError(data.errorMessage)
-                if(!data.validationError.isValid){
-                    setValidationError(data.validationError.errors[0].errorMessage)
+            if(data) {
+                if (data.success) {
+                    props.handleClose()
+                    setName("")
+                    setGlobalError("")
+                    setValidationError("")
+                    globalNotify.setNotify("Tạo thông số thành công")
+                    props.reFetch()
+                } else {
+                    setGlobalError(data.errorMessage)
+                    if (!data.validationError.isValid) {
+                        setValidationError(data.validationError.errors[0].errorMessage)
+                    }
                 }
             }
         }

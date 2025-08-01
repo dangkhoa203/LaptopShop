@@ -78,9 +78,7 @@ export default function ProductReviewPage(){
                                 <Typography textAlign={"center"} variant={"h6"}>Chưa có review</Typography>
                             }
                             {reviews.map(review=>
-                                <>
-                                    <ReviewCard review={review}/>
-                                </>
+                                <ReviewCard key={review.userName+review.reviewDate} review={review}/>
                             )}
                         </>
                     }

@@ -53,11 +53,7 @@ export default function ProductReviewPreviewBox(props:{id:string|undefined,score
                     <Typography textAlign={"center"} sx={{fontFamily: "Roboto",letterSpacing:"2px",fontWeight:500}} variant={"h6"}>Chưa có review</Typography>
                 }
                 {reviews.map(review=>
-                    <>
-                        <ReviewCard review={review}/>
-                    </>
-
-
+                    <ReviewCard key={review.userName+review.reviewDate} review={review}/>
                 )}
                 {total>3 &&
                     <div style={{display:"flex",justifyContent:"center"}}>

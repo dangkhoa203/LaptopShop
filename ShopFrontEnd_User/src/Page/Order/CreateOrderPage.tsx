@@ -122,7 +122,6 @@ export default function CreateOrderPage(){
     const getTotalValue=()=>{
         let total=0;
         cartItems.forEach((item)=>{
-            console.log(item);
             if(item.priceAfterDiscount!==0)
                 total+=item.priceAfterDiscount*item.quantity;
             else
@@ -282,7 +281,7 @@ export default function CreateOrderPage(){
                                                 >
                                                     <MenuItem value={-1} disabled>Chọn quận</MenuItem>
                                                     {districtList.map((item)=>
-                                                        <MenuItem value={item.id}>{item.district}</MenuItem>
+                                                        <MenuItem key={item.id} value={item.id}>{item.district}</MenuItem>
                                                     )}
                                                 </Select>
                                             </FormControl>
@@ -298,7 +297,7 @@ export default function CreateOrderPage(){
                                                     onChange={handleWardChange}
                                                 >
                                                     {wardList.map((item)=>
-                                                        <MenuItem value={item}>{item}</MenuItem>
+                                                        <MenuItem key={item} value={item}>{item}</MenuItem>
                                                     )}
 
 
@@ -369,7 +368,7 @@ export default function CreateOrderPage(){
                                         </>
                                     }
                                     {cartItems.map((item)=>
-                                        <OrderDetailCard product={item}/>
+                                        <OrderDetailCard key={item.productId} product={item}/>
                                     )}
                                 </Paper>
                             </Grid>

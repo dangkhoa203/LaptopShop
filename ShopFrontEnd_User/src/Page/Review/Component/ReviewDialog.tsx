@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 import {useMutation} from "@tanstack/react-query";
 import {Response} from "../../../Type/Respone.ts";
 import {useAppError} from "../../../State/AppErrorState.ts";
+import {useAppNotify} from "../../../State/AppGlobalNotifyState.ts";
 
 export default function ReviewDialog(props:{open:boolean,handleClose:()=>void,orderId:string,productName:string,productId:string,refetch:any}) {
     const [reviewModel, setReviewModel] = useState({
@@ -20,6 +21,7 @@ export default function ReviewDialog(props:{open:boolean,handleClose:()=>void,or
         content:""
     })
     const globalError=useAppError()
+    const globalNotify=useAppNotify()
     const {isPending,mutate}=useMutation({
         mutationFn:async ()=>{
             const response = await fetch(`https://localhost:7075/api/Reviews`, {
@@ -48,6 +50,7 @@ export default function ReviewDialog(props:{open:boolean,handleClose:()=>void,or
                     score:"",
                     content:""
                 })
+                globalNotify.setNotify("Tạo review sản phẩm thành công")
                 props.refetch()
             }
             else {

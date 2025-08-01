@@ -9,6 +9,7 @@ import {FormControl, Grid, InputLabel, LinearProgress, MenuItem, Select, TextFie
 import Button from "@mui/material/Button";
 import {Response} from "../../../../Type/Respone.ts";
 import DeleteIcon from '@mui/icons-material/Delete';
+import {useAppNotify} from "../../../../State/AppGlobalNotifyState.ts";
 type specificationData={
     id:string,
     name: string,
@@ -82,6 +83,7 @@ export default function UpdateProductSpecification(props:{id:string}) {
         }
         return true
     }
+    const globalNotify=useAppNotify()
     const ADD=useMutation({
         mutationFn:async ()=>{
             setGlobalError("")
@@ -97,16 +99,18 @@ export default function UpdateProductSpecification(props:{id:string}) {
             setGlobalError("Chưa nhập thông tin")
         },
         onSuccess:(data:Response)=>{
-            if(data.success){
-                setGlobalError("")
-                setNewSpecification({
-                    id:"0",
-                    value:"",
-                })
-                PRODUCTSPECIFICATION.refetch()
-            }
-            else {
-                setGlobalError(data.errorMessage)
+            if(data) {
+                if (data.success) {
+                    setGlobalError("")
+                    setNewSpecification({
+                        id: "0",
+                        value: "",
+                    })
+                    globalNotify.setNotify("Thêm thành công")
+                    PRODUCTSPECIFICATION.refetch()
+                } else {
+                    setGlobalError(data.errorMessage)
+                }
             }
         }
     })
@@ -129,12 +133,14 @@ export default function UpdateProductSpecification(props:{id:string}) {
             return data;
         },
         onSuccess:(data:Response)=>{
-            if(data.success){
-                setGlobalError("")
-                PRODUCTSPECIFICATION.refetch()
-            }
-            else {
-                setGlobalError(data.errorMessage)
+            if(data) {
+                if (data.success) {
+                    setGlobalError("")
+                    globalNotify.setNotify("Xóa thành công")
+                    PRODUCTSPECIFICATION.refetch()
+                } else {
+                    setGlobalError(data.errorMessage)
+                }
             }
         }
     })
@@ -161,7 +167,7 @@ export default function UpdateProductSpecification(props:{id:string}) {
                                     >
                                         <MenuItem value="0" disabled>Chọn thông số</MenuItem>
                                         {specificationShowData.map((item) => (
-                                            <MenuItem value={item.id}>{item.name}</MenuItem>
+                                            <MenuItem key={item.id} value={item.id}>{item.name}</MenuItem>
                                         ))}
                                     </Select>
                                 </FormControl>

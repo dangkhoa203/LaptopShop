@@ -5,6 +5,7 @@ import ClearIcon from '@mui/icons-material/Clear';
 import {useState} from "react";
 import {useMutation} from "@tanstack/react-query";
 import {Response} from "../../../../Type/Respone.ts";
+import {useAppNotify} from "../../../../State/AppGlobalNotifyState.ts";
 const VisuallyHiddenInput = styled('input')({
     clip: 'rect(0 0 0 0)',
     clipPath: 'inset(50%)',
@@ -24,6 +25,7 @@ export default function UpdateThumbnail(props:{id:string}){
             setNewThumbnail(event.target.files[0]);
         }
     }
+    const globalNotify=useAppNotify()
     const {isPending,mutate}=useMutation({
         mutationFn:async ()=>{
             setError("")
@@ -37,11 +39,13 @@ export default function UpdateThumbnail(props:{id:string}){
             return await response.json();
         },
         onSuccess:(data:Response)=>{
-            if(data.success){
-                setNewThumbnail(null)
-            }
-            else {
-                setError(data.errorMessage)
+            if(data) {
+                if (data.success) {
+                    setNewThumbnail(null)
+                    globalNotify.setNotify("Cập nhật thành công")
+                } else {
+                    setError(data.errorMessage)
+                }
             }
         }
     })

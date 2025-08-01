@@ -187,11 +187,12 @@ export default function Order(){
             return await response.json();
         },
         onSuccess:(data:Response)=>{
-            if(data.success){
-                refetch()
-            }
-            else {
-                setError(data.errorMessage)
+            if(data) {
+                if (data.success) {
+                    refetch()
+                } else {
+                    setError(data.errorMessage)
+                }
             }
         }
     })

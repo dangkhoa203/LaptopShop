@@ -162,46 +162,44 @@ export default function BuildItemChooseCard(props:{componentName:string,category
                         <>
                             {
                                 products.map(data=>
-                                    <>
-                                        <Card key={data.id} sx={{ display: 'flex',justifyContent:"center",marginBottom:"10px",gap:1 }} elevation={3}>
-                                            <CardMedia
-                                                component="img"
-                                                sx={{ margin:"auto",width: 60,height:60,cursor:"pointer" }}
-                                                image={`https://localhost:7075/api/Products/${data.id}/Thumbnail`}
-                                                alt={data.name}
-                                                onClick={()=>navigate(`/SanPham/${data.id}`)}
-                                                title={data.name}
-                                            />
-                                            <Container sx={{ borderLeft:"1px solid black",display: 'flex', justifyContent:"space-between" }}>
-                                                <CardContent sx={{minWidth:"80%",paddingX:"5px"}}>
-                                                    <Tooltip title={data.name}>
-                                                        <Typography sx={{cursor:"pointer"}} onClick={()=>navigate(`/SanPham/${data.id}`)} className="ProductName"  component="p" >
-                                                            {data.name}
-                                                        </Typography>
-                                                    </Tooltip>
+                                    <Card key={data.id} sx={{ display: 'flex',justifyContent:"center",marginBottom:"10px",gap:1 }} elevation={3}>
+                                        <CardMedia
+                                            component="img"
+                                            sx={{ margin:"auto",width: 60,height:60,cursor:"pointer" }}
+                                            image={`https://localhost:7075/api/Products/${data.id}/Thumbnail`}
+                                            alt={data.name}
+                                            onClick={()=>navigate(`/SanPham/${data.id}`)}
+                                            title={data.name}
+                                        />
+                                        <Container sx={{ borderLeft:"1px solid black",display: 'flex', justifyContent:"space-between" }}>
+                                            <CardContent sx={{minWidth:"80%",paddingX:"5px"}}>
+                                                <Tooltip title={data.name}>
+                                                    <Typography sx={{cursor:"pointer"}} onClick={()=>navigate(`/SanPham/${data.id}`)} className="ProductName"  component="p" >
+                                                        {data.name}
+                                                    </Typography>
+                                                </Tooltip>
 
-                                                </CardContent>
-                                            </Container>
-                                            <div style={{display:"flex",flexDirection:"column",justifyContent:"center",minWidth:"120px"}}>
-                                                <div style={{display:"flex",justifyContent:"center"}}>
-                                                    <Typography variant="subtitle2" component={"p"} sx={{margin:"auto",textDecoration:"line-through"}}>
-                                                        {data.isDiscount ? data.price.toLocaleString(undefined, {minimumFractionDigits: 0}) + " VNĐ":" "}
-                                                    </Typography>
-                                                </div>
-                                                <div style={{display:"flex",justifyContent:"center"}}>
-                                                    <Typography color="primary" fontWeight={500} variant="subtitle1" component={"p"} sx={{margin:"auto"}}>
-                                                        {data.isDiscount ? data.priceAfterDiscount.toLocaleString(undefined, {minimumFractionDigits: 0}) + " VNĐ":data.price.toLocaleString(undefined, {minimumFractionDigits: 0}) + " VNĐ"}
-                                                    </Typography>
-                                                </div>
+                                            </CardContent>
+                                        </Container>
+                                        <div style={{display:"flex",flexDirection:"column",justifyContent:"center",minWidth:"120px"}}>
+                                            <div style={{display:"flex",justifyContent:"center"}}>
+                                                <Typography variant="subtitle2" component={"p"} sx={{margin:"auto",textDecoration:"line-through"}}>
+                                                    {data.isDiscount ? data.price.toLocaleString(undefined, {minimumFractionDigits: 0}) + " VNĐ":" "}
+                                                </Typography>
                                             </div>
-                                            {data.quantity>0?
-                                                <Button sx={{minWidth:"85px"}} loading={ADD.isPending} color={"success"} variant={"contained"} onClick={()=>ADD.mutate(data.id)}>Chọn</Button>
-                                                :
-                                                <Button sx={{minWidth:"85px"}} disabled  variant={"contained"} >Hết hàng</Button>
-                                            }
+                                            <div style={{display:"flex",justifyContent:"center"}}>
+                                                <Typography color="primary" fontWeight={500} variant="subtitle1" component={"p"} sx={{margin:"auto"}}>
+                                                    {data.isDiscount ? data.priceAfterDiscount.toLocaleString(undefined, {minimumFractionDigits: 0}) + " VNĐ":data.price.toLocaleString(undefined, {minimumFractionDigits: 0}) + " VNĐ"}
+                                                </Typography>
+                                            </div>
+                                        </div>
+                                        {data.quantity>0?
+                                            <Button sx={{minWidth:"85px"}} loading={ADD.isPending} color={"success"} variant={"contained"} onClick={()=>ADD.mutate(data.id)}>Chọn</Button>
+                                            :
+                                            <Button sx={{minWidth:"85px"}} disabled  variant={"contained"} >Hết hàng</Button>
+                                        }
 
-                                        </Card>
-                                    </>
+                                    </Card>
                                 )
                             }
                         </>

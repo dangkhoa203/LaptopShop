@@ -2,6 +2,7 @@
 using APIShopLaptop.Endpoint;
 using APIShopLaptop.Model.Enum;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 
 namespace APIShopLaptop.Feature.User.Orders {
     public class CancelOrder : IEndpoint {
@@ -14,11 +15,14 @@ namespace APIShopLaptop.Feature.User.Orders {
         [Authorize(Roles = "User")]
         public static async Task<IResult> Handler(Request request, ApplicationDBContext context) {
             try {
-                var Order = context.Orders.FirstOrDefault(d => d.Id == request.Id && d.Status!=ORDERSTATUS.FINISHED);
+                var Order = context.Orders.Include(o=>o.Details).ThenInclude(d=>d.ProductNavigation).FirstOrDefault(d => d.Id == request.Id && d.Status!=ORDERSTATUS.FINISHED);
                 if (Order == null)
                     return Results.NotFound(new Response(false, "Không tìm thấy đơn!"));
 
                 Order.Status = 0;
+                foreach (var item in Order.Details) {
+                    item.ProductNavigation.Quantity += item.Quantity;
+                }
                 if (await context.SaveChangesAsync() > 0) {
                     return Results.Ok(new Response(true, ""));
                 }

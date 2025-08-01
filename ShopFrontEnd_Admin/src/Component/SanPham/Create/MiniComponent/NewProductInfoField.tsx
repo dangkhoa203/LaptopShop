@@ -119,7 +119,7 @@ export default function NewProductInfoField(props:{productInfo:productInfo,setPr
                         >
                             <MenuItem value="0" disabled>Chọn hãng</MenuItem>
                             {brands.map((item) => (
-                                <MenuItem value={item.id}>{item.name}</MenuItem>
+                                <MenuItem key={item.id} value={item.id}>{item.name}</MenuItem>
                             ))}
                         </Select>
                         <FormHelperText>

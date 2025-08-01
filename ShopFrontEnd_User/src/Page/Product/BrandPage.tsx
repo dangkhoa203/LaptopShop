@@ -101,7 +101,7 @@ export default function BrandPage(props:{title:string,categoryId:string,isMain:b
                                     </Typography>
                                 }
                                 {products.map(product=>
-                                    <Grid size={{xs:6,sm:6,md:4,lg:3}}>
+                                    <Grid key={product.id} size={{xs:6,sm:6,md:4,lg:3}}>
                                         <ProductCard product={product}/>
                                     </Grid>
 

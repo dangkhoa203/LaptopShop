@@ -54,7 +54,7 @@ export default function ProductCard(props: {product:ProductData}){
                 />
             </div>
 
-            <CardContent sx={{flexGrow:2,paddingTop:"0px",paddingBottom:"5px"}}>
+            <CardContent sx={{flexGrow:2,paddingTop:"5px",paddingRight:"5px",paddingLeft:"10px",paddingBottom:"5px"}}>
                 <Tooltip title={props.product.name}>
                     <p className="ProductName" style={{
                         fontSize:"1.1em",cursor:"pointer"}} onClick={()=>navigate(`/SanPham/${props.product.id}`)}  >

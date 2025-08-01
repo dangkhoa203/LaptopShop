@@ -249,7 +249,7 @@ export default function OrderDetail(){
                                     <Paper sx={{marginY:"10px",padding:"10px",maxHeight:"400px",overflowY:"auto"}} elevation={12}>
 
                                         {orderDetail.details.map(detail =>
-                                            <Card  sx={{border:"1px solid rgba(9,8,8,0.2)",display: 'flex',justifyContent:"center",marginBottom:"10px" }} elevation={3}>
+                                            <Card key={detail.id} sx={{border:"1px solid rgba(9,8,8,0.2)",display: 'flex',justifyContent:"center",marginBottom:"10px" }} elevation={3}>
                                                 <CardMedia
                                                     component="img"
                                                     sx={{ margin:"auto",objectFit: "contain",width: 200,height:200,cursor:"pointer" }}

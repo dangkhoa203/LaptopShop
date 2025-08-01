@@ -11,8 +11,9 @@ namespace APIShopLaptop.Feature.Admin.DiscountCodes {
         public record Response(bool Success, string ErrorMessage, ValidationResult? ValidationError);
         public sealed class Validator : AbstractValidator<Request> {
             public Validator() {
+                RuleFor(r => r.EndDate).Must(r => DateTime.Compare(r, DateTime.Now) > 0).WithMessage("Ngày không phù hợp");
                 RuleFor(r => r.Name).NotEmpty().WithMessage("Chưa nhập tên!");
-                RuleFor(r => r.Percent).InclusiveBetween(0, 100).WithMessage("Phần trăm không thích hợp!");
+                RuleFor(r => r.Percent).InclusiveBetween(1, 100).WithMessage("Phần trăm không thích hợp!");
             }
             public bool CheckSame(Request request, DiscountCode code) {
                 var old = new Request(code.Name, code.Description, code.Percent,code.Code, code.IsActive,code.EndDate);

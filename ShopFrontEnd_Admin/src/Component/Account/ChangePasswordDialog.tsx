@@ -35,13 +35,15 @@ export default function ChangePasswordDialog(props:{username:string,id:string,op
             return await response.json();
         },
         onSuccess:(data:Response)=>{
-            if(data.success){
-                setSuccess(true);
-            }
-            else {
-                setGlobalError(data.errorMessage)
-                if(!data.validationError.isValid){
-                    setValidateError(data.validationError.errors[0].errorMessage)
+            if(data){
+                if(data.success){
+                    setSuccess(true);
+                }
+                else {
+                    setGlobalError(data.errorMessage)
+                    if(!data.validationError.isValid){
+                        setValidateError(data.validationError.errors[0].errorMessage)
+                    }
                 }
             }
         }

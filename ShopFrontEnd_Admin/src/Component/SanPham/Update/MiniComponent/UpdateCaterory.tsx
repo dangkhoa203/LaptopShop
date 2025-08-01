@@ -14,6 +14,7 @@ import ClearIcon from "@mui/icons-material/Clear";
 import SaveIcon from "@mui/icons-material/Save";
 import {Response} from "../../../../Type/Respone.ts";
 import Typography from "@mui/material/Typography";
+import {useAppNotify} from "../../../../State/AppGlobalNotifyState.ts";
 type categoryData={
     id:string,
     name: string,
@@ -81,6 +82,7 @@ export default function UpdateCaterory(props:{id:string}) {
         return newCategories.every(item=>productCategories.includes(item));
     }
     const [globalError,setGlobalError]=useState("")
+    const globalNotify=useAppNotify()
     const UPDATE=useMutation({
         mutationFn:async ()=>{
             setGlobalError("")
@@ -93,12 +95,14 @@ export default function UpdateCaterory(props:{id:string}) {
             return await response.json();
         },
         onSuccess:(data:Response)=>{
-            if(data.success){
-                setGlobalError("")
-                PRODUCTCATEGORY.refetch()
-            }
-            else {
-                setGlobalError(data.errorMessage)
+            if(data) {
+                if (data.success) {
+                    setGlobalError("")
+                    globalNotify.setNotify("Cập nhật thành công")
+                    PRODUCTCATEGORY.refetch()
+                } else {
+                    setGlobalError(data.errorMessage)
+                }
             }
         }
     })

@@ -14,9 +14,11 @@ import {useMutation} from "@tanstack/react-query";
 import {Response} from "../../Type/Respone.ts";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import {useAppNotify} from "../../State/AppGlobalNotifyState.ts";
 
 export default function ConfirmAccountDialog(props:{username:string,id:string,open:boolean,handleClose:()=>void,reFetch:any}) {
     const [globalError, setGlobalError] = useState("");
+    const globalNotify=useAppNotify()
     const {isPending,mutate}=useMutation({
         mutationFn:async ()=>{
             setGlobalError("")
@@ -28,13 +30,15 @@ export default function ConfirmAccountDialog(props:{username:string,id:string,op
             return await response.json();
         },
         onSuccess:(data:Response)=>{
-            if(data.success){
-                props.handleClose()
-                setGlobalError("")
-                props.reFetch()
-            }
-            else {
-                setGlobalError(data.errorMessage)
+            if(data) {
+                if (data.success) {
+                    props.handleClose()
+                    setGlobalError("")
+                    globalNotify.setNotify("Cập nhật thành công")
+                    props.reFetch()
+                } else {
+                    setGlobalError(data.errorMessage)
+                }
             }
         }
     })

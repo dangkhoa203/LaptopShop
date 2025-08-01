@@ -14,6 +14,7 @@ import Button from "@mui/material/Button";
 import {useState} from "react";
 import {useMutation} from "@tanstack/react-query";
 import {Response} from "../../Type/Respone.ts";
+import {useAppNotify} from "../../State/AppGlobalNotifyState.ts";
 type codeInfo = {
     name: string,
     description: string,
@@ -62,6 +63,7 @@ export default function CreateNewDiscountCodeDialog(props:{open:boolean,handleCl
     const handleEndDateChange = (e:any) => {
         setCodeInfo({...codeInfo, endDate: e.target.value});
     }
+    const globalNotify=useAppNotify()
     const {isPending,mutate}=useMutation({
         mutationFn:async ()=>{
             setGlobalError("")
@@ -74,43 +76,45 @@ export default function CreateNewDiscountCodeDialog(props:{open:boolean,handleCl
             return await response.json();
         },
         onSuccess:(data:Response)=>{
-            if(data.success){
-                props.handleClose()
-                setCodeInfo({
-                    name:"",
-                    description:"",
-                    percent:0,
-                    code:"",
-                    isActive:false,
-                    endDate:showDate,
-                })
-                setGlobalError("")
-                setValidationError({
-                    name:"",
-                    percent:"",
-                    endDate: ""
-                })
-                props.reFetch()
-            }
-            else {
-                console.log(data.errorMessage)
-                setGlobalError(data.errorMessage)
-                if(!data.validationError.isValid){
-                    const list:any[]=data.validationError.errors
-                    const error={
-                        name:"",
-                        percent:"",
-                        endDate:""
-                    }
-                    list.forEach(element=>{
-                        if(element.propertyName==="Percent")
-                            error.percent=element.errorMessage
-                        if(element.propertyName==="Name")
-                            error.name=element.errorMessage
-                        if(element.propertyName==="EndDate")
-                            error.endDate=element.errorMessage
+            if(data) {
+                if (data.success) {
+                    props.handleClose()
+                    setCodeInfo({
+                        name: "",
+                        description: "",
+                        percent: 0,
+                        code: "",
+                        isActive: false,
+                        endDate: showDate,
                     })
-                    setValidationError(error)
+                    setGlobalError("")
+                    setValidationError({
+                        name: "",
+                        percent: "",
+                        endDate: ""
+                    })
+                    globalNotify.setNotify("Tạo mã thành công")
+                    props.reFetch()
+                } else {
+                    console.log(data.errorMessage)
+                    setGlobalError(data.errorMessage)
+                    if (!data.validationError.isValid) {
+                        const list: any[] = data.validationError.errors
+                        const error = {
+                            name: "",
+                            percent: "",
+                            endDate: ""
+                        }
+                        list.forEach(element => {
+                            if (element.propertyName === "Percent")
+                                error.percent = element.errorMessage
+                            if (element.propertyName === "Name")
+                                error.name = element.errorMessage
+                            if (element.propertyName === "EndDate")
+                                error.endDate = element.errorMessage
+                        })
+                        setValidationError(error)
+                    }
                 }
             }
         }

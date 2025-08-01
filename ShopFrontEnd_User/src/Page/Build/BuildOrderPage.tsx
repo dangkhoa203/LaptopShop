@@ -383,7 +383,7 @@ export default function BuildOrderPage(){
                                         :
                                         <>
                                             {build.map(product=>
-                                                <BuildItemOrderCard product={product}/>
+                                                <BuildItemOrderCard key={product.productId} product={product}/>
                                             )}
                                         </>
                                     }

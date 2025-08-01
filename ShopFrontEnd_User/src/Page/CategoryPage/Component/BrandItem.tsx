@@ -49,8 +49,8 @@ export default function BrandItem(props:{title:string,brandTag:string,categoryId
                             }
                         }}>
                             <ScrollMenu LeftArrow={<LeftArrow/> } RightArrow={<RightArrow/>}>
-                                {products.map((product,index) =>
-                                    <MainPageProductCard key={index} product={product}/>
+                                {products.map((product) =>
+                                    <MainPageProductCard key={product.id} product={product}/>
                                 )}
 
                             </ScrollMenu>

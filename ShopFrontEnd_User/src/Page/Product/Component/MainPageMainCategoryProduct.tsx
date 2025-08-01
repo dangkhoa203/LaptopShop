@@ -51,8 +51,8 @@ export default function MainPageMainCategoryProduct(props:{isMain:boolean,catego
                             }
                         }}>
                             <ScrollMenu LeftArrow={<LeftArrow/> } RightArrow={<RightArrow/>}>
-                                {products.map((product,index) =>
-                                    <MainPageProductCard key={index} product={product}/>
+                                {products.map((product) =>
+                                    <MainPageProductCard key={product.id} product={product}/>
                                 )}
 
                             </ScrollMenu>

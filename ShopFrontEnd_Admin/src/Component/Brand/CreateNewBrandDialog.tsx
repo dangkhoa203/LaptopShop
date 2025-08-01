@@ -14,6 +14,7 @@ import Button from "@mui/material/Button";
 import {useState} from "react";
 import {useMutation} from "@tanstack/react-query";
 import {Response} from "../../Type/Respone.ts";
+import {useAppNotify} from "../../State/AppGlobalNotifyState.ts";
 type brandInfo = {
     name: string,
     tag: string
@@ -38,6 +39,7 @@ export default function CreateNewBrandDialog(props:{open:boolean,handleClose:()=
     const handleTagChange = (e:any) => {
         setBrandInfo({...brandInfo, tag: e.target.value.toUpperCase()});
     }
+    const globalNotify=useAppNotify()
     const {isPending,mutate}=useMutation({
         mutationFn:async ()=>{
             setGlobalError("")
@@ -50,35 +52,37 @@ export default function CreateNewBrandDialog(props:{open:boolean,handleClose:()=
             return await response.json();
         },
         onSuccess:(data:Response)=>{
-            if(data.success){
-                props.handleClose()
-                setBrandInfo({
-                    name:"",
-                    tag:""
-                })
-                setGlobalError("")
-                setValidateError({
-                    name:"",
-                    tag:""
-                })
-                props.reFetch()
-            }
-            else {
-                console.log(data.errorMessage)
-                setGlobalError(data.errorMessage)
-                if(!data.validationError.isValid){
-                    const list:any[]=data.validationError.errors
-                    const error:brandInfo={
-                        name:"",
-                        tag:""
-                    }
-                    list.forEach(element=>{
-                        if(element.propertyName==="Tag")
-                            error.tag=element.errorMessage
-                        if(element.propertyName==="Name")
-                            error.name=element.errorMessage
+            if(data) {
+                if (data.success) {
+                    props.handleClose()
+                    setBrandInfo({
+                        name: "",
+                        tag: ""
                     })
-                    setValidateError(error)
+                    setGlobalError("")
+                    setValidateError({
+                        name: "",
+                        tag: ""
+                    })
+                    globalNotify.setNotify("Tạo hãng thành công")
+                    props.reFetch()
+                } else {
+                    console.log(data.errorMessage)
+                    setGlobalError(data.errorMessage)
+                    if (!data.validationError.isValid) {
+                        const list: any[] = data.validationError.errors
+                        const error: brandInfo = {
+                            name: "",
+                            tag: ""
+                        }
+                        list.forEach(element => {
+                            if (element.propertyName === "Tag")
+                                error.tag = element.errorMessage
+                            if (element.propertyName === "Name")
+                                error.name = element.errorMessage
+                        })
+                        setValidateError(error)
+                    }
                 }
             }
         }

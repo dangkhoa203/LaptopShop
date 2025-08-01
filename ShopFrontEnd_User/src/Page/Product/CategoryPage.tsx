@@ -63,6 +63,7 @@ export default function CategoryPage(props:{title:string,categoryId:string,isMai
     }, [data]);
     useEffect(() => {
         refetch();
+        console.log(currentPage);
         window.scrollTo(0, 0)
     }, [currentPage]);
     useEffect(() => {
@@ -134,7 +135,7 @@ export default function CategoryPage(props:{title:string,categoryId:string,isMai
                                     </Typography>
                                 }
                                 {products.map(product=>
-                                    <Grid size={{xs:6,sm:6,md:4,lg:3}}>
+                                    <Grid key={product.id} size={{xs:6,sm:6,md:4,lg:3}}>
                                         <MainPageProductCard product={product}/>
                                     </Grid>
 

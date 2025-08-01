@@ -12,6 +12,7 @@ import {useMutation} from "@tanstack/react-query";
 import {Response} from "../../../Type/Respone.ts";
 import {useNavigate} from "react-router";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import {useAppNotify} from "../../../State/AppGlobalNotifyState.ts";
 export type productValidationError={
     price:string,
     priceAfterDiscount:string,
@@ -77,6 +78,7 @@ export default function CreateProductPage(){
         }
         return true;
     }
+    const globalNotify=useAppNotify()
     const {isPending,mutate}=useMutation({
         mutationFn:async ()=>{
             setGlobalError("")
@@ -91,39 +93,41 @@ export default function CreateProductPage(){
 
         },
         onSuccess:(data:Response)=>{
-            if(data.success){
-               navigate("..")
-            }
-            else {
-                setGlobalError(data.errorMessage)
-                console.log(data.validationError)
-                if(!data.validationError.isValid){
-                    const list:any[]=data.validationError.errors
-                    const error={
-                        price:"",
-                        priceAfterDiscount:"",
-                        quantity:"",
-                        name:"",
-                        brandId:"",
+            if(data) {
+                if (data.success) {
+                    globalNotify.setNotify("Tạo sản phẩm thành công")
+                    navigate("..")
+                } else {
+                    setGlobalError(data.errorMessage)
+                    console.log(data.validationError)
+                    if (!data.validationError.isValid) {
+                        const list: any[] = data.validationError.errors
+                        const error = {
+                            price: "",
+                            priceAfterDiscount: "",
+                            quantity: "",
+                            name: "",
+                            brandId: "",
+                        }
+                        list.forEach(element => {
+                            if (element.propertyName === "Price")
+                                error.price = element.errorMessage
+                            if (element.propertyName === "PriceAfterDiscount")
+                                error.priceAfterDiscount = element.errorMessage
+                            if (element.propertyName === "Quantity")
+                                error.quantity = element.errorMessage
+                            if (element.propertyName === "Name")
+                                error.name = element.errorMessage
+                            if (element.propertyName === "BrandId")
+                                error.brandId = element.errorMessage
+                        })
+                        setValidationError(error)
+                        window.scrollTo({
+                            top: 0,
+                            left: 0,
+                            behavior: 'smooth'
+                        });
                     }
-                    list.forEach(element=>{
-                        if(element.propertyName==="Price")
-                            error.price=element.errorMessage
-                        if(element.propertyName==="PriceAfterDiscount")
-                            error.priceAfterDiscount=element.errorMessage
-                        if(element.propertyName==="Quantity")
-                            error.quantity=element.errorMessage
-                        if(element.propertyName==="Name")
-                            error.name=element.errorMessage
-                        if(element.propertyName==="BrandId")
-                            error.brandId=element.errorMessage
-                    })
-                    setValidationError(error)
-                    window.scrollTo({
-                        top: 0,
-                        left: 0,
-                        behavior: 'smooth'
-                    });
                 }
             }
         }
@@ -145,7 +149,7 @@ export default function CreateProductPage(){
                 </Container>
             </Container>
             <NewProductImageList productImage={productImage} setProductImage={setProductImage}/>
-            <Container sx={{maxWidth: {xs:"450px",sm:"480px",md:"750px",lg:"1152px"}}} style={{padding:0}}>
+            <Container sx={{fontWeight:"400",fontFamily:"Manrope",maxWidth: {xs:"450px",sm:"480px",md:"750px",lg:"1152px"}}} style={{padding:0}}>
                 <Divider/>
                 <h2 style={{textAlign:"center"}}>Mô tả sản phẩm</h2>
                 <TextEditor color={"rgb(25, 118, 210)"} description={description} setDescription={setDescription}/>

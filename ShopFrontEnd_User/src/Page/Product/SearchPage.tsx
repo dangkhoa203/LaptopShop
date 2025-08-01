@@ -72,7 +72,7 @@ export default function SearchPage(){
             </Typography>
             <Grid container spacing={3}>
                 {products.map(product=>
-                    <Grid size={{xs:6,sm:6,md:4,lg:3}}>
+                    <Grid key={product.id} size={{xs:6,sm:6,md:4,lg:3}}>
                         <MainPageProductCard product={product}/>
                     </Grid>
 

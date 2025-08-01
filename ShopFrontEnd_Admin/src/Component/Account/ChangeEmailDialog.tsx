@@ -15,6 +15,7 @@ import {useMutation} from "@tanstack/react-query";
 import {Response} from "../../Type/Respone.ts";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import {useAppNotify} from "../../State/AppGlobalNotifyState.ts";
 
 export default function ChangeEmailDialog(props:{username:string,email:string,id:string,open:boolean,handleClose:()=>void,reFetch:any}) {
     const [newEmail, setNewEmail] = useState('');
@@ -23,6 +24,7 @@ export default function ChangeEmailDialog(props:{username:string,email:string,id
     const handleEmailPassword=(e:any)=>{
         setNewEmail(e.target.value);
     }
+    const globalNotify=useAppNotify()
     const {isPending,mutate}=useMutation({
         mutationFn:async ()=>{
             setGlobalError("")
@@ -35,17 +37,20 @@ export default function ChangeEmailDialog(props:{username:string,email:string,id
             return await response.json();
         },
         onSuccess:(data:Response)=>{
-            if(data.success){
-                props.handleClose()
-                setNewEmail("")
-                setGlobalError("")
-                setValidateError("")
-                props.reFetch()
-            }
-            else {
-                setGlobalError(data.errorMessage)
-                if(!data.validationError.isValid){
-                    setValidateError(data.validationError.errors[0].errorMessage)
+            if(data){
+                if(data.success){
+                    props.handleClose()
+                    setNewEmail("")
+                    setGlobalError("")
+                    setValidateError("")
+                    globalNotify.setNotify("Xác nhận thành công")
+                    props.reFetch()
+                }
+                else {
+                    setGlobalError(data.errorMessage)
+                    if(!data.validationError.isValid){
+                        setValidateError(data.validationError.errors[0].errorMessage)
+                    }
                 }
             }
         }

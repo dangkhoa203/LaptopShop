@@ -14,7 +14,6 @@ namespace APIShopLaptop.Feature.Admin.Brands {
         public sealed class Validator : AbstractValidator<Request> {
             public Validator() {
                 RuleFor(r => r.Tag).NotEmpty().WithMessage("Chưa nhập Id!");
-                RuleFor(r => r.Tag).MinimumLength(4).WithMessage("Id phải nhập tối thiểu 4 ký tự!");
                 RuleFor(r => r.Tag).Matches("^[A-Z]*$").WithMessage("Tag không được ghi dấu!");
                 RuleFor(r => r.Name).NotEmpty().WithMessage("Chưa nhập tên!");
                 RuleFor(r => r.Name).MinimumLength(4).WithMessage("Tên phải nhập tối thiểu 4 ký tự!");

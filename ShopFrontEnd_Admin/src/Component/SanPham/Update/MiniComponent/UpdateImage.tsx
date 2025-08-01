@@ -8,6 +8,7 @@ import SaveIcon from '@mui/icons-material/Save';
 import {useEffect, useState} from "react";
 import {useMutation, useQuery} from "@tanstack/react-query";
 import {Response} from "../../../../Type/Respone.ts";
+import {useAppNotify} from "../../../../State/AppGlobalNotifyState.ts";
 
 const VisuallyHiddenInput = styled('input')({
     clip: 'rect(0 0 0 0)',
@@ -72,6 +73,7 @@ export default function UpdateImage(props:{id:string}) {
         })
         return formdata;
     }
+    const globalNotify=useAppNotify()
     const ADD=useMutation({
         mutationFn:async ()=>{
             setGlobalError("")
@@ -83,13 +85,15 @@ export default function UpdateImage(props:{id:string}) {
             return await response.json();
         },
         onSuccess:(data:Response)=>{
-            if(data.success){
-                setGlobalError("")
-                setNewImages([])
-                refetch()
-            }
-            else {
-                setGlobalError(data.errorMessage)
+            if(data) {
+                if (data.success) {
+                    setGlobalError("")
+                    setNewImages([])
+                    globalNotify.setNotify("Cập nhật thành công")
+                    refetch()
+                } else {
+                    setGlobalError(data.errorMessage)
+                }
             }
         }
     })
@@ -109,12 +113,14 @@ export default function UpdateImage(props:{id:string}) {
             return data;
         },
         onSuccess:(data:Response)=>{
-            if(data.success){
-                setGlobalError("")
-                refetch()
-            }
-            else {
-                setGlobalError(data.errorMessage)
+            if(data) {
+                if (data.success) {
+                    setGlobalError("")
+                    globalNotify.setNotify("Xóa thành công")
+                    refetch()
+                } else {
+                    setGlobalError(data.errorMessage)
+                }
             }
         }
     })
@@ -159,8 +165,8 @@ export default function UpdateImage(props:{id:string}) {
                             <Grid sx={{border:"2px solid rgb(237, 108, 2)",borderRadius:"5px",backgroundColor:"rgba(237, 108, 2,0.13)",
                                 padding:"15px",minHeight:"400px",maxHeight:"400px",overflowY:"auto",
                                 marginBottom:"10px"}} container spacing={2}>
-                                {oldImages.map((image:any)=>
-                                    <Grid sx={{display:"flex",justifyContent:"center"}} size={{sm:12,xs:12,md:6,lg:3}}>
+                                {oldImages.map((image:any,index)=>
+                                    <Grid key={index} sx={{display:"flex",justifyContent:"center"}} size={{sm:12,xs:12,md:6,lg:3}}>
                                         <Card elevation={6} key={image} sx={{ backgroundColor:"rgba(237, 108, 2,0.56)",width: 250,height:310 }}>
                                             <CardMedia
                                                 sx={{ height: 250 }}
@@ -174,8 +180,8 @@ export default function UpdateImage(props:{id:string}) {
                                     </Grid>
                                 )}
                                 {newImages.map((image:any,index)=>
-                                    <Grid sx={{display:"flex",justifyContent:"center"}} size={{sm:12,xs:12,md:6,lg:3}}>
-                                        <Card elevation={6} key={index} sx={{ backgroundColor:"rgba(237, 108, 2,0.56)",width: 250,height:310 }}>
+                                    <Grid key={index} sx={{display:"flex",justifyContent:"center"}} size={{sm:12,xs:12,md:6,lg:3}}>
+                                        <Card elevation={6}  sx={{ backgroundColor:"rgba(237, 108, 2,0.56)",width: 250,height:310 }}>
                                             <CardMedia
                                                 sx={{ height: 250 }}
                                                 image={URL.createObjectURL(image)}

@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 import {useMutation} from "@tanstack/react-query";
 import {Response} from "../../Type/Respone.ts";
 import Container from "@mui/material/Container";
-import {CircularProgress, LinearProgress} from "@mui/material";
+import {LinearProgress} from "@mui/material";
 import Typography from "@mui/material/Typography";
 type transactionInfo={
     orderId:string|null,
@@ -12,16 +12,6 @@ type transactionInfo={
     transactionId:string|null,
 }
 export default function MomoConfirmPage(){
-    // const getQuery:() => { orderId: string | null; requestId: string | null; transactionId: string | null }=()=>{
-    //     const order=searchParams.get('orderId')===null?"":searchParams.get('orderId');
-    //     const request= searchParams.get('requestId')===null?"":searchParams.get('requestId');
-    //     const transaction=searchParams.get('transactionId')===null?"":searchParams.get('transactionId');
-    //     return {
-    //         orderId:order,
-    //         requestId:request,
-    //         transactionId:transaction,
-    //     }
-    // }
     const [searchParams] = useSearchParams();
 
     const transactionInfo:transactionInfo=

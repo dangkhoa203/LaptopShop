@@ -34,23 +34,19 @@ export default function MainPageMainCategoryProductStyle2(props:{isMain:boolean,
     return (
         <div style={{width:"100%",display:"flex",flexDirection:"column",gap:"15px"}}>
             {products.length!==0 &&
-                <>
-                    <Paper elevation={9} sx={{display: "flex",justifyContent:"center",flexDirection:"column", gap:2,padding:"10px"}}  >
-                        <Typography sx={{fontFamily:"Manrope",textTransform:"uppercase",fontWeight:300,letterSpacing:"5px"}} variant="h3" textAlign="center" component="p">
-                            {props.category}
-                        </Typography>
-                        <Grid sx={{padding:"10px"}} container spacing={2} >
-                            {products.slice(0,3).map((product,index) =>
-                                <Grid size={{xs:12,sm:12,md:6,lg:6}}>
-                                    <MainPageProductCard key={index} product={product}/>
-                                </Grid>
-                            )}
-                        </Grid>
-
-                        <Button onClick={()=>navigate(props.redirectLink)}>Xem thêm</Button>
-
-                    </Paper>
-                </>
+                <Paper elevation={9} sx={{display: "flex",justifyContent:"center",flexDirection:"column", gap:2,padding:"10px"}}  >
+                    <Typography sx={{fontFamily:"Manrope",textTransform:"uppercase",fontWeight:300,letterSpacing:"5px"}} variant="h3" textAlign="center" component="p">
+                        {props.category}
+                    </Typography>
+                    <Grid sx={{padding:"10px"}} container spacing={2} >
+                        {products.slice(0,3).map((product) =>
+                            <Grid key={product.id} size={{xs:12,sm:12,md:6,lg:6}}>
+                                <MainPageProductCard  product={product}/>
+                            </Grid>
+                        )}
+                    </Grid>
+                    <Button onClick={()=>navigate(props.redirectLink)}>Xem thêm</Button>
+                </Paper>
             }
 
         </div>

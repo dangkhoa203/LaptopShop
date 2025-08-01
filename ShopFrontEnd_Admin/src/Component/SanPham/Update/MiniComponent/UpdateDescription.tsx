@@ -37,13 +37,14 @@ export default function UpdateDescription(props:{id:string}){
             return await response.json();
         },
         onSuccess:(data:Response)=>{
-            if(data.success){
-                setGlobalError("")
-                globalNotify.setNotify("Lưu mô tả thành công!")
-                refetch()
-            }
-            else {
-                setGlobalError(data.errorMessage)
+            if(data) {
+                if (data.success) {
+                    setGlobalError("")
+                    globalNotify.setNotify("Lưu mô tả thành công!")
+                    refetch()
+                } else {
+                    setGlobalError(data.errorMessage)
+                }
             }
         }
     })
@@ -59,7 +60,7 @@ export default function UpdateDescription(props:{id:string}){
         setNewDescription(oldDescription)
     },[oldDescription])
     return (
-        <Container sx={{maxWidth: {xs:"450px",sm:"480px",md:"750px",lg:"1152px"}}} style={{padding:0}}>
+        <Container sx={{fontFamily:"Manrope",maxWidth: {xs:"450px",sm:"480px",md:"750px",lg:"1152px"}}} style={{padding:0}}>
             <Divider/>
             <h2 style={{textAlign:"center"}}>Mô tả sản phẩm</h2>
             {!success ?

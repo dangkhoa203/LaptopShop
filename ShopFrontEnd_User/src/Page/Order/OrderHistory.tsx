@@ -25,6 +25,7 @@ import DialogActions from "@mui/material/DialogActions";
 import {Navigate, useNavigate} from "react-router";
 import {useAppError} from "../../State/AppErrorState.ts";
 import {useUserInfo} from "../../State/User.ts";
+import {useAppNotify} from "../../State/AppGlobalNotifyState.ts";
 type orderData={
     id:string,
     orderDate:string,
@@ -74,6 +75,7 @@ export default function OrderHistory(){
         setCancelModel("")
         setOpenCancel(false);
     };
+    const globalNotify=useAppNotify()
     const CANCEL=useMutation({
         mutationFn:async (id:string)=>{
             const response = await fetch(`https://localhost:7075/api/Orders/Cancel`, {
@@ -86,6 +88,7 @@ export default function OrderHistory(){
         },
         onSuccess:(data:Response)=>{
             if(data.success){
+                globalNotify.setNotify("Hủy đơn hàng thành công")
                 refetch()
                 handleCloseCancel()
             }
@@ -115,7 +118,6 @@ export default function OrderHistory(){
                 :
                 <>
                     <Tabs
-                        centered
                         value={value}
                         onChange={handleChange}
                         variant="scrollable"
@@ -284,14 +286,11 @@ function ListRender(props:{orders:orderData[],openCancel:(id:string)=>void,isFet
                             </Typography>
                             <div style={{display:"flex"}}>
                                 {order.detailId.map(item=>
-                                    <>
-                                        <div style={{display:"flex",padding:"5px",width:100,height:100}} >
-                                            <Paper sx={{margin:"auto",padding:"0",width:100,height:100}} elevation={6}>
-                                                <img style={{border:"1px solid black"}} src={`https://localhost:7075/api/Products/${item}/Thumbnail`} width={100} height={100}/>
-                                            </Paper>
-                                        </div>
-                                    </>
-
+                                    <div key={item} style={{display:"flex",padding:"5px",width:100,height:100}} >
+                                        <Paper sx={{margin:"auto",padding:"0",width:100,height:100}} elevation={6}>
+                                            <img style={{border:"1px solid black"}} src={`https://localhost:7075/api/Products/${item}/Thumbnail`} width={100} height={100}/>
+                                        </Paper>
+                                    </div>
                                 )}
                             </div>
                             <Typography fontWeight={300} sx={{marginTop:"10px"}} variant="h5" component="div">

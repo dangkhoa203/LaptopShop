@@ -14,11 +14,13 @@ import {useAppError} from "../../../State/AppErrorState.ts";
 import {useNavigate} from "react-router";
 import Tooltip from "@mui/material/Tooltip";
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import {useAppNotify} from "../../../State/AppGlobalNotifyState.ts";
 
 export default function MainPageProductCard(props: {product:ProductData}){
     const reFetch=useCart((state)=>state.reFetch)
     const userInfo=useUserInfo(state => state.user)
     const globalError=useAppError()
+    const globalNotify=useAppNotify()
     const {mutate}=useMutation({
         mutationFn:async (id:string)=>{
             const response = await fetch(`https://localhost:7075/api/Cart`, {
@@ -32,9 +34,10 @@ export default function MainPageProductCard(props: {product:ProductData}){
         onSuccess:(data:Response)=>{
             if(data.success){
                 reFetch();
+                globalNotify.setNotify("Thêm vào giỏ hàng thành công!")
             }
             else {
-
+                globalError.setError(data.errorMessage)
             }
         }
     })

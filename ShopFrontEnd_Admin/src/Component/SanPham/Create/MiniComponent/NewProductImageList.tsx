@@ -63,7 +63,7 @@ export default function NewProductImageList(props:{productImage:any[],setProduct
                     padding:"15px",minHeight:"400px",maxHeight:"400px",overflowY:"scroll",
                     marginBottom:"10px"}} container spacing={2}>
                     {props.productImage.map((image:any,index)=>
-                        <Grid sx={{display:"flex",justifyContent:"center"}} size={{sm:12,xs:12,md:6,lg:3}}>
+                        <Grid key={index} sx={{display:"flex",justifyContent:"center"}} size={{sm:12,xs:12,md:6,lg:3}}>
                             <Card elevation={6} key={index} sx={{ backgroundColor:"rgba(181,208,236,0.56)",width: 250,height:310 }}>
                                 <CardMedia
                                     sx={{ height: 250 }}

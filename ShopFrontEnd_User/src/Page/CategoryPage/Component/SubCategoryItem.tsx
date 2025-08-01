@@ -47,8 +47,8 @@ export default function SubCategoryItem(props:{title:string,categoryId:string,re
                                         Không có sản phẩm
                                     </Typography>
                                 }
-                                {products.map(product=>
-                                    <Grid size={{xs:12,sm:6,md:4,lg:4}}>
+                                {products.map((product)=>
+                                    <Grid key={product.id} size={{xs:12,sm:6,md:4,lg:4}}>
                                         <ProductCard product={product}/>
                                     </Grid>
 

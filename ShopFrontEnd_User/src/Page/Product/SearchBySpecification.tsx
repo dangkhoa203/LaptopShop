@@ -84,7 +84,7 @@ export default function SearchBySpecification(){
                         >
                             <MenuItem value="0" disabled>Chọn thông số</MenuItem>
                             {specificationShowData.map((item) => (
-                                <MenuItem value={item.id}>{item.name}</MenuItem>
+                                <MenuItem key={item.id} value={item.id}>{item.name}</MenuItem>
                             ))}
                         </Select>
                     </FormControl>

@@ -13,6 +13,7 @@ import Button from "@mui/material/Button";
 import {useEffect, useState} from "react";
 import {useMutation} from "@tanstack/react-query";
 import {Response} from "../../Type/Respone.ts";
+import {useAppNotify} from "../../State/AppGlobalNotifyState.ts";
 
 
 
@@ -25,6 +26,7 @@ export default function UpdateStatusDialog(props:{id:string,status:number,open:b
     const handleStatusChange = (e:any) => {
         setStatus(e.target.value);
     }
+    const globalNotify=useAppNotify()
     const {isPending,mutate}=useMutation({
         mutationFn:async ()=>{
             setGlobalError("")
@@ -40,12 +42,14 @@ export default function UpdateStatusDialog(props:{id:string,status:number,open:b
             return await response.json();
         },
         onSuccess:(data:Response)=>{
-            if(data.success){
-                close()
-                props.reFetch()
-            }
-            else {
-                setGlobalError(data.errorMessage)
+            if(data) {
+                if (data.success) {
+                    close()
+                    globalNotify.setNotify("Cập nhật thành công")
+                    props.reFetch()
+                } else {
+                    setGlobalError(data.errorMessage)
+                }
             }
         }
     })
